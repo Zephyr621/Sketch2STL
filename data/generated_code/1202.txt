@@ -1,0 +1,43 @@
+import cadquery as cq
+
+# --- Parameters from JSON ---
+outer_radius = 0.3484 * 0.75
+inner_radius = 0.1587 * 0.75
+hole_radius = 0.0105 * 0.75
+height = 0.0105
+
+# --- Create the base square ---
+base_square = cq.Workplane("XY").circle(outer_radius).extrude(height)
+
+# --- Cut out the inner circle (to be cut out) ---
+inner_circle = cq.Workplane("XY").circle(inner_radius).extrude(height)
+
+# --- Cut out the central hole ---
+base_square = base_square.cut(cq.Workplane("XY").moveTo(0.2182 * 0.75 - 0.1719 * 0.75, 0.3353 * 0.75 - 0.1719 * 0.75).circle(hole_radius).extrude(height))
+
+# --- Export to STL ---
+cq.exporters.export(base_square, './stlcq/0092/00924557.stl')
+
+# --- Export to STL ---
+cq.exporters.export(base_square, './stlcq/0092/00925593.stl')
+
+# --- Export to STL ---
+cq.exporters.export(base_square, './stlcq/0092/00925593.stl')
+
+# --- Export to STL ---
+cq.exporters.export(base_square, './stlcq/0092/00925593.stl')
+
+# --- Export to STL ---
+cq.exporters.export(base_square, './stlcq/0092/00925593.stl')
+
+# --- Export to STL ---
+cq.exporters.export(base_square, './stlcq/0092/00925593.stl')
+
+# --- Export to STL ---
+cq.exporters.export(base_square, './stlcq/0092/00925593.stl')
+
+# --- Export to STL ---
+cq.exporters.export(base_square, './stlcq/0092/00925593.stl')
+
+# --- Export to STL ---
+cq.exporters.export(

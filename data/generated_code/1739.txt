@@ -1,0 +1,48 @@
+import cadquery as cq
+
+# --- Part 1: Rectangular Prism ---
+length = 0.75 * 0.75  # Scaled length
+width = 0.4412 * 0.75  # Scaled width
+height = 0.3064
+
+circle_center_x = 0.375 * 0.75  # Scaled center x
+circle_center_y = 0.225 * 0.75  # Scaled center y
+circle_radius = 0.1562 * 0.75  # Scaled radius
+
+part_1 = (
+    cq.Workplane("XY")
+    .rect(length, width)
+    .extrude(height)
+    .faces(">Z").workplane()
+    .moveTo(circle_center_x - length/2, circle_center_y - width/2)
+    .circle(circle_radius)
+    .cutThruAll()
+)
+
+# --- Coordinate System Transformation for Part 1 ---
+part_1 = part_1.rotate((0, 0, 0), (0, 0, 1), -90)
+part_1 = part_1.translate((0, 0.3064, 0))
+
+# --- Assembly ---
+assembly = part_1
+
+# Export to STL
+cq.exporters.export(assembly, "./stlcq/0022/00227758.stl")
+
+# --- Export to STL ---
+cq.exporters.export(assembly, "./stlcq/0022/00227683.stl")
+
+# --- Export to STL ---
+cq.exporters.export(assembly, "./stlcq/0022/00227847.stl")
+
+# Export to STL
+cq.exporters.export(assembly, "./stlcq/0022/00227847.stl")
+
+# --- Export to STL ---
+cq.exporters.export(assembly, "./stlcq/0022/00227847.stl")
+
+# --- Export to STL ---
+cq.exporters.export(assembly, "./stlcq/0022/00227847.stl")
+
+# --- Export to STL ---
+cq.exporters.export(assembly, "./stlcq/0022/00227847.stl

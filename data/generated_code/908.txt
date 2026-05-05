@@ -1,0 +1,45 @@
+import cadquery as cq
+
+# --- Part 1: Rectangular Block with Square Hole ---
+length = 0.5518 * 0.75  # Scaled length
+width = 0.75 * 0.75  # Scaled width
+height = 0.1
+hole_x = 0.2749 * 0.75  # Scaled hole x
+hole_y = 0.5294 * 0.75  # Scaled hole y
+hole_size = (0.4822 - 0.2749) * 0.75  # Scaled hole size
+
+part_1 = (
+    cq.Workplane("XY")
+    .rect(length, width)
+    .extrude(height)
+    .faces(">Z").workplane()
+    .rect(hole_size, hole_size)
+    .cutThruAll()
+)
+
+# --- Assembly (if needed, based on the single part) ---
+# In this case, there's only one part, so no assembly is needed.
+# If there were multiple parts, you would use .union() or .cut() to combine them.
+
+# --- Final Result ---
+result = part_1
+
+cq.exporters.export(result, './stlcq/0058/00580782.stl')
+
+cq.exporters.export(result, './stlcq/0058/00580831.stl')
+
+cq.exporters.export(result, './stlcq/0058/00580966.stl')
+
+cq.exporters.export(result, './stlcq/0058/00580723.stl')
+
+cq.exporters.export(result, './stlcq/0058/00580723.stl')
+
+cq.exporters.export(result, './stlcq/0058/00580723.stl')
+
+cq.exporters.export(result, './stlcq/0058/00580723.stl')
+
+cq.exporters.export(result, './stlcq/0058/00580723.stl')
+
+cq.exporters.export(result, './stlcq/0058/00580723.stl')
+
+cq.exporters.export(result, './stlcq/00

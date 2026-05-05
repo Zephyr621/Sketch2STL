@@ -1,0 +1,42 @@
+import cadquery as cq
+from cadquery import exporters
+
+# --- Part 1: Cube ---
+part_1_length = 0.75 * 0.75  # Scaled length
+part_1_width = 0.75 * 0.75  # Scaled width
+part_1_height = 0.1825
+
+part_1 = cq.Workplane("XY").rect(part_1_length, part_1_width).extrude(-part_1_height)
+
+# --- Coordinate System Transformation for Part 1 ---
+part_1 = part_1.rotate((0, 0, 0), (0, 0, 1), -90)
+part_1 = part_1.translate((0, 0, 0))
+
+# --- Part 2: Cutout ---
+part_2_length = 0.7318 * 0.7318  # Scaled length
+part_2_width = 0.7318 * 0.7318  # Scaled width
+part_2_height = 0.1031
+
+part_2 = cq.Workplane("XY").rect(part_2_length, part_2_width).extrude(-part_2_height)
+
+# --- Coordinate System Transformation for Part 2 ---
+part_2 = part_2.rotate((0, 0, 0), (0, 0, 1), -90)
+part_2 = part_2.translate((0.0092, 0, 0.0092))
+
+# --- Assembly: Cut Part 2 from Part 1 ---
+result = part_1.cut(part_2)
+
+# --- Export to STL ---
+exporters.export(result, './stlcq/0050/00501747.stl')
+
+# --- Export to STL ---
+exporters.export(result, './stlcq/0050/00500621.stl')
+
+# --- Export to STL ---
+exporters.export(result, './stlcq/0050/00500618.stl')
+
+# --- Export to STL ---
+exporters.export(result, './stlcq/0058076.stl')
+
+# --- Export to STL ---
+exporters.export(exporters.export(exporters.export(exporters.export(exporters.export(exporters.export(

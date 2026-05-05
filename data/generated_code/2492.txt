@@ -1,0 +1,50 @@
+import cadquery as cq
+
+# --- Part 1: Rectangular Top ---
+part_1_length = 0.1242 * 0.1242  # Scaled length
+part_1_width = 0.1242 * 0.1242  # Scaled width
+part_1_height = 0.75
+
+part_1 = (
+    cq.Workplane("XY")
+    .rect(part_1_length, part_1_width)
+    .extrude(-part_1_height)  # Extrude in the opposite direction
+)
+
+# --- Coordinate System Transformation for Part 1 ---
+part_1 = part_1.rotate((0, 0, 0), (0, 0, 1), -90)
+part_1 = part_1.translate((0, 0, 0))
+
+# --- Assembly ---
+assembly = part_1
+
+# Export to STL
+cq.exporters.export(assembly, "./stlcq/0076/00767484.stl")
+
+# --- Export to STL ---
+cq.exporters.export(assembly, "./stlcq/0076/00767426.stl")
+
+# Export to STL
+cq.exporters.export(assembly, "./stlcq/0076/00767626.stl")
+
+# --- Export to STL ---
+cq.exporters.export(assembly, "./stlcq/0076/00767524.stl")
+
+# Export to STL
+cq.exporters.export(assembly, "./stlcq/0076/00767428.stl")
+
+# --- Apply rotation and translation ---
+assembly = assembly.rotate((0, 0, 0), (0, 0, 1), -90)
+assembly = assembly.translate((0, 0.75, 0))
+
+# Export to STL
+cq.exporters.export(assembly, "./stlcq/0076/00767428.stl")
+
+# --- Export to STL ---
+cq.exporters.export(assembly, "./stlcq/0076/00767428.stl")
+
+# --- Export to STL ---
+cq.exporters.export(assembly, "./stlcq/0076/00767428.stl")
+
+# --- Export to STL ---
+cq

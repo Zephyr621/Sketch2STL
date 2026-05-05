@@ -1,0 +1,35 @@
+import cadquery as cq
+import math
+from cadquery import exporters
+
+# --- Part 1: Curved Shape ---
+part_1_scale = 0.2974
+part_1_depth = 0.1208
+
+part_1 = (
+    cq.Workplane("XY")
+    .moveTo(0.0, 0.0199 * part_1_scale)
+    .threePointArc((0.0586 * part_1_scale, 0.0238 * part_1_scale), (0.0199 * part_1_scale, 0.0))
+    .lineTo(0.3713 * part_1_scale, 0.0)
+    .threePointArc((0.3596 * part_1_scale, 0.1442 * part_1_scale), (0.3879 * part_1_scale, 0.2974 * part_1_scale))
+    .lineTo(0.3505 * part_1_scale, 0.2974 * part_1_scale)
+    .threePointArc((0.3261 * part_1_scale, 0.1442 * part_1_scale), (0.3713 * part_1_scale, 0.0045 * part_1_scale))
+    .lineTo(0.0199 * part_1_scale, 0.0045 * part_1_scale)
+    .threePointArc((0.0586 * part_1_scale, 0.1442 * part_1_scale), (0.0, 0.0199 * part_1_scale))
+    .close()
+    .extrude(part_1_depth)
+)
+
+# --- Part 2: Hole ---
+hole_radius = 0.1665 * 0.7310
+hole_depth = 0.2274
+
+part_2 = (
+    cq.Workplane("XY")
+    .circle(hole_radius)
+    .extrude(-hole_depth)
+)
+
+# --- Coordinate System Transformation for Part 2 ---
+part_2 = part_2.rotate((0, 0, 0), (0, 0, 1), 180)
+part_2 =

@@ -1,0 +1,47 @@
+import cadquery as cq
+
+# --- Part 1: Triangular Prism ---
+part_1 = (
+    cq.Workplane("XY")
+    .moveTo(0.0, 0.0)
+    .lineTo(0.5 * 0.75, 0.0)
+    .lineTo(0.25 * 0.75, 0.75 * 0.75)
+    .lineTo(0.0, 0.0)
+    .close()
+    .extrude(0.0417)
+)
+
+# --- Coordinate System Transformation for Part 1 ---
+part_1 = part_1.rotate((0, 0, 0), (0, 0, 1), -90)
+part_1 = part_1.translate((0, 0.0417, 0))
+
+# --- Assembly ---
+assembly = part_1
+
+# Export to STL
+cq.exporters.export(assembly, "./stlcq/0051/00519712.stl")
+cq.exporters.export(assembly, "./stlcq/00512942.stl")
+
+# Export to STL
+cq.exporters.export(assembly, "./stlcq/00512942.stl")
+
+# Export to STL
+cq.exporters.export(assembly, "./stlcq/00512942.stl")
+
+# --- Export to STL ---
+cq.exporters.export(assembly, "./stlcq/00512942.stl")
+cq.exporters.export(assembly, "./stlcq/00512942.stl")
+
+cq.exporters.export(assembly, "./stlcq/00512942.stl")
+
+# --- Coordinate System Transformation for Part 2 ---
+assembly = assembly.rotate((0, 0, 0), (0, 0, 1), -90)
+assembly = assembly.translate((0, 0.0417, 0))
+
+# Export to STL
+cq.exporters.export(assembly, "./stlcq/00512942.stl")
+
+# --- Final Result ---
+result = assembly
+cq.exporters.export(result, './stlcq/00512942.stl')
+cq.exporters.export(result, './stlcq

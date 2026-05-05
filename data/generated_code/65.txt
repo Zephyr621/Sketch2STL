@@ -1,0 +1,43 @@
+import cadquery as cq
+from math import radians
+
+# --- Part 1: Base ---
+part_1_length = 0.75 * 0.75
+part_1_width = 0.75 * 0.75
+part_1_height = 0.75
+
+part_1 = cq.Workplane("XY").rect(part_1_length, part_1_width).extrude(part_1_height)
+
+# --- Coordinate System Transformation for Part 1 ---
+part_1 = part_1.rotate((0, 0, 0), (0, 0, 1), -90)
+part_1 = part_1.translate((0, 0.75, 0))
+
+# --- Part 2: Cutout 1 ---
+cutout_x_start = 0.0938
+cutout_y_start = 0.1875
+cutout_x_end = 0.6562
+cutout_y_end = 0.1875
+
+cutout_1 = (
+    cq.Workplane("XY")
+    .moveTo(cutout_x_start, cutout_y_start)
+    .lineTo(cutout_x_end, cutout_y_start)
+    .threePointArc((cutout_x_end + cutout_x_start, cutout_y_start), (cutout_x_end, cutout_y_end))
+    .close()
+    .extrude(-0.75)
+)
+
+# --- Coordinate System Transformation for Part 2 ---
+cutout_1 = cutout_1.rotate((0, 0, 0), (0, 0, 1), 180)
+cutout_1 = cutout_1.translate((0.5625, 0.75, 0))
+
+# --- Part 3: Cutout 2 ---
+cutout_2_length = 0.375 * 0.375
+cutout_2_width = 0.375 * 0.375
+cutout_2_height = 0.1875
+
+cutout_2 = (
+    cq.Workplane("XY")
+    .moveTo(cutout_2_length, cutout_2_width)
+    .lineTo(cutout_2_length, cutout_2_width)
+    .threePointArc((0, 0), (cutout_2_length, cutout_2_

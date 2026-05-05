@@ -1,0 +1,53 @@
+import cadquery as cq
+import math
+from cadquery import exporters
+
+# --- Part 1: Cylinder ---
+part_1_radius = 0.3703 * 0.7499  # Sketch radius scaled
+part_1_height = 0.239
+
+part_1 = cq.Workplane("XY").circle(part_1_radius).extrude(part_1_height)
+
+# --- Coordinate System Transformation for Part 1 ---
+part_1 = part_1.rotate((0, 0, 0), (1, 0, 0), -90)
+part_1 = part_1.rotate((0, 0, 0), (0, 0, 1), -90)
+
+# --- Assembly (if needed, based on the single part) ---
+# In this case, there's only one part, so no assembly is needed.
+# If there were multiple parts, you would use .union() or .cut() to combine them.
+
+# --- Final Result ---
+result = part_1
+
+# Export to STL
+exporters.export(result, './stlcq/0039/00399445.stl')
+
+# Export to STL
+exporters.export(result, './stlcq/00398811.stl')
+
+# Export to STL
+exporters.export(result, './stlcq/00390947.stl')
+
+# Export to STL
+exporters.export(result, './stlcq/00390947.stl')
+
+# Export to STL
+exporters.export(result, './stlcq/00390947.stl')
+
+# Export to STL
+exporters.export(result, './stlcq/00390947.stl')
+
+# Export to STL
+exporters.export(result, './stlcq/00390947.stl')
+
+# Export to STL
+exporters.export(result, './stlcq/00390947.stl')
+
+# Export to STL
+exporters.export(result, './stlcq/00390947.stl')
+
+# Export to STL
+exporters.export(result, './stlcq/00390947.stl')
+
+# Export to STL
+exporters.export(result, './stlc

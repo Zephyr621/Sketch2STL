@@ -1,0 +1,42 @@
+import cadquery as cq
+from cadquery.vis import show
+
+# --- Part 1: Rectangular Box with Slit ---
+sketch_scale = 0.75
+extrude_depth = 0.0938 * 2  # Total extrusion depth (towards + opposite normal)
+
+part_1 = (
+    cq.Workplane("XY")
+    .moveTo(0, 0)
+    .lineTo(0.375 * sketch_scale, 0)
+    .threePointArc((0.375 * sketch_scale, 0.375 * sketch_scale), (0.375 * sketch_scale, 0.75 * sketch_scale))
+    .lineTo(0, 0.75 * sketch_scale)
+    .close()
+    .extrude(extrude_depth)
+)
+
+# Create the rounded edge cutout
+cut_cutout = (
+    cq.Workplane("XY")
+    .moveTo(0.375 * sketch_scale, 0.375 * sketch_scale)
+    .threePointArc((0.375 * sketch_scale, 0.375 * sketch_scale), (0.375 * sketch_scale, 0.75 * sketch_scale))
+    .lineTo(0.375 * sketch_scale, 0.75 * sketch_scale)
+    .threePointArc((0.375 * sketch_scale, 0.375 * sketch_scale), (0.375 * sketch_scale, 0.375 * sketch_scale))
+    .close()
+    .extrude(extrude_depth)
+)
+
+# Subtract the cut cutout from the main body
+part_1 = part_1.cut(cut_cutout)
+
+# --- Coordinate System Transformation for Part 1 ---
+part_1 = part_1.rotate((0, 0, 0), (0, 0, 1), -90)
+part_1 = part_1.translate((0, 0.0938 * sketch_scale, 0))
+
+# --- Assembly ---
+assembly = part_1
+
+# Export to STL
+cq.exporters.export(assembly, "./stlcq/0060/00604001.stl")
+
+cq.exporters.export(assembly, "./stlcq/

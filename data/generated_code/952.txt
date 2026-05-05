@@ -1,0 +1,46 @@
+import cadquery as cq
+
+# --- Part 1: Cylinder with a hole ---
+outer_radius = 0.0711 * 0.1579  # Sketch radius scaled
+inner_radius = 0.0577 * 0.1579
+height = 0.75
+
+part_1 = (
+    cq.Workplane("XY")
+    .circle(outer_radius)
+    .extrude(height)
+    .cut(cq.Workplane("XY").circle(inner_radius).extrude(height))
+)
+
+# --- Assembly (if needed, based on the single part) ---
+# In this case, there's only one part, so no assembly is needed.
+# If there were multiple parts, you would use .union() or .cut() to combine them.
+
+# --- Final Result ---
+result = part_1
+
+cq.exporters.export(result, './stlcq/0089/00895317.stl')
+
+cq.exporters.export(result, './stlcq/0089/00895379.stl')
+
+cq.exporters.export(result, './stlcq/0089/00895925.stl')
+
+cq.exporters.export(result, './stlcq/0089/00895924.stl')
+
+cq.exporters.export(result, './stlcq/0089/00895924.stl')
+
+cq.exporters.export(result, './stlcq/0089/00895924.stl')
+
+cq.exporters.export(result, './stlcq/0089/00895923.stl')
+
+cq.exporters.export(result, './stlcq/0089/00895924.stl')
+
+cq.exporters.export(result, './stlcq/0089/00895924.stl')
+
+cq.exporters.export(result, './stlcq/0089/00895927.stl')
+
+cq.exporters.export(result, './stlcq/0089/00895928.stl')
+
+cq.exporters.export(result, './stlcq/0089/00895827.stl')
+
+cq.exporters.export(result, './stlcq/0089

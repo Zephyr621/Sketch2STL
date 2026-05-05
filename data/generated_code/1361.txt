@@ -1,0 +1,44 @@
+import cadquery as cq
+from math import radians
+
+# --- Part 1: Cylinder Base ---
+part_1_radius = 0.375 * 0.75  # Sketch radius scaled
+part_1_height = 0.0862
+
+part_1 = cq.Workplane("XY").circle(part_1_radius).extrude(part_1_height)
+
+# --- Part 2: Cylinder Extension ---
+part_2_radius = 0.1879 * 0.3707  # Sketch radius scaled
+part_2_height = 0.1293
+
+part_2 = cq.Workplane("XY").circle(part_2_radius).extrude(-part_2_height)
+
+# --- Coordinate System Transformation for Part 2 ---
+part_2 = part_2.translate((0.1304, 0.1304, part_1_height))
+
+# --- Part 3: Cylinder Cutout ---
+part_3_radius = 0.1304 * 0.2707  # Sketch radius scaled
+part_3_height = 0.2155
+
+part_3 = cq.Workplane("XY").circle(part_3_radius).extrude(-part_3_height)
+
+# --- Coordinate System Transformation for Part 3 ---
+part_3 = part_3.rotate((0, 0, 0), (0, 0, 1), 180)
+part_3 = part_3.translate((0.1176, 0.4261, 0))
+
+# --- Assembly ---
+assembly = part_1.union(part_2).cut(part_3)
+
+cq.exporters.export(assembly, "./stlcq/0031/00310759.stl")
+
+cq.exporters.export(assembly, "./stlcq/0031/00310246.stl")
+
+cq.exporters.export(assembly, './stlcq/0031/003102467.stl')
+
+cq.exporters.export(assembly, "./stlcq/0031/003102460.stl")
+
+cq.exporters.export(assembly, "./stlcq/0031/003102461.stl")
+
+cq.exporters.export(assembly, "./stlcq/0031/003102468.stl")
+
+cq.exporters.

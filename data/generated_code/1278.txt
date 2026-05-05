@@ -1,0 +1,44 @@
+import cadquery as cq
+from cadquery import exporters
+
+# --- Part 1: Cylinder ---
+part_1_radius = 0.0082 * 0.0183  # Sketch radius scaled
+part_1_height = 0.6587
+
+part_1 = cq.Workplane("XY").circle(part_1_radius).extrude(part_1_height)
+
+# --- Coordinate System Transformation for Part 1 ---
+part_1 = part_1.translate((0, 0, 0.2764))
+
+# --- Part 2: Base ---
+base_width = 0.0061 * 0.6716
+base_height = 0.6716 * 0.6716
+base_depth = 0.0091
+
+base = (
+    cq.Workplane("XY")
+    .moveTo(0.0031 * 0.6716, 0)
+    .lineTo(0.0061 * 0.6716, 0.0031 * 0.6716)
+    .lineTo(0.0061 * 0.6716, 0.6716 * 0.6716)
+    .lineTo(0.0031 * 0.6716, 0.6716 * 0.6716)
+    .close()
+    .extrude(base_depth)
+)
+
+# --- Part 3: Vertical Rod ---
+rod_width = 0.0061 * 0.6716
+rod_height = 0.6716 * 0.6716
+rod_depth = 0.0704
+
+rod = (
+    cq.Workplane("XY")
+    .moveTo(0.0031 * 0.6716, 0)
+    .lineTo(0.0061 * 0.6716, 0)
+    .lineTo(0.0061 * 0.6716, 0.6716 * 0.6716)
+    .lineTo(0.0031 * 0.6716, 0.6716 * 0.6716)
+    .close()
+    .extrude(rod_depth)
+)
+
+# --- Coordinate System Transformation for Part 3 ---
+rod = rod.rotate((0, 0, 0), (0, 0, 1), 180)

@@ -1,0 +1,51 @@
+import cadquery as cq
+
+# --- Part 1: Rectangular Prism ---
+length = 0.75 * 0.75  # Scaled length
+width = 0.3214 * 0.75  # Scaled width
+height = 0.0171
+
+part_1 = (
+    cq.Workplane("XY")
+    .rect(length, width)
+    .extrude(-height)  # Extrude in the opposite direction
+)
+
+# --- Coordinate System Transformation for Part 1 ---
+part_1 = part_1.rotate((0, 0, 0), (0, 0, 1), -90)
+part_1 = part_1.translate((0, 0, 0))
+
+# --- Assembly ---
+assembly = part_1
+
+# Export to STL
+cq.exporters.export(assembly, "./stlcq/0080/00802340.stl")
+
+# --- Export to STL ---
+cq.exporters.export(assembly, "./stlcq/00800/00802849.stl")
+
+# --- Export to STL ---
+cq.exporters.export(assembly, "./stlcq/00800/00802935.stl")
+
+# --- Export to STL ---
+cq.exporters.export(assembly, "./stlcq/00800/00802834.stl")
+
+# --- Export to STL ---
+cq.exporters.export(assembly, "./stlcq/00800/00802935.stl")
+
+# --- Export to STL ---
+cq.exporters.export(assembly, "./stlcq/00800/00802837.stl")
+
+# --- Export to STL ---
+cq.exporters.export(assembly, "./stlcq/00800/00802936.stl")
+
+# --- Export to STL ---
+cq.exporters.export(assembly, "./stlcq/00800/008005987.stl")
+
+# --- Export to STL ---
+cq.exporters.export(assembly, "./stlcq/00800/00802935.stl")
+
+# --- Export to STL ---
+cq.exporters.export(assembly, "./stlcq/00800/00802935.stl")
+
+# --- Export to STL ---

@@ -1,0 +1,49 @@
+import cadquery as cq
+
+# --- Part 1: Rectangular Bracket ---
+sketch_scale = 0.75
+length = 0.75 * sketch_scale
+width = 0.2386 * sketch_scale
+height = 0.0195
+hole_radius = 0.0055 * sketch_scale
+hole1_x = 0.0735 * sketch_scale
+hole1_y = 0.0385 * sketch_scale
+hole2_x = 0.6771 * sketch_scale
+hole2_y = 0.0385 * sketch_scale
+
+part_1 = (
+    cq.Workplane("XY")
+    .moveTo(0.0, 0.0)
+    .lineTo(length, 0.0)
+    .lineTo(length, width)
+    .lineTo(0.6042 * sketch_scale, width)
+    .lineTo(0.6042 * sketch_scale, 0.1179 * sketch_scale)
+    .lineTo(0.7258 * sketch_scale, 0.1179 * sketch_scale)
+    .lineTo(0.7258 * sketch_scale, 0.1293 * sketch_scale)
+    .lineTo(0.0, 0.1293 * sketch_scale)
+    .lineTo(0.0, 0.0)
+    .close()
+    .extrude(height)
+)
+
+# Add holes to part 1
+part_1 = (
+    part_1.faces(">Z")
+    .workplane()
+    .hole(2 * hole_radius)
+)
+
+# --- Assembly ---
+assembly = part_1
+
+# Export to STL
+cq.exporters.export(assembly, "./stlcq/0032/00322084.stl")
+
+# Export to STL
+cq.exporters.export(assembly, "./stlcq/0032/00323347.stl")
+
+cq.exporters.export(assembly, "./stlcq/0032/00323347.stl")
+
+cq.exporters.export(assembly, "./stlcq/0032/00323346.stl")
+
+cq.exporters.export

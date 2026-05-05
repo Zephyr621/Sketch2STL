@@ -1,0 +1,41 @@
+import cadquery as cq
+import math
+from cadquery import exporters
+
+# --- Part 1: Rectangular Block with Curved Top and Holes ---
+part_1_scale = 0.75
+part_1_depth = 0.1368
+
+hole_radius_outer = 0.059 * part_1_scale
+hole_radius_inner = 0.0234 * part_1_scale
+
+part_1 = (
+    cq.Workplane("XY")
+    .moveTo(0.1071 * part_1_scale, 0)
+    .lineTo(0.6429 * part_1_scale, 0)
+    .threePointArc((0.75 * part_1_scale, 0.2085 * part_1_scale), (0.6429 * part_1_scale, 0.4018 * part_1_scale))
+    .lineTo(0.1071 * part_1_scale, 0.4018 * part_1_scale)
+    .threePointArc((0, 0.2085 * part_1_scale), (0.1071 * part_1_scale, 0))
+    .close()
+    .extrude(part_1_depth)
+)
+
+# Create the outer profile
+part_1 = part_1.faces(">Z").workplane().circle(hole_radius_outer).cutThruAll()
+
+# Create the inner hole
+hole_radius_outer = 0.0541 * part_1_scale
+hole_radius_inner = 0.0541 * part_1_scale
+
+part_1 = part_1.faces(">Z").workplane().circle(hole_radius_inner).cutThruAll()
+
+# --- Coordinate System Transformation for Part 1 ---
+part_1 = part_1.rotate((0, 0, 0), (0, 0, 1), -90)
+part_1 = part_1.translate((0, 0.1368, 0))
+
+# --- Part 2: Cylinder Cutout ---
+part_2_scale = 0.4038
+part_2_depth = 0.2717
+
+cylinder_radius = 0.059 * part_2_scale
+cylinder_inner = 0.0234 *

@@ -1,0 +1,50 @@
+import cadquery as cq
+from cadquery.vis import show
+
+# --- Part 1: Cube ---
+part_1_length = 0.75 * 0.75  # Scaled length
+part_1_width = 0.5625 * 0.75  # Scaled width
+part_1_height = 0.4688
+
+part_1 = (
+    cq.Workplane("XY")
+    .rect(part_1_length, part_1_width)
+    .extrude(part_1_height)
+)
+
+# --- Part 2: Cylinder (Hole) ---
+part_2_radius = 0.0469 * 0.0938  # Scaled radius
+part_2_depth = 0.2344
+
+part_2 = (
+    cq.Workplane("XY")
+    .circle(part_2_radius)
+    .extrude(-part_2_depth)
+)
+
+# --- Coordinate System Transformation for Part 2 ---
+part_2 = part_2.translate((0.2812, 0.1406, part_1_height))
+
+# --- Assembly: Cut the hole from the cube ---
+result = part_1.cut(part_2)
+
+# --- Export to STL ---
+cq.exporters.export(result, './stlcq/0079/00797465.stl')
+
+cq.exporters.export(result, './stlcq/007910.stl')
+
+cq.exporters.export(result, './stlcq/007915.stl')
+
+cq.exporters.export(result, './stlcq/007918.stl')
+
+cq.exporters.export(result, './stlcq/007917.stl')
+
+cq.exporters.export(result, './stlcq/007918.stl')
+
+cq.exporters.export(result, './stlcq/007915.stl')
+
+cq.exporters.export(result, './stlcq/007917.stl')
+
+cq.exporters.export(result, './stlcq/007917.stl')
+
+cq.exporters.export(result, './stlcq/0079

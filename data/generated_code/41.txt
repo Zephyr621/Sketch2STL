@@ -1,0 +1,49 @@
+import cadquery as cq
+
+# --- Part 1: Cube with Circular Hole ---
+cube_size = 0.75 * 0.75  # Scaled cube size
+hole_radius = 0.25 * 0.75  # Scaled hole radius
+cube_height = 0.5
+
+part_1 = (
+    cq.Workplane("XY")
+    .rect(cube_size, cube_size)
+    .extrude(cube_height)
+    .faces(">Z").workplane()
+    .circle(hole_radius)
+    .cutThruAll()
+)
+
+# --- Assembly (if needed, based on the single part) ---
+# In this case, there's only one part, so no assembly is needed.
+# If there were multiple parts, you would use .union() or .cut() to combine them.
+
+# --- Final Result ---
+result = part_1
+
+cq.exporters.export(result, './stlcq/0057/00573969.stl')
+
+# Export to STL
+cq.exporters.export(result, './stlcq/00577941.stl')
+
+cq.exporters.export(result, './stlcq/0057/00577417.stl')
+
+cq.exporters.export(result, './stlcq/00577938.stl')
+
+cq.exporters.export(result, './stlcq/00577934.stl')
+
+cq.exporters.export(result, './stlcq/0057/00577933.stl')
+
+cq.exporters.export(result, './stlcq/00577934.stl')
+
+cq.exporters.export(result, './stlcq/0057/00577934.stl')
+
+cq.exporters.export(result, './stlcq/0057/00577934.stl')
+
+cq.exporters.export(result, './stlcq/00577934.stl')
+
+cq.exporters.export(result, './stlcq/0057/00572947.stl')
+
+cq.exporters.export(result, './stlcq/0057/00572897.stl')
+
+cq.exp

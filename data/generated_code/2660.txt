@@ -1,0 +1,40 @@
+import cadquery as cq
+import math
+from cadquery import exporters
+
+# --- Part 1: Two Flanges ---
+sketch_scale = 0.7396
+
+# Scaled Dimensions
+arc1_start = (0.0717 * sketch_scale, 0.6176 * sketch_scale)
+arc1_mid = (0.2186 * sketch_scale, 0.0078 * sketch_scale)
+arc1_end = (0.4194 * sketch_scale, 0.0 * sketch_scale)
+
+arc2_start = (0.3727 * sketch_scale, 0.0 * sketch_scale)
+arc2_mid = (0.5357 * sketch_scale, 0.0181 * sketch_scale)
+arc2_end = (0.6196 * sketch_scale, 0.6366 * sketch_scale)
+
+circle1_center = (0.3541 * sketch_scale, 0.3541 * sketch_scale)
+circle1_radius = 0.1461 * sketch_scale
+
+circle2_center = (0.3106 * sketch_scale, 0.3406 * sketch_scale)
+circle2_radius = 0.1393 * sketch_scale
+
+extrude_depth = 0.0572
+
+# Create the outer shape
+outer_shape = (
+    cq.Workplane("XY")
+    .moveTo(arc1_start[0], arc1_start[1])
+    .threePointArc(arc1_mid, arc1_end)
+    .threePointArc(arc2_mid, arc2_end)
+    .threePointArc(circle1_center, circle1_radius)
+    .close()
+)
+
+# Create the holes
+hole1 = cq.Workplane("XY").moveTo(circle1_center[0], circle1_center[1]).circle(circle1_radius).extrude(-extrude_depth)
+hole2 = cq.Workplane("XY").moveTo(circle2_center[0], circle2_center[1]).circle(circle2_radius).extrude(-extrude_depth)
+
+# Subtract the holes from the outer shape
+part_1 = outer_shape.cut(hole1).cut(hole

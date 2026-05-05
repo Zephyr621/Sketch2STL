@@ -1,0 +1,31 @@
+import cadquery as cq
+
+# --- Part 1: Rectangular Box with Cutout ---
+outer_width = 0.75 * 0.75  # Scaled width
+outer_length = 0.2437 * 0.75  # Scaled length
+inner_offset = 0.0188 * 0.75  # Scaled offset
+height = 0.1875
+
+# Create the outer rectangle
+outer_rect = cq.Workplane("XY").rect(outer_width, outer_length).extrude(height)
+
+# Create the inner cutout (cutout)
+inner_cutout = (
+    cq.Workplane("XY")
+    .moveTo(0, inner_offset - outer_length/2)
+    .lineTo(outer_width - inner_offset, inner_offset - outer_length/2)
+    .lineTo(outer_width - inner_offset, outer_length - inner_offset)
+    .lineTo(outer_width - inner_offset, outer_length - inner_offset)
+    .lineTo(outer_width - inner_offset, outer_length - inner_offset)
+    .lineTo(outer_width - inner_offset, outer_length - inner_offset)
+    .lineTo(outer_width - inner_offset, outer_length - inner_offset)
+    .lineTo(outer_width - inner_offset, outer_length - inner_offset)
+    .lineTo(outer_width - inner_offset, outer_length - inner_offset)
+    .lineTo(outer_width - inner_offset, outer_length - inner_offset)
+    .lineTo(outer_width - inner_offset, outer_length - inner_offset)
+    .lineTo(outer_width - inner_offset, outer_length - inner_offset)
+    .lineTo(outer_width - inner_offset, outer_length - inner_offset)
+    .lineTo(outer_width - inner_offset, outer_length - inner_offset)
+    .lineTo(outer_width - inner_offset, outer_length - inner_offset)
+    .lineTo(outer_width - inner_offset, outer_length - inner_offset)
+    .

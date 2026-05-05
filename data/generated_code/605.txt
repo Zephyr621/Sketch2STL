@@ -1,0 +1,47 @@
+import cadquery as cq
+
+# --- Part 1: Rectangular Box ---
+length = 0.5714 * 0.75  # Sketch length scaled
+width = 0.75 * 0.75  # Sketch width scaled
+height = 0.1786
+
+part_1 = (
+    cq.Workplane("XY")
+    .rect(length, width)
+    .extrude(height)
+)
+
+# --- Coordinate System Transformation for Part 1 ---
+part_1 = part_1.rotate((0, 0, 0), (0, 0, 1), -90)
+part_1 = part_1.translate((0, 0.1786, 0))
+
+# --- Assembly (if needed, based on the single part) ---
+# In this case, there's only one part, so no assembly is needed.
+# If there were multiple parts, you would use .union() or .cut() to combine them.
+
+# --- Final Result ---
+result = part_1
+
+cq.exporters.export(result, './stlcq/0050/00507346.stl')
+
+cq.exporters.export(result, './stlcq/00500/00500706.stl')
+
+cq.exporters.export(result, './stlcq/00500/00500631.stl')
+
+cq.exporters.export(result, './stlcq/00500/005005177.stl')
+
+cq.exporters.export(result, './stlcq/00500/00500633.stl')
+
+cq.exporters.export(result, './stlcq/00500/005005172.stl')
+
+cq.exporters.export(result, './stlcq/00500/005006797.stl')
+
+cq.exporters.export(result, './stlcq/00500/00500632.stl')
+
+cq.exporters.export(result, './stlcq/00500/00500912.stl')
+
+cq.exporters.export(result, './stlcq/00500/0050060.stl')
+
+cq.exporters.export(result, './stlcq/00500/005005177.stl')
+
+cq

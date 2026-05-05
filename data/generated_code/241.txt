@@ -1,0 +1,36 @@
+import cadquery as cq
+
+# --- Part 1: Rectangular Block with Step ---
+part_1 = (
+    cq.Workplane("XY")
+    .moveTo(0.0, 0.0)
+    .lineTo(0.4021 * 0.4021, 0.0)
+    .lineTo(0.4021 * 0.4021, 0.1118 * 0.4021)
+    .lineTo(0.4583 * 0.4021, 0.1118 * 0.4021)
+    .lineTo(0.4583 * 0.4021, 0.0196 * 0.4021)
+    .lineTo(0.3734 * 0.4021, 0.0196 * 0.4021)
+    .lineTo(0.3734 * 0.4021, 0.0209 * 0.4021)
+    .lineTo(0.0436 * 0.4021, 0.0209 * 0.4021)
+    .lineTo(0.0436 * 0.4021, 0.2103 * 0.4021)
+    .lineTo(0.0, 0.2103 * 0.4021)
+    .lineTo(0.0, 0.0)
+    .close()
+    .extrude(-0.75)
+)
+
+# --- Coordinate System Transformation for Part 1 ---
+part_1 = part_1.rotate((0, 0, 0), (1, 0, 0), -90)
+part_1 = part_1.rotate((0, 0, 0), (0, 0, 1), -90)
+part_1 = part_1.translate((0.75, 0, 0))
+
+# --- Assembly ---
+assembly = part_1
+
+# Export to STL
+cq.exporters.export(assembly, "./stlcq/0030/00304557.stl")
+cq.exporters.export(assembly, "./stlcq/0030788.stl")
+
+# Export to STL
+cq.exporters.export(assembly, "./stlcq/0030788.stl")
+
+cq.exporters.export(assembly, "./stlcq/00307

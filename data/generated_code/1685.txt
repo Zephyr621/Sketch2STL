@@ -1,0 +1,32 @@
+import cadquery as cq
+import math
+from cadquery.vis import show
+
+# --- Parameters from JSON ---
+outer_radius = 0.375 * 0.75
+inner_radius = 0.1714 * 0.75
+hole1_center = (0.1607 * 0.75 - outer_radius, 0.1071 * 0.75 - outer_radius)
+hole2_center = (0.6151 * 0.75 - outer_radius, 0.1136 * 0.75 - outer_radius)
+hole3_center = (0.6072 * 0.75 - outer_radius, 0.0984 * 0.75 - outer_radius)
+hole4_center = (0.5893 * 0.75 - outer_radius, 0.3343 * 0.75 - outer_radius)
+plate_thickness = 0.0325
+
+# --- Create the base circular plate ---
+plate = cq.Workplane("XY").circle(outer_radius).extrude(plate_thickness)
+
+# --- Cut out the central hole ---
+plate = plate.cut(cq.Workplane("XY").moveTo(hole1_center[0], hole1_center[1]).circle(inner_radius).extrude(plate_thickness))
+plate = plate.cut(cq.Workplane("XY").moveTo(hole2_center[0], hole2_center[1]).circle(inner_radius).extrude(plate_thickness))
+plate = plate.cut(cq.Workplane("XY").moveTo(hole3_center[0], hole3_center[1]).circle(inner_radius).extrude(plate_thickness))
+plate = plate.cut(cq.Workplane("XY").moveTo(hole4_center[0], hole4_center[1]).circle(inner_radius).extrude(plate_thickness))
+
+# --- Export to STL ---
+cq.exporters.export(plate, './stlcq/0086/00866220.stl')
+
+# --- Export to STL ---
+cq.exporters.export(plate, './stlcq/0086/00866849.stl')
+
+# --- Export to STL ---
+cq.exporters.export(plate, './stlcq/0086/00866948.stl')
+
+# --- Export to ST

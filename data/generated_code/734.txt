@@ -1,0 +1,37 @@
+import cadquery as cq
+import math
+from cadquery import exporters
+
+# --- Part 1: Curved L-shape ---
+part_1 = (
+    cq.Workplane("XY")
+    .moveTo(0.0, 0.0)
+    .lineTo(0.75 * 0.75, 0.0)
+    .threePointArc((0.7345 * 0.75, 0.1346 * 0.75), (0.75 * 0.75, 0.2608 * 0.75))
+    .lineTo(0.4533 * 0.75, 0.2608 * 0.75)
+    .threePointArc((0.5341 * 0.75, 0.1261 * 0.75), (0.4533 * 0.75, 0.1517 * 0.75))
+    .lineTo(0.2259 * 0.75, 0.1517 * 0.75)
+    .threePointArc((0.0842 * 0.75, 0.2369 * 0.75), (0.0, 0.1517 * 0.75))
+    .lineTo(0.0, 0.0)
+    .close()
+    .extrude(0.1453)
+)
+
+# Cut the hole
+part_1 = part_1.faces(">Z").workplane().circle(0.0703 * 0.75).cutThruAll()
+
+# --- Part 2: Cylinder with Hole ---
+part_2_outer_radius = 0.194 * 0.7353
+part_2_inner_radius = 0.082 * 0.7353
+part_2_height = 0.0487
+
+part_2 = (
+    cq.Workplane("XY")
+    .circle(part_2_outer_radius)
+    .extrude(part_2_height)
+    .cut(cq.Workplane("XY").circle(part_2_inner_radius).extrude(part_2_height))
+)
+
+# --- Part 3: Rectangular Plate with Rounded Edges ---
+part_3_width = 0.1718 * 0.1936
+part_

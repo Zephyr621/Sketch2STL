@@ -1,0 +1,43 @@
+import cadquery as cq
+
+# --- Part 1: L-shaped Base ---
+part_1 = (
+    cq.Workplane("XY")
+    .moveTo(0.0, 0.0)
+    .lineTo(0.75 * 0.75, 0.0)
+    .lineTo(0.75 * 0.75, 0.125 * 0.75)
+    .lineTo(0.5 * 0.75, 0.125 * 0.75)
+    .lineTo(0.5 * 0.75, 0.375 * 0.75)
+    .lineTo(0.25 * 0.75, 0.375 * 0.75)
+    .lineTo(0.25 * 0.75, 0.25 * 0.75)
+    .lineTo(0.0, 0.25 * 0.75)
+    .lineTo(0.0, 0.0)
+    .close()
+    .extrude(0.25)
+)
+
+# --- Coordinate System Transformation for Part 1 ---
+part_1 = part_1.rotate((0, 0, 0), (0, 0, 1), -90)
+part_1 = part_1.translate((0, 0.25, 0))
+
+# --- Part 2: Rectangular Protrusion ---
+part_2 = (
+    cq.Workplane("XY")
+    .rect(0.25 * 0.25, 0.125 * 0.25)
+    .extrude(-0.125)
+)
+
+# --- Coordinate System Transformation for Part 2 ---
+part_2 = part_2.translate((0.5, 0.25, 0.125))
+
+# --- Assembly ---
+assembly = part_1.union(part_2)
+
+cq.exporters.export(assembly, "./stlcq/0059/00599781.stl")
+
+# --- Export to STL ---
+cq.exporters.export(assembly, "./stlcq/0059/00599781.stl")
+
+cq.exporters.export(assembly, "./stlcq/0059/00599781.stl")
+
+cq.exporters.export(assembly

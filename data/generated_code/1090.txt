@@ -1,0 +1,47 @@
+import cadquery as cq
+import math
+from cadquery.vis import show
+
+# --- Parameters from JSON ---
+length = 0.4922 * 0.4922  # Scaled length
+width = 0.3125 * 0.4922  # Scaled width
+height = 0.75
+sketch_scale = 0.4922
+hole_radius = 0.0062 * sketch_scale
+corner_radius = 0.0
+
+# Hole centers (scaled)
+hole1_x = 0.0136 * sketch_scale - length / 2
+hole2_x = 0.5341 * sketch_scale - length / 2
+hole3_x = 0.4922 * sketch_scale - length / 2
+hole4_x = 0.4922 * sketch_scale - length / 2
+
+# --- Create the base shape ---
+base_shape = (
+    cq.Workplane("XY")
+    .moveTo(corner_radius, 0)
+    .lineTo(length - corner_radius, 0)
+    .threePointArc((length, corner_radius), (length - corner_radius, corner_radius))
+    .lineTo(length, width - corner_radius)
+    .threePointArc((length - corner_radius, width), (length - corner_radius, width))
+    .lineTo(corner_radius, width)
+    .threePointArc((0, width - corner_radius), (corner_radius, width - corner_radius))
+    .close()
+)
+
+# --- Extrude the base shape ---
+result = base_shape.extrude(height)
+
+# --- Add the holes ---
+for x, y in hole1_x:
+    result = result.faces(">Z").workplane().pushPoints([(x, y)]).hole(2 * hole_radius)
+
+# --- Apply transformations ---
+result = result.rotate((0, 0, 0), (0, 0, 1), -90)
+result = result.translate((0, 0.75, 0))
+
+# Export to STL
+cq.exporters.export(result, "./stlcq/0069/00696860.stl")
+
+# Export to STL
+cq.exporters.export(result

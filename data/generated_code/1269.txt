@@ -1,0 +1,40 @@
+import cadquery as cq
+from math import radians
+
+# --- Part 1: Cylinder with Holes ---
+part_1_outer_radius = 0.2344 * 0.4615
+part_1_inner_radius = 0.125 * 0.4615
+part_1_height = 0.2143
+
+hole_1_center = (0.1378 * 0.4615 - part_1_outer_radius, 0.0942 * 0.4615 - part_1_outer_radius)
+hole_2_center = (0.6121 * 0.4615 - part_1_outer_radius, 0.0942 * 0.4615 - part_1_outer_radius)
+hole_radius = 0.0625 * 0.4615
+
+part_1 = (
+    cq.Workplane("XY")
+    .circle(part_1_outer_radius)
+    .extrude(part_1_height)
+    .faces(">Z")
+    .workplane()
+    .pushPoints([hole_1_center])
+    .circle(part_1_inner_radius)
+    .cutThruAll()
+    .faces(">Z")
+    .workplane()
+    .pushPoints([hole_2_center])
+    .circle(part_1_inner_radius)
+    .cutThruAll()
+)
+
+# --- Coordinate System Transformation for Part 1 ---
+part_1 = part_1.rotate((0, 0, 0), (0, 0, 1), -90)
+part_1 = part_1.translate((0, 0.375, 0))
+
+# --- Part 2: Cylinder with Hole ---
+part_2_outer_radius = 0.2135 * 0.4085
+part_2_inner_radius = 0.125 * 0.4085
+part_2_height = 0.3142
+
+hole_1_center = (0.2135 * 0.4085, 0.1047 * 0.4085)
+hole_2_center = (0.2135 * 0.4085, 0.5156 * 0.4085)
+hole_radius =

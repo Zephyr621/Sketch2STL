@@ -1,0 +1,47 @@
+import cadquery as cq
+import math
+from cadquery.vis import show
+
+# --- Parameters from JSON ---
+length = 0.57
+width = 0.75
+height = 0.0094
+sketch_scale = 0.75
+hole_radius = 0.0188 * sketch_scale
+corner_radius = 0.0346 * sketch_scale
+
+# Scaled values
+scaled_length = length * sketch_scale
+scaled_width = width * sketch_scale
+scaled_height = height
+scaled_corner_radius = corner_radius * sketch_scale
+
+# Hole centers (scaled)
+hole_centers = [
+    (0.0562 * sketch_scale - scaled_length / 2, 0.0562 * sketch_scale - scaled_width / 2),
+    (0.0562 * sketch_scale - scaled_length / 2, 0.6938 * sketch_scale - scaled_width / 2),
+    (0.6938 * sketch_scale - scaled_length / 2, 0.0562 * sketch_scale - scaled_width / 2),
+    (0.6938 * sketch_scale - scaled_length / 2, 0.6938 * sketch_scale - scaled_width / 2)
+]
+
+# --- Create the base rectangular plate ---
+plate = (
+    cq.Workplane("XY")
+    .rect(scaled_length, scaled_width)
+    .extrude(scaled_height)
+)
+
+# --- Add the holes ---
+for center_x, center_y in hole_centers:
+    plate = (plate
+            .faces(">Z")
+             .workplane()
+            .moveTo(center_x - scaled_length/2, center_y - scaled_width/2)
+            .circle(scaled_corner_radius)
+            .cutThruAll())
+
+# --- Apply translation ---
+plate = plate.translate((0, 0, 0.0094))
+
+# --- Export to STL ---
+cq.exporters.export

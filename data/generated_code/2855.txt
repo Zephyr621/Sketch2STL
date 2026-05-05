@@ -1,0 +1,52 @@
+import cadquery as cq
+from math import *
+
+# --- Part 1: Hexagonal Prism ---
+part_1_points = [
+    (0.0, 0.3248),
+    (0.1875, 0.0),
+    (0.5625, 0.0),
+    (0.75, 0.3248),
+    (0.5625, 0.6495),
+    (0.1875, 0.6495)
+]
+part_1_height = 0.2469
+part_1_scale = 0.75
+
+scaled_points = [(x * part_1_scale, y * part_1_scale) for x, y in part_1_points]
+
+part_1 = (
+    cq.Workplane("XY")
+    .polyline(scaled_points)
+    .close()
+    .extrude(part_1_height)
+)
+
+# --- Part 2: Cylinder ---
+part_2_radius = 0.3045 * 0.6089  # Radius scaled
+part_2_height = 0.1269
+part_2_translation = (0.0705, 0.0203, 0.2469)
+
+part_2 = (
+    cq.Workplane("XY")
+    .circle(part_2_radius)
+    .extrude(part_2_height)
+)
+
+# --- Coordinate System Transformation for Part 2 ---
+part_2 = part_2.translate(part_2_translation)
+
+# --- Assembly ---
+assembly = part_1.union(part_2)
+
+cq.exporters.export(assembly, "./stlcq/0027/00272301.stl")
+
+cq.exporters.export(assembly, "./stlcq/0027738.stl")
+
+cq.exporters.export(assembly, "./stlcq/0027737.stl")
+
+cq.exporters.export(assembly, "./stlcq/0027734.stl")
+
+cq.exporters.export(assembly, "./stlcq/0027735.stl")
+
+cq.exporters.export(assembly, "./stlc

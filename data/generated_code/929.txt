@@ -1,0 +1,44 @@
+This part forms a cube with a protruding section on one side.
+import cadquery as cq
+
+# --- Part 1: Cube with Protrusion ---
+sketch_scale = 0.75
+extrude_depth = 0.2163 * 2  # Total extrusion depth (towards + opposite normal)
+
+part_1 = (
+    cq.Workplane("XY")
+    .moveTo(0.0, 0.0)
+    .lineTo(0.7324 * sketch_scale, 0.0)
+    .lineTo(0.7324 * sketch_scale, 0.5156 * sketch_scale)
+    .lineTo(0.75 * sketch_scale, 0.5156 * sketch_scale)
+    .lineTo(0.75 * sketch_scale, 0.4167 * sketch_scale)
+    .lineTo(0.0, 0.4167 * sketch_scale)
+    .lineTo(0.0, 0.0)
+    .close()
+    .extrude(extrude_depth)
+)
+
+# --- Coordinate System Transformation for Part 1 ---
+part_1 = part_1.rotate((0, 0, 0), (0, 0, 1), -90)
+part_1 = part_1.translate((0, 0.2163 * sketch_scale, 0))
+
+# --- Assembly ---
+assembly = part_1
+
+# Export to STL
+cq.exporters.export(assembly, "./stlcq/0047/00477257.stl")
+
+# Export to STL
+cq.exporters.export(assembly, "./stlcq/0047/00477464.stl")
+
+cq.exporters.export(assembly, "./stlcq/0047/00477464.stl")
+
+cq.exporters.export(assembly, "./stlcq/004707.stl")
+
+cq.exporters.export(assembly, "./stlcq/004767.stl")
+
+cq.exporters.export(assembly, "./stlcq/004767.stl")
+
+cq.exporters.export(assembly, "./stlcq/004767.stl")
+
+cq.exporters.export(assembly, "./

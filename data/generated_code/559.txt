@@ -1,0 +1,52 @@
+import cadquery as cq
+
+# --- Part 1: Rectangular Prism with Cutout ---
+outer_width = 0.1242 * 0.1242  # Scaled width
+outer_length = 0.1242 * 0.1242  # Scaled length
+inner_offset = 0.0056 * 0.1242  # Scaled offset for inner rectangle
+height = 0.75
+
+# Create the outer rectangle
+outer_rect = cq.Workplane("XY").rect(outer_width, outer_length).extrude(height)
+
+# Create the inner rectangle (cutout)
+inner_rect = cq.Workplane("XY").rect(outer_width - 2 * inner_offset, outer_length - 2 * inner_offset).extrude(height)
+
+# Subtract the inner rectangle from the outer rectangle
+part_1 = outer_rect.cut(inner_rect)
+
+# --- Assembly ---
+assembly = part_1
+
+# Export the result to a STL file
+cq.exporters.export(assembly, "./stlcq/0027/00276188.stl")
+
+# --- Final Result ---
+result = assembly
+
+# Export to STL
+cq.exporters.export(result, './stlcq/0027/00279752.stl')
+
+# Export to STL
+cq.exporters.export(result, './stlcq/0027/00279753.stl')
+
+# Export to STL
+cq.exporters.export(result, './stlcq/0027/00265864.stl')
+
+# Export to STL
+cq.exporters.export(result, './stlcq/0027/00265986.stl')
+
+# Export to STL
+cq.exporters.export(result, './stlcq/00278693.stl')
+
+# Export to STL
+cq.exporters.export(result, './stlcq/00278693.stl')
+
+# Export to STL
+cq.exporters.export(result, './stlcq/00278692.stl')
+
+# Export to STL
+cq.exporters.export(result, './stlcq/00278692.stl')
+
+# Export to STL
+cq.exporters.export(result, './stlcq/

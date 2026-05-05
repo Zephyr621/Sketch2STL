@@ -1,0 +1,33 @@
+import cadquery as cq
+import math
+from cadquery import exporters
+
+# --- Part 1: L-shaped base ---
+part_1_scale = 0.75
+part_1 = (
+    cq.Workplane("XY")
+    .moveTo(0.0 * part_1_scale, 0.0208 * part_1_scale)
+    .lineTo(0.0197 * part_1_scale, 0.0 * part_1_scale)
+    .threePointArc((0.0073 * part_1_scale, 0.0141 * part_1_scale), (0.0208 * part_1_scale, 0.0208 * part_1_scale))
+    .lineTo(0.0208 * part_1_scale, 0.2982 * part_1_scale)
+    .threePointArc((0.0073 * part_1_scale, 0.3011 * part_1_scale), (0.0197 * part_1_scale, 0.3343 * part_1_scale))
+    .lineTo(0.0 * part_1_scale, 0.3343 * part_1_scale)
+    .threePointArc((0.0073 * part_1_scale, 0.3989 * part_1_scale), (0.0 * part_1_scale, 0.2982 * part_1_scale))
+    .lineTo(0.0 * part_1_scale, 0.0208 * part_1_scale)
+    .close()
+    .extrude(-0.1355)
+)
+
+# --- Part 2: Rectangular Beam ---
+part_2_scale = 0.0398
+part_2 = (
+    cq.Workplane("XY")
+    .rect(0.0398 * part_2_scale, 0.0199 * part_2_scale)
+    .extrude(-0.2259)
+)
+
+# --- Part 3: Rectangular Bar ---
+part_3_scale = 0.0398
+part_3 = (
+    cq.Workplane("XY")
+    .moveTo(0.0

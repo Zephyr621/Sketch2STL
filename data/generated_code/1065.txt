@@ -1,0 +1,45 @@
+import cadquery as cq
+
+# --- Part 1: Cylinder with Hole ---
+outer_radius = 0.375 * 0.75  # Sketch radius scaled
+inner_radius = 0.1476 * 0.75
+height = 0.3068
+
+wp = cq.Workplane("XY").circle(outer_radius).extrude(height)
+hole = cq.Workplane("XY").circle(inner_radius).extrude(height)
+part_1 = wp.cut(hole)
+
+
+# --- Final Result ---
+result = part_1
+cq.exporters.export(result, './stlcq/0089/00899349.stl')
+
+cq.exporters.export(result, './stlcq/0089/00891680.stl')
+
+cq.exporters.export(result, './stlcq/0089/00891266.stl')
+
+cq.exporters.export(result, './stlcq/0089/00899295.stl')
+
+cq.exporters.export(result, './stlcq/0089/00891266.stl')
+
+cq.exporters.export(result, './stlcq/0089/00899296.stl')
+
+cq.exporters.export(result, './stlcq/0089/00899295.stl')
+
+cq.exporters.export(result, './stlcq/0089/00899296.stl')
+
+cq.exporters.export(result, './stlcq/0089/00891266.stl')
+
+cq.exporters.export(result, './stlcq/0089/00899295.stl')
+
+cq.exporters.export(result, './stlcq/0089/00899296.stl')
+
+cq.exporters.export(result, './stlcq/0089/00899838.stl')
+
+cq.exporters.export(result, './stlcq/0089/00899839.stl')
+
+cq.exporters.export(result, './stlcq/0089/00899834.stl')
+
+cq.exporters.export(result, './stlcq/0089/00899836.stl')
+
+cq.exporters.export(

@@ -1,0 +1,39 @@
+import cadquery as cq
+from math import radians
+
+# --- Part 1: Cylinder ---
+part_1_radius = 0.0094 * 0.0094  # Sketch radius scaled
+part_1_height = 0.4288
+
+part_1 = cq.Workplane("XY").circle(part_1_radius).extrude(-part_1_height)
+part_1 = part_1.translate((0, 0, 0.0281))
+
+# --- Coordinate System Transformation for Part 1 ---
+part_1 = part_1.rotate((0, 0, 0), (0, 0, 1), -90)
+part_1 = part_1.translate((0.0297, 0.4288, 0.0297))
+
+# --- Part 2: Rectangular Plate with Holes ---
+part_2_width = 0.1906 * 0.1906  # Sketch width scaled
+part_2_length = 0.0142 * 0.1906  # Sketch length scaled
+part_2_height = 0.0715
+
+hole_center_x = 0.0962 * 0.1906
+hole_center_y = 0.0094 * 0.1906
+hole_radius = 0.0094 * 0.1906
+
+part_2 = (
+    cq.Workplane("XY")
+    .rect(part_2_length, part_2_width)
+    .moveTo(hole_center_x, hole_center_y)
+    .circle(hole_radius)
+    .extrude(part_2_height)
+)
+part_2 = part_2.rotate((0, 0, 0), (0, 0, 1), -90)
+part_2 = part_2.translate((0.0493, 0.4288, 0.0493))
+
+# --- Part 3: Rectangular Prism ---
+part_3_width = 0.1906 * 0.1906  # Sketch width scaled
+part_3_length = 0.0142 * 0.1906  # Sketch length scaled
+part_3_height = 0.4063
+
+part_3 = cq.Workplane("XY").rect(part_3_length, part_3_

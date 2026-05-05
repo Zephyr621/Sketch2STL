@@ -1,0 +1,55 @@
+import cadquery as cq
+
+# --- Part 1: Triangle Prism ---
+sketch_scale = 0.75
+extrude_depth = 0.1902
+
+# Scaled coordinates for the sketch
+points = [
+    (0.0 * sketch_scale, 0.1875 * sketch_scale),
+    (0.2193 * sketch_scale, 0.0 * sketch_scale),
+    (0.5312 * sketch_scale, 0.0 * sketch_scale),
+    (0.75 * sketch_scale, 0.1875 * sketch_scale)
+]
+
+# Create the solid by extruding the points
+part_1 = (
+    cq.Workplane("XY")
+    .polyline(points)
+    .close()
+    .extrude(extrude_depth)
+)
+
+# --- Assembly (if needed, based on the single part) ---
+# In this case, there's only one part, so no assembly is needed.
+# If there were multiple parts, you would use .union() or .cut() to combine them.
+
+# --- Final Result ---
+result = part_1
+
+# Export to STL
+cq.exporters.export(result, './stlcq/0050/00504036.stl')
+
+# Export to STL
+cq.exporters.export(result, './stlcq/00507/00509375.stl')
+
+# Export to STL
+cq.exporters.export(result, './stlcq/0050899.stl')
+
+# Export to STL
+cq.exporters.export(result, './stlcq/0050899.stl')
+
+# Export to STL
+cq.exporters.export(result, './stlcq/0050899.stl')
+
+# Export to STL
+cq.exporters.export(result, './stlcq/0050899.stl')
+
+# Export to STL
+cq.exporters.export(result, './stlcq/0050899.stl')
+
+# Export to STL
+cq.exporters.export(result, './stlcq/0050899.stl')
+
+# Export to STL
+cq.exporters.export(

@@ -1,0 +1,43 @@
+import cadquery as cq
+
+# --- Part 1: L-shaped CAD Model ---
+part_1 = (
+    cq.Workplane("XY")
+    .moveTo(0.0, 0.0)
+    .lineTo(0.75 * 0.75, 0.0)
+    .lineTo(0.75 * 0.75, 0.1364 * 0.75)
+    .lineTo(0.5114 * 0.75, 0.1364 * 0.75)
+    .lineTo(0.5114 * 0.75, 0.4412 * 0.75)
+    .lineTo(0.2812 * 0.75, 0.4412 * 0.75)
+    .lineTo(0.2812 * 0.75, 0.1364 * 0.75)
+    .lineTo(0.0, 0.1364 * 0.75)
+    .lineTo(0.0, 0.0)
+    .close()
+    .extrude(-0.2438)
+)
+
+# --- Coordinate System Transformation for Part 1 ---
+part_1 = part_1.rotate((0, 0, 0), (0, 0, 1), -90)
+part_1 = part_1.translate((0, 0, 0))
+
+# --- Assembly ---
+assembly = part_1
+
+# Export to STL
+cq.exporters.export(assembly, "./stlcq/0058/00588596.stl")
+
+cq.exporters.export(assembly, "./stlcq/005894.stl")
+
+cq.exporters.export(assembly, "./stlcq/005893.stl")
+
+cq.exporters.export(assembly, "./stlcq/005893.stl")
+
+cq.exporters.export(assembly, "./stlcq/005893.stl")
+
+cq.exporters.export(assembly, "./stlcq/005893.stl")
+
+cq.exporters.export(assembly, "./stlcq/005893.stl")
+
+cq.exporters.export(assembly, "./stlcq/005893.stl")
+
+cq.exporters.export

@@ -1,0 +1,43 @@
+import cadquery as cq
+from cadquery.vis import show
+
+# --- Part 1: Rock ---
+part_1 = (
+    cq.Workplane("XY")
+    .moveTo(0.0, 0.0)
+    .lineTo(0.7489 * 0.7489, 0.0)
+    .threePointArc((0.3945 * 0.7489, 0.0151 * 0.7489), (0.7489 * 0.7489, 0.3289 * 0.7489))
+    .lineTo(0.7489 * 0.7489, 0.3378 * 0.7489)
+    .threePointArc((0.3842 * 0.7489, 0.3371 * 0.7489), (0.0, 0.3289 * 0.7489))
+    .lineTo(0.0, 0.0)
+    .close()
+    .extrude(0.1479)
+)
+
+# --- Coordinate System Transformation for Part 1 ---
+part_1 = part_1.translate((0, 0.0061, 0.0))
+
+# --- Assembly ---
+assembly = part_1
+
+cq.exporters.export(assembly, "./stlcq/0055/00557277.stl")
+
+cq.exporters.export(assembly, "./stlcq/0055958.stl")
+
+cq.exporters.export(assembly, "./stlcq/0055848.stl")
+
+cq.exporters.export(assembly, "./stlcq/00554668.stl")
+
+cq.exporters.export(assembly, "./stlcq/00554668.stl")
+
+cq.exporters.export(assembly, "./stlcq/00554668.stl")
+
+cq.exporters.export(assembly, "./stlcq/00554668.stl")
+
+cq.exporters.export(assembly, "./stlcq/00554668.stl")
+
+cq.exporters.export(assembly, "./stlcq/00553668.stl")
+
+cq.exporters.export(assembly, "./stlcq/00552325.stl")
+
+cq.exporters.export(assembly

@@ -1,0 +1,40 @@
+import cadquery as cq
+from math import radians
+
+# --- Part 1: Square Plate ---
+plate_length = 0.75 * 0.75  # Scaled length
+plate_width = 0.75 * 0.75  # Scaled width
+plate_height = 0.021
+
+hole_radius = 0.0058 * 0.75  # Scaled radius
+hole_centers = [
+    (0.0395 * 0.75 - plate_length/2, 0.015 * 0.75 - plate_width/2),
+    (0.0395 * 0.75 - plate_length/2, 0.735 * 0.75 - plate_width/2),
+    (0.7498 * 0.75 - plate_length/2, 0.015 * 0.75 - plate_width/2),
+    (0.7498 * 0.75 - plate_length/2, 0.735 * 0.75 - plate_width/2)
+]
+
+part_1 = cq.Workplane("XY").rect(plate_length, plate_width).extrude(plate_height)
+
+for center_x, center_y in hole_centers:
+    part_1 = part_1.faces(">Z").workplane().moveTo(center_x - plate_length/2, center_y - plate_width/2).circle(hole_radius).cutThruAll()
+
+# --- Assembly (if needed, based on the single part) ---
+# In this case, there's only one part, so no assembly is needed.
+
+# --- Final Result ---
+result = part_1
+
+cq.exporters.export(result, './stlcq/0059/00596943.stl')
+
+# Export to STL
+cq.exporters.export(result, './stlcq/0059/00593797.stl')
+
+# Export to STL
+cq.exporters.export(result, './stlcq/0059/00593947.stl')
+
+# Export to STL
+cq.exporters.export(result, './stlcq/0059/00593472.stl')
+
+# Export to STL
+cq.exporters.export(result, './stlc

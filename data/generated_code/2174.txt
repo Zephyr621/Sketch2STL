@@ -1,0 +1,46 @@
+import cadquery as cq
+
+# --- Part 1: Cube ---
+side_length = 0.75 * 0.75  # Sketch side length scaled
+cube = cq.Workplane("XY").box(side_length, side_length, side_length)
+
+# --- Coordinate System Transformation for Part 1 ---
+cube = cube.rotate((0, 0, 0), (0, 0, 1), -90)
+cube = cube.translate((0, 0.75, 0))
+
+# --- Assembly (if needed, based on the single part) ---
+# In this case, there's only one part, so no assembly is needed.
+# If there were multiple parts, you would use .union() or .cut() to combine them.
+
+# --- Final Result ---
+result = cube
+
+cq.exporters.export(result, './stlcq/0067/00677152.stl')
+
+cq.exporters.export(result, './stlcq/0067/00674243.stl')
+
+cq.exporters.export(result, './stlcq/0067/00676245.stl')
+
+cq.exporters.export(result, './stlcq/0067/00677245.stl')
+
+cq.exporters.export(result, './stlcq/0067/00675395.stl')
+
+cq.exporters.export(result, './stlcq/00675395.stl')
+
+cq.exporters.export(result, './stlcq/00675395.stl')
+
+cq.exporters.export(result, './stlcq/00675395.stl')
+
+cq.exporters.export(result, './stlcq/00675395.stl')
+
+cq.exporters.export(result, './stlcq/00675395.stl')
+
+cq.exporters.export(result, './stlcq/00675395.stl')
+
+cq.exporters.export(result, './stlcq/00675395.stl')
+
+cq.exporters.export(result, './stlcq/00675395.stl')
+
+cq.exporters.export(result, './stlcq/00675395.stl')
+
+cq.exporters.export(result, './stlc

@@ -1,0 +1,44 @@
+import cadquery as cq
+
+# --- Part 1: L-shaped CAD Model ---
+part_1 = (
+    cq.Workplane("XY")
+    .moveTo(0.0, 0.0)
+    .lineTo(0.0417 * 0.0417, 0.0)
+    .lineTo(0.0417 * 0.0417, 0.0208 * 0.0417)
+    .lineTo(0.0, 0.0208 * 0.0417)
+    .close()
+    .extrude(0.75)
+)
+
+# --- Assembly (if needed, based on the single part) ---
+# In this case, there's only one part, so no assembly is needed.
+# If there were multiple parts, you would use .union() or .cut() to combine them.
+
+# --- Final Result ---
+result = part_1
+
+cq.exporters.export(result, './stlcq/0028/00281512.stl')
+
+# Export to STL
+cq.exporters.export(result, './stlcq/00286797.stl')
+
+cq.exporters.export(result, './stlcq/002800/00280073.stl')
+
+cq.exporters.export(result, './stlcq/002800/00280073.stl')
+
+cq.exporters.export(result, './stlcq/002800/00280073.stl')
+
+cq.exporters.export(result, './stlcq/002800/00280033.stl')
+
+cq.exporters.export(result, './stlcq/002800/00280033.stl')
+
+cq.exporters.export(result, './stlcq/002800/00280033.stl')
+
+cq.exporters.export(result, './stlcq/002800/00280033.stl')
+
+cq.exporters.export(result, './stlcq/002800/00280033.stl')
+
+cq.exporters.export(result, './stlcq/002800/00280033.stl')
+
+cq.exporters.export(result, './stlcq/002800/002800

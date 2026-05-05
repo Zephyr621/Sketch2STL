@@ -1,0 +1,42 @@
+Together, these parts form a complex shape that combines a solid body with a hexagonal base and a central circular hole.
+import cadquery as cq
+import math
+from cadquery import exporters
+
+# --- Part 1: Base Rectangular Prism with Circular Hole ---
+part_1_length = 0.75 * 0.75  # Scaled length
+part_1_width = 0.1644 * 0.75  # Scaled width
+part_1_height = 0.1875
+hole_center_x = 0.375 * 0.75  # Scaled center x
+hole_center_y = 0.1324 * 0.75  # Scaled center y
+hole_radius = 0.0417 * 0.75  # Scaled radius
+
+part_1 = (
+    cq.Workplane("XY")
+    .rect(part_1_length, part_1_width)
+    .extrude(part_1_height)
+    .faces(">Z")
+    .workplane()
+    .circle(hole_radius)
+    .cutThruAll()
+)
+
+# --- Part 2: Hexagon Cutout ---
+part_2_scale = 0.0541
+part_2 = (
+    cq.Workplane("XY")
+    .moveTo(0.0, 0.0)
+    .lineTo(0.0521 * part_2_scale, 0.0)
+    .lineTo(0.0541 * part_2_scale, 0.0541 * part_2_scale)
+    .lineTo(0.0, 0.0541 * part_2_scale)
+    .close()
+    .extrude(-0.0234)
+)
+
+# --- Coordinate System Transformation for Part 2 ---
+part_2 = part_2.rotate((0, 0, 0), (1, 0, 0), -90)
+part_2 = part_2.rotate((0, 0, 0), (0, 0, 1), -90)
+part_2 = part_2.translate((0.75, 0.0235, 0.0))
+
+# --- Assembly: Cut Part 2 from Part 1 ---
+assembly

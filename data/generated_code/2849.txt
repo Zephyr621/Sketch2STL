@@ -1,0 +1,47 @@
+Both sides are perpendicular to each other.
+import cadquery as cq
+from math import radians
+
+# --- Part 1: Rectangular Plate ---
+part_1_length = 0.75 * 0.75  # Scaled length
+part_1_width = 0.3674 * 0.75  # Scaled width
+part_1_height = 0.0217
+
+part_1 = (
+    cq.Workplane("XY")
+    .rect(part_1_length, part_1_width)
+    .extrude(-part_1_height)  # Extrude in the opposite direction for cutting
+)
+
+# --- Part 2: Cube ---
+part_2_length = 0.3261 * 0.3261  # Scaled length
+part_2_width = 0.095 * 0.3261  # Scaled width
+part_2_height = 0.2717
+
+part_2 = (
+    cq.Workplane("XY")
+    .rect(part_2_length, part_2_width)
+    .extrude(part_2_height)
+)
+
+# --- Coordinate System Transformation for Part 2 ---
+part_2 = part_2.translate((0.0957, 0.0073, 0))
+
+# --- Part 3: Rectangular Prism ---
+part_3_length = 0.75 * 0.75  # Scaled length
+part_3_width = 0.0434 * 0.75  # Scaled width
+part_3_height = 0.0217
+
+part_3 = (
+    cq.Workplane("XY")
+    .rect(part_3_length, part_3_width)
+    .extrude(part_3_height)
+)
+
+# --- Coordinate System Transformation for Part 3 ---
+part_3 = part_3.rotate((0, 0, 0), (0, 0, 1), 180)
+part_3 = part_3.translate((0, 0.1151, 0))
+
+# --- Part 4: Cutout ---
+part_4_length = 0.75 * 0.75  # Scaled length
+part_4_width = 0.0434 * 0.75  # Scal

@@ -1,0 +1,47 @@
+This part can be integrated into larger assemblies due to its straightforward geometry.
+import cadquery as cq
+from cadquery.vis import show
+
+# --- Part 1 ---
+part_1 = (
+    cq.Workplane("XY")
+    .moveTo(0.0, 0.0)
+    .lineTo(0.75 * 0.75, 0.0)
+    .threePointArc((0.7125 * 0.75, 0.2438 * 0.75), (0.4875 * 0.75, 0.4375 * 0.75))
+    .lineTo(0.0, 0.4375 * 0.75)
+    .lineTo(0.0, 0.0)
+    .close()
+    .extrude(0.4375)
+)
+
+# --- Assembly ---
+assembly = part_1
+
+cq.exporters.export(assembly, "./stlcq/0074/00747171.stl")
+
+# Export to STL
+cq.exporters.export(assembly, './stlcq/0074/00747171.stl')
+
+# Export to STL
+cq.exporters.export(assembly, './stlcq/0074/00747366.stl')
+
+# Export to STL
+cq.exporters.export(assembly, './stlcq/0074/00747366.stl')
+
+# Export to STL
+cq.exporters.export(assembly, './stlcq/0074/00747366.stl')
+
+# Export to STL
+cq.exporters.export(assembly, './stlcq/0074/00747366.stl')
+
+cq.exporters.export(assembly, './stlcq/0074/00747366.stl')
+
+cq.exporters.export(assembly, './stlcq/0074/00747366.stl')
+
+cq.exporters.export(assembly, './stlcq/0074/00747366.stl')
+
+cq.exporters.export(assembly, './stlcq/0074/00747366.stl')
+
+cq.exporters.export(assembly, "./stlcq/0074/00747366.stl")
+
+cq.exp

@@ -1,0 +1,42 @@
+import cadquery as cq
+from cadquery.vis import show
+
+# --- Part 1: Teardrop ---
+part_1 = (
+    cq.Workplane("XY")
+    .moveTo(0.0, 0.3468 * 0.75)
+    .threePointArc((0.375 * 0.75, 0.3733 * 0.75), (0.75 * 0.75, 0.3468 * 0.75))
+    .lineTo(0.75 * 0.75, 0.4905 * 0.75)
+    .threePointArc((0.375 * 0.75, 0.3039 * 0.75), (0.0, 0.4905 * 0.75))
+    .lineTo(0.0, 0.3468 * 0.75)
+    .close()
+    .extrude(0.0262)
+)
+
+# --- Assembly (if needed, based on the single part) ---
+# In this case, there's only one part, so no assembly is needed.
+# If there were multiple parts, you would use .union() or .cut() to combine them.
+
+# --- Final Result ---
+result = part_1
+
+cq.exporters.export(result, './stlcq/0057/00575722.stl')
+
+# Export to STL
+cq.exporters.export(result, './stlcq/0057/00575722.stl')
+
+# Export to STL
+cq.exporters.export(result, './stlcq/0057/00575620.stl')
+
+cq.exporters.export(result, './stlcq/0057/00575620.stl')
+
+# Export to STL
+cq.exporters.export(result, './stlcq/0057/00575620.stl')
+
+cq.exporters.export(result, './stlcq/0057/00573548.stl')
+
+cq.exporters.export(result, './stlcq/0057/00576747.stl')
+
+cq.exporters.export(result, './stlcq/0057/00572873.stl')
+
+cq.exporters.export(result

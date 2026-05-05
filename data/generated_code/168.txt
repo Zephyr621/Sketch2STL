@@ -1,0 +1,52 @@
+import cadquery as cq
+
+# --- Part 1: Cube with rounded edges and corners ---
+length = 0.75 * 0.75  # Scaled length
+width = 0.4737 * 0.75  # Scaled width
+height = 0.2703
+
+part_1 = (
+    cq.Workplane("XY")
+    .moveTo(0.0, 0.0)
+    .lineTo(length, 0.0)
+    .lineTo(length, width)
+    .lineTo(0.0, width)
+    .lineTo(0.0, 0.0)
+    .close()
+    .extrude(height)
+)
+
+# --- Coordinate System Transformation for Part 1 ---
+part_1 = part_1.rotate((0, 0, 0), (0, 0, 1), -90)
+part_1 = part_1.translate((0, 0.2703, 0))
+
+# --- Assembly ---
+assembly = part_1
+
+# Export to STL
+cq.exporters.export(assembly, "./stlcq/0022/00223923.stl")
+
+# Export to STL
+cq.exporters.export(assembly, "./stlcq/0022/00223925.stl")
+
+# Export to STL
+cq.exporters.export(assembly, "./stlcq/0022/00223745.stl")
+
+# Export to STL
+cq.exporters.export(assembly, "./stlcq/0022/00223745.stl")
+
+# Export to STL
+cq.exporters.export(assembly, "./stlcq/0022/00223745.stl")
+
+# --- Export to STL ---
+cq.exporters.export(assembly, "./stlcq/0022/00223745.stl")
+
+# Export to STL
+cq.exporters.export(assembly, "./stlcq/0022/00223745.stl")
+
+# --- Coordinate System Transformation for Part 1 ---
+assembly = assembly.rotate((0, 0, 0), (0, 0, 1), -90)
+assembly = assembly.translate((0, 0.2703, 0))
+
+# Export to STL
+cq.

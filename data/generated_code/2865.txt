@@ -1,0 +1,37 @@
+import cadquery as cq
+from math import radians
+
+# --- Part 1: Cube ---
+part_1_size = 0.4167 * 0.4167  # Sketch scale applied
+part_1_height = 0.4198
+
+part_1 = cq.Workplane("XY").box(part_1_size, part_1_size, part_1_height)
+part_1 = part_1.translate((0, 0.1667, 0))
+
+# --- Part 2: Cutout ---
+part_2_size = 0.2604 * 0.2604  # Sketch scale applied
+part_2_height = 0.2562
+
+part_2 = cq.Workplane("XY").box(part_2_size, part_2_size, part_2_height)
+part_2 = part_2.translate((0.1167, 0.1667, 0.4198))
+
+# --- Part 3: Cylindrical Protrusion ---
+part_3_radius = 0.1098 * 0.2189  # Sketch radius scaled
+part_3_height = 0.1667
+
+part_3 = cq.Workplane("XY").circle(part_3_radius).extrude(-part_3_height)
+part_3 = part_3.rotate((0, 0, 0), (0, 0, 1), 180)
+part_3 = part_3.translate((0.0983, 0.1562, 0.1667))
+
+# --- Part 4: Rectangular Block ---
+part_4_size = 0.3494 * 0.3494  # Sketch scale applied
+part_4_height = 0.225
+
+part_4 = cq.Workplane("XY").box(part_4_size, part_4_size, part_4_height)
+part_4 = part_4.rotate((0, 0, 0), (0, 0, 1), 180)
+part_4 = part_4.translate((0.1098, 0.1667, 0.1667))
+
+# --- Assembly ---
+assembly = part_1.cut(part_2).union(part_3).union(part_4)
+
+cq.exporters.export(assembly, "./stlcq/

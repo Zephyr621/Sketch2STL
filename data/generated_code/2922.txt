@@ -1,0 +1,35 @@
+import cadquery as cq
+import math
+from cadquery.vis import show
+
+# --- Part 1 ---
+sketch_scale = 0.7498
+extrude_depth = 0.0204 * 2  # Total extrusion depth (towards + opposite normal)
+
+part_1 = (
+    cq.Workplane("XY")
+    .moveTo(0.1231 * sketch_scale, 0.0 * sketch_scale)
+    .threePointArc((0.1249 * sketch_scale, 0.0905 * sketch_scale), (0.6136 * sketch_scale, 0.0 * sketch_scale))
+    .lineTo(0.7498 * sketch_scale, 0.0 * sketch_scale)
+    .threePointArc((0.7494 * sketch_scale, 0.0905 * sketch_scale), (0.7498 * sketch_scale, 0.1361 * sketch_scale))
+    .lineTo(0.1231 * sketch_scale, 0.1361 * sketch_scale)
+    .threePointArc((0.1249 * sketch_scale, 0.0833 * sketch_scale), (0.1231 * sketch_scale, 0.0 * sketch_scale))
+    .close()
+    .extrude(extrude_depth)
+)
+
+# Add holes
+hole_centers = [
+    (0.0313 * sketch_scale, 0.0187 * sketch_scale),
+    (0.1023 * sketch_scale, 0.0187 * sketch_scale),
+    (0.3862 * sketch_scale, 0.0187 * sketch_scale),
+    (0.6728 * sketch_scale, 0.0187 * sketch_scale),
+    (0.7498 * sketch_scale, 0.0187 * sketch_scale)
+]
+hole_radius = 0.0065 * sketch_scale
+
+for center in hole_centers:
+    part_1 = part_1.faces(">Z").workplane().pushPoints([(center[0], center[1]).circle(hole_radius).cutThruAll()
+
+# --- Coordinate System Transformation for Part 1 ---
+part_

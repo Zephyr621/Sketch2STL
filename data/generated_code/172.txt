@@ -1,0 +1,51 @@
+This process results in a simple yet precise rectangular plate that can be used as a component in more complex designs.
+import cadquery as cq
+
+# --- Part 1: Rectangular Plate ---
+length = 0.1875 * 0.75  # Scaled length
+width = 0.75 * 0.75  # Scaled width
+height = 0.01
+
+part_1 = (
+    cq.Workplane("XY")
+    .rect(length, width)
+    .extrude(height)
+)
+
+# --- Assembly (if needed, based on the single part) ---
+# In this case, there's only one part, so no assembly is needed.
+# If there were multiple parts, you would use .union() or .cut() to combine them.
+
+# --- Final Result ---
+result = part_1
+
+cq.exporters.export(result, './stlcq/0040/00408452.stl')
+
+# Export to STL
+cq.exporters.export(result, './stlcq/00403810.stl')
+
+cq.exporters.export(result, './stlcq/004047.stl')
+
+cq.exporters.export(result, './stlcq/004047.stl')
+
+cq.exporters.export(result, './stlcq/004047.stl')
+
+cq.exporters.export(result, './stlcq/004047.stl')
+
+cq.exporters.export(result, './stlcq/004047.stl')
+
+cq.exporters.export(result, './stlcq/004047.stl')
+
+cq.exporters.export(result, './stlcq/004047.stl')
+
+cq.exporters.export(result, './stlcq/004047.stl')
+
+cq.exporters.export(result, './stlcq/004047.stl')
+
+cq.exporters.export(result, './stlcq/004047.stl')
+
+cq.exporters.export(result, './stlcq/004047.stl')
+
+cq.exporters.export(result, './stlcq/004047.stl')
+
+cq.exporters.

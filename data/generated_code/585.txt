@@ -1,0 +1,49 @@
+This process results in a solid body that can be integrated into larger assemblies.
+import cadquery as cq
+
+# --- Part 1: Rectangular Block with Step ---
+sketch_scale = 0.0208
+extrude_depth = 0.75
+
+# Scaled dimensions
+start_x = 0.0 * sketch_scale
+end_x = 0.0208 * sketch_scale
+width = 0.0208 * sketch_scale
+length = 0.0208 * sketch_scale
+
+part_1 = (
+    cq.Workplane("XY")
+    .moveTo(start_x, 0)
+    .lineTo(end_x, 0)
+    .lineTo(end_x, width)
+    .lineTo(start_x, width)
+    .lineTo(start_x, end_x)
+    .close()
+    .extrude(extrude_depth)
+)
+
+# --- Assembly (if needed, based on the single part) ---
+# In this case, there's only one part, so no assembly is needed.
+# If there were multiple parts, you would use .union() or .cut() to combine them.
+
+# --- Final Result ---
+result = part_1
+
+cq.exporters.export(result, './stlcq/0025/00254342.stl')
+
+# Export to STL
+cq.exporters.export(result, './stlcq/0025/00250451.stl')
+
+cq.exporters.export(result, './stlcq/0025/00256386.stl')
+
+cq.exporters.export(result, './stlcq/0025/00256386.stl')
+
+cq.exporters.export(result, './stlcq/0025/00256386.stl')
+
+cq.exporters.export(result, './stlcq/0025/00256386.stl')
+
+cq.exporters.export(result, './stlcq/0025/00253248.stl')
+
+cq.exporters.export(result, './stlcq/0025/00253248.stl')
+
+cq.exporters.export(result, './stlcq/0025/002532

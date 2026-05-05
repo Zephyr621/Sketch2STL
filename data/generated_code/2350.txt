@@ -1,0 +1,52 @@
+import cadquery as cq
+
+# --- Part 1: Cube with Cutout ---
+length = 0.75 * 0.75  # Scaled length
+width = 0.50 * 0.75   # Scaled width
+height = 0.25
+
+cutout_x = 0.1245 * 0.75
+cutout_y = 0.1304 * 0.75
+cutout_size = (0.4946 - 0.1245) * 0.75
+
+part_1 = (
+    cq.Workplane("XY")
+    .rect(length, width)
+    .extrude(height)
+    .faces(">Z").workplane()
+    .rect(cutout_size, cutout_size, centered=True)
+    .cutThruAll()
+)
+
+# --- Assembly ---
+assembly = part_1
+
+# --- Export to STL ---
+cq.exporters.export(assembly, "./stlcq/0061/00616593.stl")
+
+# --- Export to STL ---
+cq.exporters.export(assembly, "./stlcq/0061/00616593.stl")
+
+# --- Export to STL ---
+cq.exporters.export(assembly, "./stlcq/0061/00616593.stl")
+
+# --- Export to STL ---
+cq.exporters.export(assembly, "./stlcq/0061/00616597.stl")
+
+# --- Export to STL ---
+cq.exporters.export(assembly, "./stlcq/0061/00616836.stl")
+
+# --- Export to STL ---
+cq.exporters.export(assembly, "./stlcq/0061/00616931.stl")
+
+# --- Export to STL ---
+cq.exporters.export(assembly, "./stlcq/0061/00616932.stl")
+
+# --- Export to STL ---
+cq.exporters.export(assembly, "./stlcq/0061/00616834.stl")
+
+# --- Export to STL ---
+cq.exporters.export(assembly, "./stlcq/0061/00616833.stl")
+
+# --- Export to STL ---
+cq.exporters.

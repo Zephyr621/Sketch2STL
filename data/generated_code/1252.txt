@@ -1,0 +1,55 @@
+import cadquery as cq
+
+# --- Parameters from JSON ---
+length = 0.25 * 0.75  # Scaled length
+width = 0.75 * 0.75   # Scaled width
+height = 0.2027
+
+# --- Create the rectangular block ---
+block = cq.Workplane("XY").rect(length, width).extrude(height)
+
+# --- Position the top face ---
+top_face = (
+    cq.Workplane("XY")
+    .moveTo(0, width / 2)
+    .lineTo(length - width / 2, width / 2)
+    .lineTo(length, width / 2)
+    .close()
+    .extrude(height)
+)
+
+# --- Translate the top face to its correct position ---
+top_face = top_face.translate((0, 0, height))
+
+# --- Union the blocks ---
+result = block.union(top_face)
+
+# --- Export to STL ---
+cq.exporters.export(result, './stlcq/0041/00418343.stl')
+
+# --- Export to STL ---
+cq.exporters.export(result, './stlcq/00419950.stl')
+
+# --- Export to STL ---
+cq.exporters.export(result, './stlcq/00419950.stl')
+
+# --- Export to STL ---
+cq.exporters.export(result, './stlcq/00419950.stl')
+
+# --- Export to STL ---
+cq.exporters.export(result, './stlcq/00419950.stl')
+
+# --- Export to STL ---
+cq.exporters.export(result, './stlcq/00419950.stl')
+
+# --- Export to STL ---
+cq.exporters.export(result, './stlcq/00419950.stl')
+
+# --- Export to STL ---
+cq.exporters.export(result, './stlcq/00419950.stl')
+
+# --- Export to STL ---
+cq.exporters.export(result, './stlcq/00419950.stl')
+
+# --- Export to STL ---
+cq.

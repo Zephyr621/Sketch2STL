@@ -1,0 +1,47 @@
+import cadquery as cq
+from math import radians
+
+# --- Part 1: Rectangular Block ---
+part_1_length = 0.5962 * 0.5962  # Scaled length
+part_1_width = 0.2709 * 0.5962  # Scaled width
+part_1_height = 0.1348
+
+part_1 = (
+    cq.Workplane("XY")
+    .rect(part_1_length, part_1_width)
+    .extrude(-part_1_height)  # Extrude in the opposite direction for a cut
+)
+
+# --- Coordinate System Transformation for Part 1 ---
+part_1 = part_1.rotate((0, 0, 0), (0, 0, 1), -90)
+
+# --- Part 2: Rectangular Box ---
+part_2_length = 0.4174 * 0.4174  # Scaled length
+part_2_width = 0.3089 * 0.4174  # Scaled width
+part_2_height = 0.1339
+
+part_2 = (
+    cq.Workplane("XY")
+    .rect(part_2_length, part_2_width)
+    .extrude(part_2_height)
+)
+
+# --- Coordinate System Transformation for Part 2 ---
+part_2 = part_2.translate((0.1269, 0.0039, 0.1974))
+
+# --- Assembly ---
+assembly = part_1.union(part_2)
+
+# --- Export to STL ---
+cq.exporters.export(assembly, "./stlcq/0034/00349449.stl")
+
+# --- Export to STL ---
+cq.exporters.export(assembly, './stlcq/0034/00346632.stl')
+
+cq.exporters.export(assembly, './stlcq/0034/00346584.stl')
+
+cq.exporters.export(assembly, './stlcq/0034/00345646.stl')
+
+cq.exporters.export(assembly, './stlcq/0034/00345646.stl')
+
+cq.exporters.export(assembly, './stlcq/0034

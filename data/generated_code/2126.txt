@@ -1,0 +1,49 @@
+import cadquery as cq
+from cadquery import exporters
+
+# --- Part 1: Triangular Prism ---
+part_1_scale = 0.5
+part_1 = (
+    cq.Workplane("XY")
+    .moveTo(0, 0)
+    .lineTo(0.25 * part_1_scale, 0)
+    .lineTo(0.5 * part_1_scale, 0)
+    .close()
+    .extrude(0.75)
+)
+
+# --- Coordinate System Transformation for Part 1 ---
+part_1 = part_1.rotate((0, 0, 0), (0, 0, 1), -90)
+part_1 = part_1.translate((0, 0.75, 0))
+
+# --- Part 2: Rectangular Cutout ---
+part_2_scale = 0.5
+part_2 = (
+    cq.Workplane("XY")
+    .rect(0.5 * part_2_scale, 0.25 * part_2_scale)
+    .extrude(-0.3)  # Extrude in the opposite direction for a cut
+)
+
+# --- Coordinate System Transformation for Part 2 ---
+part_2 = part_2.rotate((0, 0, 0), (0, 0, 1), -90)
+part_2 = part_2.translate((0.25, 0, 0.125))
+
+# --- Assembly ---
+assembly = part_1.cut(part_2)
+
+# --- Export to STL ---
+exporters.export(assembly, './stlcq/0062/00624793.stl')
+
+# --- Export to STL ---
+exporters.export(assembly, './stlcq/0062/00624869.stl')
+
+# --- Export to STL ---
+exporters.export(assembly, './stlcq/0062/00624244.stl')
+
+# --- Export to STL ---
+exporters.export(assembly, './stlcq/0062/00624246.stl')
+
+# --- Export to STL ---
+exporters.export(assembly, './stlcq/0062/00624242.stl')
+
+# --- Apply transformations ---

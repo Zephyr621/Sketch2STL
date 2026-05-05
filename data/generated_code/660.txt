@@ -1,0 +1,41 @@
+import cadquery as cq
+import math
+from cadquery.vis import show
+
+# --- Part 1: Triangle Bracket ---
+sketch_scale = 0.7239
+extrude_depth = 0.0758
+
+# Scaled coordinates for the triangle profile
+p1 = (0.0 * sketch_scale, 0.2366 * sketch_scale)
+p2 = (0.0376 * sketch_scale, 0.0 * sketch_scale)
+p3 = (0.7239 * sketch_scale, 0.2743 * sketch_scale)
+p4 = (0.7237 * sketch_scale, 0.6328 * sketch_scale)
+p5 = (0.7239 * sketch_scale, 0.6328 * sketch_scale)
+p6 = (0.0376 * sketch_scale, 0.6491 * sketch_scale)
+p7 = (0.0 * sketch_scale, 0.3272 * sketch_scale)
+
+hole1_center = (0.0249 * sketch_scale, 0.3524 * sketch_scale)
+hole1_radius = 0.0144 * sketch_scale
+hole2_center = (0.6959 * sketch_scale, 0.3524 * sketch_scale)
+hole2_radius = 0.0144 * sketch_scale
+hole3_center = (0.6854 * sketch_scale, 0.3524 * sketch_scale)
+hole3_radius = 0.0144 * sketch_scale
+
+# Create the base shape using lines and arcs
+part_1 = (
+    cq.Workplane("XY")
+    .moveTo(p1[0], p1[1])
+    .lineTo(p2[0], p2[1])
+    .threePointArc(p3, p4)
+    .lineTo(p5[0], p5[1])
+    .threePointArc(p6, p7)
+    .close()
+    .extrude(extrude_depth)
+)
+
+# Create the holes
+part_1 = (
+    part_1.faces(">Z")
+    .workplane()
+    .pushPoints([hole1_center, hole2

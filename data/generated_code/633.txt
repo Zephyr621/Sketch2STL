@@ -1,0 +1,51 @@
+import cadquery as cq
+
+# --- Part 1: Rectangular Beam ---
+length = 0.75 * 0.75  # Scaled length
+width = 0.125 * 0.75  # Scaled width
+height = 0.0469
+
+part_1 = (
+    cq.Workplane("XY")
+    .rect(length, width)
+    .extrude(height)
+)
+
+# --- Coordinate System Transformation for Part 1 ---
+part_1 = part_1.rotate((0, 0, 0), (0, 0, 1), -90)
+part_1 = part_1.translate((0, 0.0469, 0))
+
+# --- Assembly ---
+assembly = part_1
+
+# Export to STL
+cq.exporters.export(assembly, "./stlcq/0034/00344181.stl")
+
+# Export to STL
+cq.exporters.export(assembly, "./stlcq/00345/003451937.stl")
+
+# Export to STL
+cq.exporters.export(assembly, "./stlcq/00345/003451705.stl")
+
+# --- Final Result ---
+result = assembly
+
+cq.exporters.export(result, './stlcq/00345/003453261.stl')
+
+cq.exporters.export(result, './stlcq/00345/003452864.stl')
+
+cq.exporters.export(result, './stlcq/00345/003452864.stl')
+
+cq.exporters.export(result, './stlcq/00345/003452864.stl')
+
+cq.exporters.export(result, './stlcq/00345/003452864.stl')
+
+cq.exporters.export(result, './stlcq/00345/003452864.stl')
+
+cq.exporters.export(result, './stlcq/00345/003452864.stl')
+
+cq.exporters.export(result, './stlcq/00345/003452864.stl')
+
+cq.exporters.export(result, './stlcq/00345/003452864.stl')
+
+cq.exporters

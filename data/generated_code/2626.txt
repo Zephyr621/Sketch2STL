@@ -1,0 +1,31 @@
+import cadquery as cq
+import math
+from cadquery import exporters
+
+# --- Part 1: Curved Shape with Hole ---
+part_1 = (
+    cq.Workplane("XY")
+    .moveTo(0.0, 0.0938 * 0.75)
+    .threePointArc((0.375 * 0.75, 0.375 * 0.75), (0.6563 * 0.75, 0.0938 * 0.75))
+    .lineTo(0.6563 * 0.75, 0.75 * 0.75)
+    .lineTo(0.5625 * 0.75, 0.75 * 0.75)
+    .lineTo(0.5625 * 0.75, 0.6563 * 0.75)
+    .lineTo(0.1875 * 0.75, 0.6563 * 0.75)
+    .lineTo(0.1875 * 0.75, 0.0)
+    .lineTo(0.75 * 0.75, 0.0)
+    .lineTo(0.75 * 0.75, 0.0938 * 0.75)
+    .lineTo(0.5625 * 0.75, 0.0938 * 0.75)
+    .lineTo(0.5625 * 0.75, 0.75 * 0.75)
+    .lineTo(0.1875 * 0.75, 0.75 * 0.75)
+    .lineTo(0.1875 * 0.75, 0.6563 * 0.75)
+    .lineTo(0.0, 0.6563 * 0.75)
+    .close()
+    .extrude(0.0388)
+)
+
+# Add holes
+hole_radius = 0.0622 * 0.75
+part_1 = part_1.faces(">Z").workplane().center(0.5625 * 0.75 - (0.75 * 0.75)/2, 0.4687 * 0.75 - (0.6875 * 0.75)/2).circle(hole_radius).cutThruAll()
+
+# --- Part 2: Cube ---
+part

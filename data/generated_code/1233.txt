@@ -1,0 +1,46 @@
+import cadquery as cq
+from math import radians
+
+# --- Part 1: Rectangular Block ---
+part_1_length = 0.75 * 0.75  # Scaled length
+part_1_width = 0.3 * 0.75  # Scaled width
+part_1_height = 0.0325
+
+part_1 = (
+    cq.Workplane("XY")
+    .rect(part_1_length, part_1_width)
+    .extrude(part_1_height)
+)
+
+# --- Coordinate System Transformation for Part 1 ---
+part_1 = part_1.rotate((0, 0, 0), (0, 0, 1), -90)
+part_1 = part_1.translate((0, 0.0325, 0))
+
+# --- Part 2: Cylindrical Protrusions ---
+sketch_scale_part2 = 0.4
+cylinder_radius = 0.0225 * sketch_scale_part2
+cylinder_height = 0.15
+
+# Define cylinder centers and positions
+cylinder_centers = [
+    (0.0225 * sketch_scale_part2, 0.0225 * sketch_scale_part2),
+    (0.0125 * sketch_scale_part2, 0.0225 * sketch_scale_part2),
+    (0.7125 * sketch_scale_part2, 0.0225 * sketch_scale_part2),
+    (0.7125 * sketch_scale_part2, 0.0125 * sketch_scale_part2)
+]
+
+# Create cylinders and translate them
+cylinders = []
+for center in cylinder_centers:
+    cylinder = (
+        cq.Workplane("XY")
+        .moveTo(center[0], center[1])
+        .circle(cylinder_radius)
+        .extrude(cylinder_height)
+    )
+    cylinders.append(cylinder)
+
+# Combine cylinders into a single object
+combined_cylinders = cq.Compound.makeCompound([c.val() for c in cylinders])
+
+# --- Assembly ---

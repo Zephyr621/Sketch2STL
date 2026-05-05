@@ -1,0 +1,41 @@
+import cadquery as cq
+from cadquery.vis import show
+
+# --- Part 1: Cylinder with Curved Top ---
+part_1 = (
+    cq.Workplane("XY")
+    .moveTo(0.0, 0.0)
+    .lineTo(0.75 * 0.75, 0.0)
+    .lineTo(0.75 * 0.75, 0.1607 * 0.75)
+    .threePointArc((0.6104 * 0.75, 0.0833 * 0.75), (0.6667 * 0.75, 0.1607 * 0.75))
+    .lineTo(0.6667 * 0.75, 0.3214 * 0.75)
+    .threePointArc((0.6104 * 0.75, 0.3214 * 0.75), (0.0, 0.3214 * 0.75))
+    .lineTo(0.0, 0.0)
+    .close()
+    .extrude(0.3214)
+)
+
+# --- Assembly (if needed, based on the single part) ---
+# In this case, there's only one part, so no assembly is needed.
+# If there were multiple parts, you would use .union() or .cut() to combine them.
+
+# --- Final Result ---
+result = part_1
+
+cq.exporters.export(result, './stlcq/0068/00685174.stl')
+
+cq.exporters.export(result, './stlcq/006850.stl')
+
+cq.exporters.export(result, './stlcq/006850.stl')
+
+cq.exporters.export(result, './stlcq/006850.stl')
+
+cq.exporters.export(result, './stlcq/006850.stl')
+
+cq.exporters.export(result, './stlcq/006850.stl')
+
+cq.exporters.export(result, './stlcq/006850.stl')
+
+cq.exporters.export(result, './stlcq/006850.stl')
+
+cq.exporters.export(result, './

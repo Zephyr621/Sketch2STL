@@ -1,0 +1,54 @@
+import cadquery as cq
+from cadquery import exporters
+
+# --- Part 1: L-shaped Base ---
+part_1_points = [
+    (0.0, 0.0),
+    (0.75, 0.0),
+    (0.75, 0.1251),
+    (0.375, 0.1251),
+    (0.375, 0.5),
+    (0.0, 0.5),
+]
+
+part_1_scaled_points = [(x * 0.75, y * 0.75) for x, y in part_1_points]
+part_1_height = 0.5
+
+part_1 = (
+    cq.Workplane("XY")
+    .polyline(part_1_scaled_points)
+    .close()
+    .extrude(part_1_height)
+)
+
+# --- Part 2: Cube ---
+part_2_size = 0.25 * 0.25  # Scale the size
+part_2_height = 0.25
+
+part_2 = (
+    cq.Workplane("XY")
+    .rect(part_2_size, part_2_size)
+    .extrude(part_2_height)
+)
+
+# --- Coordinate System Transformation for Part 2 ---
+part_2 = part_2.translate((0.0833, 0.0621, 0))
+
+# --- Part 3: Rectangular Block ---
+part_3_length = 0.25 * 0.25  # Scale the length
+part_3_width = 0.125 * 0.25  # Scale the width
+part_3_height = 0.125
+
+part_3 = (
+    cq.Workplane("XY")
+    .rect(part_3_length, part_3_width)
+    .extrude(part_3_height)
+)
+
+# --- Assembly ---
+assembly = part_1.union(part_2).union(part_3)
+
+# --- Export to STL ---
+exporters.export(assembly, './stlcq/0061/00617344.stl')
+
+#

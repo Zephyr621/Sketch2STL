@@ -1,0 +1,41 @@
+import cadquery as cq
+from cadquery.vis import show
+
+# --- Part 1: Cube ---
+part_1_length = 0.75 * 0.75  # Sketch length scaled
+part_1_width = 0.5625 * 0.75  # Sketch width scaled
+part_1_height = 0.5
+
+part_1 = cq.Workplane("XY").rect(part_1_length, part_1_width).extrude(part_1_height)
+
+# --- Part 2: Cutout ---
+part_2_length = 0.7422 * 0.7422  # Sketch length scaled
+part_2_width = 0.4922 * 0.7422  # Sketch width scaled
+part_2_height = 0.5586
+
+part_2 = cq.Workplane("XY").rect(part_2_length, part_2_width).extrude(-part_2_height)  # Extrude in the opposite direction for cutting
+
+# --- Coordinate System Transformation for Part 2 ---
+part_2 = part_2.translate((0.0114, 0.0114, 0.5))
+
+# --- Assembly: Cut Part 2 from Part 1 ---
+result = part_1.cut(part_2)
+
+cq.exporters.export(result, './stlcq/0052/00524162.stl')
+
+# --- Export to STL ---
+cq.exporters.export(result, './stlcq/0052/00524732.stl')
+
+cq.exporters.export(result, './stlcq/0052/00524828.stl')
+
+cq.exporters.export(result, './stlcq/0052/00521211.stl')
+
+cq.exporters.export(result, './stlcq/0052/00524828.stl')
+
+cq.exporters.export(result, './stlcq/0052/00521368.stl')
+
+cq.exporters.export(result, './stlcq/0052/00521211.stl')
+
+cq.exporters.export(result, './stlcq/0052/00521484.stl')
+
+cq.exporters.export(result, './stlcq

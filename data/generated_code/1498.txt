@@ -1,0 +1,37 @@
+import cadquery as cq
+
+# --- Part 1: Rectangular Block with Circular Hole ---
+part_1_length = 0.6429 * 0.6429  # Scaled length
+part_1_width = 0.3614 * 0.6429   # Scaled width
+part_1_height = 0.0711
+hole_center_x = 0.3214 * 0.6429  # Scaled x-coordinate
+hole_center_y = 0.1686 * 0.6429  # Scaled y-coordinate
+hole_radius = 0.0469 * 0.6429  # Scaled radius
+
+part_1 = (
+    cq.Workplane("XY")
+    .rect(part_1_length, part_1_width)
+    .extrude(part_1_height)
+    .faces(">Z")
+    .workplane()
+    .moveTo(hole_center_x - part_1_length/2, hole_center_y - part_1_width/2)
+    .circle(hole_radius)
+    .cutThruAll()
+)
+
+# --- Part 2: Rectangular Prism with Raised Edges ---
+part_2_length = 0.3571 * 0.3571  # Scaled length
+part_2_width = 0.3614 * 0.3571   # Scaled width
+part_2_height = 0.0141
+hole_center_x = 0.3028 * 0.3571  # Scaled x-coordinate
+hole_center_y = 0.1686 * 0.3571   # Scaled y-coordinate
+hole_radius = 0.0346 * 0.3571   # Scaled radius
+
+part_2 = (
+    cq.Workplane("XY")
+    .rect(part_2_length, part_2_width)
+    .extrude(part_2_height)
+    .faces(">Z")
+    .workplane()
+    .moveTo(hole_center_x - part_2_length/2, hole_center_y - part_2_width/2)
+    .circle

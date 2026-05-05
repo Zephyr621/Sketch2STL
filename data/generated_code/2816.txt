@@ -1,0 +1,39 @@
+import cadquery as cq
+
+# --- Part 1 ---
+part_1 = (
+    cq.Workplane("XY")
+    .moveTo(0.0, 0.0)
+    .lineTo(0.6115 * 0.75, 0.0)
+    .lineTo(0.6115 * 0.75, 0.7031 * 0.75)
+    .lineTo(0.4594 * 0.75, 0.7031 * 0.75)
+    .lineTo(0.4594 * 0.75, 0.75 * 0.75)
+    .lineTo(0.3125 * 0.75, 0.75 * 0.75)
+    .lineTo(0.3125 * 0.75, 0.7031 * 0.75)
+    .lineTo(0.3125 * 0.75, 0.6115 * 0.75)
+    .lineTo(0.225 * 0.75, 0.6115 * 0.75)
+    .lineTo(0.225 * 0.75, 0.7031 * 0.75)
+    .lineTo(0.0, 0.7031 * 0.75)
+    .lineTo(0.0, 0.0)
+    .close()
+    .extrude(0.1846)
+)
+
+# --- Assembly ---
+assembly = part_1
+
+cq.exporters.export(assembly, "./stlcq/0056/00568371.stl")
+
+cq.exporters.export(assembly, "./stlcq/0056/00568372.stl")
+
+cq.exporters.export(assembly, "./stlcq/0056/00568372.stl")
+
+cq.exporters.export(assembly, "./stlcq/0056/00568372.stl")
+
+cq.exporters.export(assembly, "./stlcq/0056/00568372.stl")
+
+cq.exporters.export(assembly, "./stlcq/0056/00568372.stl")
+
+cq.exporters.export(assembly, "./stlcq/0056/00568372.stl")
+
+cq.exporters.

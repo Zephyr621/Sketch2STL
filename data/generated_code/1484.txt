@@ -1,0 +1,49 @@
+import cadquery as cq
+
+# --- Part 1: Rectangular Box with Cutout ---
+length = 0.4409 * 0.4409  # Scaled length
+width = 0.0264 * 0.4409  # Scaled width
+height = 0.0094  # Height
+
+cutout_x1 = 0.0667 * 0.4409
+cutout_y1 = 0.0667 * 0.4409
+cutout_x2 = 0.2269 * 0.4409
+cutout_y2 = 0.0667 * 0.4409
+
+part_1 = (
+    cq.Workplane("XY")
+    .rect(length, width)
+    .extrude(height)
+    .faces(">Z")
+    .workplane()
+    .moveTo(cutout_x1 - length/2, cutout_y1 - width/2)
+    .lineTo(cutout_x2 - length/2, cutout_y2 - width/2)
+    .lineTo(cutout_x2 - length/2, cutout_y1 - width/2)
+    .close()
+    .cutBlind(-height)
+)
+
+# --- Coordinate System Transformation for Part 1 ---
+part_1 = part_1.translate((0, 0, 0.3))
+
+# --- Assembly ---
+assembly = part_1
+
+# Export to STL
+cq.exporters.export(assembly, "./stlcq/0009/00097019.stl")
+
+# --- Final Result ---
+result = assembly
+
+cq.exporters.export(result, './stlcq/00096/00095436.stl')
+
+# Export to STL
+cq.exporters.export(result, './stlcq/00096/00095723.stl')
+
+cq.exporters.export(result, './stlcq/00096/00095727.stl')
+
+cq.exporters.export(result, './stlcq/00096/00095829.stl')
+
+cq.exporters.export(result, './stlcq/00096/00095967.stl')
+
+cq.exporters.export(result, './stlcq/00096/000958

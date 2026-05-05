@@ -1,0 +1,36 @@
+import cadquery as cq
+import math
+from cadquery import exporters
+
+# --- Part 1: Rectangular Plate ---
+part_1_length = 0.75 * 0.75  # Scaled length
+part_1_width = 0.4643 * 0.75  # Scaled width
+part_1_height = 0.0714
+hole_radius = 0.0274 * 0.75  # Scaled radius
+hole_centers = [
+    (0.1343 * 0.75 - part_1_length / 2, 0.0964 * 0.75 - part_1_width / 2),
+    (0.1343 * 0.75 - part_1_length / 2, 0.2143 * 0.75 - part_1_width / 2),
+    (0.6293 * 0.75 - part_1_length / 2, 0.0964 * 0.75 - part_1_width / 2),
+    (0.6293 * 0.75 - part_1_length / 2, 0.2143 * 0.75 - part_1_width / 2)
+]
+
+part_1 = cq.Workplane("XY").rect(part_1_length, part_1_width).extrude(part_1_height)
+
+for center in hole_centers:
+    part_1 = part_1.faces(">Z").workplane().pushPoints([center]).hole(2 * hole_radius)
+
+# --- Part 2: Cube ---
+cube_size = 0.75 * 0.75  # Scaled size
+cube_height = 0.5929
+
+part_2 = cq.Workplane("XY").box(cube_size, cube_size, cube_height)
+
+# --- Coordinate System Transformation for Part 2 ---
+part_2 = part_2.rotate((0, 0, 0), (0, 0, 1), 180)
+part_2 = part_2.translate((0, 0.4643, 0))
+
+# --- Part 3: Cylinder ---
+cylinder_radius = 0.2358 * 0.4714  # Scaled radius
+cylinder_height = 0.3571
+
+part_3 = cq.Workplane("XY").circle(cylinder_radius

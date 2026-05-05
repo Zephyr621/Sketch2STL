@@ -1,0 +1,42 @@
+import cadquery as cq
+
+# --- Part 1: Cube with Holes ---
+length = 0.75 * 0.75  # Scaled length
+width = 0.2934 * 0.75  # Scaled width
+height = 0.595
+
+hole1_center_x = 0.1194 * 0.75  # Scaled center x
+hole1_center_y = 0.1446 * 0.75  # Scaled center y
+hole2_center_x = 0.6136 * 0.75  # Scaled center x
+hole2_center_y = 0.1446 * 0.75  # Scaled center y
+hole_radius = 0.0785 * 0.75  # Scaled radius
+
+part_1 = (
+    cq.Workplane("XY")
+    .rect(length, width)
+    .extrude(height)
+    .faces(">Z").workplane()
+    .pushPoints([(hole1_center_x - length/2, hole1_center_y - width/2), (hole2_center_x - length/2, hole2_center_y - width/2)])
+    .hole(2 * hole_radius)
+)
+
+# --- Assembly (if needed, based on the single part) ---
+# In this case, there's only one part, so no assembly is needed.
+# If there were multiple parts, you would use .union() or .cut() to combine them.
+
+# --- Final Result ---
+result = part_1
+
+cq.exporters.export(result, './stlcq/0053/00530913.stl')
+
+cq.exporters.export(result, './stlcq/0053/00530913.stl')
+
+cq.exporters.export(result, './stlcq/0053/00530913.stl')
+
+cq.exporters.export(result, './stlcq/0053/00530913.stl')
+
+cq.exporters.export(result, './stlcq/0053/00530913.stl')
+
+cq.exporters.export(result, './stlcq/0053/00530913.stl')
+
+cq.exporters.export(result,

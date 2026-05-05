@@ -1,0 +1,47 @@
+import cadquery as cq
+from cadquery.vis import show
+
+# --- Part 1 ---
+sketch_scale = 0.5146
+extrude_depth = 0.0843 * sketch_scale
+
+part_1 = (
+    cq.Workplane("XY")
+    .moveTo(0.0, 0.2143 * sketch_scale)
+    .lineTo(0.0702 * sketch_scale, 0.0)
+    .threePointArc((0.2409 * sketch_scale, 0.2571 * sketch_scale), (0.5769 * sketch_scale, 0.0))
+    .lineTo(0.5769 * sketch_scale, 0.1829 * sketch_scale)
+    .lineTo(0.5814 * sketch_scale, 0.1829 * sketch_scale)
+    .threePointArc((0.4158 * sketch_scale, 0.5146 * sketch_scale), (0.0, 0.2817 * sketch_scale))
+    .lineTo(0.0, 0.2143 * sketch_scale)
+    .close()
+    .extrude(extrude_depth)
+)
+
+# Add holes
+hole_center1 = (0.1364 * sketch_scale, 0.1364 * sketch_scale)
+hole_center2 = (0.4157 * sketch_scale, 0.1286 * sketch_scale)
+hole_radius = 0.0083 * sketch_scale
+
+part_1 = (
+    part_1.faces(">Z")
+    .workplane()
+    .hole(2 * hole_radius)
+)
+
+part_1 = (
+    part_1.faces(">Z")
+    .workplane()
+    .pushPoints([hole_center1])
+    .hole(2 * hole_radius)
+)
+
+part_1 = (
+    part_1.faces(">Z")
+    .workplane()
+    .pushPoints([hole_center2])
+    .hole(2 * hole_radius)
+)
+
+# --- Coordinate System Transformation for Part 1 ---
+part_1 =

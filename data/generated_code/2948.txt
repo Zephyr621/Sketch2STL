@@ -1,0 +1,42 @@
+import cadquery as cq
+import math
+from cadquery.vis import show
+
+# --- Part 1: Rectangular Plate with Rounded Corners ---
+sketch_scale = 0.7682
+extrude_depth = 0.0148 * 2  # Total extrusion depth (towards + opposite normal)
+
+part_1 = (
+    cq.Workplane("XY")
+    .moveTo(0.0, 0.0)
+    .lineTo(0.2191 * sketch_scale, 0.0)
+    .threePointArc((0.1983 * sketch_scale, 0.1259 * sketch_scale), (0.2191 * sketch_scale, 0.7682 * sketch_scale))
+    .lineTo(0.0, 0.7059 * sketch_scale)
+    .threePointArc((0.0017 * sketch_scale, 0.5733 * sketch_scale), (0.0, 0.0))
+    .close()
+    .extrude(extrude_depth)
+)
+
+# --- Coordinate System Transformation for Part 1 ---
+part_1 = part_1.translate((-0.0142, -0.0298, 0.0))
+
+# --- Assembly ---
+assembly = part_1
+
+# Export to STL
+cq.exporters.export(assembly, "./stlcq/0058/00587682.stl")
+
+# --- Fillet the corners ---
+corner_radius = min(0.0592 * sketch_scale, 0.0491 * sketch_scale) / 8  # Adjust as needed
+assembly = assembly.edges("|Z and >X").fillet(corner_radius)
+assembly = assembly.edges("|Z and <X").fillet(corner_radius)
+
+# Export to STL
+cq.exporters.export(assembly, "./stlcq/0058/00587682.stl")
+
+# --- Coordinate System Transformation for Part 1 ---
+assembly = assembly.rotate((0, 0, 0), (0, 0, 1), -90)
+assembly = assembly.translate((0.1847, 0.0148, 0))
+
+# Export to STL
+cq.exporters.export(assembly, "./stlcq/0058

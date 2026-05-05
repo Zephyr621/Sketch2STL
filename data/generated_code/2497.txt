@@ -1,0 +1,44 @@
+import cadquery as cq
+from math import radians
+
+# --- Parameters from JSON ---
+outer_radius = 0.2368 * 0.75
+inner_radius = 0.1154 * 0.75
+square_side = (0.3533 - 0.1154) * 0.75
+cube_height = 0.1727
+
+# --- Create Cylinder with Hole ---
+cylinder = cq.Workplane("XY").circle(outer_radius).extrude(cube_height)
+hole = cq.Workplane("XY").circle(inner_radius).extrude(cube_height + 0.1)  # Extrude slightly more to ensure complete cut
+cylinder = cylinder.cut(hole)
+
+# --- Create Square Hole ---
+square_hole = cq.Workplane("XY").rect(square_side, square_side).extrude(cube_height + 0.1)  # Extrude slightly more to ensure complete cut
+cylinder = cylinder.cut(square_hole)
+
+# --- Export to STL ---
+cq.exporters.export(cylinder, './stlcq/0070/00702341.stl')
+
+# --- Export to STL ---
+cq.exporters.export(cylinder, './stlcq/00700/007004506.stl')
+
+# --- Export to STL ---
+cq.exporters.export(cylinder, './stlcq/00700/007004373.stl')
+
+# --- Export to STL ---
+cq.exporters.export(cylinder, './stlcq/00700/007004046.stl')
+
+# --- Export to STL ---
+cq.exporters.export(cylinder, './stlcq/00700/007004047.stl')
+
+# --- Export to STL ---
+cq.exporters.export(cylinder, './stlcq/00700/007004052.stl')
+
+# --- Export to STL ---
+cq.exporters.export(cylinder, './stlcq/00700/007004049.stl')
+
+# --- Export to STL ---
+cq.exporters.export(cylinder, './stlcq/00700/007004048.stl')
+
+# --- Export to STL ---
+cq.exporters.export(cylinder, './stlc

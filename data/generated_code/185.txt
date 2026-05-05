@@ -1,0 +1,35 @@
+import cadquery as cq
+from cadquery.vis import show
+
+# --- Part 1: S-shaped Object ---
+sketch_scale = 0.7496
+extrude_depth = 0.0522
+
+part_1 = (
+    cq.Workplane("XY")
+    .moveTo(0.0, 0.4982 * sketch_scale)
+    .lineTo(0.0827 * sketch_scale, 0.2453 * sketch_scale)
+    .threePointArc((0.1571 * sketch_scale, 0.2351 * sketch_scale), (0.1373 * sketch_scale, 0.2453 * sketch_scale))
+    .lineTo(0.4337 * sketch_scale, 0.0)
+    .threePointArc((0.3986 * sketch_scale, 0.0079 * sketch_scale), (0.3848 * sketch_scale, 0.1917 * sketch_scale))
+    .lineTo(0.4742 * sketch_scale, 0.4785 * sketch_scale)
+    .lineTo(0.0955 * sketch_scale, 0.5934 * sketch_scale)
+    .threePointArc((0.1167 * sketch_scale, 0.6194 * sketch_scale), (0.0955 * sketch_scale, 0.5665 * sketch_scale))
+    .lineTo(0.0781 * sketch_scale, 0.7496 * sketch_scale)
+    .threePointArc((0.0, 0.7496 * sketch_scale), (0.0, 0.4982 * sketch_scale))
+    .close()
+    .extrude(extrude_depth)
+)
+
+# --- Coordinate System Transformation for Part 1 ---
+part_1 = part_1.translate((0.0092, 0.0, 0.0))
+
+# --- Assembly ---
+assembly = part_1
+
+cq.exporters.export(assembly, "./stlcq/0031/00313108.stl")
+
+# --- Export to STL ---
+cq.exporters.export(assembly, "./stlcq/00316/00315943.stl")
+
+cq.exporters.

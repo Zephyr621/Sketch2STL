@@ -1,0 +1,44 @@
+import cadquery as cq
+from math import radians
+
+# --- Part 1: L-shaped CAD Model ---
+part_1_scale = 0.6195
+part_1_depth = 0.7061 * part_1_scale
+
+part_1 = (
+    cq.Workplane("XY")
+    .moveTo(0, 0)
+    .lineTo(0.4683 * part_1_scale, 0)
+    .lineTo(0.4683 * part_1_scale, 0.6195 * part_1_scale)
+    .lineTo(0, 0.6195 * part_1_scale)
+    .close()
+    .extrude(-part_1_depth)
+)
+
+# --- Coordinate System Transformation for Part 1 ---
+part_1 = part_1.translate((0.0059, 0.0, 0.0059))
+
+# --- Part 2: Cutout ---
+part_2_scale = 0.3057
+cutout = (
+    cq.Workplane("XY")
+    .moveTo(0, 0.1589 * part_2_scale)
+    .lineTo(0.0059 * part_2_scale, 0.1589 * part_2_scale)
+    .lineTo(0.0059 * part_2_scale, 0.4599 * part_2_scale)
+    .lineTo(0, 0.4599 * part_2_scale)
+    .lineTo(0, 0.1589 * part_2_scale)
+    .close()
+    .extrude(-0.3858)
+)
+
+# --- Coordinate System Transformation for Part 2 ---
+cutout = cutout.rotate((0, 0, 0), (0, 0, 1), 180)
+cutout = cutout.translate((0.0719, 0.2952, 0.0059))
+
+# --- Assembly: Cut Part 2 from Part 1 ---
+assembly = part_1.cut(cutout)
+
+# --- Export to STL ---
+cq.exporters.export(assembly, "./stlcq/0051/00517178.stl")
+
+cq.exporters.export(assembly, "./stlc

@@ -1,0 +1,47 @@
+import cadquery as cq
+import math
+from cadquery import exporters
+
+# --- Part 1: Cylinder ---
+part_1_radius = 0.0225 * 0.05  # Sketch radius scaled
+part_1_height = 0.5942
+
+part_1 = cq.Workplane("XY").circle(part_1_radius).extrude(-part_1_height)
+
+# --- Coordinate System Transformation for Part 1 ---
+part_1 = part_1.translate((0.0061, 0.0061, 0.5507))
+
+# --- Part 2: Hexagonal Base ---
+hex_scale = 0.1248
+hex_points = [
+    (0.0, 0.0062),
+    (0.0117, 0.0),
+    (0.1164, 0.0062),
+    (0.1397, 0.0062),
+    (0.1248, 0.0173),
+    (0.0937, 0.0163),
+    (0.0792, 0.0136),
+    (0.0792, 0.0352),
+]
+
+scaled_hex_points = [(x * hex_scale, y * hex_scale) for x, y in hex_points]
+
+part_2 = (
+    cq.Workplane("XY")
+    .polyline(scaled_hex_points)
+    .close()
+    .extrude(0.0785 + 0.0785)
+)
+
+# --- Coordinate System Transformation for Part 2 ---
+part_2 = part_2.rotate((0, 0, 0), (0, 0, 1), 180)
+part_2 = part_2.translate((0.0213, 0.0469, 0.7031))
+
+# --- Part 3: Cylinder ---
+cylinder_radius = 0.024 * 0.1248
+cylinder_height = 0.1487
+
+cylinder = cq.Workplane("XY").circle(cylinder_radius).extrude(cylinder_height)
+
+# --- Coordinate System Transformation for Part 3 ---
+cylinder = cylinder.rotate((0, 0, 0), (1, 0, 0), -90)

@@ -1,0 +1,42 @@
+import cadquery as cq
+import math
+from cadquery import exporters
+
+# --- Part 1: Rectangular Prism with Rounded Edges ---
+part_1_length = 0.5527 * 0.5527  # Scaled length
+part_1_width = 0.2848 * 0.5527  # Scaled width
+part_1_height = 0.3797
+
+part_1 = (
+    cq.Workplane("XY")
+    .moveTo(0, 0)
+    .lineTo(part_1_length, 0)
+    .threePointArc((part_1_length/2, part_1_width), (part_1_length - 0.0039 * 0.5527, part_1_width))
+    .lineTo(0, part_1_width)
+    .close()
+    .extrude(part_1_height)
+)
+
+# Add holes
+hole_radius = 0.0187 * 0.5527  # Scaled radius
+hole_centers = [
+    (0.0536 * 0.5527, 0.0536 * 0.5527),
+    (0.5241 * 0.5527, 0.0536 * 0.5527),
+    (0.5224 * 0.5527, 0.0536 * 0.5527)
+]
+
+for center in hole_centers:
+    part_1 = part_1.faces(">Z").workplane().pushPoints([(center[0] - part_1_length/2, center[1] - part_1_width/2)]).hole(2 * hole_radius)
+
+# --- Coordinate System Transformation for Part 1 ---
+part_1 = part_1.translate((0.0486, 0.0, 0.0))
+
+# --- Part 2: Triangular Plate with Holes ---
+part_2_scale = 0.3594
+part_2_depth = 0.0272
+
+part_2 = (
+    cq.Workplane("XY")
+    .moveTo(0, 0)
+    .lineTo(0.3594 * part_2_scale, 0)
+    .lineTo

@@ -1,0 +1,39 @@
+import cadquery as cq
+from math import radians
+
+# --- Part 1: Cylinder ---
+part_1_radius = 0.2813 * 0.5625  # Sketch radius scaled
+part_1_height = 0.75
+
+part_1 = cq.Workplane("XY").circle(part_1_radius).extrude(part_1_height)
+
+# --- Coordinate System Transformation for Part 1 ---
+part_1 = part_1.rotate((0, 0, 0), (0, 0, 1), -90)
+part_1 = part_1.translate((0, 0.75, 0))
+
+# --- Part 2: Cut Feature ---
+sketch_scale_part2 = 0.8480
+cut_depth_part2 = 0.5625
+
+cut_part2 = (
+    cq.Workplane("XY")
+    .moveTo(0.0, 0.4342 * sketch_scale_part2)
+    .lineTo(0.0165 * sketch_scale_part2, 0.0)
+    .lineTo(0.0364 * sketch_scale_part2, 0.1612 * sketch_scale_part2)
+    .lineTo(0.0981 * sketch_scale_part2, 0.1612 * sketch_scale_part2)
+    .lineTo(0.0, 0.4342 * sketch_scale_part2)
+    .close()
+    .extrude(-cut_depth_part2)
+)
+
+# --- Coordinate System Transformation for Part 2 ---
+cut_part2 = cut_part2.rotate((0, 0, 0), (0, 0, 1), -90)
+cut_part2 = cut_part2.translate((0.0246, 0.0, 0.0458))
+
+# --- Part 3: Join Feature ---
+sketch_scale_part3 = 0.8480
+cut_part3 = (
+    cq.Workplane("XY")
+    .moveTo(0.0, 0.0)
+    .lineTo(0.7241 * sketch_scale_part3, 0.0)
+    .lineTo(0.7241 * sketch_scale_part3,

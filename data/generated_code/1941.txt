@@ -1,0 +1,44 @@
+import cadquery as cq
+from math import radians
+
+# --- Part 1: Rectangular Base ---
+part_1_length = 0.75 * 0.75  # Scaled length
+part_1_width = 0.3659 * 0.75  # Scaled width
+part_1_height = 0.4537
+
+part_1 = (
+    cq.Workplane("XY")
+    .rect(part_1_length, part_1_width)
+    .extrude(part_1_height)
+)
+
+# --- Part 2: Cylindrical Protrusions ---
+cylinder_radius = 0.1161 * 0.5598  # Scaled radius
+cylinder_height = 0.0841
+
+# Cylinder positions relative to the base's coordinate system
+cylinder_positions = [
+    (0.1161 * 0.5598 - part_1_length/2, 0.1161 * 0.5598 - part_1_width/2),  # Bottom Left
+    (0.1161 * 0.5598 - part_1_length/2, 0.2292 * 0.5598 - part_1_width/2),  # Top Right
+    (0.2232 * 0.5598 - part_1_length/2, 0.1161 * 0.5598 - part_1_width/2)   # Bottom Right
+]
+
+# Create cylinders and translate them
+cylinders = []
+for x, y in cylinder_positions:
+    cylinder = (
+        cq.Workplane("XY")
+        .circle(cylinder_radius)
+        .extrude(-cylinder_height)  # Extrude downwards
+    )
+    cylinder = cylinder.translate((x, y, 0))
+    cylinders.append(cylinder)
+
+# Combine cylinders
+result = part_1.union(cylinders[0])
+
+# --- Part 3: Small Cylindrical Protrusion ---
+small_cylinder_radius = 0.0658 * 0.1329  # Scaled radius
+small_cylinder_height = 0.3902
+
+# Small

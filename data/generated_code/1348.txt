@@ -1,0 +1,49 @@
+import cadquery as cq
+from cadquery.vis import show
+
+# --- Part 1: Shield ---
+sketch_scale = 0.7492
+extrude_depth = 0.2534 * 2  # Total extrusion depth (towards + opposite normal)
+
+part_1 = (
+    cq.Workplane("XY")
+    .moveTo(0.0, 0.3865 * sketch_scale)
+    .threePointArc((0.0015 * sketch_scale, 0.0015 * sketch_scale), (0.0, 0.3723 * sketch_scale))
+    .lineTo(0.0, 0.3865 * sketch_scale)
+    .close()
+    .extrude(extrude_depth)
+)
+
+# --- Coordinate System Transformation for Part 1 ---
+part_1 = part_1.rotate((0, 0, 0), (0, 0, 1), -90)
+part_1 = part_1.translate((0.0357, 0.2534, 0.0357))
+
+# --- Assembly ---
+assembly = part_1
+
+# Export to STL
+cq.exporters.export(assembly, "./stlcq/0068/00688251.stl")
+
+# Export to STL
+cq.exporters.export(assembly, "./stlcq/00689410.stl")
+
+# Export to STL
+cq.exporters.export(assembly, "./stlcq/00689410.stl")
+
+# Export to STL
+cq.exporters.export(assembly, "./stlcq/00689410.stl")
+
+# Export to STL
+cq.exporters.export(assembly, "./stlcq/00689410.stl")
+
+# Export to STL
+cq.exporters.export(assembly, "./stlcq/00689410.stl")
+
+# --- Final Result ---
+result = assembly
+
+cq.exporters.export(result, './stlcq/00689410.stl')
+
+cq.exporters.export(result, './stlcq/00689410.stl')
+
+cq.exporters.export(result, './stlcq/00689410.stl')

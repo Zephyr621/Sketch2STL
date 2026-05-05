@@ -1,0 +1,36 @@
+import cadquery as cq
+import math
+from cadquery.vis import show
+
+# --- Part 1: Shield ---
+sketch_scale = 0.75
+
+# Scaled coordinates for the sketch
+p1 = (0.0 * sketch_scale, 0.1851 * sketch_scale)
+p2 = (0.1035 * sketch_scale, 0.0938 * sketch_scale)
+p3 = (0.0938 * sketch_scale, 0.0938 * sketch_scale)
+p4 = (0.2855 * sketch_scale, 0.1581 * sketch_scale)
+p5 = (0.2855 * sketch_scale, 0.1851 * sketch_scale)
+p6 = (0.3717 * sketch_scale, 0.2316 * sketch_scale)
+p7 = (0.3717 * sketch_scale, 0.4554 * sketch_scale)
+p8 = (0.2855 * sketch_scale, 0.4554 * sketch_scale)
+p9 = (0.0454 * sketch_scale, 0.4554 * sketch_scale)
+p10 = (0.0454 * sketch_scale, 0.375 * sketch_scale)
+p11 = (0.0 * sketch_scale, 0.375 * sketch_scale)
+
+extrude_depth = 0.2328 * sketch_scale
+
+part_1 = (
+    cq.Workplane("XY")
+    .moveTo(p1[0], p1[1])
+    .threePointArc(p2, p3)
+    .lineTo(p4[0], p4[1])
+    .threePointArc(p5, p6)
+    .lineTo(p7[0], p7[1])
+    .threePointArc(p8, p9)
+    .lineTo(p10[0], p10[1])
+    .threePointArc(p11, p12)
+    .close()
+    .moveTo(p3[0], p3[1])
+    .threePointArc(p7, p8)
+    .lineTo(p9[0], p9[1])

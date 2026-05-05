@@ -1,0 +1,40 @@
+import cadquery as cq
+from math import *
+
+# Part 1 parameters
+part_1_length = 0.75 * 0.75
+part_1_width = 0.6716 * 0.75
+part_1_height = 0.0269
+hole_radius = 0.0312 * 0.75
+corner_hole_offset = 0.0194 * 0.75
+
+# Part 2 parameters
+part_2_length = 0.0784 * 0.75
+part_2_width = 0.2542 * 0.75
+part_2_height = 0.0694
+hole_center_x = 0.375 * 0.75
+hole_center_y = 0.3305 * 0.75
+hole_radius_scaled = hole_radius * 0.75
+
+# Part 3 parameters
+part_3_length = 0.0784 * 0.75
+part_3_width = 0.253 * 0.75
+part_3_height = 0.0694
+hole_center_x_scaled = hole_center_x * 0.75
+hole_center_y_scaled = hole_center_y * 0.75
+hole_radius_scaled = hole_radius * 0.75
+
+# Part 4 parameters
+part_4_length = 0.0784 * 0.75
+part_4_width = 0.253 * 0.75
+part_4_height = 0.0694
+hole_center_x_scaled = hole_center_x * 0.75
+hole_center_y_scaled = hole_center_y * 0.75
+hole_radius_scaled = hole_radius * 0.75
+
+# Create the base plate
+base_plate = cq.Workplane("XY").rect(part_1_length, part_1_width).extrude(part_1_height)
+
+# Create the holes
+hole1 = cq.Workplane("XY").moveTo(hole_center_x_scaled - part_1_length/2, hole_center_y_scaled - part_1_width/2).circle(hole_radius_scaled).extrude(part_1_height + 0.1)
+hole2 = cq.Workplane("XY").moveTo(hole_center_x_scaled - part_1_length/2, hole_

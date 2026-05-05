@@ -1,0 +1,44 @@
+import cadquery as cq
+import math
+from cadquery import exporters
+
+# --- Part 1: Base with Rounded Edges ---
+part_1_length = 0.5785 * 0.5785  # Scaled length
+part_1_width = 0.0507 * 0.5785   # Scaled width
+part_1_height = 0.2023
+
+part_1 = (
+    cq.Workplane("XY")
+    .moveTo(0, 0)
+    .lineTo(part_1_length, 0)
+    .threePointArc((part_1_length/2, part_1_width/2), (part_1_length, part_1_width))
+    .lineTo(0, part_1_width)
+    .close()
+    .extrude(part_1_height)
+)
+
+# Create the holes
+hole_radius = 0.0265 * 0.7162
+hole_center_1 = (0.0785 * 0.7162 - part_1_length/2, 0.0785 * 0.7162 - part_1_width/2)
+hole_center_2 = (0.5785 * 0.7162 - part_1_length/2, 0.0785 * 0.7162 - part_1_width/2)
+
+part_1 = (
+    part_1.faces(">Z")
+    .workplane()
+    .pushPoints([hole_center_1, hole_center_2])
+    .hole(2 * hole_radius)
+)
+
+# --- Part 2: Rectangular Block with Rounded Edges ---
+part_2_length = 0.75 * 0.75  # Scaled length
+part_2_width = 0.3581 * 0.75   # Scaled width
+part_2_height = 0.1013
+
+part_2 = (
+    cq.Workplane("XY")
+    .rect(part_2_length, part_2_width)
+    .extrude(part_2_height)
+)
+
+# --- Coordinate System Transformations ---
+# Part 1: Rotation and Translation

@@ -1,0 +1,24 @@
+import cadquery as cq
+from math import radians
+
+# --- Part 1: L-shaped CAD Model ---
+part_1 = (
+    cq.Workplane("XY")
+    .moveTo(0.0, 0.0833 * 0.6667)
+    .lineTo(0.1667 * 0.6667, 0.0833 * 0.6667)
+    .lineTo(0.1667 * 0.6667, 0.0)
+    .lineTo(0.6667 * 0.6667, 0.0)
+    .lineTo(0.6667 * 0.6667, 0.0833 * 0.6667)
+    .lineTo(0.1667 * 0.6667, 0.3333 * 0.6667)
+    .lineTo(0.0, 0.3333 * 0.6667)
+    .lineTo(0.0, 0.0833 * 0.6667)
+    .close()
+    .extrude(0.125)
+)
+
+# Add holes in Part 1
+hole_radius = 0.0281 * 0.6667
+part_1 = (
+    part_1.faces(">Z")
+    .workplane()
+    .pushPoints([(0.0417 * 0.6667 - 0.0833 * 0.6667, 0.0833 * 0.6667 - 0.0833 * 0.6667),

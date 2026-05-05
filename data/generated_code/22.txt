@@ -1,0 +1,35 @@
+These parts are assembled together to create the final shape, which features a rectangular base with a protruding section on one side and a vertical extension on the opposite side.
+import cadquery as cq
+from math import radians
+
+# --- Part 1: Base with Cutout ---
+part_1 = (
+    cq.Workplane("XY")
+    .moveTo(0.0, 0.0208 * 0.4853)
+    .lineTo(0.1696 * 0.4853, 0.0208 * 0.4853)
+    .lineTo(0.1696 * 0.4853, 0.0)
+    .lineTo(0.5085 * 0.4853, 0.0)
+    .lineTo(0.5085 * 0.4853, 0.0208 * 0.4853)
+    .lineTo(0.4345 * 0.4853, 0.0208 * 0.4853)
+    .lineTo(0.4345 * 0.4853, 0.0938 * 0.4853)
+    .lineTo(0.1696 * 0.4853, 0.0938 * 0.4853)
+    .lineTo(0.1696 * 0.4853, 0.0208 * 0.4853)
+    .close()
+    .extrude(-0.75)
+)
+
+# --- Part 2: Rectangular Bar (Cut) ---
+part_2 = (
+    cq.Workplane("XY")
+    .rect(0.2923 * 0.2923, 0.0179 * 0.2923)
+    .extrude(-0.0028)
+)
+
+# --- Coordinate System Transformation for Part 2 ---
+part_2 = part_2.rotate((0, 0, 0), (0, 0, 1), -90)
+part_2 = part_2.translate((0.1855, 0.0, 0.0938))
+
+# --- Part 3: Rectangular Prism (Join) ---
+part_3 = (
+    cq.Workplane("XY")
+    .rect(0.2923 * 0.2923, 0.0179 * 0.

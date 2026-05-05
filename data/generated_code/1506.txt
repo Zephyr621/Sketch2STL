@@ -1,0 +1,39 @@
+import cadquery as cq
+import math
+from cadquery import exporters
+
+# --- Part 1: Cube ---
+part_1_size = 0.75 * 0.75  # Sketch size scaled
+part_1_height = 0.75
+
+part_1 = cq.Workplane("XY").rect(part_1_size, part_1_size).extrude(part_1_height)
+
+# --- Part 2: Hole (Cylinder Cutout) ---
+part_2_radius = 0.075 * 0.15  # Sketch radius scaled
+part_2_depth = 0.0375
+
+part_2 = cq.Workplane("XY").circle(part_2_radius).extrude(-part_2_depth)
+
+# --- Coordinate System Transformation for Part 2 ---
+part_2 = part_2.rotate((0, 0, 0), (1, 0, 0), -90)
+part_2 = part_2.rotate((0, 0, 0), (0, 0, 1), -90)
+part_2 = part_2.translate((0.75, 0.1125, 0.1125))
+
+# --- Part 3: Hole (Cylinder Cutout) ---
+part_3_radius = 0.075 * 0.15  # Sketch radius scaled
+part_3_depth = 0.0375
+
+part_3 = cq.Workplane("XY").circle(part_3_radius).extrude(-part_3_depth)
+
+# --- Coordinate System Transformation for Part 3 ---
+part_3 = part_3.rotate((0, 0, 0), (1, 0, 0), 90)
+part_3 = part_3.rotate((0, 0, 0), (0, 0, 1), -90)
+part_3 = part_3.translate((0.75, 0.6322, 0.075))
+
+# --- Part 4: Hole (Cylinder Cutout) ---
+part_4_radius = 0.075 * 0.15  # Sketch radius scaled
+part_4_depth = 0.0375
+
+part_4 = cq.Workplane("XY").circle(part_4_radius).extrude(-part_4_depth)
+
+# --- Coordinate System Transformation for

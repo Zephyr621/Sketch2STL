@@ -1,0 +1,51 @@
+import cadquery as cq
+
+# --- Part 1: Square Frame ---
+outer_size = 0.75 * 0.75  # Scaled outer size
+inner_offset = 0.0092 * 0.75  # Scaled inner offset
+height = 0.0514
+
+outer_rect = cq.Workplane("XY").rect(outer_size, outer_size).extrude(height)
+inner_rect = cq.Workplane("XY").rect(outer_size - 2 * inner_offset, outer_size - 2 * inner_offset).extrude(height)
+
+part_1 = outer_rect.cut(inner_rect)
+
+
+# --- Assembly (if needed, based on the single part) ---
+# In this case, there's only one part, so no assembly is needed.
+
+# --- Final Result ---
+result = part_1
+
+# Export to STL
+cq.exporters.export(result, './stlcq/0072/00728125.stl')
+
+# Export to STL
+cq.exporters.export(result, './stlcq/0072/00728549.stl')
+
+# Export to STL
+cq.exporters.export(result, './stlcq/0072/00728549.stl')
+
+# Export to STL
+cq.exporters.export(result, './stlcq/0072/00728549.stl')
+
+# Export to STL
+cq.exporters.export(result, './stlcq/0072/00728549.stl')
+
+# Export to STL
+cq.exporters.export(result, './stlcq/0072/00728549.stl')
+
+# Export to STL
+cq.exporters.export(result, './stlcq/0072/00728549.stl')
+
+# Export to STL
+cq.exporters.export(result, './stlcq/0072/00728549.stl')
+
+# Export to STL
+cq.exporters.export(result, './stlcq/0072/00728549.stl')
+
+# Export to STL
+cq.exporters.export(result, './stlcq/0072/00728549.stl')
+
+# Export to STL
+cq.exp

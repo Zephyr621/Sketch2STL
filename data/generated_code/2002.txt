@@ -1,0 +1,33 @@
+import cadquery as cq
+
+# --- Part 1: Rectangular Plate ---
+part_1_length = 0.2727 * 0.2727  # Scaled length
+part_1_width = 0.1591 * 0.2727   # Scaled width
+part_1_height = 0.0091
+
+part_1 = cq.Workplane("XY").rect(part_1_length, part_1_width).extrude(part_1_height)
+
+# --- Part 2: Vertical Extension ---
+part_2_length = 0.1364 * 0.1364  # Scaled length
+part_2_width = 0.1364 * 0.1364   # Scaled width
+part_2_height = 0.0091
+
+part_2 = cq.Workplane("XY").rect(part_2_length, part_2_width).extrude(-part_2_height)  # Extrude in the opposite direction for cutting
+part_2 = part_2.translate((0.0818, 0.0818, part_1_height))
+
+# --- Part 3: Horizontal Extension ---
+part_3_length = 0.0563 * 0.1364  # Scaled length
+part_3_width = 0.1364 * 0.1364   # Scaled width
+part_3_height = 0.0091
+
+part_3 = cq.Workplane("XY").rect(part_3_length, part_3_width).extrude(-part_3_height)  # Extrude in the opposite direction for cutting
+part_3 = part_3.rotate((0, 0, 0), (1, 0, 0), 90)
+part_3 = part_3.rotate((0, 0, 0), (0, 0, 1), -90)
+part_3 = part_3.translate((0.1071, 0.0818, 0.0142))
+
+# --- Part 4: Vertical Extension ---
+part_4_length = 0.0381 * 0.0909  # Scaled length
+part_4_width = 0.0909 * 0.0909   # Scaled width
+part_4_height = 0.0091
+
+part_4 = cq.Workplane("XY").

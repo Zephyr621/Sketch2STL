@@ -1,0 +1,51 @@
+import cadquery as cq
+from cadquery.vis import show
+
+# --- Part 1: Rectangular Object ---
+length = 0.75 * 0.75  # Scaled length
+width = 0.0749 * 0.75  # Scaled width
+height = 0.1875 + 0.1875  # Total height from extrusion in both directions
+
+part_1 = (
+    cq.Workplane("XY")
+    .moveTo(0, 0)
+    .lineTo(length, 0)
+    .threePointArc((length/2, width), (0, width))
+    .close()
+    .extrude(height)
+)
+
+# --- Coordinate System Transformation for Part 1 ---
+part_1 = part_1.rotate((0, 0, 0), (0, 0, 1), -90)
+part_1 = part_1.translate((0, 0.375, 0))
+
+# --- Assembly ---
+assembly = part_1
+
+# Export to STL
+cq.exporters.export(assembly, "./stlcq/0074/00742170.stl")
+
+# Export to STL
+cq.exporters.export(assembly, "./stlcq/0074/00742171.stl")
+
+# Export to STL
+cq.exporters.export(assembly, "./stlcq/0074/00745726.stl")
+
+# --- Final Result ---
+result = assembly
+
+cq.exporters.export(result, './stlcq/0074/00745726.stl')
+
+cq.exporters.export(result, './stlcq/0074/00745726.stl')
+
+cq.exporters.export(result, './stlcq/0074/00745726.stl')
+
+cq.exporters.export(result, './stlcq/0074/00745726.stl')
+
+cq.exporters.export(result, './stlcq/0074/00745726.stl')
+
+cq.exporters.export(result, './stlcq/0074/00745726.stl')
+
+cq.exporters.export(result, './stlcq/0074/00745726.stl')
+
+cq.exporters

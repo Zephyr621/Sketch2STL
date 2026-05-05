@@ -1,0 +1,49 @@
+import cadquery as cq
+import math
+from cadquery import exporters
+
+# --- Part 1: Rectangular Box ---
+part_1_length = 0.5946 * 0.5946  # Scaled length
+part_1_width = 0.5925 * 0.5946   # Scaled width
+part_1_height = 0.2569
+
+part_1 = (
+    cq.Workplane("XY")
+    .rect(part_1_length, part_1_width)
+    .extrude(-part_1_height)
+)
+
+# --- Coordinate System Transformation for Part 1 ---
+part_1 = part_1.translate((0.1446, 0.0, 0.0))
+
+# --- Part 2: Cylindrical Knobs ---
+part_2_radius = 0.0963 * 0.2062  # Scaled radius
+part_2_height = 0.0269
+
+knob = (
+    cq.Workplane("XY")
+    .circle(part_2_radius)
+    .extrude(part_2_height)
+)
+
+# --- Coordinate System Transformation for Part 2 ---
+knob =knob.rotate((0, 0, 0), (1, 0, 0), 90)
+knob =knob.rotate((0, 0, 0), (0, 0, 1), -90)
+knob =knob.translate((0.2344, 0.3758, 0.0434))
+
+# --- Part 3: Cylindrical Knobs ---
+part_3_radius = 0.1136 * 0.2296  # Scaled radius
+part_3_height = 0.0231
+
+knob = (
+    cq.Workplane("XY")
+    .circle(part_3_radius)
+    .extrude(part_3_height)
+)
+
+# --- Coordinate System Transformation for Part 3 ---
+knob =knob.rotate((0, 0, 0), (1, 0, 0), 90)
+knob =knob.rotate((0, 0, 0), (0, 0, 1), -90)
+knob =knob.translate((0.4271, 0.1073, 0.0065))
+
+# --- Part 4: Cylindrical

@@ -1,0 +1,40 @@
+import cadquery as cq
+import math
+from cadquery import exporters
+
+# --- Part 1: Rectangular Prism with Rounded Edges ---
+part_1 = (
+    cq.Workplane("XY")
+    .moveTo(0.0, 0.0)
+    .lineTo(0.5192 * 0.7494, 0.0)
+    .threePointArc((0.6559 * 0.7494, 0.2961 * 0.7494), (0.4921 * 0.7494, 0.4687 * 0.7494))
+    .lineTo(0.0, 0.7494 * 0.7494)
+    .lineTo(0.0, 0.0)
+    .close()
+    .extrude(0.0138)
+)
+
+# --- Coordinate System Transformation for Part 1 ---
+part_1 = part_1.translate((0.0041, 0.0392, 0))
+
+# --- Part 2: Cut Feature ---
+part_2_sketch_scale = 0.7469
+part_2 = (
+    cq.Workplane("XY")
+    .moveTo(0.0, 0.0)
+    .threePointArc((0.7469 * part_2_sketch_scale, 0.2961 * part_2_sketch_scale), (0.7495 * part_2_sketch_scale, 0.0))
+    .lineTo(0.7495 * part_2_sketch_scale, 0.4851 * part_2_sketch_scale)
+    .lineTo(0.0, 0.4851 * part_2_sketch_scale)
+    .lineTo(0.0, 0.0)
+    .close()
+    .extrude(-0.0276)
+)
+
+# --- Coordinate System Transformation for Part 2 ---
+part_2 = part_2.rotate((0, 0, 0), (0, 0, 1), 180)
+part_2 = part_2.translate((0.0041, 0.7494, 0))
+
+# --- Assembly ---
+assembly = part_1.cut(part_2)
+
+#

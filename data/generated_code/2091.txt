@@ -1,0 +1,32 @@
+import cadquery as cq
+import math
+from cadquery import exporters
+
+# --- Part 1: Curved Shape ---
+part_1_scale = 0.4085
+part_1_height = 0.0889 * part_1_scale
+
+part_1 = (
+    cq.Workplane("XY")
+    .moveTo(0.0, 0.0013)
+    .threePointArc((0.2098 * part_1_scale, 0.0893 * part_1_scale), (0.3036 * part_1_scale, 0.0))
+    .lineTo(0.4233 * part_1_scale, 0.0)
+    .threePointArc((0.375 * part_1_scale, 0.0893 * part_1_scale), (0.5104 * part_1_scale, 0.0147 * part_1_scale))
+    .lineTo(0.5104 * part_1_scale, 0.1084 * part_1_scale)
+    .threePointArc((0.3243 * part_1_scale, 0.1253 * part_1_scale), (0.2717 * part_1_scale, 0.1084 * part_1_scale))
+    .lineTo(0.2717 * part_1_scale, 0.1968 * part_1_scale)
+    .threePointArc((0.3243 * part_1_scale, 0.2539 * part_1_scale), (0.0013 * part_1_scale, 0.1968 * part_1_scale))
+    .lineTo(0.0, 0.0013)
+    .close()
+    .extrude(-part_1_height)
+)
+
+# --- Part 2: Cylinder ---
+part_2_scale = 0.75
+part_2_radius = 0.1583 * part_2_scale
+part_2_height = 0.0203 * part_2_scale
+
+part_2 = (
+    cq.Workplane("XY")
+    .circle(part_2_radius)
+    .extrude(-part_2

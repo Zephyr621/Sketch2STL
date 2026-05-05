@@ -1,0 +1,48 @@
+import cadquery as cq
+from cadquery import exporters
+
+# --- Part 1: Vertical Rod ---
+part_1_length = 0.75 * 0.75  # Scaled length
+part_1_width = 0.1125 * 0.75  # Scaled width
+part_1_height = 0.0353
+
+part_1 = (
+    cq.Workplane("XY")
+    .rect(part_1_length, part_1_width)
+    .extrude(part_1_height)
+)
+
+# --- Part 2: Rectangular Block (Cut) ---
+part_2_length = 0.54 * 0.54  # Scaled length
+part_2_width = 0.1125 * 0.54  # Scaled width
+part_2_height = 0.0353
+
+part_2 = (
+    cq.Workplane("XY")
+    .rect(part_2_length, part_2_width)
+    .extrude(-part_2_height)  # Extrude in the opposite direction for cutting
+)
+
+# --- Coordinate System Transformations ---
+# Part 1: Rotate and Translate
+part_1 = part_1.rotate((0, 0, 0), (0, 0, 1), -90)
+part_1 = part_1.translate((0, 0.0353, 0))
+
+# Part 2: Rotate and Translate
+part_2 = part_2.rotate((0, 0, 0), (0, 0, 1), -90)
+part_2 = part_2.translate((0.0099, 0, 0.0563))
+
+# --- Assembly ---
+assembly = part_1.cut(part_2)
+
+# --- Export to STL ---
+exporters.export(assembly, "./stlcq/0031/00319656.stl")
+
+# --- Export to STL ---
+exporters.export(assembly, './stlcq/0031/00319656.stl')
+
+# --- Export to STL ---
+exporters.export(assembly, './stlcq/0031/00319629.stl')
+
+# --- Export to STL ---
+exporters.export(assembly, './stlcq/

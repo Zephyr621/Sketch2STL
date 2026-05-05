@@ -1,0 +1,29 @@
+import cadquery as cq
+import math
+from cadquery import exporters
+
+# --- Part 1: Rectangular Plate with Rounded Corners and Holes ---
+part_1_length = 0.75 * 0.75  # Scaled length
+part_1_width = 0.2062 * 0.75  # Scaled width
+part_1_height = 0.0225
+hole_radius = 0.0705 * 0.75  # Scaled radius
+hole_centers = [
+    (0.1023 * 0.75 - part_1_length / 2, 0.0913 * 0.75 - part_1_width / 2),
+    (0.1023 * 0.75 - part_1_length / 2, 0.1752 * 0.75 - part_1_width / 2),
+    (0.6429 * 0.75 - part_1_length / 2, 0.0913 * 0.75 - part_1_width / 2),
+    (0.6429 * 0.75 - part_1_length / 2, 0.1752 * 0.75 - part_1_width / 2)
+]
+
+part_1 = cq.Workplane("XY").rect(part_1_length, part_1_width).extrude(part_1_height)
+
+for center_x, center_y in hole_centers:
+    part_1 = part_1.faces(">Z").workplane().pushPoints([(center_x, center_y)]).hole(2 * hole_radius)
+
+# --- Part 2: Rectangular Prism with Cylindrical Base ---
+part_2_length = 0.7188 * 0.7188  # Scaled length
+part_2_width = 0.1406 * 0.7188  # Scaled width
+part_2_height = 0.0563
+cylinder_radius = 0.0705 * 0.7188  # Scaled radius
+cylinder_positions = [
+    (0.0705 * 0.7188 - part_2_length/2, 0.0469 * 0.7188 - part_2_width/2),
+    (0.6771 * 0.7188 - part_2_length/

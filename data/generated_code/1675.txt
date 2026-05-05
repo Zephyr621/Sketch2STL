@@ -1,0 +1,47 @@
+import cadquery as cq
+import math
+from cadquery import exporters
+
+# --- Part 1: Rectangular Plate ---
+part_1_length = 0.75 * 0.75  # Scaled length
+part_1_width = 0.75 * 0.75  # Scaled width
+part_1_height = 0.0094
+
+part_1 = (
+    cq.Workplane("XY")
+    .moveTo(0.0, 0.2583 * 0.75)
+    .lineTo(0.1341 * 0.75, 0.2583 * 0.75)
+    .threePointArc((0.375 * 0.75, 0.0), (0.5357 * 0.75, 0.2583 * 0.75))
+    .lineTo(0.75 * 0.75, 0.2583 * 0.75)
+    .lineTo(0.75 * 0.75, 0.5357 * 0.75)
+    .lineTo(0.0, 0.5357 * 0.75)
+    .lineTo(0.0, 0.2583 * 0.75)
+    .close()
+    .extrude(part_1_height)
+)
+
+# --- Part 2: Cylindrical Base ---
+part_2_radius = 0.1504 * 0.5064  # Scaled radius
+part_2_height = 0.0469
+
+part_2 = (
+    cq.Workplane("XY")
+    .circle(part_2_radius)
+    .extrude(part_2_height)
+)
+
+# --- Assembly ---
+# Translate part_2 to its correct location
+part_2 = part_2.translate((0.1341, 0.1341, 0.0094))
+
+# Union the parts
+assembly = part_1.union(part_2)
+
+# Export to STL
+exporters.export(assembly, './stlcq/0043/00438535.stl')
+
+# Export to STL
+exporters.export(assembly, './stlcq/0043/00438635.stl')
+
+# Export to STL
+exporters.export(

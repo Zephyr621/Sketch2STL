@@ -1,0 +1,52 @@
+import cadquery as cq
+from math import *
+
+# --- Part 1: Triangle ---
+part_1 = (
+    cq.Workplane("XY")
+    .moveTo(0.0, 0.0)
+    .lineTo(0.4878 * 0.75, 0.0)
+    .lineTo(0.2406 * 0.75, 0.75 * 0.75)
+    .lineTo(0.0, 0.0)
+    .close()
+    .extrude(0.2082)
+)
+
+# --- Assembly ---
+assembly = part_1
+
+# Export to STL
+cq.exporters.export(assembly, "./stlcq/0065/00657151.stl")
+
+# --- Export to STL ---
+cq.exporters.export(assembly, "./stlcq/0065/00659182.stl")
+
+# Export to STL
+cq.exporters.export(assembly, "./stlcq/00655818.stl")
+
+# --- Export to STL ---
+cq.exporters.export(assembly, "./stlcq/00655818.stl")
+
+# Export to STL
+cq.exporters.export(assembly, "./stlcq/00655818.stl")
+
+# Export to STL
+cq.exporters.export(assembly, "./stlcq/00655818.stl")
+
+# --- Export to STL ---
+cq.exporters.export(assembly, "./stlcq/00655818.stl")
+
+# Export to STL
+cq.exporters.export(assembly, "./stlcq/00655818.stl")
+
+# --- Export to STL ---
+cq.exporters.export(assembly, "./stlcq/00655818.stl")
+
+# Export to STL
+cq.exporters.export(assembly, "./stlcq/00655818.stl")
+
+# --- Export to STL ---
+cq.exporters.export(assembly, "./stlcq/00655818.stl")
+
+# --- Export to STL ---
+cq.exporters.export(assembly, "./stlcq/00655818.stl")

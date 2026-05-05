@@ -1,0 +1,49 @@
+import cadquery as cq
+
+# --- Part 1: Rectangular Block ---
+part_1_length = 0.1936 * 0.75  # Scaled length
+part_1_width = 0.75 * 0.75   # Scaled width
+part_1_height = 0.1689
+
+part_1 = (
+    cq.Workplane("XY")
+    .rect(part_1_length, part_1_width)
+    .extrude(part_1_height)
+)
+
+# --- Coordinate System Transformation for Part 1 ---
+part_1 = part_1.translate((0, 0, 0.4554))
+
+# --- Part 2: Cutout ---
+part_2_length = 0.1511 * 0.6678  # Scaled length
+part_2_width = 0.6678 * 0.6678   # Scaled width
+part_2_height = 0.0422
+
+part_2 = (
+    cq.Workplane("XY")
+    .rect(part_2_length, part_2_width)
+    .extrude(-part_2_height)  # Extrude in the opposite direction for cutting
+)
+
+# --- Assembly: Cut Part 2 from Part 1 ---
+assembly = part_1.cut(part_2)
+
+# --- Export to STL ---
+cq.exporters.export(assembly, "./stlcq/0058/00588376.stl")
+
+# --- Export to STL ---
+cq.exporters.export(assembly, "./stlcq/0058/00588673.stl")
+
+# --- Export to STL ---
+cq.exporters.export(assembly, './stlcq/0058/00588838.stl')
+
+# --- Export to STL ---
+cq.exporters.export(assembly, "./stlcq/0058/00588930.stl")
+
+# --- Export to STL ---
+cq.exporters.export(assembly, "./stlcq/0058/00588628.stl")
+
+# --- Export to STL ---
+cq.exporters.export(assembly, "./stlcq/0058/00588732.stl")
+
+# --- Export to STL

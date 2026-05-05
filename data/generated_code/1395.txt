@@ -1,0 +1,45 @@
+import cadquery as cq
+
+# --- Part 1: Rectangular Box ---
+part_1_length = 0.0757 * 0.3027  # Scaled length
+part_1_width = 0.3027 * 0.3027  # Scaled width
+part_1_height = 0.5448
+
+part_1 = (
+    cq.Workplane("XY")
+    .rect(part_1_length, part_1_width)
+    .extrude(-part_1_height)  # Extrude in the opposite direction for a cut
+)
+
+# --- Coordinate System Transformation for Part 1 ---
+part_1 = part_1.translate((0.0001, 0.0001, 0.1299))
+
+# --- Part 2: Triangular Prism ---
+part_2_length = 0.75 * 0.75  # Scaled length
+part_2_width = 0.3037 * 0.75  # Scaled width
+part_2_height = 0.0091
+
+part_2 = (
+    cq.Workplane("XY")
+    .moveTo(0, 0)
+    .lineTo(part_2_length, 0)
+    .lineTo(part_2_length, part_2_width)
+    .close()
+    .extrude(part_2_height)
+)
+
+# --- Coordinate System Transformation for Part 2 ---
+part_2 = part_2.rotate((0, 0, 0), (1, 0, 0), -90)
+part_2 = part_2.rotate((0, 0, 0), (0, 0, 1), -90)
+part_2 = part_2.translate((0.0001, 0.0002, 0))
+
+# --- Assembly ---
+assembly = part_1.union(part_2)
+
+cq.exporters.export(assembly, "./stlcq/0023/00232649.stl")
+
+cq.exporters.export(assembly, "./stlcq/002369.stl")
+
+cq.exporters.export(assembly, "./stlcq/002368.stl")
+
+cq.exporters.export(assembly, "./stlcq/002369.

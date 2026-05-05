@@ -1,0 +1,42 @@
+import cadquery as cq
+import math
+from cadquery.vis import show
+
+# --- Part 1: Right-Angled Bracket ---
+sketch_scale = 0.75
+extrude_depth = 0.05
+
+# Scaled dimensions
+width = 0.75 * sketch_scale
+height = 0.075 * sketch_scale
+radius = 0.075 * sketch_scale
+hole1_center = (0.075 * sketch_scale, 0.375 * sketch_scale)
+hole2_center = (0.675 * sketch_scale, 0.675 * sketch_scale)
+hole3_center = (0.675 * sketch_scale, 0.675 * sketch_scale)
+
+# Create the base shape with arcs
+base_shape = (
+    cq.Workplane("XY")
+    .moveTo(0, 0)
+    .lineTo(width, 0)
+    .threePointArc((width / 2, 0), (width/2, width))
+    .lineTo(0, width)
+    .threePointArc((0, 0.375 * sketch_scale), (0, 0))
+    .close()
+)
+
+part_1 = base_shape.extrude(extrude_depth)
+
+# Create the holes
+hole1 = cq.Workplane("XY").circle(radius).extrude(extrude_depth + 0.1) # Extrude slightly more than the base thickness
+hole2 = cq.Workplane("XY").circle(radius).extrude(extrude_depth + 0.1) # Extrude slightly more than the base thickness
+hole3 = cq.Workplane("XY").circle(radius).extrude(extrude_depth + 0.1) # Extrude slightly more than the base thickness
+
+# Subtract the holes from the base shape
+part_1 = part_1.cut(hole1)
+part_1 = part_1.cut(hole2)
+part_1 = part_1.cut(hole3)
+
+# --- Coordinate System Transformation for Part 1 ---
+part_1 = part_1.rotate((0, 0, 0), (0, 0, 1), -90)
+part_1 = part_1.translate((0, 0.05, 0))

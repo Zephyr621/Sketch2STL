@@ -1,0 +1,47 @@
+These individual parts are assembled together to form the final shape.
+import cadquery as cq
+from cadquery import exporters
+
+# --- Part 1 ---
+part_1 = (
+    cq.Workplane("XY")
+    .moveTo(0.0, 0.0)
+    .lineTo(0.75, 0.0)
+    .lineTo(0.75, 0.5074)
+    .lineTo(0.5192, 0.5074)
+    .threePointArc((0.2753, 0.2087), (0.1852, 0.2579))
+    .lineTo(0.0, 0.2579)
+    .lineTo(0.0, 0.0)
+    .close()
+    .extrude(0.0907)
+)
+
+# Create holes
+hole_centers = [
+    (0.1784, 0.1784),
+    (0.375, 0.1784),
+    (0.5622, 0.1784),
+    (0.375, 0.5576),
+]
+
+for center_x, center_y in hole_centers:
+    part_1 = part_1.faces(">Z").workplane().pushPoints([(center_x - 0.375/2, center_y - 0.375/2)]).hole(2 * 0.75)
+
+# --- Coordinate System Transformation for Part 1 ---
+part_1 = part_1.rotate((0, 0, 0), (0, 0, 1), -90)
+part_1 = part_1.translate((0, 0.0907, 0))
+
+# --- Assembly ---
+assembly = part_1
+
+# Export to STL
+exporters.export(assembly, "./stlcq/0030/00301340.stl")
+
+# Export to STL
+exporters.export(assembly, './stlcq/0030/00301341.stl')
+
+# Export to STL
+exporters.export(assembly, "./stlcq/0030/00201344.stl")
+
+# Export to STL
+exporters.export(assembly, "./stlcq/0030/003

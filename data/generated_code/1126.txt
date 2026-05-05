@@ -1,0 +1,53 @@
+import cadquery as cq
+from math import tan, radians
+
+# --- Part 1: Hexagonal Prism ---
+hex_width = 0.6495 * 0.75
+hex_height = 0.2537
+hex_points = [
+    (0.0 * 0.75, 0.3248 * 0.75),
+    (0.1875 * 0.75, 0.0 * 0.75),
+    (0.5625 * 0.75, 0.0 * 0.75),
+    (0.75 * 0.75, 0.3248 * 0.75),
+    (0.5625 * 0.75, 0.6495 * 0.75)
+]
+
+part_1 = (
+    cq.Workplane("XY")
+    .polyline(hex_points)
+    .close()
+    .extrude(hex_height)
+)
+
+# --- Part 2: Cylinder ---
+cylinder_radius = 0.3045 * 0.6089
+cylinder_height = 0.1269
+cylinder_x_offset = 0.0705
+cylinder_y_offset = 0.0203
+
+part_2 = (
+    cq.Workplane("XY")
+    .circle(cylinder_radius)
+    .extrude(cylinder_height)
+)
+
+# --- Assembly ---
+assembly = part_1.union(part_2)
+
+# --- Export to STL ---
+cq.exporters.export(assembly, './stlcq/0053/00535984.stl')
+
+# --- Export to STL ---
+cq.exporters.export(assembly, './stlcq/0053/00535910.stl')
+
+# --- Export to STL ---
+cq.exporters.export(assembly, './stlcq/0053/00535910.stl')
+
+# --- Export to STL ---
+cq.exporters.export(assembly, './stlcq/0053/00535416.stl')
+
+# --- Export to STL ---
+cq.exporters.export(assembly, './stlcq/0053/00535416.stl')
+
+# --- Export to STL ---
+cq.exporters

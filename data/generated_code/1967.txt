@@ -1,0 +1,47 @@
+import cadquery as cq
+
+# --- Part 1: Rectangular Plate ---
+part_1_length = 0.75 * 0.75  # Scaled length
+part_1_width = 0.5089 * 0.75  # Scaled width
+part_1_height = 0.0395
+
+part_1 = (
+    cq.Workplane("XY")
+    .rect(part_1_length, part_1_width)
+    .extrude(part_1_height)
+)
+
+# --- Part 2: Vertical Extension ---
+part_2_length = 0.75 * 0.75  # Scaled length
+part_2_width = 0.0395 * 0.75  # Scaled width
+part_2_height = 0.5132
+
+part_2 = (
+    cq.Workplane("XY")
+    .rect(part_2_length, part_2_width)
+    .extrude(-part_2_height)  # Extrude in the opposite direction for cutting
+)
+
+# --- Coordinate System Transformation for Part 2 ---
+part_2 = part_2.translate((0, 0, part_1_height))
+
+# --- Assembly: Join Part 1 and Part 2 ---
+assembly = part_1.union(part_2)
+
+# --- Export to STL ---
+cq.exporters.export(assembly, "./stlcq/0036/00367164.stl")
+cq.exporters.export(assembly, "./stlcq/003648.stl")
+
+# --- Export to STL ---
+cq.exporters.export(assembly, "./stlcq/003648.stl")
+cq.exporters.export(assembly, "./stlcq/003648.stl")
+
+# --- Export to STL ---
+cq.exporters.export(assembly, "./stlcq/003648.stl")
+cq.exporters.export(assembly, "./stlcq/003648.stl")
+
+# --- Export to STL ---
+cq.exporters.export(assembly, "./stlcq/003648.stl")
+cq.exporters.export(assembly, "./stlcq/003648.stl")
+
+#

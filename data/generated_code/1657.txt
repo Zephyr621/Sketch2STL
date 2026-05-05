@@ -1,0 +1,42 @@
+import cadquery as cq
+import math
+from cadquery import exporters
+
+# --- Part 1: Cylinder with Hole ---
+sketch_scale = 0.75
+
+# Scaled Dimensions
+start_point1 = (0.1393 * sketch_scale, 0.3125 * sketch_scale)
+mid_point1 = (0.0 * sketch_scale, 0.375 * sketch_scale)
+end_point1 = (0.6281 * sketch_scale, 0.3125 * sketch_scale)
+mid_point2 = (0.75 * sketch_scale, 0.375 * sketch_scale)
+
+start_point2 = (0.6281 * sketch_scale, 0.375 * sketch_scale)
+end_point2 = (0.6281 * sketch_scale, 0.75 * sketch_scale)
+
+center_hole1 = (0.1242 * sketch_scale, 0.1393 * sketch_scale)
+center_hole2 = (0.6281 * sketch_scale, 0.4074 * sketch_scale)
+
+radius_hole1 = 0.0375 * sketch_scale
+radius_hole2 = 0.0188 * sketch_scale
+
+extrude_depth = 0.1875
+
+# Create the outer shape
+outer_shape = (
+    cq.Workplane("XY")
+    .moveTo(start_point1[0], start_point1[1])
+    .threePointArc((mid_point1[0], mid_point1[1]), (end_point1[0], end_point1[1]))
+    .lineTo(start_point2[0], start_point2[1])
+    .threePointArc((mid_point2[0], mid_point2[1]), (end_point2[0], end_point2[1]))
+    .close()
+)
+
+# Extrude the outer shape
+part_1 = outer_shape.extrude(extrude_depth)
+
+# Create the central hole
+inner_radius = center_hole2[0] * sketch_scale
+part_1 = part_1.faces(">Z").workplane().circle(inner_radius).cutThruAll()
+
+# Cut the inner

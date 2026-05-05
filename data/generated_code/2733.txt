@@ -1,0 +1,48 @@
+import cadquery as cq
+
+# --- Part 1: Cube with Cut Off ---
+cube_size = 0.75 * 0.75  # Scaled size
+cutout_depth = 0.75 * 0.75  # Scaled depth
+
+part_1 = (
+    cq.Workplane("XY")
+    .rect(cube_size, cube_size)
+    .extrude(cutout_depth)
+    .faces(">Z").workplane()
+    .moveTo(0.375 * 0.75 - cube_size/2, 0).lineTo(0.375 * 0.75 - cube_size/2, cube_size/2).close().cutThruAll()
+)
+
+# --- Coordinate System Transformation for Part 1 ---
+part_1 = part_1.rotate((0, 0, 0), (0, 0, 1), -90)
+part_1 = part_1.translate((0, 0.75, 0))
+
+# --- Assembly ---
+assembly = part_1
+
+# Export to STL
+cq.exporters.export(assembly, "./stlcq/0082/00829221.stl")
+
+# --- Export to STL ---
+cq.exporters.export(assembly, "./stlcq/0082/00829622.stl")
+
+# --- Export to STL ---
+cq.exporters.export(assembly, "./stlcq/0082/00829622.stl")
+
+# --- Final Result ---
+result = assembly
+
+cq.exporters.export(result, './stlcq/0082/00829726.stl')
+
+# Export to STL
+cq.exporters.export(result, './stlcq/0082/00829622.stl')
+
+# Export to STL
+cq.exporters.export(result, './stlcq/0082/00829622.stl')
+
+cq.exporters.export(result, './stlcq/0082/00829622.stl')
+
+cq.exporters.export(result, './stlcq/0082/00829622.stl')
+
+cq.exporters.export(result, './stlcq/0082/00829622.stl')
+
+cq.exporters.export(

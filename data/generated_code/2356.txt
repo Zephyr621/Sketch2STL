@@ -1,0 +1,47 @@
+This process results in a rectangular door that can be used as a component in larger assemblies.
+import cadquery as cq
+
+# --- Part 1: Door ---
+# Parameters from JSON (scaled)
+length = 0.2812 * 0.75  # Scaled length
+width = 0.75 * 0.75  # Scaled width
+height = 0.0104
+
+# Create the outer rectangle and extrude it to form a solid cube
+outer_rect = cq.Workplane("XY").rect(length, width).extrude(height)
+
+# Create the inner rectangle (to subtract)
+inner_rect = cq.Workplane("XY").rect(length - 2 * 0.0104, width - 2 * 0.0104).extrude(height)
+
+# Subtract the inner rectangle from the outer rectangle
+door = outer_rect.cut(inner_rect)
+
+# Export the result to a STL file
+cq.exporters.export(door, './stlcq/0093/00935790.stl')
+
+# Export the result to a STL file
+cq.exporters.export(door, './stlcq/0093/00935903.stl')
+
+# --- Coordinate System Transformation for Part 1 ---
+door = door
+
+# Export the result to a STL file
+cq.exporters.export(door, './stlcq/0093/00935903.stl')
+
+# --- Assembly ---
+assembly = door
+
+# Export the assembly to a STL file
+cq.exporters.export(assembly, './stlcq/0093/00935714.stl')
+
+# Export the result to a T-shaped CAD Model
+cq.exporters.export(assembly, './stlcq/0093/00935714.stl')
+
+# Export the result to a T-shaped CAD Model
+cq.exporters.export(assembly, './stlcq/0093/00935714.stl')
+
+# Export the result to a T-shaped CAD Model
+cq.exporters.export(assembly, './stlcq/0093/00935714.stl')
+
+# Export the result to a T-shaped CAD Model
+cq.exporters.export(assembly, './stlcq/0093/00935714.stl')

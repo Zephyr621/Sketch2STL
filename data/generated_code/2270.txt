@@ -1,0 +1,49 @@
+import cadquery as cq
+
+# --- Part 1: Cube with Rounded Corners ---
+length = 0.6699 * 0.6699  # Scaled length
+width = 0.6495 * 0.6699   # Scaled width
+height = 0.75
+corner_radius = min(length, width) / 10  # Adjust as needed; avoid large values
+
+part_1 = (
+    cq.Workplane("XY")
+    .moveTo(0, corner_radius)
+    .lineTo(length - corner_radius, 0)
+    .threePointArc((length, corner_radius), (length - corner_radius, width))
+    .lineTo(corner_radius, width)
+    .threePointArc((0, corner_radius), (corner_radius, 0))
+    .close()
+    .extrude(-height)  # Extrude in the opposite direction
+)
+
+# --- Assembly (if needed, based on the single part) ---
+# In this case, there's only one part, so no assembly is needed.
+
+# --- Final Result ---
+result = part_1
+
+cq.exporters.export(result, './stlcq/0031/00313547.stl')
+
+# Export to STL
+cq.exporters.export(result, './stlcq/00316833.stl')
+
+# Export to STL
+cq.exporters.export(result, './stlcq/00315/00315830.stl')
+
+# Export to STL
+cq.exporters.export(result, './stlcq/00315/003157152.stl')
+
+# Export to STL
+cq.exporters.export(result, './stlcq/00315/00315782.stl')
+
+# Export to STL
+cq.exporters.export(result, './stlcq/00315/00315785.stl')
+
+# Export to STL
+cq.exporters.export(result, './stlcq/00315/003157154.stl')
+
+# Export to STL
+cq.exporters.export(result, './stlcq/00315/003157428.stl')
+
+#

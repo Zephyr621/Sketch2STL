@@ -1,0 +1,38 @@
+import cadquery as cq
+import math
+from cadquery.vis import show
+
+# --- Part 1: House ---
+sketch_scale = 0.75
+
+# Define the points for the outer profile
+outer_pts = [
+    (0.0, 0.0025),
+    (0.0035, 0.0),
+    (0.0033, 0.0),
+    (0.0035, 0.0042),
+    (0.0118, 0.0042),
+    (0.0118, 0.7395),
+    (0.0118, 0.75),
+    (0.0, 0.7395)
+]
+
+# Define the points for the inner profile
+inner_pts = [
+    (0.0017, 0.0),
+    (0.1265, 0.0092),
+    (0.1265, 0.0119),
+    (0.1265, 0.0276),
+    (0.0017, 0.0276)
+]
+
+# Create the base shape with arcs
+part_1 = (
+    cq.Workplane("XY")
+    .moveTo(outer_pts[0][0], outer_pts[0][1])
+    .threePointArc((0.0961 * sketch_scale, 0.0441 * sketch_scale), (outer_pts[1][0], outer_pts[1][1]))
+    .lineTo(outer_pts[2][0], outer_pts[2][1])
+    .threePointArc((0.0961 * sketch_scale, 0.7423 * sketch_scale), (outer_pts[3][0], outer_pts[3][1]))
+    .lineTo(outer_pts[4][0], outer_pts[4][1])
+    .threePointArc((0.0961 * sketch_scale, 0.7391 * sketch_scale), (outer_pts[5][0], outer_pts[5][1]))
+    .lineTo(outer_pts[6][0], outer_pts[6][1])

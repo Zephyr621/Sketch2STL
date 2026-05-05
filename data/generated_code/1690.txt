@@ -1,0 +1,47 @@
+import cadquery as cq
+
+# --- Part 1: Rectangular Prism ---
+part_1_length = 0.7414 * 0.7414  # Scaled length
+part_1_width = 0.4803 * 0.7414  # Scaled width
+part_1_height = 0.0059
+
+part_1 = (
+    cq.Workplane("XY")
+    .rect(part_1_length, part_1_width)
+    .extrude(part_1_height)
+)
+
+# --- Coordinate System Transformation for Part 1 ---
+part_1 = part_1.rotate((0, 0, 0), (0, 0, 1), -90)
+part_1 = part_1.translate((0.0057, 0.0059, 0))
+
+# --- Part 2: Cut Feature ---
+part_2_length = 0.7231 * 0.7231  # Scaled length
+part_2_width = 0.4567 * 0.7231  # Scaled width
+part_2_height = 0.0011
+
+part_2 = (
+    cq.Workplane("XY")
+    .rect(part_2_length, part_2_width)
+    .extrude(-part_2_height)  # Extrude in the opposite direction for cutting
+)
+
+# --- Coordinate System Transformation for Part 2 ---
+part_2 = part_2.translate((0.0057, 0.0059, 0.4792))
+
+# --- Assembly: Cut Part 2 from Part 1 ---
+assembly = part_1.cut(part_2)
+
+# --- Export to STL ---
+cq.exporters.export(assembly, "./stlcq/0098/00986677.stl")
+
+# --- Final Result ---
+result = assembly
+
+cq.exporters.export(result, './stlcq/0098/00988253.stl')
+
+cq.exporters.export(result, './stlcq/0098/00988495.stl')
+
+cq.exporters.export(result, './stlcq/0098/00988736.stl')
+
+cq.exporters.export(result, './stlcq/00

@@ -1,0 +1,46 @@
+import cadquery as cq
+
+# --- Part 1: Cube ---
+part_1_length = 0.5417 * 0.5377  # Scaled length
+part_1_width = 0.5377 * 0.5377  # Scaled width
+part_1_height = 0.4821
+
+part_1 = cq.Workplane("XY").rect(part_1_length, part_1_width).extrude(part_1_height)
+
+# --- Coordinate System Transformation for Part 1 ---
+part_1 = part_1.translate((0.0, 0.75, 0.0))
+
+# --- Part 2: Rectangular Box ---
+part_2_length = 0.4853 * 0.4873  # Scaled length
+part_2_width = 0.4873 * 0.4873  # Scaled width
+part_2_height = 0.2679
+
+inner_length = (0.5417 - 0.0542) * 0.4873
+inner_width = (0.5526 - 0.0139) * 0.4873
+
+part_2_base = (
+    cq.Workplane("XY")
+    .rect(part_2_length, part_2_width)
+    .extrude(part_2_height)
+)
+
+part_2_cutout = (
+    cq.Workplane("XY")
+    .rect(inner_length, inner_width)
+    .extrude(part_2_height + 0.1)  # Extrude slightly more to ensure complete cut
+)
+
+part_2 = part_2_base.cut(part_2_cutout)
+
+
+# --- Assembly ---
+assembly = part_2.union(part_1)
+
+cq.exporters.export(assembly, "./stlcq/0081/00819593.stl")
+
+# --- Export to STL ---
+cq.exporters.export(assembly, './stlcq/0081/00816656.stl')
+
+cq.exporters.export(assembly, "./stlcq/0081/00817657.stl")
+
+cq.exporters.export(assembly, './stlcq/0081/00818

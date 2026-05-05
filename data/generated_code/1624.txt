@@ -1,0 +1,46 @@
+import cadquery as cq
+from cadquery import exporters
+
+# --- Part 1: L-shaped base ---
+part_1 = (
+    cq.Workplane("XY")
+    .moveTo(0.0, 0.0)
+    .lineTo(0.682 * 0.682, 0.0)
+    .lineTo(0.682 * 0.682, 0.3723 * 0.682)
+    .lineTo(0.0, 0.3723 * 0.682)
+    .lineTo(0.0, 0.0)
+    .close()
+    .extrude(0.1031)
+)
+
+# --- Coordinate System Transformation for Part 1 ---
+part_1 = part_1.rotate((0, 0, 0), (0, 0, 1), -90)
+part_1 = part_1.translate((0, 0.1031, 0))
+
+# --- Part 2: Cylindrical Protrusions ---
+cylinder_radius = 0.0441 * 0.7142
+cylinder_height = 0.2368
+
+# Cylinder positions relative to the base's coordinate system
+cylinder_positions = [
+    (0.0221 * 0.7142, 0.4181 * 0.7142),
+    (0.0532 * 0.7142, 0.0),
+    (0.6984 * 0.7142, 0.0586 * 0.7142),
+    (0.6815 * 0.7142, 0.4739 * 0.7142)
+]
+
+# Create cylinders and translate them
+cylinders = []
+for x, y in cylinder_positions:
+    cylinder = (
+        cq.Workplane("XY")
+        .circle(cylinder_radius)
+        .extrude(-cylinder_height)
+    )
+    cylinders.append(cylinder)
+
+# Combine cylinders into a single solid
+part_2 = cq.Compound.makeCompound([c.val() for c in cylinders])
+
+# --- Assembly ---
+assembly = part_2.union(part_1)

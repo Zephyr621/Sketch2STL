@@ -1,0 +1,30 @@
+import cadquery as cq
+import math
+from cadquery import exporters
+
+# --- Part 1: S-shaped Object ---
+part_1 = (
+    cq.Workplane("XY")
+    .moveTo(0.0, 0.0)
+    .threePointArc((0.1389 * 0.7488, 0.2113 * 0.7488), (0.5752 * 0.7488, 0.0938 * 0.7488))
+    .lineTo(0.5752 * 0.7488, 0.5717 * 0.7488)
+    .threePointArc((0.4337 * 0.7488, 0.7271 * 0.7488), (0.2766 * 0.7488, 0.7488 * 0.7488))
+    .lineTo(0.2408 * 0.7488, 0.7488 * 0.7488)
+    .threePointArc((0.2381 * 0.7488, 0.7271 * 0.7488), (0.1885 * 0.7488, 0.7179 * 0.7488))
+    .lineTo(0.0, 0.6042 * 0.7488)
+    .lineTo(0.0, 0.0)
+    .close()
+    .extrude(0.0744 + 0.0744)
+)
+
+# Add holes to part 1
+hole_1_center = (0.1389 * 0.7488, 0.1953 * 0.7488)
+hole_2_center = (0.6161 * 0.7488, 0.1953 * 0.7488)
+hole_radius = 0.0245 * 0.7488
+part_1 = part_1.faces(">Z").workplane().pushPoints([hole_1_center]).hole(hole_radius * 2)
+part_1 = part_1.faces(">Z").workplane().pushPoints([hole_2_center]).hole(hole_radius * 2)
+
+# --- Coordinate System Transformation for Part 1 ---
+part_1 = part_1.translate((0, 0.0668, 0))
+
+# --- Part 2: Rectangular Block

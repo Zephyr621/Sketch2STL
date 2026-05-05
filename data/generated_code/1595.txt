@@ -1,0 +1,49 @@
+import cadquery as cq
+
+# --- Parameters from JSON ---
+outer_width = 0.75 * 0.75  # Scaled width
+inner_radius = 0.1667 * 0.75 # Scaled radius
+height = 0.3214
+sketch_scale = 0.75
+
+# Hexagon vertices (scaled)
+hexagon_vertices = [
+    (0.0 * sketch_scale, 0.3214 * sketch_scale),
+    (0.1875 * sketch_scale, 0.0 * sketch_scale),
+    (0.5625 * sketch_scale, 0.0 * sketch_scale),
+    (0.75 * sketch_scale, 0.3214 * sketch_scale),
+    (0.5625 * sketch_scale, 0.6495 * sketch_scale),
+    (0.1875 * sketch_scale, 0.6495 * sketch_scale)
+]
+
+# Hole centers (scaled)
+hole_centers = [
+    (0.0705 * sketch_scale, 0.0469 * sketch_scale),
+    (0.2812 * sketch_scale, 0.0469 * sketch_scale),
+    (0.375 * sketch_scale, 0.0705 * sketch_scale),
+    (0.5735 * sketch_scale, 0.0469 * sketch_scale)
+]
+
+# --- Create the Hexagonal Nut ---
+hex_nut = (
+    cq.Workplane("XY")
+    .polyline(hexagon_vertices)
+    .close()
+    .extrude(height)
+)
+
+# --- Cut the Central Hole ---
+central_hole = (
+    cq.Workplane("XY")
+    .circle(inner_radius)
+    .extrude(height)
+)
+
+# Subtract the central hole from the Nut
+hex_nut = hex_nut.cut(central_hole)
+
+# --- Export to STL ---
+cq.exporters.export(hex_nut, './stlcq/0058/00588274.stl')
+
+# --- Export to STL ---
+cq.exporters.

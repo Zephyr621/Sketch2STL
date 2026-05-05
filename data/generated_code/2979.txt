@@ -1,0 +1,44 @@
+import cadquery as cq
+
+# --- Part 1: Base Cube ---
+part_1_length = 0.6081 * 0.75  # Scaled length
+part_1_width = 0.75 * 0.75  # Scaled width
+part_1_height = 0.1216
+
+part_1 = cq.Workplane("XY").rect(part_1_length, part_1_width).extrude(-part_1_height)
+
+# --- Part 2: Smaller Rectangular Protrusion ---
+part_2_length = 0.0811 * 0.4865  # Scaled length
+part_2_width = 0.4865 * 0.4865  # Scaled width
+part_2_height = 0.527
+
+part_2 = cq.Workplane("XY").rect(part_2_length, part_2_width).extrude(part_2_height)
+
+# --- Coordinate System Transformation for Part 2 ---
+part_2 = part_2.translate((0.1926, 0.1318, 0.1216))
+
+# --- Assembly: Joining Parts ---
+assembly = part_1.union(part_2)
+
+cq.exporters.export(assembly, "./stlcq/0052/00525996.stl")
+
+# --- Export to STL ---
+cq.exporters.export(assembly, "./stlcq/0052/00525993.stl")
+
+# --- Export to STL ---
+cq.exporters.export(assembly, './stlcq/0052/00525993.stl')
+
+# --- Export to STL ---
+cq.exporters.export(assembly, "./stlcq/0052/00525830.stl")
+
+# --- Export to STL ---
+cq.exporters.export(assembly, "./stlcq/0052/00525966.stl")
+
+# --- Export to STL ---
+cq.exporters.export(assembly, "./stlcq/0052/00525415.stl")
+
+# --- Export to STL ---
+cq.exporters.export(assembly, "./stlcq/0052/00525429.stl")
+
+# --- Export to STL ---
+cq.exporters.export(assembly, "./stlc

@@ -1,0 +1,42 @@
+import cadquery as cq
+import math
+from cadquery import exporters
+
+# --- Part 1: Rectangular Block with Curved Edges ---
+part_1 = (
+    cq.Workplane("XY")
+    .moveTo(0.0, 0.4183 * 0.4183)
+    .lineTo(0.1475 * 0.4183, 0.0)
+    .lineTo(0.4412 * 0.4183, 0.3291 * 0.4183)
+    .threePointArc((0.2489 * 0.4183, 0.4715 * 0.4183), (0.0018 * 0.4183, 0.4183 * 0.4183))
+    .close()
+    .extrude(0.0633)
+)
+
+# --- Coordinate System Transformation for Part 1 ---
+part_1 = part_1.translate((0.1679, 0.0, 0.0))
+
+# --- Part 2: Cylinder with Hole ---
+part_2_outer_radius = 0.2489 * 0.4921
+part_2_inner_radius = 0.1476 * 0.4921
+part_2_height = 0.1071 + 0.1071
+
+part_2 = (
+    cq.Workplane("XY")
+    .circle(part_2_outer_radius)
+    .circle(part_2_inner_radius)
+    .extrude(part_2_height)
+)
+
+# --- Coordinate System Transformation for Part 2 ---
+part_2 = part_2.rotate((0, 0, 0), (0, 0, 1), -90)
+part_2 = part_2.translate((0.2458, 0.0, 0.0))
+
+# --- Part 3: Triangular Prism ---
+part_3_scale = 0.1257
+part_3_depth = 0.0274 + 0.0274
+
+part_3 = (
+    cq.Workplane("XY")
+    .moveTo(0.0, 0.1257 * part_3_scale)
+    .lineTo(0.0119 * part_3_scale

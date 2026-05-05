@@ -1,0 +1,36 @@
+import cadquery as cq
+from math import radians
+
+# --- Parameters from JSON ---
+outer_radius = 0.375 * 0.75
+inner_hole1_center = (0.1191 * 0.75, 0.1063 * 0.75)
+inner_hole2_center = (0.6496 * 0.75, 0.0867 * 0.75)
+inner_hole3_center = (0.6671 * 0.75, 0.1063 * 0.75)
+inner_hole4_center = (0.7159 * 0.75, 0.1063 * 0.75)
+inner_hole5_center = (0.6958 * 0.75, 0.0867 * 0.75)
+height = 0.0221
+
+# --- Create the Gasket ---
+gasket = (
+    cq.Workplane("XY")
+    .circle(outer_radius)
+    .extrude(height)
+)
+
+# --- Create the Holes ---
+gasket = gasket.cut(cq.Workplane("XY").circle(inner_hole1_center).extrude(height))
+gasket = gasket.cut(cq.Workplane("XY").circle(inner_hole2_center).extrude(height))
+gasket = gasket.cut(cq.Workplane("XY").circle(inner_hole3_center).extrude(height))
+gasket = gasket.cut(cq.Workplane("XY").circle(inner_hole4_center).extrude(height))
+gasket = gasket.cut(cq.Workplane("XY").circle(inner_hole5_center).extrude(height))
+
+# --- Export to STL ---
+cq.exporters.export(gasket, './stlcq/0062/00624286.stl')
+
+cq.exporters.export(gasket, './stlcq/0062/00624815.stl')
+
+cq.exporters.export(gasket, './stlcq/0062/00624815.stl')
+
+cq.exporters.export(gasket, './stlcq/0062/00624816.stl')
+
+cq.exporters.export(gasket, './stlcq/0062/

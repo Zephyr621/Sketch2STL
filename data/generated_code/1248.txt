@@ -1,0 +1,41 @@
+import cadquery as cq
+from math import radians
+
+# --- Part 1: Cylinder ---
+part_1_radius = 0.3282 * 0.6573  # Sketch radius scaled
+part_1_height = 0.2629
+
+part_1 = cq.Workplane("XY").circle(part_1_radius).extrude(-part_1_height)
+part_1 = part_1.rotate((0, 0, 0), (0, 0, 1), -90)
+part_1 = part_1.translate((0.0818, 0.2629, 0.0818))
+
+# --- Part 2: Hole ---
+part_2_outer_radius = 0.0598 * 0.1091  # Sketch radius scaled
+part_2_inner_radius = 0.1184 * 0.1091
+part_2_height = 0.1534
+
+part_2 = (
+    cq.Workplane("XY")
+    .circle(part_2_outer_radius)
+    .circle(part_2_inner_radius)
+    .extrude(-part_2_height)
+)
+part_2 = part_2.rotate((0, 0, 0), (0, 0, 1), -90)
+part_2 = part_2.translate((0.0818, 0.2629, 0.0818))
+
+# --- Part 3: Cut ---
+part_3_outer_radius = 0.3604 * 0.7168  # Sketch radius scaled
+part_3_inner_radius = 0.0492 * 0.7168
+part_3_height = 0.1315
+
+part_3 = (
+    cq.Workplane("XY")
+    .circle(part_3_outer_radius)
+    .circle(part_3_inner_radius)
+    .extrude(-part_3_height)
+)
+part_3 = part_3.rotate((0, 0, 0), (0, 0, 1), -90)
+part_3 = part_3.translate((0.0352, 0.2629, 0.0352))
+
+# --- Assembly ---
+assembly = part_1.cut(part_

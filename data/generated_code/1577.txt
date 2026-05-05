@@ -1,0 +1,39 @@
+import cadquery as cq
+from math import *
+
+# --- Part 1 ---
+part_1 = (
+    cq.Workplane("XY")
+    .moveTo(0.0, 0.3947 * 0.7112)
+    .lineTo(0.0, 0.7112 * 0.7112)
+    .threePointArc((0.1631 * 0.7112, 0.3789 * 0.7112), (0.2727 * 0.7112, 0.0159 * 0.7112))
+    .lineTo(0.2727 * 0.7112, 0.0)
+    .lineTo(0.3118 * 0.7112, 0.0)
+    .lineTo(0.3118 * 0.7112, 0.3947 * 0.7112)
+    .lineTo(0.1875 * 0.7112, 0.7129 * 0.7112)
+    .threePointArc((0.0, 0.3789 * 0.7112), (0.0, 0.3947 * 0.7112))
+    .close()
+    .extrude(-0.0291)
+)
+
+# --- Coordinate System Transformation for Part 1 ---
+part_1 = part_1.translate((0.4183, 0.0315, 0.0))
+
+# --- Assembly ---
+assembly = part_1
+
+cq.exporters.export(assembly, "./stlcq/0035/00354660.stl")
+
+cq.exporters.export(assembly, "./stlcq/0035852.stl")
+
+cq.exporters.export(assembly, "./stlcq/00358522.stl")
+
+cq.exporters.export(assembly, "./stlcq/00358522.stl")
+
+cq.exporters.export(assembly, "./stlcq/00358522.stl")
+
+cq.exporters.export(assembly, "./stlcq/00358522.stl")
+
+cq.exporters.export(assembly, "./stlcq/00358522.stl")
+
+cq.exporters.export(assembly, "./stlcq/0035

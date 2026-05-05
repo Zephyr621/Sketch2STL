@@ -1,0 +1,51 @@
+import cadquery as cq
+from cadquery import exporters
+
+# --- Part 1: Cube with Hole ---
+part_1_length = 0.75 * 0.75  # Scaled length
+part_1_width = 0.75 * 0.75   # Scaled width
+part_1_height = 0.1875 + 0.1875  # Total extrusion depth
+
+hole_x = 0.225 * 0.75
+hole_y = 0.525 * 0.75
+hole_radius = 0.1364 * 0.75
+
+part_1 = (
+    cq.Workplane("XY")
+    .rect(part_1_length, part_1_width)
+    .extrude(part_1_height)
+    .faces(">Z").workplane()
+    .moveTo(hole_x - part_1_length/2, hole_y - part_1_width/2)
+    .circle(hole_radius)
+    .cutThruAll()
+)
+
+# --- Part 2: Cylinder ---
+part_2_radius = 0.135 * 0.2733  # Scaled radius
+part_2_height = 0.375
+
+part_2 = (
+    cq.Workplane("XY")
+    .circle(part_2_radius)
+    .extrude(part_2_height)
+)
+
+# --- Coordinate System Transformation for Part 2 ---
+part_2 = part_2.translate((0.0312, 0.0312, 0.375))
+
+# --- Assembly ---
+assembly = part_1.union(part_2)
+
+# --- Export to STL ---
+exporters.export(assembly, './stlcq/0082/00820882.stl')
+
+# --- Export to STL ---
+exporters.export(assembly, './stlcq/0082/00820525.stl')
+
+# --- Export to STL ---
+exporters.export(assembly, './stlcq/0082/00820844.stl')
+
+# --- Export to STL ---
+exporters.export(assembly, './stlcq/0082/00820758.stl')
+
+#

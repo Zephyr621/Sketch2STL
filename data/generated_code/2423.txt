@@ -1,0 +1,53 @@
+import cadquery as cq
+import math
+from cadquery import exporters
+
+# --- Part 1: Hexagonal Column ---
+part_1_scale = 0.75
+part_1_height = 0.1462
+
+# Scaled dimensions for the hexagon
+hexagon_points = [
+    (0.0 * part_1_scale, 0.3248 * part_1_scale),
+    (0.1875 * part_1_scale, 0.0 * part_1_scale),
+    (0.5625 * part_1_scale, 0.0 * part_1_scale),
+    (0.75 * part_1_scale, 0.3248 * part_1_scale),
+    (0.5625 * part_1_scale, 0.6495 * part_1_scale)
+]
+
+# Create the hexagon using the scaled points
+part_1 = (
+    cq.Workplane("XY")
+    .polyline(hexagon_points)
+    .close()
+    .extrude(part_1_height)
+)
+
+# --- Part 2: Cylinder ---
+part_2_scale = 0.5846
+cylinder_radius = 0.2945 * part_2_scale
+cylinder_height = 0.0586
+
+# Create the cylinder
+cylinder = cq.Workplane("XY").circle(cylinder_radius).extrude(cylinder_height)
+
+# Translate the cylinder
+cylinder = cylinder.translate((0.0844, 0.0203, 0.1462))
+
+# Union the cylinders
+result = part_1.union(cylinder)
+
+# Export to STL
+exporters.export(result, './stlcq/0028/00280588.stl')
+
+# Export to STL
+exporters.export(result, './stlcq/0028/00280588.stl')
+
+# Export to STL
+exporters.export(result, './stlcq/002864/00280588.stl')
+
+# Export to STL
+exporters.export(result, './stlcq/00286770.stl')
+
+# Export to STL
+exporters.export(result, './

@@ -1,0 +1,51 @@
+import cadquery as cq
+
+# --- Part 1: Circular Plate ---
+outer_radius = 0.3585 * 0.7163  # Sketch radius scaled
+inner_radius = 0.1172 * 0.7163  # Inner hole radius scaled
+plate_height = 0.0341
+
+part_1 = (
+    cq.Workplane("XY")
+    .circle(outer_radius)
+    .extrude(plate_height)
+    .cut(cq.Workplane("XY").circle(inner_radius).extrude(plate_height))
+)
+
+# --- Coordinate System Transformation for Part 1 ---
+part_1 = part_1.translate((0.0176, 0.0176, 0))
+
+# --- Assembly ---
+assembly = part_1
+
+cq.exporters.export(assembly, "./stlcq/0064/00649805.stl")
+
+# --- Export to STL ---
+cq.exporters.export(assembly, './stlcq/0064071.stl')
+
+# --- Export to STL ---
+cq.exporters.export(assembly, "./stlcq/0064071.stl")
+
+# --- Final Result ---
+result = assembly
+cq.exporters.export(result, './stlcq/0064071.stl')
+
+cq.exporters.export(result, './stlcq/0064071.stl')
+
+cq.exporters.export(result, './stlcq/0064071.stl')
+
+cq.exporters.export(result, './stlcq/0064071.stl')
+
+cq.exporters.export(result, './stlcq/0064071.stl')
+
+cq.exporters.export(result, './stlcq/0064071.stl')
+
+cq.exporters.export(result, './stlcq/0064071.stl')
+
+cq.exporters.export(result, './stlcq/0064071.stl')
+
+cq.exporters.export(result, './stlcq/0064071.stl')
+
+cq.exporters.export(result, './stlcq/0064071.stl')
+
+cq.

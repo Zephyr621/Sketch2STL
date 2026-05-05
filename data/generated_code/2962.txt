@@ -1,0 +1,43 @@
+import cadquery as cq
+
+# --- Parameters from JSON ---
+outer_radius = 0.375 * 0.75  # Scaled outer radius
+inner_hole_radius = 0.0125 * 0.75  # Scaled inner hole radius
+plate_thickness = 0.045
+
+# Hole positions (scaled)
+hole1_x = 0.0875 * 0.75
+hole1_y = 0.0417 * 0.75
+hole2_x = 0.6675 * 0.75
+hole2_y = 0.0417 * 0.75
+hole3_x = 0.6675 * 0.75
+hole3_y = 0.6 * 0.75
+hole4_x = 0.6675 * 0.75
+hole4_y = 0.7125 * 0.75
+
+# --- Create the base plate ---
+plate = cq.Workplane("XY").circle(outer_radius).extrude(plate_thickness)
+
+# --- Cut the inner holes ---
+plate = (
+    plate.faces(">Z")
+    .workplane()
+    .pushPoints([(hole1_x - (0.375 * 0.75)/2, hole1_y - (0.375 * 0.75)/2)])
+    .hole(2 * inner_hole_radius)
+)
+plate = (
+    plate.faces(">Z")
+    .workplane()
+    .pushPoints([(hole2_x - (0.375 * 0.75)/2, hole2_y - (0.375 * 0.75)/2)])
+    .hole(2 * inner_hole_radius)
+)
+plate = (
+    plate.faces(">Z")
+    .workplane()
+    .pushPoints([(hole3_x - (0.375 * 0.75)/2, hole3_y - (0.375 * 0.75)/2)])
+    .hole(2 * inner_hole_radius)
+)
+plate = (
+    plate.faces(">Z")
+    .workplane()
+    .pushPoints([(hole4_x - (0.375 * 0.75)/2, hole4_y - (

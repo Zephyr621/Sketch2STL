@@ -1,0 +1,48 @@
+import cadquery as cq
+
+# --- Part 1: Rectangular Box with Cutout ---
+outer_width = 0.75 * 0.75  # Scaled width
+outer_height = 0.3934 * 0.75  # Scaled height
+inner_offset = 0.0117 * 0.75  # Scaled offset for inner rectangle
+inner_width = (0.7463 - 0.0117) * 0.75  # Scaled width
+inner_height = (0.3934 - 0.0268) * 0.75  # Scaled height
+depth = 0.1016
+
+# Create the outer rectangle
+outer_rect = cq.Workplane("XY").rect(outer_width, outer_height).extrude(depth)
+
+# Create the inner rectangle (cutout)
+inner_rect = cq.Workplane("XY").rect(inner_width, inner_height).translate([inner_offset, inner_offset, depth])
+
+# Cut the inner rectangle from the outer rectangle
+part_1 = outer_rect.cut(inner_rect)
+
+
+# --- Final Result ---
+result = part_1
+
+# Export to STL
+cq.exporters.export(result, './stlcq/0066/00662541.stl')
+
+# Export to STL
+cq.exporters.export(result, './stlcq/0066/00662541.stl')
+
+# Export to STL
+cq.exporters.export(result, './stlcq/0066/00662541.stl')
+
+# Export to STL
+cq.exporters.export(result, './stlcq/0066/00662541.stl')
+
+# Export to STL
+cq.exporters.export(result, './stlcq/0066/00662541.stl')
+
+# Export to STL
+cq.exporters.export(result, './stlcq/0066/00662541.stl')
+
+# Export to STL
+cq.exporters.export(result, './stlcq/0066/00662541.stl')
+
+# Export to STL
+cq.exporters.export(result, './stlcq/0066/00662541.stl')
+
+# Export to ST

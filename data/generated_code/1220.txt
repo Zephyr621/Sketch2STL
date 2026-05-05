@@ -1,0 +1,33 @@
+import cadquery as cq
+from cadquery.vis import show
+
+# --- Parameters from JSON ---
+cylinder_radius = 0.375 * 0.75  # Scaled radius
+hole1_center = (0.1864 * 0.75 - cylinder_radius, 0.3214 * 0.75 - cylinder_radius)
+hole2_center = (0.5625 * 0.75 - cylinder_radius, 0.2836 * 0.75 - cylinder_radius)
+hole3_center = (0.6878 * 0.75 - cylinder_radius, 0.0938 * 0.75 - cylinder_radius)
+hole4_center = (0.5625 * 0.75 - cylinder_radius, 0.5561 * 0.75 - cylinder_radius)
+hole5_center = (0.6662 * 0.75 - cylinder_radius, 0.1822 * 0.75 - cylinder_radius)
+
+# --- Create Cylinder ---
+cylinder = cq.Workplane("XY").circle(cylinder_radius).extrude(cylinder_height)
+
+# --- Create Holes ---
+cylinder = cylinder.faces(">Z").workplane().pushPoints([hole1_center]).hole(hole1_radius * 2)
+cylinder = cylinder.faces(">Z").workplane().pushPoints([hole2_center]).hole(hole2_radius * 2)
+cylinder = cylinder.faces(">Z").workplane().pushPoints([hole3_center]).hole(hole3_radius * 2)
+cylinder = cylinder.faces(">Z").workplane().pushPoints([hole4_center]).hole(hole4_radius * 2)
+cylinder = cylinder.faces(">Z").workplane().pushPoints([hole5_center]).hole(hole5_radius * 2)
+
+# --- Apply Transformations ---
+cylinder = cylinder.rotate((0, 0, 0), (0, 0, 1), -90)
+cylinder = cylinder.translate((0, 0.214, 0))
+
+# --- Export to STL ---
+cq.exporters.export(cylinder, './stlcq/0030/00302119.stl')
+
+# --- Export to STL ---
+cq.exporters.export(cylinder, './stlcq/0030/00302119.stl')
+
+# --- Export to STL ---
+cq.

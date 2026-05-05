@@ -1,0 +1,49 @@
+import cadquery as cq
+
+# --- Part 1: Base Rectangle ---
+part_1_width = 0.5724 * 0.5724  # Scaled width
+part_1_height = 0.2554
+part_1_length = 0.5724 * 0.5724  # Scaled length
+
+part_1 = (
+    cq.Workplane("XY")
+    .rect(part_1_length, part_1_width)
+    .extrude(part_1_height)
+)
+
+# --- Part 2: Top Rectangular Prism ---
+part_2_width = 0.075 * 0.075  # Scaled width
+part_2_height = 0.2538
+part_2_length = 0.0737
+
+part_2 = (
+    cq.Workplane("XY")
+    .moveTo(0, 0)
+    .lineTo(part_2_length, 0)
+    .lineTo(part_2_length, part_2_width)
+    .lineTo(0, part_2_width)
+    .close()
+    .extrude(part_2_height)
+)
+
+# --- Coordinate System Transformation for Part 2 ---
+part_2 = part_2.rotate((0, 0, 0), (0, 0, 1), -90)
+part_2 = part_2.translate((0.0188, 0.2538, 0))
+
+# --- Assembly: Cut the hole from the base ---
+assembly = part_1.cut(part_2)
+
+# --- Export to STL ---
+cq.exporters.export(assembly, "./stlcq/0030/00302127.stl")
+
+# --- Export to STL ---
+cq.exporters.export(assembly, "./stlcq/0030/00302185.stl")
+
+# --- Export to STL ---
+cq.exporters.export(assembly, "./stlcq/0030/00302287.stl")
+
+# --- Export to STL ---
+cq.exporters.export(assembly, "./stlcq/0030/00302289.stl")
+
+# --- Export to STL ---
+cq.exporters.export

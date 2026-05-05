@@ -1,0 +1,40 @@
+import cadquery as cq
+
+# --- Part 1: Square Ring Base ---
+part_1_size = 0.75 * 0.75  # Scaled size
+part_1_thickness = 0.0619
+
+part_1 = cq.Workplane("XY").rect(part_1_size, part_1_size).extrude(part_1_thickness)
+
+# --- Part 2: Central Circular Hole ---
+part_2_radius = 0.3393 * 0.6727  # Scaled radius
+part_2_depth = 0.0348
+
+part_2 = cq.Workplane("XY").circle(part_2_radius).extrude(-part_2_depth)
+part_2 = part_2.translate((0.0384, 0.0384, part_1_thickness))
+
+# --- Part 3: Protruding Cutout ---
+part_3_radius = 0.1812 * 0.3789  # Scaled radius
+part_3_depth = 0.0232
+
+part_3 = cq.Workplane("XY").circle(part_3_radius).extrude(-part_3_depth)
+part_3 = part_3.rotate((0, 0, 0), (0, 0, 1), 180)
+part_3 = part_3.translate((0.4196, 0.7143, 0))
+
+# --- Assembly ---
+assembly = part_1.cut(part_2).cut(part_3)
+
+cq.exporters.export(assembly, "./stlcq/0030/00305994.stl")
+
+cq.exporters.export(assembly, './stlcq/0030/00305994.stl')
+
+# --- Export to STL ---
+cq.exporters.export(assembly, './stlcq/0030/00305864.stl')
+
+cq.exporters.export(assembly, './stlcq/0030/00305864.stl')
+
+cq.exporters.export(assembly, './stlcq/0030/00305949.stl')
+
+cq.exporters.export(assembly, './stlcq/0030/00305947.stl')
+
+cq.exporters.export(assembly, './stlcq/0030/003

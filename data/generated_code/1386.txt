@@ -1,0 +1,52 @@
+import cadquery as cq
+from math import tan, radians
+
+# --- Part 1: Hexagonal Prism ---
+sketch_scale = 0.75
+height = 0.3151
+
+# Scaled dimensions
+scaled_x1 = 0.0 * sketch_scale
+scaled_y1 = 0.1875 * sketch_scale
+scaled_x2 = 0.3248 * sketch_scale
+scaled_y2 = 0.0 * sketch_scale
+scaled_x3 = 0.75 * sketch_scale
+scaled_y3 = 0.1875 * sketch_scale
+scaled_x4 = 0.6495 * sketch_scale
+scaled_y4 = 0.5625 * sketch_scale
+scaled_x5 = 0.3248 * sketch_scale
+scaled_y5 = 0.7031 * sketch_scale
+scaled_x6 = 0.0 * sketch_scale
+scaled_y6 = 0.5625 * sketch_scale
+
+# Create the hexagonal base
+hex_base = (
+    cq.Workplane("XY")
+    .moveTo(scaled_x1, scaled_y1)
+    .lineTo(scaled_x2, scaled_y2)
+    .lineTo(scaled_x3, scaled_y3)
+    .lineTo(scaled_x4, scaled_y4)
+    .lineTo(scaled_x5, scaled_y5)
+    .lineTo(scaled_x6, scaled_y6)
+    .close()
+)
+
+# Extrude the hexagon
+part_1 = hex_base.extrude(height)
+
+# --- Assembly ---
+assembly = part_1
+
+# Export to STL
+cq.exporters.export(assembly, "./stlcq/0049/00499863.stl")
+
+# Export to STL
+cq.exporters.export(assembly, "./stlcq/0049/00499641.stl")
+
+# Export to STL
+cq.exporters.export(assembly, "./stlcq/0049/00499641.stl")
+
+# Export to STL
+cq.exporters.export(assembly, "./stlcq/0049/00495565.stl")
+
+# Export to ST

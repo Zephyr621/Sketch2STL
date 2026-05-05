@@ -1,0 +1,50 @@
+import cadquery as cq
+
+# --- Part 1: L-shaped CAD Model ---
+part_1_points = [
+    (0.0, 0.0),
+    (0.75, 0.0),
+    (0.75, 0.375),
+    (0.5, 0.375),
+    (0.5, 0.75),
+    (0.0, 0.75)
+]
+
+sketch_scale_1 = 0.75
+extrude_depth_1 = 0.25
+
+scaled_points_1 = [(x * sketch_scale_1, y * sketch_scale_1) for x, y in part_1_points]
+
+part_1 = (
+    cq.Workplane("XY")
+    .polyline(scaled_points_1)
+    .close()
+    .extrude(extrude_depth_1)
+)
+
+# --- Coordinate System Transformation for Part 1 ---
+part_1 = part_1.rotate((0, 0, 0), (0, 0, 1), -90)
+part_1 = part_1.translate((0, 0.25, 0))
+
+# --- Part 2: Cube ---
+part_2_size = 0.25 * 0.25  # Sketch size scaled
+part_2_height = 0.25
+
+part_2 = (
+    cq.Workplane("XY")
+    .rect(part_2_size, part_2_size)
+    .extrude(-part_2_height)
+)
+
+# --- Coordinate System Transformation for Part 2 ---
+part_2 = part_2.rotate((0, 0, 0), (0, 0, 1), 180)
+part_2 = part_2.translate((0.125, 0.25, 0.5))
+
+# --- Assembly ---
+assembly = part_1.union(part_2)
+
+cq.exporters.export(assembly, "./stlcq/0038/00388246.stl")
+
+cq.exporters.export(assembly, "./stlcq/003859.stl")
+
+cq.exporters.export(assembly, "./stlcq

@@ -1,0 +1,42 @@
+import cadquery as cq
+
+# --- Part 1: L-shaped profile ---
+part_1 = (
+    cq.Workplane("XY")
+    .moveTo(0.0, 0.3438 * 0.75)
+    .lineTo(0.3438 * 0.75, 0.3438 * 0.75)
+    .lineTo(0.3438 * 0.75, 0.0)
+    .lineTo(0.75 * 0.75, 0.0)
+    .lineTo(0.75 * 0.75, 0.3438 * 0.75)
+    .lineTo(0.4687 * 0.75, 0.3438 * 0.75)
+    .lineTo(0.4687 * 0.75, 0.5357 * 0.75)
+    .lineTo(0.0, 0.5357 * 0.75)
+    .lineTo(0.0, 0.3438 * 0.75)
+    .close()
+    .extrude(0.3713)
+)
+
+# --- Assembly (if needed, based on the single part) ---
+# In this case, there's only one part, so no assembly is needed.
+# If there were multiple parts, you would use .union() or .cut() to combine them.
+
+# --- Final Result ---
+result = part_1
+
+cq.exporters.export(result, './stlcq/0041/00419592.stl')
+
+cq.exporters.export(result, './stlcq/00419986.stl')
+
+cq.exporters.export(result, './stlcq/00419986.stl')
+
+cq.exporters.export(result, './stlcq/00419986.stl')
+
+cq.exporters.export(result, './stlcq/0041995.stl')
+
+cq.exporters.export(result, './stlcq/0041995.stl')
+
+cq.exporters.export(result, './stlcq/0041995.stl')
+
+cq.exporters.export(result, './stlcq/0041995.stl')
+
+cq.exp

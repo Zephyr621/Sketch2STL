@@ -1,0 +1,43 @@
+This process results in a solid body that can be used as a component in larger assemblies.
+import cadquery as cq
+from cadquery.vis import show
+
+# --- Part 1: Triangle Plate ---
+sketch_scale = 0.75
+length = 0.75 * sketch_scale
+width = 0.6495 * sketch_scale
+height = 0.0159
+
+hole1_center = (0.375 * sketch_scale, 0.3248 * sketch_scale)
+hole1_radius = 0.0577 * sketch_scale
+hole2_center = (0.4381 * sketch_scale, 0.325 * sketch_scale)
+hole2_radius = 0.025 * sketch_scale
+hole3_center = (0.375 * sketch_scale, 0.5166 * sketch_scale)
+hole3_radius = 0.0804 * sketch_scale
+
+part_1 = (
+    cq.Workplane("XY")
+    .moveTo(0.0, 0.0)
+    .lineTo(length, 0.0)
+    .lineTo(length, width)
+    .lineTo(0.0, width)
+    .close()
+    .extrude(height)
+)
+
+# Create holes
+part_1 = part_1.faces(">Z").workplane().pushPoints([hole1_center]).hole(2 * hole1_radius)
+part_1 = part_1.faces("<Z").workplane().pushPoints([hole2_center]).hole(2 * hole2_radius)
+part_1 = part_1.faces(">Z").workplane().pushPoints([hole3_center]).hole(2 * hole3_radius)
+
+# --- Coordinate System Transformation for Part 1 ---
+part_1 = part_1.rotate((0, 0, 0), (0, 0, 1), -90)
+part_1 = part_1.translate((0, 0.0159, 0))
+
+# --- Assembly ---
+assembly = part_1
+
+# Export to STL
+cq.exporters.export(assembly, "./stlcq/0068/00687771.stl")
+cq.exporters.export(assembly, "./stlcq/00686052.stl")
+cq.

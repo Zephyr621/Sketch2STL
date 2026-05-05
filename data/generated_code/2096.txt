@@ -1,0 +1,54 @@
+import cadquery as cq
+
+# --- Part 1: Cylinder with Hollow Interior ---
+outer_radius = 0.0865 * 0.1776  # Sketch radius scaled
+inner_radius = 0.0432 * 0.1776  # Inner radius scaled
+height = 0.1875 + 0.1875
+
+part_1 = (
+    cq.Workplane("XY")
+    .circle(outer_radius)
+    .extrude(height)
+    .faces(">Z")
+    .workplane()
+    .circle(inner_radius)
+    .cutThruAll()
+)
+
+# --- Coordinate System Transformation for Part 1 ---
+part_1 = part_1.rotate((0, 0, 0), (0, 0, 1), -90)
+part_1 = part_1.translate((0, 0.375, 0))
+
+# --- Assembly ---
+assembly = part_1
+
+# Export to STL
+cq.exporters.export(assembly, "./stlcq/0062/00628340.stl")
+
+# Export to STL
+cq.exporters.export(assembly, "./stlcq/0062/00628942.stl")
+
+# Export to STL
+cq.exporters.export(assembly, "./stlcq/0062/00628942.stl")
+
+# Export to STL
+cq.exporters.export(assembly, "./stlcq/0062/00628942.stl")
+
+# Export to STL
+cq.exporters.export(assembly, "./stlcq/0062/00628942.stl")
+
+# Export to STL
+cq.exporters.export(assembly, "./stlcq/0062/00628942.stl")
+
+# Export to STL
+cq.exporters.export(assembly, "./stlcq/0062/00628942.stl")
+
+# Export to STL
+cq.exporters.export(assembly, "./stlcq/0062/00628942.stl")
+
+# --- Final Result ---
+result = part_1
+
+cq.exporters.export(result, './stlcq/0062/00628942.stl')
+
+cq.exporters

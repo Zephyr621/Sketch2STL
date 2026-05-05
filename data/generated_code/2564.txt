@@ -1,0 +1,43 @@
+import cadquery as cq
+from math import radians
+
+# --- Part 1: Circular Plate ---
+part_1_outer_radius = 0.375 * 0.75  # Sketch radius scaled
+part_1_inner_radius = 0.2297 * 0.75
+part_1_height = 0.0281
+
+part_1 = (
+    cq.Workplane("XY")
+    .circle(part_1_outer_radius)
+    .extrude(part_1_height)
+    .cut(cq.Workplane("XY").circle(part_1_inner_radius).extrude(part_1_height))
+)
+
+# --- Coordinate System Transformation for Part 1 ---
+part_1 = part_1.rotate((0, 0, 0), (0, 0, 1), -90)
+part_1 = part_1.translate((0, 0.2812, 0))
+
+# --- Part 2: Cylinder ---
+part_2_outer_radius = 0.2297 * 0.4594  # Sketch radius scaled
+part_2_inner_radius = 0.2062 * 0.4594
+part_2_height = 0.2812
+
+part_2 = (
+    cq.Workplane("XY")
+    .circle(part_2_outer_radius)
+    .extrude(part_2_height)
+    .cut(cq.Workplane("XY").circle(part_2_inner_radius).extrude(part_2_height))
+)
+
+# --- Coordinate System Transformation for Part 2 ---
+part_2 = part_2.rotate((0, 0, 0), (0, 0, 1), -90)
+part_2 = part_2.translate((0.1453, 0.2812, 0.1453))
+
+# --- Part 3: Cylinder ---
+part_3_outer_radius = 0.375 * 0.4594  # Sketch radius scaled
+part_3_inner_radius = 0.2297 * 0.4594
+part_3_height = 0.0281
+
+part_3 = (
+    cq.Workplane("XY")
+    .circle(part_3_outer

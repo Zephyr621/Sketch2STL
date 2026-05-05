@@ -1,0 +1,44 @@
+import cadquery as cq
+from math import radians
+
+# --- Part 1: Cube with Circular Hole ---
+part_1_length = 0.75 * 0.75
+part_1_width = 0.75 * 0.75
+part_1_height = 0.0625
+hole_center_x = 0.375 * 0.75
+hole_center_y = 0.375 * 0.75
+hole_radius = 0.0357 * 0.75
+
+part_1 = (
+    cq.Workplane("XY")
+    .rect(part_1_length, part_1_width)
+    .extrude(part_1_height)
+    .faces(">Z")
+    .workplane()
+    .moveTo(hole_center_x - (part_1_length/2), hole_center_y - (part_1_width/2))
+    .circle(hole_radius)
+    .cutThruAll()
+)
+
+# --- Part 2: Cylinder ---
+part_2_radius = 0.3571 * 0.7143
+part_2_height = 0.0357
+
+part_2 = cq.Workplane("XY").circle(part_2_radius).extrude(part_2_height)
+
+# --- Assembly ---
+assembly = part_1.union(part_2.translate((0.0188, 0.0188, part_1_height)))
+
+cq.exporters.export(assembly, "./stlcq/0059/00599131.stl")
+
+cq.exporters.export(assembly, "./stlcq/0059/00593908.stl")
+
+cq.exporters.export(assembly, "./stlcq/0059/00593833.stl")
+
+cq.exporters.export(assembly, "./stlcq/0059/00593884.stl")
+
+cq.exporters.export(assembly, "./stlcq/0059/00593832.stl")
+
+cq.exporters.export(assembly, "./stlcq/0059/005938729.stl")
+
+cq.exporters.export(assembly, "./stlcq/0059/00

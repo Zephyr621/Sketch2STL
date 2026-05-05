@@ -1,0 +1,45 @@
+import cadquery as cq
+
+# --- Part 1: Rectangular Plate ---
+part_1_length = 0.75 * 0.75  # Scaled length
+part_1_width = 0.3375 * 0.75  # Scaled width
+part_1_height = 0.015
+hole_radius = 0.0194 * 0.75  # Scaled radius
+hole_offset = 0.0375 * 0.75  # Scaled offset
+
+part_1 = (
+    cq.Workplane("XY")
+    .rect(part_1_length, part_1_width)
+    .extrude(part_1_height)
+    .faces(">Z")
+    .workplane()
+    .pushPoints([
+        (hole_offset - part_1_length/2, hole_offset - part_1_width/2),
+        (hole_offset - part_1_length/2, part_1_width/2 - hole_offset)
+    ])
+    .hole(2 * hole_radius)
+)
+
+# --- Part 2: Rectangular Block ---
+part_2_length = 0.6656 * 0.6656  # Scaled length
+part_2_width = 0.225 * 0.6656  # Scaled width
+part_2_height = 0.0656
+
+part_2 = (
+    cq.Workplane("XY")
+    .rect(part_2_length, part_2_width)
+    .extrude(part_2_height)
+)
+
+# --- Part 3: Rectangular Cutout ---
+part_3_length = 0.6 * 0.6  # Scaled length
+part_3_width = 0.1312 * 0.6  # Scaled width
+part_3_height = 0.0206
+
+part_3 = (
+    cq.Workplane("XY")
+    .rect(part_3_length, part_3_width)
+    .extrude(-part_3_height)  # Extrude in the opposite direction for cutting
+)
+
+# --- Assembly ---

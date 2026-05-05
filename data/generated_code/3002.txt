@@ -1,0 +1,44 @@
+import cadquery as cq
+import math
+from cadquery import exporters
+
+# --- Part 1: Circular Plate ---
+part_1_outer_radius = 0.375 * 0.75
+part_1_inner_radius = 0.1875 * 0.75
+part_1_height = 0.0336
+
+part_1 = (
+    cq.Workplane("XY")
+    .circle(part_1_outer_radius)
+    .extrude(part_1_height)
+    .cut(cq.Workplane("XY").circle(part_1_inner_radius).extrude(part_1_height))
+)
+
+# --- Coordinate System Transformation for Part 1 ---
+part_1 = part_1.rotate((0, 0, 0), (0, 0, 1), -90)
+part_1 = part_1.translate((0, 0.0336, 0))
+
+# --- Part 2: Rectangular Protrusion ---
+part_2_width = 0.183 * 0.183
+part_2_length = 0.360 * 0.183
+part_2_height = 0.0538
+
+part_2 = (
+    cq.Workplane("XY")
+    .moveTo(0.0, 0.0)
+    .lineTo(part_2_length, 0.0)
+    .lineTo(part_2_length, part_2_width)
+    .lineTo(0.0, part_2_width)
+    .lineTo(0.0, 0.0)
+    .close()
+    .extrude(-part_2_height)
+)
+
+# --- Coordinate System Transformation for Part 2 ---
+part_2 = part_2.rotate((0, 0, 0), (1, 0, 0), 180)
+part_2 = part_2.rotate((0, 0, 0), (0, 0, 1), -90)
+part_2 = part_2.translate((0.375, 0.0156, 0.1875))
+
+# --- Part 3: Rectangular Protrusion ---
+part_3_width = 0.2778 * 0.2778
+part_3_length = 0

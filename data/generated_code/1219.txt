@@ -1,0 +1,37 @@
+import cadquery as cq
+import math
+from cadquery import exporters
+
+# --- Part 1: Rectangular Plate ---
+part_1_length = 0.75 * 0.75  # Scaled length
+part_1_width = 0.4179 * 0.75  # Scaled width
+part_1_height = 0.0441
+hole_radius = 0.0385 * 0.75  # Scaled radius
+hole_centers = [
+    (0.0611 * 0.75 - part_1_length/2, 0.0962 * 0.75 - part_1_width/2),
+    (0.0611 * 0.75 - part_1_length/2, 0.3771 * 0.75 - part_1_width/2),
+    (0.6829 * 0.75 - part_1_length/2, 0.0962 * 0.75 - part_1_width/2)
+]
+
+part_1 = cq.Workplane("XY").rect(part_1_length, part_1_width).extrude(part_1_height)
+
+for center in hole_centers:
+    part_1 = part_1.faces(">Z").workplane().pushPoints([center]).hole(2 * hole_radius)
+
+# --- Part 2: Cut Feature ---
+cut_depth = 0.2386
+cut_scale = 0.1795
+cut_radius = 0.0159 * cut_scale
+cut_depth = cut_depth * cut_scale
+
+cut_feature = cq.Workplane("XY").moveTo(0.0159 * cut_scale, 0.0159 * cut_scale).threePointArc((0.0159 * cut_scale, 0), (0.0159 * cut_scale, 0.0159 * cut_scale)).close().extrude(-cut_depth)
+cut_feature = cut_feature.translate((0, 0, part_1_height))
+
+# --- Assembly ---
+result = part_1.cut(cut_feature)
+
+# --- Export to STL ---
+exporters.export(result, './stlcq/0035/00350673.stl')
+
+# --- Export to STL ---
+exporters.export(

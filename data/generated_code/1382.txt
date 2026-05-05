@@ -1,0 +1,54 @@
+import cadquery as cq
+from cadquery import exporters
+
+# --- Part 1: Rectangular Plate ---
+part_1_length = 0.75 * 0.75  # Scaled length
+part_1_width = 0.2885 * 0.75  # Scaled width
+part_1_height = 0.0304
+
+part_1 = (
+    cq.Workplane("XY")
+    .rect(part_1_length, part_1_width)
+    .extrude(-part_1_height)  # Extrude in the opposite direction
+)
+
+# --- Coordinate System Transformation for Part 1 ---
+part_1 = part_1.translate((0, 0, 0.0304))
+
+# --- Part 2: Ring ---
+outer_radius = 0.375 * 0.75  # Scaled outer radius
+inner_radius = 0.3281 * 0.75
+ring_height = 0.0231
+
+part_2 = (
+    cq.Workplane("XY")
+    .circle(outer_radius)
+    .circle(inner_radius)
+    .extrude(ring_height)
+)
+
+# --- Assembly ---
+assembly = part_2.union(part_1)
+
+# --- Export to STL ---
+exporters.export(assembly, './stlcq/0088/00880730.stl')
+
+# --- Export to STL ---
+exporters.export(assembly, './stlcq/0088/00880732.stl')
+
+# --- Export to STL ---
+exporters.export(assembly, './stlcq/0087/00880732.stl')
+
+# --- Export to STL ---
+exporters.export(assembly, './stlcq/0087/00880732.stl')
+
+# --- Export to STL ---
+exporters.export(assembly, './stlcq/0087/00880732.stl')
+
+# --- Export to STL ---
+exporters.export(assembly, './stlcq/0087/00880732.stl')
+
+# --- Export to STL ---
+exporters.export(assembly, './stlcq/0087/00880732.stl')
+
+# --- Export

@@ -1,0 +1,43 @@
+import cadquery as cq
+
+# --- Part 1: Base ---
+part_1_length = 0.75 * 0.75
+part_1_width = 0.3092 * 0.75
+part_1_height = 0.1063
+
+part_1 = (
+    cq.Workplane("XY")
+    .rect(part_1_length, part_1_width)
+    .extrude(part_1_height)
+)
+
+# Add the second face to the base
+face2_length = 0.1414 * 0.75
+part_1 = part_1.faces(">Z").workplane().moveTo(0,0).rect(face2_length, 0.1568).cutThruAll()
+
+# Add the third face to the base
+face3_length = 0.6089 * 0.75
+part_1 = part_1.faces(">Z").workplane().moveTo(0.6089 * 0.75,0).rect(face3_length, 0.1537).cutThruAll()
+
+# --- Coordinate System Transformation for Part 1 ---
+part_1 = part_1.rotate((0, 0, 0), (0, 0, 1), -90)
+part_1 = part_1.translate((0, 0.1063, 0))
+
+# --- Assembly ---
+assembly = part_1
+
+cq.exporters.export(assembly, "./stlcq/0023/00232257.stl")
+
+cq.exporters.export(assembly, "./stlcq/0023/00232564.stl")
+
+cq.exporters.export(assembly, "./stlcq/0023/00232564.stl")
+
+cq.exporters.export(assembly, "./stlcq/0023/00232565.stl")
+
+cq.exporters.export(assembly, "./stlcq/0023/00232567.stl")
+
+cq.exporters.export(assembly, "./stlcq/0023/00232567.stl")
+
+cq.exporters.export(assembly, "./stlcq/0023/00232567.stl")
+
+cq.exporters.export(assembly, "./stlcq/0023/00232567.stl")

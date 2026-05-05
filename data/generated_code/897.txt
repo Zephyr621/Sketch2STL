@@ -1,0 +1,32 @@
+import cadquery as cq
+import math
+from cadquery import exporters
+
+# --- Part 1: Ring-shaped Object ---
+sketch_scale = 0.75
+extrude_depth = 0.3947 * sketch_scale
+
+# Scaled coordinates
+p1 = (0.0 * sketch_scale, 0.1677 * sketch_scale)
+p2 = (0.0417 * sketch_scale, 0.0 * sketch_scale)
+p3 = (0.2351 * sketch_scale, 0.0879 * sketch_scale)
+p4 = (0.7031 * sketch_scale, 0.2461 * sketch_scale)
+p5 = (0.7455 * sketch_scale, 0.4023 * sketch_scale)
+p6 = (0.75 * sketch_scale, 0.4023 * sketch_scale)
+p7 = (0.7031 * sketch_scale, 0.6466 * sketch_scale)
+p8 = (0.75 * sketch_scale, 0.5172 * sketch_scale)
+p9 = (0.7031 * sketch_scale, 0.5833 * sketch_scale)
+p10 = (0.5026 * sketch_scale, 0.4023 * sketch_scale)
+p11 = (0.5026 * sketch_scale, 0.75 * sketch_scale)
+p12 = (0.2827 * sketch_scale, 0.75 * sketch_scale)
+p13 = (0.0714 * sketch_scale, 0.5833 * sketch_scale)
+p14 = (0.0 * sketch_scale, 0.5833 * sketch_scale)
+
+part_1 = (
+    cq.Workplane("XY")
+    .moveTo(p1[0], p1[1])
+    .threePointArc((0.0341 * sketch_scale, 0.0341 * sketch_scale), p2)
+    .lineTo(p3[0], p3[1])
+    .threePointArc((0.375 * sketch_scale, 0.0341 * sketch_scale), p4)
+    .lineTo(p5[0], p5[1])
+    .threePointArc((0.7

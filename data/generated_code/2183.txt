@@ -1,0 +1,41 @@
+import cadquery as cq
+from math import *
+
+# --- Part 1: Rectangular Object with Curved Edges ---
+part_1 = (
+    cq.Workplane("XY")
+    .moveTo(0.0, 0.0)
+    .lineTo(0.75 * 0.75, 0.0)
+    .threePointArc((0.75 * 0.75, 0.0588 * 0.75), (0.5156 * 0.75, 0.1184 * 0.75))
+    .lineTo(0.375 * 0.75, 0.1184 * 0.75)
+    .threePointArc((0.2885 * 0.75, 0.0588 * 0.75), (0.0, 0.1184 * 0.75))
+    .lineTo(0.0, 0.0)
+    .close()
+    .extrude(0.225)
+)
+
+# --- Coordinate System Transformation for Part 1 ---
+part_1 = part_1.rotate((0, 0, 0), (0, 0, 1), -90)
+part_1 = part_1.translate((0, 0.225, 0))
+
+# --- Part 2: Cylinder Cutout ---
+part_2_radius = 0.033 * 0.066
+part_2_depth = 0.3
+
+part_2 = (
+    cq.Workplane("XY")
+    .circle(part_2_radius)
+    .extrude(-part_2_depth)
+)
+
+# --- Coordinate System Transformation for Part 2 ---
+part_2 = part_2.rotate((0, 0, 0), (1, 0, 0), 180)
+part_2 = part_2.rotate((0, 0, 0), (0, 0, 1), -90)
+part_2 = part_2.translate((0.7125, 0.0329, 0.0329))
+
+# --- Part 3: Rectangular Prism ---
+part_3_width = 0.0304 * 0.0304
+part_3_height = 0.039 * 0.0304
+part_3_depth = 0.255
+
+part_3

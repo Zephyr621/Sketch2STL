@@ -1,0 +1,48 @@
+import cadquery as cq
+
+# --- Part 1: Ring ---
+outer_radius = 0.375 * 0.75  # Sketch radius scaled
+inner_radius = 0.2425 * 0.75  # Inner radius scaled
+height = 0.1364
+
+part_1 = (
+    cq.Workplane("XY")
+    .circle(outer_radius)
+    .extrude(height)
+    .faces(">Z").workplane()
+    .circle(inner_radius)
+    .cutThruAll()
+)
+
+# --- Coordinate System Transformation for Part 1 ---
+part_1 = part_1.rotate((0, 0, 0), (0, 0, 1), -90)
+part_1 = part_1.translate((0, 0.1364, 0))
+
+# --- Assembly ---
+assembly = part_1
+
+cq.exporters.export(assembly, "./stlcq/0031/00310898.stl")
+
+cq.exporters.export(assembly, "./stlcq/0031/00310898.stl")
+
+cq.exporters.export(assembly, "./stlcq/0031/00310898.stl")
+
+cq.exporters.export(assembly, "./stlcq/0031/00310898.stl")
+
+cq.exporters.export(assembly, "./stlcq/0031/00310898.stl")
+
+cq.exporters.export(assembly, "./stlcq/0031/00210929.stl")
+
+cq.exporters.export(assembly, "./stlcq/0031/00310929.stl")
+
+cq.exporters.export(assembly, "./stlcq/0031/00210929.stl")
+
+cq.exporters.export(assembly, "./stlcq/0031/00210929.stl")
+
+cq.exporters.export(assembly, "./stlcq/0031/00210929.stl")
+
+cq.exporters.export(assembly, "./stlcq/0031/00210929.stl")
+
+cq.exporters.export(assembly, "./stlcq/0031/00210929.stl")
+
+cq.exporters.export(

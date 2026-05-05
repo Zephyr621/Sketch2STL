@@ -1,0 +1,53 @@
+import cadquery as cq
+
+# --- Part 1: Washer ---
+outer_radius = 0.375 * 0.75  # Sketch radius scaled
+inner_radius = 0.1714 * 0.75  # Inner hole radius scaled
+height = 0.0536
+
+# Create the outer circle and extrude
+outer_circle = cq.Workplane("XY").circle(outer_radius).extrude(height)
+
+# Create the inner circle (hole) and extrude
+inner_circle = cq.Workplane("XY").circle(inner_radius).extrude(height)
+
+# Subtract the inner cylinder from the outer solid to create the washer
+washer = outer_circle.cut(inner_circle)
+
+# --- Final Result ---
+result = washer
+
+cq.exporters.export(result, './stlcq/0050/00509191.stl')
+
+# Export to STL
+cq.exporters.export(result, './stlcq/00507/005073841.stl')
+
+# Export to STL
+cq.exporters.export(result, './stlcq/00550593.stl')
+
+# Export to STL
+cq.exporters.export(result, './stlcq/0050868.stl')
+
+# Export to STL
+cq.exporters.export(result, './stlcq/00550566.stl')
+
+cq.exporters.export(result, './stlcq/005056618.stl')
+
+# Export to STL
+cq.exporters.export(result, './stlcq/0050869.stl')
+
+# Export to STL
+cq.exporters.export(result, './stlcq/005086928.stl')
+
+# Export to STL
+cq.exporters.export(result, './stlcq/005086928.stl')
+
+# Export to STL
+cq.exporters.export(result, './stlcq/005086928.stl')
+
+cq.exporters.export(result, './stlcq/005086928.stl')
+
+# Export to STL
+cq.exporters.export(result, './stlcq/00550566.stl')
+
+cq.exporters.export

@@ -1,0 +1,52 @@
+import cadquery as cq
+
+# --- Part 1: Cube with Hole ---
+outer_points = [
+    (0.0, 0.4687),
+    (0.3462, 0.0),
+    (0.75, 0.4687),
+    (0.75, 0.75),
+    (0.375, 0.75),
+    (0.375, 0.375)
+]
+inner_points = [
+    (0.0402, 0.2351),
+    (0.3462, 0.2351),
+    (0.375, 0.0402),
+    (0.6811, 0.2351),
+    (0.6811, 0.7498),
+    (0.375, 0.7498),
+    (0.0402, 0.7498)
+]
+hole_radius = 0.1364
+sketch_scale = 0.75
+extrude_depth = 0.1875 * 2  # Total extrusion depth (towards + opposite normal)
+
+# Create outer shape
+outer_shape = (
+    cq.Workplane("XY")
+    .polyline(outer_points)
+    .close()
+)
+
+# Create inner shape (cutout)
+inner_shape = (
+    cq.Workplane("XY")
+    .polyline(inner_points)
+    .close()
+)
+
+# Extrude the outer shape to create the cube
+cube = outer_shape.extrude(extrude_depth).cut(inner_shape.extrude(extrude_depth))
+
+# Apply translation
+cube = cube.translate((0, 0, 0.375))
+
+# Export the result to a STL file
+cq.exporters.export(cube, './stlcq/0017/00173261.stl')
+
+# Export the result to a STL file
+cq.exporters.export(cube, './stlcq/0017071.stl')
+
+# Export the result to a STL file
+cq.exporters.export(cube, './stlcq/0017093.

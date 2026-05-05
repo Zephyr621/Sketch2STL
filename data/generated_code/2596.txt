@@ -1,0 +1,42 @@
+import cadquery as cq
+
+# --- Part 1: Rectangular Block with Hole ---
+part_1_length = 0.75 * 0.75  # Scaled length
+part_1_width = 0.2625 * 0.75  # Scaled width
+part_1_height = 0.75
+hole_radius = 0.0844 * 0.75  # Scaled radius
+hole_center_x = 0.1312 * 0.75  # Scaled center x
+hole_center_y = 0.1312 * 0.75  # Scaled center y
+
+part_1 = (
+    cq.Workplane("XY")
+    .rect(part_1_length, part_1_width)
+    .extrude(part_1_height)
+    .faces(">Z")
+    .workplane()
+    .moveTo(hole_center_x - part_1_length/2, hole_center_y - part_1_width/2)
+    .circle(hole_radius)
+    .cutThruAll()
+)
+
+# --- Part 2: Protruding Rectangular Section ---
+part_2_length = 0.1875 * 0.2212  # Scaled length
+part_2_width = 0.2212 * 0.2212  # Scaled width
+part_2_height = 0.15
+
+part_2 = (
+    cq.Workplane("XY")
+    .rect(part_2_length, part_2_width)
+    .extrude(-part_2_height)  # Extrude in the opposite direction for cutting
+)
+
+# --- Part 3: Cut Feature ---
+part_3_length = 0.1687 * 0.1687  # Scaled length
+part_3_width = 0.1687 * 0.1687  # Scaled width
+part_3_height = 0.9375
+
+part_3 = (
+    cq.Workplane("XY")
+    .rect(part_3_length, part_3_width)
+    .extrude(-part_3_height)  # Extrude in the opposite direction for cutting
+)

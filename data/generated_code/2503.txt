@@ -1,0 +1,43 @@
+import cadquery as cq
+
+# --- Part 1: Rectangular Plate with Cutouts ---
+part_1_length = 0.4869 * 0.4869  # Scaled length
+part_1_width = 0.3977 * 0.4869  # Scaled width
+part_1_height = 0.0296
+
+cutout_x_start = 0.2182 * 0.4869
+cutout_y_start = 0.1971 * 0.4869
+cutout_size = (0.4383 - 0.1026) * 0.4869
+
+part_1 = (
+    cq.Workplane("XY")
+    .rect(part_1_length, part_1_width)
+    .extrude(part_1_height)
+    .faces(">Z").workplane()
+    .moveTo(cutout_x_start - part_1_length/2, cutout_y_start - part_1_width/2)
+    .rect(cutout_size, cutout_size)
+    .cutThruAll()
+)
+
+# --- Part 2: Rectangular Object ---
+part_2_length = 0.4385 * 0.4385  # Scaled length
+part_2_width = 0.2679 * 0.4385  # Scaled width
+part_2_height = 0.0296
+
+inner_offset = 0.1025 * 0.4385
+
+part_2 = (
+    cq.Workplane("XY")
+    .rect(part_2_length, part_2_width)
+    .extrude(part_2_height)
+)
+
+# --- Coordinate System Transformation for Part 1 ---
+part_1 = part_1.rotate((0, 0, 0), (0, 0, 1), -90)
+part_1 = part_1.translate((0, 0.0296, 0))
+
+# --- Coordinate System Transformation for Part 2 ---
+part_2 = part_2.rotate((0, 0, 0), (0, 0, 1), -90)
+part_2 = part_2.translate((0.3281, 0.0296, 0.3281))
+
+# --- Assembly ---

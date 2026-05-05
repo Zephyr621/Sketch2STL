@@ -1,0 +1,28 @@
+import cadquery as cq
+import math
+from cadquery.vis import show
+
+# --- Part 1: Hook ---
+sketch_scale = 0.7478
+extrude_depth = 0.0386 * 2  # Total extrusion depth (both directions)
+
+part_1 = (
+    cq.Workplane("XY")
+    .moveTo(0.0, 0.0549 * sketch_scale)
+    .lineTo(0.0, 0.5645 * sketch_scale)
+    .threePointArc((0.3794 * sketch_scale, 0.3846 * sketch_scale), (0.6727 * sketch_scale, 0.3974 * sketch_scale))
+    .lineTo(0.7478 * sketch_scale, 0.3355 * sketch_scale)
+    .threePointArc((0.6321 * sketch_scale, 0.1171 * sketch_scale), (0.6185 * sketch_scale, 0.1724 * sketch_scale))
+    .lineTo(0.6596 * sketch_scale, 0.1724 * sketch_scale)
+    .threePointArc((0.5909 * sketch_scale, 0.0845 * sketch_scale), (0.5488 * sketch_scale, 0.1578 * sketch_scale))
+    .lineTo(0.5488 * sketch_scale, 0.1677 * sketch_scale)
+    .threePointArc((0.6951 * sketch_scale, 0.1428 * sketch_scale), (0.75 * sketch_scale, 0.0))
+    .lineTo(0.75 * sketch_scale, 0.1982 * sketch_scale)
+    .lineTo(0.7478 * sketch_scale, 0.1982 * sketch_scale)
+    .threePointArc((0.3995 * sketch_scale, 0.4381 * sketch_scale), (0.2117 * sketch_scale, 0.5645 * sketch_scale))
+    .lineTo(0.0, 0.5645 * sketch_scale)
+    .close()
+    .extrude(extrude_depth)
+)
+
+# --- Coordinate System

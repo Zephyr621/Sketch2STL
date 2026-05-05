@@ -1,0 +1,48 @@
+import cadquery as cq
+
+# --- Parameters from JSON ---
+length = 0.75 * 0.75  # Scaled length
+width = 0.75 * 0.75  # Scaled width
+height = 0.1071
+
+# --- Create the outer square ---
+outer_square = cq.Workplane("XY").rect(length, width).extrude(height)
+
+# --- Create the inner square (for the cutout) ---
+inner_square = cq.Workplane("XY").rect(length - 2 * inner_square, width - 2 * inner_square).extrude(height)
+
+# --- Cut the inner square from the outer square ---
+result = outer_square.cut(inner_square)
+
+# --- Export to STL ---
+cq.exporters.export(result, './stlcq/0053/00532342.stl')
+
+# --- Export to STL ---
+cq.exporters.export(result, './stlcq/0053/00532343.stl')
+
+# --- Export to STL ---
+cq.exporters.export(result, './stlcq/0053/00532930.stl')
+
+# --- Export to STL ---
+cq.exporters.export(result, './stlcq/0053/00532930.stl')
+
+# --- Export to STL ---
+cq.exporters.export(result, './stlcq/0053/00532930.stl')
+
+# --- Export to STL ---
+cq.exporters.export(result, './stlcq/0053/00532569.stl')
+
+# --- Export to STL ---
+cq.exporters.export(result, './stlcq/0053/00532569.stl')
+
+# --- Export to STL ---
+cq.exporters.export(result, './stlcq/0053/00532569.stl')
+
+# --- Export to STL ---
+cq.exporters.export(result, './stlcq/0053/00532569.stl')
+
+# --- Export to STL ---
+cq.exporters.export(result, './stlcq/0053/00532569.stl')
+
+# --- Export to STL ---
+cq.exporters.export(result, './stlcq/

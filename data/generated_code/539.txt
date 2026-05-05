@@ -1,0 +1,43 @@
+This forms the foundation for further assembly or design work.
+import cadquery as cq
+
+# --- Part 1 ---
+sketch_scale = 0.75
+outer_width = 0.0514 * sketch_scale
+outer_height = 0.0514 * sketch_scale
+inner_offset = 0.0078 * sketch_scale
+inner_width = (0.7144 - 0.0163) * sketch_scale
+inner_height = (0.0163 - 0.0357) * sketch_scale
+extrude_depth = 0.0074 * sketch_scale
+
+part_1 = (
+    cq.Workplane("XY")
+    .rect(outer_width, outer_height)
+    .extrude(extrude_depth)
+)
+
+part_1 = part_1.cut(cq.Workplane("XY").rect(inner_width, inner_height).translate((inner_offset - outer_width/2 + inner_width/2, inner_offset - outer_height/2 + inner_height/2, extrude_depth)))
+
+
+# --- Coordinate System Transformation for Part 1 ---
+part_1 = part_1.rotate((0, 0, 0), (0, 0, 1), -90)
+part_1 = part_1.translate((0, 0.0074 * sketch_scale, 0))
+
+# --- Assembly ---
+assembly = part_1
+
+cq.exporters.export(assembly, "./stlcq/0030/00304000.stl")
+
+cq.exporters.export(assembly, "./stlcq/0030/00304000.stl")
+
+cq.exporters.export(assembly, "./stlcq/0030/00304000.stl")
+
+cq.exporters.export(assembly, "./stlcq/0030/00304000.stl")
+
+cq.exporters.export(assembly, "./stlcq/0030/00304000.stl")
+
+cq.exporters.export(assembly, "./stlcq/0030/00304000.stl")
+
+cq.exporters.export(assembly, "./stlcq/0030/00304000.stl")
+
+cq.exporters.export(assembly, "./stlcq/0030/003

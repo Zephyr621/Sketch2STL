@@ -1,0 +1,40 @@
+import cadquery as cq
+from math import radians
+
+# --- Part 1: Cube with Circular Hole ---
+part_1_size = 0.5105 * 0.5105  # Sketch size scaled
+part_1_height = 0.2581
+hole_center_x = 0.2636 * 0.5105  # Sketch radius scaled
+hole_center_y = 0.2737 * 0.5105  # Sketch radius scaled
+hole_radius = 0.1154 * 0.5105  # Sketch radius scaled
+
+part_1 = (
+    cq.Workplane("XY")
+    .rect(part_1_size, part_1_size)
+    .extrude(-part_1_height)
+    .faces(">Z").workplane()
+    .moveTo(hole_center_x - (0.5105-0.75)*0.5105, hole_center_y - (0.5105-0.75)*0.5105).circle(hole_radius).cutThruAll()
+)
+
+# --- Coordinate System Transformation for Part 1 ---
+part_1 = part_1.rotate((0, 0, 0), (0, 0, 1), -90)
+part_1 = part_1.translate((0, 0.2409, 0))
+
+# --- Part 2: Cylinder with Concave Top ---
+part_2_outer_radius = 0.1618 * 0.3214
+part_2_inner_radius = 0.1262 * 0.3214
+part_2_height = 0.2344
+
+part_2 = (
+    cq.Workplane("XY")
+    .circle(part_2_outer_radius)
+    .circle(part_2_inner_radius)
+    .extrude(part_2_height)
+)
+
+# --- Coordinate System Transformation for Part 2 ---
+part_2 = part_2.rotate((0, 0, 0), (0, 0, 1), -90)
+part_2 = part_2.translate((0.1705, 0.2344, 0.1705))
+
+# --- Assembly ---
+assembly = part_1.union(part_2

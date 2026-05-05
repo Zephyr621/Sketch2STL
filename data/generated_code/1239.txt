@@ -1,0 +1,44 @@
+import cadquery as cq
+
+# --- Parameters from JSON ---
+length = 0.5455 * 0.75  # Scaled length
+width = 0.75 * 0.75  # Scaled width
+height = 0.1364
+hole_radius = 0.0316 * 0.75
+hole_centers = [
+    (0.125 * 0.75 - length/2, 0.125 * 0.75 - width/2),
+    (0.125 * 0.75 - length/2, 0.625 * 0.75 - width/2),
+    (0.375 * 0.75 - length/2, 0.125 * 0.75 - width/2),
+    (0.375 * 0.75 - length/2, 0.625 * 0.75 - width/2)
+]
+
+# --- Create Rectangular Block ---
+block = cq.Workplane("XY").box(length, width, height)
+
+# --- Add Holes ---
+for center_x, center_y in hole_centers:
+    block = block.faces(">Z").workplane().moveTo(center_x, center_y).circle(hole_radius).cutThruAll()
+
+# --- Export to STL ---
+cq.exporters.export(block, "./stlcq/0038/00380939.stl")
+
+# --- Export to STL ---
+cq.exporters.export(block, "./stlcq/00381245.stl")
+
+# --- Export to STL ---
+cq.exporters.export(block, './stlcq/00381245.stl')
+
+# --- Export to STL ---
+cq.exporters.export(block, './stlcq/00381245.stl')
+
+# --- Export to STL ---
+cq.exporters.export(block, "./stlcq/00381245.stl")
+
+# --- Export to STL ---
+cq.exporters.export(block, './stlcq/00381245.stl')
+
+# --- Export to STL ---
+cq.exporters.export(block, './stlcq/0038918.stl')
+
+# --- Export to STL ---
+cq.exporters.export(block, './

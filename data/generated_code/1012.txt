@@ -1,0 +1,40 @@
+import cadquery as cq
+
+# --- Part 1: Cube ---
+part_1_size = 0.75 * 0.75  # Scaled size
+part_1_height = 0.75
+
+part_1 = cq.Workplane("XY").box(part_1_size, part_1_size, part_1_height)
+
+# --- Coordinate System Transformation for Part 1 ---
+part_1 = part_1.rotate((0, 0, 0), (0, 0, 1), -90)
+part_1 = part_1.translate((0, 0.75, 0))
+
+# --- Part 2: Cutout ---
+part_2_width = 0.36 * 0.36  # Scaled width
+part_2_length = 0.36 * 0.36  # Scaled length
+part_2_height = 0.36
+
+cutout = cq.Workplane("XY").box(part_2_width, part_2_length, part_2_height).translate((0.1875, 0.0, 0.1875))
+
+# --- Part 3: Cutout 2 ---
+part_3_width = 0.35 * 0.35  # Scaled width
+part_3_length = 0.35 * 0.35  # Scaled length
+part_3_height = 0.35
+
+cutout2 = cq.Workplane("XY").box(part_3_width, part_3_length, part_3_height).translate((0.35 * 0.35, 0.0, 0.1875))
+
+# --- Coordinate System Transformation for Part 3 ---
+cutout2 = cutout2.rotate((0, 0, 0), (0, 0, 1), -90)
+cutout2 = cutout2.translate((0.2812, 0.0, 0.35))
+
+# --- Assembly ---
+assembly = part_1.cut(cutout).cut(cutout2)
+
+cq.exporters.export(assembly, "./stlcq/0070/00704092.stl")
+
+cq.exporters.export(assembly, "./stlcq/0070/00704868.stl")
+
+cq.exporters.export(assembly, "./stlcq/0070/00704092.stl")
+
+cq.exp

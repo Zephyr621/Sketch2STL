@@ -1,0 +1,55 @@
+import cadquery as cq
+from math import radians
+
+# --- Part 1: Rectangular Plate ---
+part_1_length = 0.75 * 0.75
+part_1_width = 0.5833 * 0.75
+part_1_height = 0.0174
+
+part_1 = (
+    cq.Workplane("XY")
+    .rect(part_1_length, part_1_width)
+    .extrude(part_1_height)
+)
+
+# --- Coordinate System Transformation for Part 1 ---
+part_1 = part_1.rotate((0, 0, 0), (0, 0, 1), -90)
+part_1 = part_1.translate((0, 0.2734, 0))
+
+# --- Part 2: Cylindrical Protrusions ---
+sketch_scale = 0.6033
+cylinder_radius = 0.0817 * sketch_scale
+cylinder_depth = 0.2734
+
+# Create the first cylinder
+cylinder1 = (
+    cq.Workplane("XY")
+    .circle(cylinder_radius)
+    .extrude(-cylinder_depth)
+)
+
+# Create the second cylinder
+cylinder2 = (
+    cq.Workplane("XY")
+    .circle(cylinder_radius)
+    .extrude(-cylinder_depth)
+)
+
+# Combine the cylinders
+part_2 = cylinder1.union(cylinder2)
+
+# --- Coordinate System Transformation for Part 2 ---
+part_2 = part_2.rotate((0, 0, 0), (0, 0, 1), 180)
+part_2 = part_2.translate((0.1667, 0.5595, 0))
+
+# --- Assembly ---
+assembly = part_1.union(part_2)
+
+# Export to STL
+cq.exporters.export(assembly, "./stlcq/0097/00979041.stl")
+
+cq.exporters.export(assembly, "./stlcq/0097/00979413.stl")
+
+cq.exporters.export(assembly, "./stlcq/0097/009794139.stl")
+
+cq.exporters.export(assembly, "./stlcq/0097

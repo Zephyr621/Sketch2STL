@@ -1,0 +1,48 @@
+import cadquery as cq
+
+# --- Part 1: Rectangular Block ---
+part_1_length = 0.75 * 0.75  # Scaled length
+part_1_width = 0.375 * 0.75   # Scaled width
+part_1_height = 0.1875
+
+part_1 = cq.Workplane("XY").rect(part_1_length, part_1_width).extrude(part_1_height)
+
+# --- Part 2: Cylindrical Protrusions ---
+cylinder_radius = 0.0469 * 0.0976  # Scaled radius
+cylinder_height = 0.075
+
+# Create the first cylinder
+cylinder_1 = (
+    cq.Workplane("XY")
+    .moveTo(0.0469 * 0.0976, 0.0312 * 0.0976)
+    .circle(cylinder_radius)
+    .extrude(-cylinder_height)  # Extrude downwards
+)
+
+# Create the second cylinder
+cylinder_2 = (
+    cq.Workplane("XY")
+    .moveTo(0.6696 * 0.0976, 0.0312 * 0.0976)
+    .circle(cylinder_radius)
+    .extrude(-cylinder_height)  # Extrude downwards
+)
+
+# Combine the cylinders
+result = cylinder_1.union(cylinder_2)
+
+# --- Coordinate System Transformation for Part 1 ---
+result = result.rotate((0, 0, 0), (0, 0, 1), -90)
+result = result.translate((0, 0.1875, 0))
+
+# --- Assembly ---
+assembly = result
+
+cq.exporters.export(assembly, "./stlcq/0037/00378140.stl")
+
+cq.exporters.export(assembly, "./stlcq/00379968.stl")
+
+cq.exporters.export(assembly, "./stlcq/0037/00379511.stl")
+
+cq.exporters.export(assembly, "./stlcq/00379367.stl")
+
+cq.exporters.export(assembly, "./stlcq/00379367.stl")

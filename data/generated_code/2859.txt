@@ -1,0 +1,41 @@
+The rectangular prism serves as the base, while the cylinder adds material to an existing body.
+import cadquery as cq
+
+# --- Part 1: Rectangular Prism ---
+part_1_length = 0.1136 * 0.1136  # Scaled length
+part_1_width = 0.0534 * 0.1136  # Scaled width
+part_1_height = 0.0931
+
+part_1 = cq.Workplane("XY").rect(part_1_length, part_1_width).extrude(-part_1_height)
+
+# --- Coordinate System Transformation for Part 1 ---
+part_1 = part_1.translate((0.1976, 0.0, 0.0))
+
+# --- Part 2: Cylinder (Join) ---
+part_2_radius = 0.195 * 0.3968  # Scaled radius
+part_2_height = 0.0931
+
+part_2 = cq.Workplane("XY").circle(part_2_radius).extrude(part_2_height)
+
+# --- Coordinate System Transformation for Part 2 ---
+part_2 = part_2.rotate((0, 0, 0), (0, 0, 1), 180)
+part_2 = part_2.translate((0.1976, 0.3532, 0.0))
+
+# --- Assembly ---
+assembly = part_1.union(part_2)
+
+cq.exporters.export(assembly, "./stlcq/0052/00528141.stl")
+
+cq.exporters.export(assembly, "./stlcq/0052/00528949.stl")
+
+cq.exporters.export(assembly, "./stlcq/0052/00528949.stl")
+
+cq.exporters.export(assembly, "./stlcq/0052/00528949.stl")
+
+cq.exporters.export(assembly, "./stlcq/0052/00528949.stl")
+
+cq.exporters.export(assembly, "./stlcq/0052/00528949.stl")
+
+cq.exporters.export(assembly, "./stlcq/0052/00528949.stl")
+
+cq.exporters.export(assembly, "./stlcq/0052/005289

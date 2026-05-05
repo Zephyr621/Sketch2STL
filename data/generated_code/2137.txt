@@ -1,0 +1,49 @@
+import cadquery as cq
+
+# --- Part 1: Cube ---
+side_length = 0.75 * 0.75  # Sketch side length scaled
+cube = cq.Workplane("XY").box(side_length, side_length, side_length)
+
+# --- Assembly (if needed, based on the single part) ---
+# In this case, there's only one part, so no assembly is needed.
+# If there were multiple parts, you would use .union() or .cut() to combine them.
+
+# --- Final Result ---
+result = cube
+
+cq.exporters.export(result, './stlcq/0061/00615263.stl')
+
+# Export to STL
+cq.exporters.export(result, './stlcq/0061/00615263.stl')
+
+# Export to STL
+cq.exporters.export(result, './stlcq/0061/00615629.stl')
+
+# Export to STL
+cq.exporters.export(result, './stlcq/0061/00615532.stl')
+
+# Export to STL
+cq.exporters.export(result, './stlcq/0061/00616647.stl')
+
+# Export to STL
+cq.exporters.export(result, './stlcq/0061/00616648.stl')
+
+# Export to STL
+cq.exporters.export(result, './stlcq/0061/00616845.stl')
+
+cq.exporters.export(result, './stlcq/0061/00616935.stl')
+
+cq.exporters.export(result, './stlcq/0061/00616935.stl')
+
+# Export to STL
+cq.exporters.export(result, './stlcq/0061/00617833.stl')
+
+# Export to STL
+cq.exporters.export(result, './stlcq/0061/00617620.stl')
+
+# Export to STL
+cq.exporters.export(result, './stlcq/0061/00617728.stl')
+
+cq.exporters.export(result, './stlcq/0061/00617728.stl')
+
+# Export to STL

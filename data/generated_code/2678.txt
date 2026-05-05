@@ -1,0 +1,55 @@
+import cadquery as cq
+from cadquery.vis import show
+
+# --- Part 1: Hexagonal Nut ---
+sketch_scale = 0.75
+height = 0.3198
+
+# Scaled coordinates for the hexagon
+points = [
+    (0.0 * sketch_scale, 0.3248 * sketch_scale),
+    (0.1875 * sketch_scale, 0.0 * sketch_scale),
+    (0.5625 * sketch_scale, 0.0 * sketch_scale),
+    (0.75 * sketch_scale, 0.3248 * sketch_scale)
+]
+
+# Create the hexagon using the points
+part_1 = (
+    cq.Workplane("XY")
+    .polyline(points)
+    .close()
+    .extrude(height)
+)
+
+# Export the result to a STL file
+cq.exporters.export(part_1, './stlcq/0023/00232345.stl')
+
+# --- Assembly (if needed, based on the single part) ---
+# In this case, there's only one part, so no assembly is needed.
+
+# --- Final Result ---
+result = part_1
+
+# Export to STL
+cq.exporters.export(result, './stlcq/0023/00232354.stl')
+
+# Export to STL
+cq.exporters.export(result, './stlcq/0023/00232354.stl')
+
+# Export to STL
+cq.exporters.export(result, './stlcq/0023/00232920.stl')
+
+# Export to STL
+cq.exporters.export(result, './stlcq/0023/00232511.stl')
+
+# Export to STL
+cq.exporters.export(result, './stlcq/0023/00232511.stl')
+
+# Export to STL
+cq.exporters.export(result, './stlcq/0023/00232627.stl')
+
+# Export to STL
+cq.exporters.export(result, './stlcq/0023/00232627.stl')
+
+# Export to STL
+cq.exp

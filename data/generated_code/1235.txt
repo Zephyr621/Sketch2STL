@@ -1,0 +1,57 @@
+import cadquery as cq
+from math import radians
+
+# --- Part 1: Cube ---
+part_1_size = 0.6 * 0.6  # Scaled size
+part_1_height = 0.6
+
+part_1 = cq.Workplane("XY").box(part_1_size, part_1_size, part_1_height)
+
+# --- Part 2: Cutout 1 ---
+cutout_width = 0.3 * 0.3  # Scaled width
+cutout_length = 0.3 * 0.3  # Scaled length
+cutout_depth = 0.075
+
+cutout_x_offset = 0.0375
+cutout_y_offset = 0.0625
+
+cutout_width_scaled = cutout_width * 0.3
+cutout_length_scaled = cutout_length * 0.3
+
+cutout_x_scaled *= 0.3
+cutout_y_scaled *= 0.3
+cutout_depth_scaled = cutout_depth * 0.3
+
+cutout_width_scaled = cutout_width * 0.3
+cutout_length_scaled = cutout_length * 0.3
+
+cutout_x_scaled *= 0.3
+cutout_y_scaled *= 0.3
+
+cutout_width_scaled *= 0.3
+
+cutout_x_scaled *= 0.3
+cutout_y_scaled *= 0.3
+
+cutout_width_scaled *= 0.3
+
+cutout_width_scaled *= 0.3
+
+cutout_height_scaled = cutout_height * 0.3
+
+cutout_x_scaled *= 0.3
+cutout_y_scaled *= 0.3
+
+cutout = (
+    cq.Workplane("XY")
+    .rect(cutout_width_scaled, cutout_length_scaled)
+    .extrude(-cutout_height_scaled)
+)
+
+cutout = cutout.rotate((0, 0, 0), (0, 0, 1), -90)
+cutout = cutout.translate((cutout_x_offset, cutout_y_offset, 0))
+
+# --- Part 3: Cutout 2 ---
+cutout_width_scaled = 0.3 * 0.3  # Scaled width
+cutout_length_scaled = cutout_length * 0.3
+cutout_depth_scaled = cutout_

@@ -1,0 +1,32 @@
+import cadquery as cq
+import math
+from cadquery.vis import show
+
+# --- Part 1 ---
+sketch_scale = 0.75
+extrude_depth = 0.0833 * sketch_scale
+
+part_1 = (
+    cq.Workplane("XY")
+    .moveTo(0.0417 * sketch_scale, 0)
+    .lineTo(0.7222 * sketch_scale, 0)
+    .threePointArc((0.75 * sketch_scale, 0.0417 * sketch_scale), (0.7222 * sketch_scale, 0.1521 * sketch_scale))
+    .lineTo(0.4176 * sketch_scale, 0.1521 * sketch_scale)
+    .threePointArc((0.4176 * sketch_scale, 0.1522 * sketch_scale), (0.4176 * sketch_scale, 0.3505 * sketch_scale))
+    .lineTo(0.0417 * sketch_scale, 0.3505 * sketch_scale)
+    .threePointArc((0, 0.1522 * sketch_scale), (0.0417 * sketch_scale, 0))
+    .close()
+    .add(cq.Workplane("XY").circle(0.075 * sketch_scale).translate((0.0525 * sketch_scale, 0.0833 * sketch_scale, 0)))
+    .add(cq.Workplane("XY").circle(0.0357 * sketch_scale).translate((0.0767 * sketch_scale, 0.0833 * sketch_scale, 0)))
+    .extrude(extrude_depth)
+)
+
+# --- Coordinate System Transformation for Part 1 ---
+part_1 = part_1.rotate((0, 0, 0), (0, 0, 1), -90)
+part_1 = part_1.translate((0, 0.0833 * sketch_scale, 0))
+
+# --- Assembly ---
+assembly = part_1
+
+cq.exporters.export(assembly, "./stlcq/0064/00646660.stl")
+cq.exporters.export(assembly, "./stlcq/0064/00644045.stl")

@@ -1,0 +1,44 @@
+import cadquery as cq
+from math import radians
+
+# --- Part 1: Ring ---
+part_1_outer_radius = 0.2383 * 0.4688  # Sketch radius scaled
+part_1_inner_radius = 0.125 * 0.4688  # Inner radius for the outer cylinder
+part_1_height = 0.25
+
+part_1 = (
+    cq.Workplane("XY")
+    .circle(part_1_outer_radius)
+    .circle(part_1_inner_radius)
+    .extrude(part_1_height)
+)
+
+# --- Coordinate System Transformation for Part 1 ---
+part_1 = part_1.rotate((0, 0, 0), (0, 0, 1), -90)
+part_1 = part_1.translate((0, 0.75, 0))
+
+# --- Part 2: Flange ---
+part_2_outer_radius = 0.28 * 0.56  # Sketch radius scaled
+part_2_inner_radius = 0.125 * 0.56  # Inner radius for the inner cylinder
+part_2_height = 0.0833
+
+part_2 = (
+    cq.Workplane("XY")
+    .circle(part_2_outer_radius)
+    .circle(part_2_inner_radius)
+    .extrude(part_2_height)
+)
+
+# --- Coordinate System Transformation for Part 2 ---
+part_2 = part_2.rotate((0, 0, 0), (0, 0, 1), -90)
+part_2 = part_2.translate((0.0917, 0.6667, 0.0917))
+
+# --- Part 3: Cut Feature ---
+part_3_outer_radius = 0.2167 * 0.4167  # Sketch radius scaled
+part_3_inner_radius = 0.125 * 0.4167  # Inner radius for the cutout
+part_3_height = 0.1667
+
+part_3 = (
+    cq.Workplane("XY")
+    .circle(part_3_outer_radius)
+    .circle(part_3_inner_

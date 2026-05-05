@@ -1,0 +1,53 @@
+import cadquery as cq
+import math
+from cadquery import exporters
+
+# --- Part 1: Rectangular Prism with Rounded Edges ---
+sketch_scale = 0.75
+length = 0.1705 * sketch_scale
+width = 0.7048 * sketch_scale
+height = 0.0052 * sketch_scale
+corner_radius = 0.0155 * sketch_scale
+
+part_1 = (
+    cq.Workplane("XY")
+    .moveTo(0, corner_radius)
+    .threePointArc((corner_radius, 0), (length/2, corner_radius))
+    .lineTo(length, width - corner_radius)
+    .threePointArc((length/2, width), (length/2, width - corner_radius))
+    .lineTo(corner_radius, width)
+    .threePointArc((0, width - corner_radius), (0, width - corner_radius))
+    .close()
+    .extrude(height)
+)
+
+# --- Assembly (if needed, based on the single part) ---
+# In this case, there's only one part, so no assembly is needed.
+# If there were multiple parts, you would use .union() or .cut() to combine them.
+
+# --- Final Result ---
+result = part_1
+
+# Export to STL
+exporters.export(result, './stlcq/0048/00488645.stl')
+
+# Export to STL
+exporters.export(result, './stlcq/00481489.stl')
+
+# Export to STL
+exporters.export(result, './stlcq/00481597.stl')
+
+# Export to STL
+exporters.export(result, './stlcq/00481597.stl')
+
+# Export to STL
+exporters.export(result, './stlcq/00481597.stl')
+
+# Export to STL
+exporters.export(result, './stlcq/00481597.stl')
+
+# Export to STL
+exporters.export(result, './stlcq/00481597.stl')
+
+# Export to STL
+exporters.

@@ -1,0 +1,35 @@
+import cadquery as cq
+import math
+from cadquery.vis import show
+
+# --- Part 1 ---
+sketch_scale = 0.75
+extrude_depth = 0.0876 * sketch_scale
+
+part_1 = (
+    cq.Workplane("XY")
+    .moveTo(0.0, 0.0)
+    .lineTo(0.0876 * sketch_scale, 0.0)
+    .lineTo(0.0876 * sketch_scale, 0.1988 * sketch_scale)
+    .threePointArc((0.1202 * sketch_scale, 0.3849 * sketch_scale), (0.0861 * sketch_scale, 0.2301 * sketch_scale))
+    .lineTo(0.0732 * sketch_scale, 0.2496 * sketch_scale)
+    .threePointArc((0.1073 * sketch_scale, 0.4705 * sketch_scale), (0.1387 * sketch_scale, 0.2302 * sketch_scale))
+    .lineTo(0.1387 * sketch_scale, 0.0352 * sketch_scale)
+    .threePointArc((0.0786 * sketch_scale, 0.0446 * sketch_scale), (0.0, 0.0352 * sketch_scale))
+    .lineTo(0.0, 0.0)
+    .close()
+    .extrude(extrude_depth)
+)
+
+# Create the hole
+hole_radius = 0.0536 * sketch_scale
+part_1 = part_1.faces(">Z").workplane().center(0.3563 * sketch_scale - (0.75 * sketch_scale)/2, 0.0917 * sketch_scale - (0.45 * sketch_scale)/2).circle(hole_radius).cutThruAll()
+
+# --- Coordinate System Transformation for Part 1 ---
+part_1 = part_1.rotate((0, 0, 0), (0, 0, 1), -90)
+part_1 = part_1.translate((0, 0.0876 * sketch_scale, 0))
+
+# --- Assembly ---
+assembly = part_1
+
+cq.exporters

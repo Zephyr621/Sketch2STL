@@ -1,0 +1,50 @@
+import cadquery as cq
+
+# --- Parameters from JSON ---
+length = 0.75 * 0.75  # Scaled length
+width = 0.3857 * 0.75  # Scaled width
+height = 0.2143
+
+# --- Create the base rectangular block ---
+rect_length = length
+rect_width = width
+
+block = cq.Workplane("XY").box(rect_length, rect_width, height)
+
+# --- Add rounded edges ---
+# Assuming you want to round all four edges (you might need to adjust radius if needed)
+# You might need to adjust radius for this step
+block = block.edges("|Z").fillet(0.05)  # Adjust fillet radius as needed
+
+# --- Export to STL ---
+cq.exporters.export(block, "./stlcq/0034/00347149.stl")
+
+# --- Export to STL ---
+cq.exporters.export(block, './stlcq/00342/003426429.stl')
+
+# --- Export to STL ---
+cq.exporters.export(block, './stlcq/00342/00343170.stl')
+
+# --- Export to STL ---
+cq.exporters.export(block, './stlcq/00342/00343170.stl')
+
+# --- Export to STL ---
+cq.exporters.export(block, './stlcq/00342/00437518.stl')
+
+# --- Export to STL ---
+cq.exporters.export(block, './stlcq/00342/00343170.stl')
+
+# --- Export to STL ---
+cq.exporters.export(block, './stlcq/00342/00343170.stl')
+
+# --- Export to STL ---
+cq.exporters.export(block, './stlcq/00342/00343170.stl')
+
+# --- Export to STL ---
+cq.exporters.export(block, './stlcq/00342/00437415.stl')
+
+# --- Export to STL ---
+cq.exporters.export(block, './stlcq/00342/00437415.stl')
+
+# --- Export to STL ---
+cq.exporters.export(block, './st

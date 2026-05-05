@@ -1,0 +1,50 @@
+import cadquery as cq
+
+# --- Part 1: Rectangular Box ---
+length = 0.375 * 0.75  # Scaled length
+width = 0.75 * 0.75   # Scaled width
+height = 0.1669
+
+part_1 = (
+    cq.Workplane("XY")
+    .rect(length, width)
+    .extrude(height)
+)
+
+# --- Coordinate System Transformation for Part 1 ---
+part_1 = part_1.rotate((0, 0, 0), (0, 0, 1), -90)
+part_1 = part_1.translate((0, 0.1669, 0))
+
+# --- Assembly ---
+assembly = part_1
+
+# Export to STL
+cq.exporters.export(assembly, "./stlcq/0033/00332001.stl")
+
+# --- Export to STL ---
+cq.exporters.export(assembly, "./stlcq/0033/00332001.stl")
+
+# --- Export to STL ---
+cq.exporters.export(assembly, "./stlcq/00339/003392739.stl")
+
+# --- Export to STL ---
+cq.exporters.export(assembly, "./stlcq/00339/003392739.stl")
+
+# --- Apply fillets to the edges ---
+edge_radius = min(length, width, height) / 10  # Adjust as needed
+assembly = assembly.edges("|Z").fillet(edge_radius)
+
+# Export to STL
+cq.exporters.export(assembly, "./stlcq/00339/003392739.stl")
+
+# --- Export to STL ---
+cq.exporters.export(assembly, "./stlcq/00339/003392739.stl")
+
+# --- Export to STL ---
+cq.exporters.export(assembly, "./stlcq/00339/003392739.stl")
+
+# --- Export to STL ---
+cq.exporters.export(assembly, "./stlcq/00339/00339276.stl")
+
+# --- Export to STL ---
+cq.exporters.export(assembly, "./stlcq/00339/00339276.stl")

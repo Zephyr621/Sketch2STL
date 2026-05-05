@@ -1,0 +1,43 @@
+import cadquery as cq
+
+# --- Part 1: Rectangular Base ---
+part_1_length = 0.344 * 0.344  # Scaled length
+part_1_width = 0.0577 * 0.344  # Scaled width
+part_1_height = 0.75
+
+part_1 = (
+    cq.Workplane("XY")
+    .rect(part_1_length, part_1_width)
+    .extrude(-part_1_height)  # Extrude in the opposite direction
+)
+
+# Coordinate System Transformation for Part 1
+part_1 = part_1.rotate((0, 0, 0), (0, 0, 1), -90)
+
+# --- Part 2: Circular Holes ---
+hole_radius = 0.0088 * 0.5156  # Scaled radius
+hole_depth = 0.0105
+
+hole_centers = [
+    (0.0088 * 0.5156, 0.0088 * 0.5156),
+    (0.0088 * 0.5156, 0.0824 * 0.5156),
+    (0.5211 * 0.5156, 0.0088 * 0.5156),
+    (0.5211 * 0.5156, 0.0824 * 0.5156)
+]
+
+part_2 = cq.Workplane("XY")
+for x, y in hole_centers:
+    part_2 = part_2.moveTo(x, y).circle(hole_radius)
+
+part_2 = part_2.extrude(-hole_depth)
+
+# Coordinate System Transformation for Part 2
+part_2 = part_2.rotate((0, 0, 0), (0, 0, 1), 180)
+part_2 = part_2.translate((0.0433, 0.0577, 0))
+
+# --- Part 3: Rectangular Box ---
+box_length = 0.5163 * 0.5163  # Scaled length
+box_width = 0.251 * 0.5163  # Scaled width
+box_height = 0.0577
+
+box = cq.Workplane("XY").rect(box_length, box_width).

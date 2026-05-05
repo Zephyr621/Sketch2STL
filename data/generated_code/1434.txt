@@ -1,0 +1,29 @@
+import cadquery as cq
+import math
+from cadquery import exporters
+
+# --- Part 1: Curved Base ---
+part_1_scale = 0.75
+part_1_depth = 0.075
+
+part_1 = (
+    cq.Workplane("XY")
+    .moveTo(0.0, 0.0)
+    .lineTo(0.7125 * part_1_scale, 0.0)
+    .threePointArc((0.75 * part_1_scale, 0.0313 * part_1_scale), (0.7125 * part_1_scale, 0.3523 * part_1_scale))
+    .lineTo(0.0938 * part_1_scale, 0.3523 * part_1_scale)
+    .threePointArc((0.0313 * part_1_scale, 0.1762 * part_1_scale), (0.0, 0.1762 * part_1_scale))
+    .lineTo(0.0, 0.0)
+    .close()
+    .extrude(-part_1_depth)
+)
+
+# --- Coordinate System Transformation for Part 1 ---
+part_1 = part_1.rotate((0, 0, 0), (0, 0, 1), -90)
+part_1 = part_1.translate((0, 0.075, 0))
+
+# --- Part 2: Cutout ---
+part_2_scale = 0.75
+cutout_wp = cq.Workplane("XY").moveTo(0,0).lineTo(0.6328 * part_2_scale, 0).threePointArc((0.375 * part_2_scale, 0.0313 * part_2_scale), (0.6328 * part_2_scale, 0.1875 * part_2_scale)).lineTo(0, 0.1875 * part_2_scale).close().extrude(-0.375)
+
+part_2 = cutout_wp.cut(cq.Workplane("XY").moveTo(0.375 * part_2_scale, 0).lineTo(0.75 * part_2_scale, 0).lineTo(0.75 * part_2_scale, 0.

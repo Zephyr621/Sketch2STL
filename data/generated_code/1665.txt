@@ -1,0 +1,51 @@
+import cadquery as cq
+from math import tan, radians
+
+# --- Part 1: Hexagonal Cylinder ---
+sketch_scale = 0.4262
+extrude_depth = 0.75
+
+# Scaled coordinates for the hexagon
+points = [
+    (0.0 * sketch_scale, 0.1935 * sketch_scale),
+    (0.1364 * sketch_scale, 0.0 * sketch_scale),
+    (0.4262 * sketch_scale, 0.1935 * sketch_scale),
+    (0.4262 * sketch_scale, 0.3893 * sketch_scale),
+    (0.1253 * sketch_scale, 0.3027 * sketch_scale),
+    (0.1462 * sketch_scale, 0.3943 * sketch_scale)
+]
+
+# Create the hexagon using the scaled points
+part_1 = (
+    cq.Workplane("XY")
+    .polyline(points)
+    .close()
+    .extrude(extrude_depth)
+)
+
+# --- Assembly (if needed, based on the single part) ---
+# In this case, there's only one part, so no assembly is needed.
+# If there were multiple parts, you would use .union() or .cut() to combine them.
+
+# --- Final Result ---
+result = part_1
+
+# Export to STL
+cq.exporters.export(result, './stlcq/0090/00901653.stl')
+
+# Export to STL
+cq.exporters.export(result, './stlcq/0090/00901528.stl')
+
+# Export to STL
+cq.exporters.export(result, './stlcq/0090/009015287.stl')
+
+# Export to STL
+cq.exporters.export(result, './stlcq/0090/009015287.stl')
+
+# Export to STL
+cq.exporters.export(result, './stlcq/0090/00901633.stl')
+
+# Export to STL
+cq.exporters.export(result, './stlcq/0090/009016277.stl')
+
+#

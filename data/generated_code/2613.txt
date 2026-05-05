@@ -1,0 +1,42 @@
+All parts are combined to form the final assembly, creating a complex structure with a hollow center and two vertical walls.
+import cadquery as cq
+
+# --- Part 1: Rectangular Prism with Cutout ---
+part_1_length = 0.675 * 0.675  # Scaled length
+part_1_width = 0.375 * 0.675  # Scaled width
+part_1_height = 0.0375
+
+cutout_x = 0.0225 * 0.675  # Scaled cutout x
+cutout_y = 0.0225 * 0.675  # Scaled cutout y
+cutout_size = (0.67 - 0.0225) * 0.675  # Scaled cutout size
+
+part_1 = (
+    cq.Workplane("XY")
+    .rect(part_1_length, part_1_width)
+    .extrude(part_1_height)
+    .faces(">Z").workplane()
+    .rect(cutout_size, cutout_size)
+    .cutThruAll()
+)
+
+# --- Coordinate System Transformation for Part 1 ---
+part_1 = part_1.translate((0.0375, 0.0, 0.0))
+
+# --- Part 2: Rectangular Prism ---
+part_2_length = 0.0766 * 0.1077  # Scaled length
+part_2_width = 0.1077 * 0.1077  # Scaled width
+part_2_height = 0.1594
+
+part_2 = (
+    cq.Workplane("XY")
+    .rect(part_2_length, part_2_width)
+    .extrude(part_2_height)
+)
+
+# --- Coordinate System Transformation for Part 2 ---
+part_2 = part_2.rotate((0, 0, 0), (1, 0, 0), 90)
+part_2 = part_2.rotate((0, 0, 0), (0, 0, 1), -90)
+part_2 = part_2.translate((0.3, 0.1875, 0.0))
+
+# --- Part 3: Box ---
+part_3_length = 0.675 * 0.

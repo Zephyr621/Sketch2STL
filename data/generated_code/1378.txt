@@ -1,0 +1,45 @@
+import cadquery as cq
+
+# --- Part 1: Cube ---
+part_1_length = 0.6105 * 0.75  # Sketch length scaled
+part_1_width = 0.75 * 0.75  # Sketch width scaled
+part_1_height = 0.6553
+
+part_1 = cq.Workplane("XY").rect(part_1_length, part_1_width).extrude(part_1_height)
+
+# --- Fillet Edges ---
+edge_radius = min(part_1_length, part_1_width) / 10  # Adjust as needed
+part_1 = part_1.edges("|Z").fillet(edge_radius)
+
+# --- Assembly (if needed, based on the single part) ---
+# In this case, there's only one part, so no assembly is needed.
+# If there were multiple parts, you would use .union() or .cut() to combine them.
+
+# --- Final Result ---
+result = part_1
+
+cq.exporters.export(result, './stlcq/0028/00281632.stl')
+
+cq.exporters.export(result, './stlcq/00288721.stl')
+
+cq.exporters.export(result, './stlcq/00288721.stl')
+
+cq.exporters.export(result, './stlcq/00288721.stl')
+
+cq.exporters.export(result, './stlcq/00288721.stl')
+
+cq.exporters.export(result, './stlcq/00288721.stl')
+
+cq.exporters.export(result, './stlcq/00288721.stl')
+
+cq.exporters.export(result, './stlcq/00288721.stl')
+
+cq.exporters.export(result, './stlcq/00288721.stl')
+
+cq.exporters.export(result, './stlcq/00288721.stl')
+
+cq.exporters.export(result, './stlcq/00288721.stl')
+
+cq.exporters.export(result, './stlcq/00288721.stl')
+
+cq.

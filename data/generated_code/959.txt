@@ -1,0 +1,42 @@
+import cadquery as cq
+from math import radians
+
+# --- Part 1: Rectangular Block ---
+part_1_length = 0.75 * 0.75  # Scaled length
+part_1_width = 0.1304 * 0.75  # Scaled width
+part_1_height = 0.5217
+
+part_1 = cq.Workplane("XY").rect(part_1_length, part_1_width).extrude(part_1_height)
+
+# --- Part 2: Cut Feature (Top) ---
+cut_depth = 0.4826
+
+# Define the cut positions (scaled)
+cut_positions = [
+    (-0.0085 + 0.0085, -0.0085),  # Bottom Left
+    (-0.0085 + 0.0085, 0.0192 + 0.0085),  # Top Right
+    (0.0085 + 0.0085, 0.0192 + 0.0085),  # Bottom Right
+    (0.0085 + 0.7125, -0.0192 + 0.0085),  # Top Left
+]
+
+# Create cut objects
+for x, y in cut_positions:
+    part_1 = part_1.faces(">Z").workplane().moveTo(x - part_1_length/2, y - part_1_width/2).circle(0.0078 * 0.75).cutThruAll()
+
+# --- Assembly ---
+assembly = part_1
+
+# --- Export to STL ---
+cq.exporters.export(assembly, "./stlcq/0046/00468750.stl")
+
+# --- Export to STL ---
+cq.exporters.export(assembly, "./stlcq/0046/00468750.stl")
+
+# --- Export to STL ---
+cq.exporters.export(assembly, "./stlcq/0046/00468750.stl")
+
+# --- Export to STL ---
+cq.exporters.export(assembly, "./stlcq/0046/00468750.stl")
+
+# --- Export to STL ---
+cq.exporters.export(assembly, './stlcq/0046/00468750.stl

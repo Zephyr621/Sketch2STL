@@ -1,0 +1,45 @@
+import cadquery as cq
+
+# --- Part 1: Rectangular Hollow Section ---
+outer_rect_width = 0.0865 * 0.0865  # Scaled outer rectangle width
+outer_rect_height = 0.0865 * 0.0865 # Scaled inner rectangle height (0.0156 - 0.0043)
+inner_rect_offset = 0.0043 * 0.0865 # Scaled offset for inner rectangle offset
+extrude_depth = 0.1875 + 0.1875  # Total extrusion depth
+
+part_1 = (
+    cq.Workplane("XY")
+    .rect(outer_rect_width, outer_rect_height)
+    .extrude(extrude_depth)
+    .cut(cq.Workplane("XY").rect(outer_rect_width - 2*inner_rect_offset, outer_rect_height - 2*inner_rect_offset).extrude(extrude_depth))
+)
+
+# --- Coordinate System Transformation for Part 1 ---
+part_1 = part_1.rotate((0, 0, 0), (0, 0, 1), -90)
+part_1 = part_1.translate((0, 0.375, 0))
+
+# --- Assembly ---
+assembly = part_1
+
+# Export to STL
+cq.exporters.export(assembly, "./stlcq/0074/00749016.stl")
+
+# Export to STL
+cq.exporters.export(assembly, "./stlcq/0074/00749439.stl")
+
+# Export to STL
+cq.exporters.export(assembly, "./stlcq/0074/00749528.stl")
+
+# Export to STL
+cq.exporters.export(assembly, "./stlcq/0074/00749528.stl")
+
+# Export to STL
+cq.exporters.export(assembly, "./stlcq/0074/00749528.stl")
+
+# Export to STL
+cq.exporters.export(assembly, "./stlcq/0074/00749528.stl")
+
+# --- Final Result ---
+result = assembly
+
+# Export to STL
+cq.exporters.export(result, './stlcq

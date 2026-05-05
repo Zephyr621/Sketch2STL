@@ -1,0 +1,55 @@
+import cadquery as cq
+import math
+from cadquery.vis import show
+
+# --- Part 1: Cube with Circular Hole ---
+cube_size = 0.75 * 0.75  # Scaled cube size
+hole_radius = 0.2143 * 0.75  # Scaled hole radius
+extrude_depth = 0.2143
+
+part_1 = (
+    cq.Workplane("XY")
+    .rect(cube_size, cube_size)
+    .extrude(extrude_depth)
+    .faces(">Z")
+    .workplane()
+    .circle(hole_radius)
+    .cutThruAll()
+)
+
+# --- Coordinate System Transformation for Part 1 ---
+part_1 = part_1.rotate((0, 0, 0), (0, 0, 1), -90)
+part_1 = part_1.translate((0, 0.2143, 0))
+
+# --- Assembly ---
+assembly = part_1
+
+# Export to STL
+cq.exporters.export(assembly, "./stlcq/0027/00276876.stl")
+
+# Export to STL
+cq.exporters.export(assembly, "./stlcq/0027/00272832.stl")
+
+# Export to STL
+cq.exporters.export(assembly, "./stlcq/0027/00270837.stl")
+
+# Export to STL
+cq.exporters.export(assembly, "./stlcq/0027/00277805.stl")
+
+# Export to STL
+cq.exporters.export(assembly, './stlcq/00277805.stl')
+
+# Export to STL
+cq.exporters.export(assembly, "./stlcq/00277805.stl")
+
+# Export to STL
+cq.exporters.export(assembly, "./stlcq/00277805.stl")
+
+# Export to STL
+cq.exporters.export(assembly, "./stlcq/00277805.stl")
+
+# Export to STL
+cq.exporters.export(assembly, "./stlcq/00277805.stl")
+
+# Export to STL
+cq.exp

@@ -1,0 +1,48 @@
+import cadquery as cq
+import math
+from cadquery.vis import show
+
+# --- Part 1: Cube with Rounded Edges ---
+sketch_scale = 0.75
+length = 0.75 * sketch_scale
+width = 0.75 * sketch_scale
+height = 0.0375
+corner_radius = 0.05  # Adjust as needed for desired roundness
+
+part_1 = (
+    cq.Workplane("XY")
+    .moveTo(0, corner_radius)
+    .threePointArc((corner_radius, 0), (0, width))
+    .lineTo(length - corner_radius, 0)
+    .threePointArc((length, corner_radius), (length, width))
+    .lineTo(length, width - corner_radius)
+    .threePointArc((length - corner_radius, width), (length, width - corner_radius))
+    .lineTo(corner_radius, width)
+    .threePointArc((0, width - corner_radius), (0, width - corner_radius))
+    .close()
+    .extrude(height)
+)
+
+# --- Assembly (if needed, based on the single part) ---
+# In this case, there's only one part, so no assembly is needed.
+# If there were multiple parts, you would use .union() or .cut() to combine them.
+
+# --- Final Result ---
+result = part_1
+
+cq.exporters.export(result, './stlcq/0060/00602190.stl')
+
+cq.exporters.export(result, './stlcq/0060/00605076.stl')
+
+# Export to STL
+cq.exporters.export(result, './stlcq/0060/00605076.stl')
+
+cq.exporters.export(result, './stlcq/006009.stl')
+
+cq.exporters.export(result, './stlcq/006009.stl')
+
+cq.exporters.export(result, './stlcq/006009.stl')
+
+cq.exporters.export(result, './stlcq/006009.stl')
+
+cq

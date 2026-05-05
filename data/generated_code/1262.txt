@@ -1,0 +1,43 @@
+import cadquery as cq
+
+# --- Parameters from JSON ---
+cube_size = 0.75 * 0.75  # Scaled cube size
+hole_radius = 0.0312 * 0.75  # Scaled hole radius
+extrude_depth = 0.4568
+
+# Hole centers (scaled)
+hole_centers = [
+    (0.125 * 0.75 - cube_size / 2, 0.125 * 0.75 - cube_size / 2),
+    (0.125 * 0.75 - cube_size / 2, 0.625 * 0.75 - cube_size / 2),
+    (0.5375 * 0.75 - cube_size / 2, 0.125 * 0.75 - cube_size / 2),
+    (0.5375 * 0.75 - cube_size / 2, 0.625 * 0.75 - cube_size / 2)
+]
+
+# --- Create Cube ---
+result = cq.Workplane("XY").box(cube_size, cube_size, extrude_depth)
+
+# --- Cut Holes ---
+for x, y in hole_centers:
+    result = result.faces(">Z").workplane().hole(2 * hole_radius)
+
+# --- Apply Translation ---
+result = result.rotate((0, 0, 0), (0, 0, 1), -90)
+result = result.translate((0, 0.4568, 0))
+
+# --- Export to STL ---
+cq.exporters.export(result, "./stlcq/0021/00218326.stl")
+
+# --- Export to STL ---
+cq.exporters.export(result, './stlcq/0021/00217497.stl')
+
+# --- Export to STL ---
+cq.exporters.export(result, "./stlcq/0021/00217567.stl")
+
+# --- Apply Translation ---
+result = result.translate((0, 0, 0.4568))
+
+# --- Export to STL ---
+cq.exporters.export(result, './stlcq/0021/00217427.stl')
+
+# --- Export to STL ---
+cq.exporters.export(result, './stlcq/00

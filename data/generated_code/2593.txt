@@ -1,0 +1,41 @@
+import cadquery as cq
+from cadquery.vis import show
+
+# --- Part 1: Arrow Head ---
+sketch_scale = 0.75
+extrude_depth = 0.1875
+
+part_1 = (
+    cq.Workplane("XY")
+    .moveTo(0.0 * sketch_scale, 0.5625 * sketch_scale)
+    .lineTo(0.375 * sketch_scale, 0.0 * sketch_scale)
+    .threePointArc((0.7165 * sketch_scale, 0.0044 * sketch_scale), (0.75 * sketch_scale, 0.1875 * sketch_scale))
+    .lineTo(0.75 * sketch_scale, 0.5625 * sketch_scale)
+    .lineTo(0.375 * sketch_scale, 0.75 * sketch_scale)
+    .lineTo(0.0 * sketch_scale, 0.5625 * sketch_scale)
+    .close()
+    .extrude(extrude_depth)
+)
+
+# --- Assembly (if needed, based on the single part) ---
+# In this case, there's only one part, so no assembly is needed.
+# If there were multiple parts, you would use .union() or .cut() to combine them.
+
+# --- Final Result ---
+result = part_1
+
+cq.exporters.export(result, './stlcq/0009/00094343.stl')
+
+cq.exporters.export(result, './stlcq/0009/00094343.stl')
+
+cq.exporters.export(result, './stlcq/0009/00094343.stl')
+
+cq.exporters.export(result, './stlcq/0009/00094343.stl')
+
+cq.exporters.export(result, './stlcq/0009/00094343.stl')
+
+cq.exporters.export(result, './stlcq/0009/00094343.stl')
+
+cq.exporters.export(result, './stlcq/0009/00094343.stl')
+
+cq.exporters.export(result, './stlcq/0009/00094343.

@@ -1,0 +1,51 @@
+import cadquery as cq
+
+# --- Part 1: Cup ---
+outer_radius = 0.375 * 0.75  # Sketch radius scaled
+inner_radius = 0.3333 * 0.75
+height = 0.6653
+
+cup = (
+    cq.Workplane("XY")
+    .circle(outer_radius)
+    .extrude(height)
+    .faces(">Z").workplane()
+    .circle(inner_radius)
+    .cutThruAll()
+)
+
+# --- Final Result ---
+result = cup
+cq.exporters.export(result, './stlcq/0014/00147605.stl')
+
+cq.exporters.export(result, './stlcq/001468.stl')
+
+cq.exporters.export(result, './stlcq/0014560.stl')
+
+cq.exporters.export(result, './stlcq/0014560.stl')
+
+cq.exporters.export(result, './stlcq/0014560.stl')
+
+cq.exporters.export(result, './stlcq/0014560.stl')
+
+cq.exporters.export(result, './stlcq/0014560.stl')
+
+cq.exporters.export(result, './stlcq/0014560.stl')
+
+cq.exporters.export(result, './stlcq/0014560.stl')
+
+cq.exporters.export(result, './stlcq/0014560.stl')
+
+cq.exporters.export(result, './stlcq/0014560.stl')
+
+cq.exporters.export(result, './stlcq/0014560.stl')
+
+cq.exporters.export(result, './stlcq/0014560.stl')
+
+cq.exporters.export(result, './stlcq/0014560.stl')
+
+cq.exporters.export(result, './stlcq/0014560.stl')
+
+cq.exporters.export(result, './stlcq/0014560.stl')
+
+cq.exporters.export(result, './stlcq/0014560.

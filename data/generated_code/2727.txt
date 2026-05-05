@@ -1,0 +1,46 @@
+import cadquery as cq
+from math import tan, radians
+
+# --- Parameters from JSON ---
+outer_radius = 0.3248 * 0.75
+inner_radius = 0.2344 * 0.75
+height = 0.1268
+
+# Scaled dimensions
+scaled_x1 = 0.0 * 0.75
+scaled_y1 = 0.1875 * 0.75
+scaled_x2 = 0.5625 * 0.75
+scaled_y2 = 0.0 * 0.75
+scaled_x3 = 0.75 * 0.75
+scaled_y3 = 0.5625 * 0.75
+scaled_x4 = 0.375 * 0.75
+scaled_y4 = 0.6495 * 0.75
+scaled_x5 = 0.0 * 0.75
+scaled_y5 = 0.6495 * 0.75
+scaled_x6 = 0.2812 * 0.75
+scaled_y6 = 0.5625 * 0.75
+
+# --- Create Hexagon with Hole ---
+hex_points = []
+for i in range(6):
+    angle = 2 * i - 30
+    x = scaled_x1 + (scaled_x2 * angle) / 60
+    y = scaled_y1 + (scaled_y2 * angle) / 60
+    hex_points.append((x, y))
+
+part_1 = (
+    cq.Workplane("XY")
+    .polyline(hex_points)
+    .close()
+    .extrude(height)
+    .faces(">Z").workplane().moveTo(scaled_x2 - scaled_x1/2, scaled_y2 - scaled_y1/2).circle(inner_radius).cutThruAll()
+)
+
+# --- Export to STL ---
+cq.exporters.export(part_1, './stlcq/0047/00477265.stl')
+
+# --- Export to STL ---
+cq.exporters.export(part_1, './stlcq/0047/00477410.stl')
+
+# --- Export to STL ---
+cq.exporters.export(part_1, './stlcq/0047/004

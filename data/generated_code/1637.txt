@@ -1,0 +1,56 @@
+import cadquery as cq
+
+# --- Part 1: Square Plate with Circular Hole ---
+plate_size = 0.75 * 0.75  # Scaled plate size
+hole_radius = 0.0469 * 0.75  # Scaled hole radius
+plate_thickness = 0.0738
+
+part_1 = (
+    cq.Workplane("XY")
+    .rect(plate_size, plate_size)
+    .extrude(plate_thickness)
+    .faces(">Z").workplane()
+    .circle(hole_radius)
+    .cutThruAll()
+)
+
+# --- Assembly (if needed, based on the single part) ---
+# In this case, there's only one part, so no assembly is needed.
+
+# --- Final Result ---
+result = part_1
+
+# Export to STL
+cq.exporters.export(result, './stlcq/0045/00455230.stl')
+
+# Export to STL
+cq.exporters.export(result, './stlcq/0045439.stl')
+
+# Export to STL
+cq.exporters.export(result, './stlcq/0045439.stl')
+
+# Export to STL
+cq.exporters.export(result, './stlcq/0045439.stl')
+
+# Export to STL
+cq.exporters.export(result, './stlcq/0045439.stl')
+
+# Export to STL
+cq.exporters.export(result, './stlcq/0045439.stl')
+
+# Export to STL
+cq.exporters.export(result, './stlcq/0045439.stl')
+
+# Export to STL
+cq.exporters.export(result, './stlcq/0045439.stl')
+
+# Export to STL
+cq.exporters.export(result, './stlcq/0045439.stl')
+
+# Export to STL
+cq.exporters.export(result, './stlcq/0045439.stl')
+
+# Export to STL
+cq.exporters.export(result, './stlcq/0045439.stl')
+
+# Export to STL

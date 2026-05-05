@@ -1,0 +1,39 @@
+import cadquery as cq
+from math import radians
+
+# --- Part 1: Cylinder with Rectangular Base and Hole ---
+part_1_length = 0.75 * 0.75  # Scaled length
+part_1_width = 0.545 * 0.75  # Scaled width
+part_1_height = 0.273
+hole_center_x = 0.375 * 0.75  # Scaled x-coordinate of hole center
+hole_center_y = 0.1364 * 0.75  # Scaled y-coordinate of hole center
+hole_radius = 0.0865 * 0.75  # Scaled radius
+
+part_1 = (
+    cq.Workplane("XY")
+    .rect(part_1_length, part_1_width)
+    .extrude(part_1_height)
+    .faces(">Z").workplane()
+    .circle(hole_radius)
+    .cutThruAll()
+)
+
+# --- Coordinate System Transformation for Part 1 ---
+part_1 = part_1.rotate((0, 0, 0), (0, 0, 1), -90)
+part_1 = part_1.translate((0, 0.273, 0))
+
+# --- Part 2: Cylinder with Circular bases and Hole ---
+part_2_length = 0.668 * 0.668  # Scaled length
+part_2_width = 0.123 * 0.668  # Scaled width
+part_2_height = 0.05
+hole_radius = 0.0432 * 0.668  # Scaled radius
+
+part_2 = (
+    cq.Workplane("XY")
+    .moveTo(0.0, 0.0)
+    .lineTo(part_2_length, 0.0)
+    .lineTo(part_2_length, part_2_width)
+    .threePointArc((0.3391 * 0.668, 0.1286 * 0.668), (0.0, part_2_width))
+    .close()
+    .extrude(part_2_height)
+    .faces(">Z").workplane()

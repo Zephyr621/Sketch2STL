@@ -1,0 +1,51 @@
+import cadquery as cq
+from math import radians
+
+# --- Part 1: Rectangular Object ---
+part_1_length = 0.75 * 0.75
+part_1_width = 0.4688 * 0.75
+part_1_height = 0.0562
+
+part_1 = (
+    cq.Workplane("XY")
+    .rect(part_1_length, part_1_width)
+    .extrude(part_1_height)
+)
+
+# --- Coordinate System Transformation for Part 1 ---
+part_1 = part_1.rotate((0, 0, 0), (0, 0, 1), -90)
+part_1 = part_1.translate((0, 0.0562, 0))
+
+# --- Part 2: Cylinder (Hole) ---
+part_2_radius = 0.0638 * 0.1181
+part_2_depth = 0.0562
+
+part_2 = (
+    cq.Workplane("XY")
+    .circle(part_2_radius)
+    .extrude(-part_2_depth)
+)
+
+# --- Coordinate System Transformation for Part 2 ---
+part_2 = part_2.translate((0.1594, 0.0637, 0.4688))
+
+# --- Assembly: Cut the hole from the rectangular object ---
+assembly = part_1.cut(part_2)
+
+# --- Export to STL ---
+cq.exporters.export(assembly, "./stlcq/0069/00692901.stl")
+
+# --- Export to STL ---
+cq.exporters.export(assembly, './stlcq/0069/00692901.stl')
+
+# --- Export to STL ---
+cq.exporters.export(assembly, './stlcq/0069/00692901.stl')
+
+# --- Export to STL ---
+cq.exporters.export(assembly, './stlcq/0069/00692901.stl')
+
+# --- Export to STL ---
+cq.exporters.export(assembly, "./stlcq/0069/00692901.stl")
+
+# --- Export to STL ---
+cq.exporters.export(

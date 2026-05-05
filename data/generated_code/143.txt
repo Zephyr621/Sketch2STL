@@ -1,0 +1,48 @@
+import cadquery as cq
+from cadquery.vis import show
+
+# --- Part 1: Rectangular Plate ---
+plate_length = 0.75 * 0.75  # Scaled length
+plate_width = 0.6048 * 0.75  # Scaled width
+plate_height = 0.0726
+
+part_1 = (
+    cq.Workplane("XY")
+    .rect(plate_length, plate_width)
+    .extrude(plate_height)
+)
+
+# --- Coordinate System Transformation for Part 1 ---
+part_1 = part_1.translate((0, 0.1369, 0))
+
+# --- Part 2: Holes ---
+hole_radius = 0.0363 * 0.0726  # Scaled radius
+hole_depth = 0.6048
+
+hole_centers = [
+    (0.0363 * 0.0726, 0.0363 * 0.0726),
+    (0.0363 * 0.0726, 0.4335 * 0.0726),
+    (0.4749 * 0.0726, 0.0363 * 0.0726),
+    (0.4749 * 0.0726, 0.4335 * 0.0726),
+]
+
+# Create holes by cutting cylinders
+for center_x, center_y in hole_centers:
+    part_1 = part_1.faces(">Z").workplane().pushPoints([(center_x - plate_length/2, center_y - plate_width/2)]).hole(2 * hole_radius)
+
+# --- Assembly ---
+assembly = part_1
+
+cq.exporters.export(assembly, "./stlcq/0032/00328645.stl")
+
+# --- Export to STL ---
+cq.exporters.export(assembly, './stlcq/00326/003262964.stl')
+
+# --- Final Result ---
+result = assembly
+
+cq.exporters.export(result, './stlcq/00326/003263310.stl')
+
+cq.exporters.export(result, './stlcq/00326/0032635.stl')
+
+cq.exporters.export(result, './

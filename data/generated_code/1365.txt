@@ -1,0 +1,48 @@
+import cadquery as cq
+import math
+from cadquery.vis import show
+
+# --- Part 1: Cylinder ---
+sketch_scale = 0.75
+extrude_depth = 0.0278 * 2  # Total extrusion depth (towards + opposite normal)
+
+part_1 = (
+    cq.Workplane("XY")
+    .moveTo(0.0, 0.0)
+    .lineTo(0.1389 * sketch_scale, 0.0)
+    .threePointArc((0.1193 * sketch_scale, 0.1193 * sketch_scale), (0.2344 * sketch_scale, 0.0))
+    .lineTo(0.2344 * sketch_scale, 0.75 * sketch_scale)
+    .lineTo(0.0, 0.75 * sketch_scale)
+    .lineTo(0.0, 0.0)
+    .close()
+    .extrude(extrude_depth)
+)
+
+# --- Coordinate System Transformation for Part 1 ---
+part_1 = part_1.rotate((0, 0, 0), (0, 0, 1), -90)
+part_1 = part_1.translate((0, 0.0577 * sketch_scale, 0))
+
+# --- Assembly ---
+assembly = part_1
+
+# Export to STL
+cq.exporters.export(assembly, "./stlcq/0069/00697321.stl")
+
+# --- Final Result ---
+result = assembly
+
+cq.exporters.export(result, './stlcq/0069580.stl')
+
+cq.exporters.export(result, './stlcq/0069580.stl')
+
+cq.exporters.export(result, './stlcq/0069580.stl')
+
+cq.exporters.export(result, './stlcq/0069580.stl')
+
+cq.exporters.export(result, './stlcq/0069580.stl')
+
+cq.exporters.export(result, './stlcq/0069580.stl')
+
+cq.exporters.export(result, './stlcq/0069580.stl')
+
+cq.exporters.export

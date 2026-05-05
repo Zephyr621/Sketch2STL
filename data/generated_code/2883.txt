@@ -1,0 +1,49 @@
+import cadquery as cq
+from cadquery.vis import show
+
+# --- Part 1: Rectangular Block with Cutouts ---
+length = 0.75 * 0.75  # Scaled length
+width = 0.4687 * 0.75  # Scaled width
+height = 0.0938
+hole_radius = 0.0262 * 0.75  # Scaled radius
+cutout_x1 = 0.1751 * 0.75  # Scaled cutout x position
+cutout_y1 = 0.2307 * 0.75  # Scaled cutout y position
+cutout_x2 = 0.5147 * 0.75  # Scaled cutout x position
+cutout_y2 = 0.2307 * 0.75  # Scaled cutout y position
+
+part_1 = (
+    cq.Workplane("XY")
+    .rect(length, width)
+    .extrude(height)
+    .faces(">Z")
+    .workplane()
+    .moveTo(cutout_x1 - length/2, cutout_y1 - width/2)
+    .circle(hole_radius)
+    .cutThruAll()
+    .faces(">Z")
+    .workplane()
+    .moveTo(cutout_x2 - length/2, cutout_y2 - width/2)
+    .circle(hole_radius)
+    .cutThruAll()
+)
+
+# --- Assembly (if needed, based on the single part) ---
+# In this case, there's only one part, so no assembly is needed.
+
+# --- Final Result ---
+result = part_1
+
+# Export to STL
+cq.exporters.export(result, './stlcq/0035/00358844.stl')
+
+# Export to STL
+cq.exporters.export(result, './stlcq/0035949.stl')
+
+# Export to STL
+cq.exporters.export(result, './stlcq/0035949.stl')
+
+# Export to STL
+cq.exporters.export(result, './stlcq/0035949.stl')
+
+# Export to STL
+cq.exporters.export

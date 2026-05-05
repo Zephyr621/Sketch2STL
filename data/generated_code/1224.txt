@@ -1,0 +1,44 @@
+import cadquery as cq
+
+# --- Part 1: Rectangular Plate ---
+plate_length = 0.75 * 0.75  # Scaled length
+plate_width = 0.5 * 0.75  # Scaled width
+plate_height = 0.05
+
+part_1 = cq.Workplane("XY").rect(plate_length, plate_width).extrude(plate_height)
+
+# --- Part 2: Legs ---
+leg_radius = 0.0397 * 0.4756  # Scaled radius
+leg_height = 0.25
+
+# Leg positions (scaled and translated)
+legs = [
+    (0.0288 * 0.4756, 0.0141 * 0.4756),
+    (0.3074 * 0.4756, 0.0141 * 0.4756),
+    (0.4026 * 0.4756, 0.0141 * 0.4756),
+    (0.4664 * 0.4756, 0.0141 * 0.4756),
+    (0.7134 * 0.4756, 0.0141 * 0.4756),
+]
+
+# Create legs by cutting cylinders
+for x, y in legs:
+    leg = cq.Workplane("XY").circle(leg_radius).extrude(-leg_height)
+    part_1 = part_1.cut(leg.translate((x - plate_length/2, y - plate_width/2, plate_height)))
+
+# --- Assembly ---
+assembly = part_1
+
+# --- Export to STL ---
+cq.exporters.export(assembly, './stlcq/0057/00574150.stl')
+
+# --- Export to STL ---
+cq.exporters.export(assembly, "./stlcq/0057/00577035.stl")
+
+# --- Export to STL ---
+cq.exporters.export(assembly, './stlcq/0057/00577031.stl')
+
+# --- Export to STL ---
+cq.exporters.export(assembly, './stlcq/0057/00777031.stl')
+
+# --- Export to STL ---
+cq.exporters.export(assembly, './

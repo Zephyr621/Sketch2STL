@@ -1,0 +1,46 @@
+import cadquery as cq
+
+# --- Part 1: Rectangular Box ---
+length = 0.75 * 0.75  # Scaled length
+width = 0.5455 * 0.75  # Scaled width
+height = 0.0614
+inner_offset = 0.0205 * 0.75  # Scaled offset for inner rectangle
+
+outer_rect = cq.Workplane("XY").rect(length, width).extrude(height)
+inner_rect = cq.Workplane("XY").rect(length - 2 * inner_offset, width - 2 * inner_offset).extrude(height)
+
+part_1 = outer_rect.cut(inner_rect)
+
+
+# --- Assembly (if needed, based on the single part) ---
+# In this case, there's only one part, so no assembly is needed.
+
+# --- Final Result ---
+result = part_1
+
+cq.exporters.export(result, './stlcq/0059/00595286.stl')
+
+# Export to STL
+cq.exporters.export(result, './stlcq/0059/00595942.stl')
+
+cq.exporters.export(result, './stlcq/0059/00595942.stl')
+
+cq.exporters.export(result, './stlcq/0059/00595942.stl')
+
+cq.exporters.export(result, './stlcq/0059/00595942.stl')
+
+cq.exporters.export(result, './stlcq/0059/00595942.stl')
+
+cq.exporters.export(result, './stlcq/0059/00595942.stl')
+
+cq.exporters.export(result, './stlcq/0059/00595942.stl')
+
+cq.exporters.export(result, './stlcq/0059/00596476.stl')
+
+cq.exporters.export(result, './stlcq/0059/00595942.stl')
+
+cq.exporters.export(result, './stlcq/0059/00595942.stl')
+
+cq.exporters.export(result, './stlcq/0059/00591886.stl')
+
+cq.exp

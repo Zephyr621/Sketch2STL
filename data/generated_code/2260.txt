@@ -1,0 +1,35 @@
+import cadquery as cq
+import math
+from cadquery import exporters
+
+# --- Part 1: Cylinder ---
+part_1_radius = 0.0116 * 0.0332  # Sketch radius scaled
+part_1_height = 0.6866
+
+part_1 = cq.Workplane("XY").circle(part_1_radius).extrude(part_1_height)
+
+# --- Coordinate System Transformation for Part 1 ---
+part_1 = part_1.rotate((0, 0, 0), (1, 0, 0), -90)
+part_1 = part_1.rotate((0, 0, 0), (0, 0, 1), -90)
+part_1 = part_1.translate((0.0332, 0.0042, 0.0042))
+
+# --- Part 2: Rectangular Prism ---
+part_2_length = 0.0111 * 0.1661  # Sketch length scaled
+part_2_width = 0.1661 * 0.1661  # Sketch width scaled
+part_2_height = 0.0002
+
+part_2 = cq.Workplane("XY").rect(part_2_length, part_2_width).extrude(part_2_height)
+
+# --- Coordinate System Transformation for Part 2 ---
+part_2 = part_2.rotate((0, 0, 0), (1, 0, 0), -90)
+part_2 = part_2.rotate((0, 0, 0), (0, 0, 1), -90)
+part_2 = part_2.translate((0.0332, 0.0042, 0.0042))
+
+# --- Part 3: Rectangular Prism with Rounded Edges ---
+sketch_scale = 0.1661
+part_3_length = 0.0111 * sketch_scale
+part_3_width = 0.1661 * sketch_scale
+part_3_height = 0.0002
+
+part_3 = cq.Workplane("XY")
+part_3 = part_3.moveTo(0.0, 0.0804 * sketch_scale).lineTo(0.0041 * sketch_scale, 0.0).threePointArc((0.0009 * sketch_scale, 0.0), (0.00

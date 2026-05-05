@@ -1,0 +1,35 @@
+import cadquery as cq
+from math import radians
+
+# --- Part 1: Cube ---
+part_1_size = 0.75 * 0.75  # Sketch size scaled
+part_1_height = 0.6
+
+part_1 = cq.Workplane("XY").rect(part_1_size, part_1_size).extrude(part_1_height)
+part_1 = part_1.rotate((0, 0, 0), (0, 0, 1), -90)
+part_1 = part_1.translate((0, 0.6, 0))
+
+# --- Part 2: Cylinder Cutout ---
+part_2_radius = 0.15 * 0.3  # Sketch radius scaled
+part_2_depth = 0.5
+
+part_2 = cq.Workplane("XY").circle(part_2_radius).extrude(-part_2_depth)
+part_2 = part_2.rotate((0, 0, 0), (0, 0, 1), -90)
+part_2 = part_2.translate((0.1406, 0, 0.075))
+
+# --- Part 3: Rectangular Prism ---
+part_3_length = 0.0964 * 0.5916
+part_3_width = 0.5916 * 0.5916
+part_3_height = 0.0062
+
+part_3 = cq.Workplane("XY").rect(part_3_length, part_3_width).extrude(part_3_height)
+part_3 = part_3.rotate((0, 0, 0), (0, 0, 1), -90)
+part_3 = part_3.translate((0.1406, 0, 0.075))
+
+# --- Part 4: Small Cylinder Cutout ---
+part_4_radius = 0.0125 * 0.0034
+part_4_depth = 0.0063
+
+part_4 = cq.Workplane("XY").circle(part_4_radius).extrude(-part_4_depth)
+part_4 = part_4.rotate((0, 0, 0), (0, 0, 1), -90)
+part_4 = part_4.translate((0.1318, 0, 0.065

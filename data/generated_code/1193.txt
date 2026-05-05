@@ -1,0 +1,51 @@
+import cadquery as cq
+
+# --- Part 1: Rectangular Box ---
+box_length = 0.2198 * 0.5794  # Scaled length
+box_width = 0.5794 * 0.5794  # Scaled width
+box_height = 0.75
+
+part_1 = (
+    cq.Workplane("XY")
+    .rect(box_length, box_width)
+    .extrude(box_height)
+)
+
+# --- Coordinate System Transformation for Part 1 ---
+part_1 = part_1.rotate((0, 0, 0), (0, 0, 1), -90)
+part_1 = part_1.translate((0, 0.75, 0))
+
+# --- Part 2: Circular Hole ---
+hole_radius = 0.1579 * 0.3093  # Scaled radius
+hole_depth = 0.75
+
+part_2 = (
+    cq.Workplane("XY")
+    .circle(hole_radius)
+    .extrude(-hole_depth)
+)
+
+# --- Coordinate System Transformation for Part 2 ---
+part_2 = part_2.rotate((0, 0, 0), (0, 0, 1), -90)
+part_2 = part_2.translate((0.1061, 0, 0.1061))
+
+# --- Assembly: Cut the hole from the box ---
+assembly = part_1.cut(part_2)
+
+# --- Export to STL ---
+cq.exporters.export(assembly, "./stlcq/0073/00735377.stl")
+
+# --- Export to STL ---
+cq.exporters.export(assembly, "./stlcq/0073/00735419.stl")
+
+# --- Export to STL ---
+cq.exporters.export(assembly, "./stlcq/0073/00735419.stl")
+
+# --- Export to STL ---
+cq.exporters.export(assembly, "./stlcq/0073/00735419.stl")
+
+# --- Export to STL ---
+cq.exporters.export(assembly, "./stlcq/0073/00735419.stl")
+
+# --- Export to STL ---
+cq.

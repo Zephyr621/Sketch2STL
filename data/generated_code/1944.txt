@@ -1,0 +1,42 @@
+import cadquery as cq
+import math
+from cadquery import exporters
+
+# --- Part 1: Cube ---
+part_1_size = 0.6295 * 0.6295  # Sketch size scaled
+part_1_height = 0.7309
+
+part_1 = cq.Workplane("XY").rect(part_1_size, part_1_size).extrude(part_1_height)
+
+# --- Coordinate System Transformation for Part 1 ---
+part_1 = part_1.translate((0.0364, 0.0364, 0))
+
+# --- Part 2: Triangle Prism (Cut) ---
+part_2_scale = 0.5756
+part_2_depth = 0.1221
+
+part_2 = (
+    cq.Workplane("XY")
+    .moveTo(0, 0)
+    .lineTo(0.2786 * part_2_scale, 0)
+    .lineTo(0.4129 * part_2_scale, 0.2634 * part_2_scale)
+    .lineTo(0.3293 * part_2_scale, 0.5747 * part_2_scale)
+    .lineTo(0, 0.5747 * part_2_scale)
+    .close()
+    .extrude(-part_2_depth)
+)
+
+# --- Coordinate System Transformation for Part 2 ---
+part_2 = part_2.rotate((0, 0, 0), (0, 0, 1), -90)
+part_2 = part_2.translate((0.1318, 0, 0.0489))
+
+# --- Part 3: Cutout ---
+part_3_scale = 0.6307
+part_3_depth = 0.1974
+
+part_3 = (
+    cq.Workplane("XY")
+    .moveTo(0, 0)
+    .lineTo(0.1329 * part_3_scale, 0)
+    .lineTo(0.1339 * part_3_scale, 0.2634 * part_3_scale)
+    .lineTo(0.1749 * part_3_scale, 0.5455 * part_

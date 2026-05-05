@@ -1,0 +1,42 @@
+import cadquery as cq
+
+# --- Part 1: Base ---
+part_1_length = 0.0841 * 0.1402  # Scaled length
+part_1_width = 0.1402 * 0.1402  # Scaled width
+part_1_height = 0.1227
+
+part_1 = cq.Workplane("XY").rect(part_1_length, part_1_width).extrude(part_1_height)
+
+# --- Part 2: L-shaped Extension ---
+part_2_scale = 0.1765
+part_2 = (
+    cq.Workplane("XY")
+    .moveTo(0, 0)
+    .lineTo(part_2_scale, 0)
+    .lineTo(part_2_scale, part_2_scale)
+    .lineTo(0.0038 * part_2_scale, part_2_scale)
+    .lineTo(0.0038 * part_2_scale, 0.0205 * part_2_scale)
+    .lineTo(0.0038 * part_2_scale, 0.2054 * part_2_scale)
+    .lineTo(0, 0.2054 * part_2_scale)
+    .close()
+    .extrude(-0.0631)
+)
+
+# --- Coordinate System Transformation for Part 2 ---
+part_2 = part_2.rotate((0, 0, 0), (0, 0, 1), 180)
+part_2 = part_2.translate((0.6659, 0.321, 0.0))
+
+# --- Part 3: Rectangular Protrusion ---
+part_3_scale = 0.3289
+part_3 = (
+    cq.Workplane("XY")
+    .moveTo(0, 0)
+    .lineTo(part_3_scale, 0)
+    .lineTo(part_3_scale, part_3_scale)
+    .lineTo(0, part_3_scale)
+    .close()
+    .extrude(-0.3294)
+)
+
+# --- Coordinate System Transformation for Part 3 ---
+part_3 = part_

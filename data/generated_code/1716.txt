@@ -1,0 +1,54 @@
+import cadquery as cq
+
+# --- Part 1: Square Ring ---
+outer_size = 0.75 * 0.75  # Scaled outer square size
+inner_offset = 0.0156 * 0.75  # Scaled inner offset
+height = 0.125
+
+# Create the outer square
+outer_square = cq.Workplane("XY").rect(outer_size, outer_size).extrude(height)
+
+# Create the inner square (to be cut out)
+inner_square = cq.Workplane("XY").rect(outer_size - 2 * inner_offset, outer_size - 2 * inner_offset).extrude(height)
+
+# Cut the inner square from the outer square
+part_1 = outer_square.cut(inner_square)
+
+# --- Assembly (if needed, based on the single part) ---
+# In this case, there's only one part, so no assembly is needed.
+
+# --- Final Result ---
+result = part_1
+
+# Export to STL
+cq.exporters.export(result, './stlcq/0016/00169159.stl')
+
+# Export to STL
+cq.exporters.export(result, './stlcq/0016828.stl')
+
+# Export to STL
+cq.exporters.export(result, './stlcq/0016828.stl')
+
+# Export to STL
+cq.exporters.export(result, './stlcq/0016828.stl')
+
+# Export to STL
+cq.exporters.export(result, './stlcq/0016828.stl')
+
+# Export to STL
+cq.exporters.export(result, './stlcq/0016828.stl')
+
+# Export to STL
+cq.exporters.export(result, './stlcq/0016828.stl')
+
+# Export to STL
+cq.exporters.export(result, './stlcq/0016828.stl')
+
+# Export to STL
+cq.exporters.export(result, './stlcq/0016828.stl')
+
+# Export to STL
+cq.exporters.export(result, './stlcq/0016828.stl')
+
+# Export to STL
+cq

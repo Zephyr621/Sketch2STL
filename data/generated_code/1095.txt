@@ -1,0 +1,36 @@
+import cadquery as cq
+import math
+from cadquery import exporters
+
+# --- Part 1: Base with Rounded Edges ---
+sketch_scale = 0.5827
+extrude_depth = 0.0311 * sketch_scale
+
+part_1 = (
+    cq.Workplane("XY")
+    .moveTo(0.0, 0.5172 * sketch_scale)
+    .threePointArc((0.0068 * sketch_scale, 0.0068 * sketch_scale), (0.5172 * sketch_scale, 0.0))
+    .lineTo(0.5827 * sketch_scale, 0.0)
+    .threePointArc((0.5719 * sketch_scale, 0.0068 * sketch_scale), (0.5827 * sketch_scale, 0.5172 * sketch_scale))
+    .lineTo(0.5172 * sketch_scale, 0.5827 * sketch_scale)
+    .threePointArc((0.5719 * sketch_scale, 0.5719 * sketch_scale), (0.5172 * sketch_scale, 0.5827 * sketch_scale))
+    .lineTo(0.0, 0.5172 * sketch_scale)
+    .close()
+    .extrude(extrude_depth)
+)
+
+# --- Part 2: Holes ---
+hole_radius = 0.0069 * 0.6295
+hole_depth = 0.75
+
+hole_centers = [
+    (0.0069 * 0.6295, 0.0069 * 0.6295),
+    (0.0069 * 0.6295, 0.5625 * 0.6295),
+    (0.5625 * 0.6295, 0.0069 * 0.6295),
+    (0.5625 * 0.6295, 0.5625 * 0.6295),
+    (0.5625 * 0.6295, 0.6094 * 0.6295)
+]
+
+part_2 = cq.Workplane("XY")
+for center in hole_centers:
+    part_2 = part_2.moveTo(

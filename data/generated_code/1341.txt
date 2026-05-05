@@ -1,0 +1,47 @@
+import cadquery as cq
+
+# --- Part 1: Cube ---
+part_1_size = 0.75 * 0.75  # Sketch size scaled
+part_1_height = 0.0075
+
+part_1 = cq.Workplane("XY").rect(part_1_size, part_1_size).extrude(-part_1_height)
+
+# --- Part 2: Legs ---
+leg_width = 0.375 * 0.75  # Sketch width scaled
+leg_height = 0.75 * 0.75  # Sketch height scaled
+leg_depth = 0.0075
+
+# Create the first leg
+leg1 = cq.Workplane("XY").moveTo(0, 0).rect(leg_width, leg_height).extrude(leg_depth)
+leg1 = leg1.translate((0, 0, part_1_height))
+
+# Create the second leg
+leg2 = cq.Workplane("XY").moveTo(0, leg_height).rect(leg_width, leg_height).extrude(leg_depth)
+leg2 = leg2.translate((0, 0, part_1_height))
+
+# Combine the legs
+result = leg1.union(leg2)
+
+# Export the result to a STL file
+cq.exporters.export(result, './stlcq/0094/00948162.stl')
+
+# --- Assembly ---
+assembly = part_1.union(part_2)
+
+# --- Export to STL ---
+cq.exporters.export(assembly, './stlcq/0094/00948195.stl')
+
+# --- Export to STL ---
+cq.exporters.export(assembly, "./stlcq/0094/00948192.stl")
+
+# --- Export to STL ---
+cq.exporters.export(assembly, './stlcq/0094/00448190.stl')
+
+# --- Export to STL ---
+cq.exporters.export(assembly, './stlcq/0094/00941944.stl')
+
+# --- Export to STL ---
+cq.exporters.export(assembly, './stlcq/0094/00941895.stl')
+
+# --- Export to STL ---
+cq.exporters

@@ -1,0 +1,29 @@
+import cadquery as cq
+from math import radians
+
+# --- Part 1: Cube with Holes ---
+cube_size = 0.75 * 0.75  # Scaled cube size
+hole1_center = (0.1984 * 0.75 - cube_size/2, 0.0869 * 0.75 - cube_size/2)
+hole2_center = (0.5583 * 0.75 - cube_size/2, 0.5208 * 0.75 - cube_size/2)
+hole3_center = (0.4406 * 0.75 - cube_size/2, 0.5747 * 0.75 - cube_size/2)
+hole4_center = (0.3701 * 0.75 - cube_size/2, 0.5853 * 0.75 - cube_size/2)
+hole5_center = (0.5249 * 0.75 - cube_size/2, 0.5854 * 0.75 - cube_size/2)
+hole6_center = (0.6716 * 0.75 - cube_size/2, 0.0869 * 0.75 - cube_size/2)
+hole7_center = (0.6522 * 0.75 - cube_size/2, 0.0869 * 0.75 - cube_size/2)
+hole8_center = (0.6603 * 0.75 - cube_size/2, 0.0869 * 0.75 - cube_size/2)
+
+part_1 = (
+    cq.Workplane("XY")
+    .rect(cube_size, cube_size)
+    .extrude(cube_size)
+    .faces(">Z")
+    .workplane()
+    .pushPoints([hole1_center, hole2_center, hole3_center, hole4_center, hole5_center])
+    .hole(hole_radius * 2)
+)
+
+# --- Coordinate System Transformation for Part 1 ---
+part_1 = part_1.rotate((0, 0, 0), (0, 0, 1), -90)
+part_1 = part_1.translate((0, 0.5953, 0))
+
+# --- Part 2

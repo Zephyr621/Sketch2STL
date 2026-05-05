@@ -1,0 +1,47 @@
+import cadquery as cq
+from math import radians
+
+# --- Part 1: Torus Base ---
+part_1_outer_radius = 0.375 * 0.75  # Sketch radius scaled
+part_1_inner_radius = 0.3047 * 0.75
+part_1_height = 0.1193
+
+part_1 = (
+    cq.Workplane("XY")
+    .circle(part_1_outer_radius)
+    .extrude(part_1_height)
+    .cut(cq.Workplane("XY").circle(part_1_inner_radius).extrude(part_1_height))
+)
+
+# --- Part 2: Central Hole ---
+part_2_radius = 0.2545 * 0.545  # Sketch radius scaled
+part_2_depth = 0.0893
+
+part_2 = (
+    cq.Workplane("XY")
+    .workplane(offset=0.0938)
+    .moveTo(0.0726, 0.1071)
+    .circle(part_2_radius)
+    .extrude(-part_2_depth)
+)
+
+# --- Assembly ---
+assembly = part_1.cut(part_2.translate((0.2415, 0.2812, part_1_height)))
+
+# --- Export to STL ---
+cq.exporters.export(assembly, './stlcq/0032/00325805.stl')
+
+# --- Export to STL ---
+cq.exporters.export(assembly, './stlcq/0032/00329241.stl')
+
+# --- Export to STL ---
+cq.exporters.export(assembly, './stlcq/0032/00329241.stl')
+
+# --- Export to STL ---
+cq.exporters.export(assembly, './stlcq/0032/00328256.stl')
+
+# --- Export to STL ---
+cq.exporters.export(assembly, './stlcq/0032/00328256.stl')
+
+# --- Export to STL ---
+cq.exporters.export(assembly, './stlcq/0032/00320195.stl

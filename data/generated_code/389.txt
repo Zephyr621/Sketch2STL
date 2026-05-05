@@ -1,0 +1,47 @@
+import cadquery as cq
+import math
+from cadquery.vis import show
+
+# --- Part 1: Cylinder with Rectangular Section ---
+sketch_scale = 0.0286
+
+# Scaled Dimensions
+arc_radius = 0.0091 * sketch_scale
+line_length = 0.0189 * sketch_scale
+total_height = 0.0286 * sketch_scale
+extrude_depth = 0.75
+
+# Create the base cylinder
+cylinder = cq.Workplane("XY").circle(arc_radius).extrude(extrude_depth)
+
+# Create the rectangular section with rounded edges
+rect_section = (
+    cq.Workplane("XY")
+    .moveTo(0, arc_radius)
+    .threePointArc((arc_radius, 0), (0.0091 * sketch_scale, 0.0091 * sketch_scale))
+    .lineTo(line_length, 0)
+    .threePointArc((line_length + arc_radius, total_height), (0.0286 * sketch_scale, 0.0286 * sketch_scale))
+    .lineTo(line_length + arc_radius, total_height)
+    .threePointArc((line_length + arc_radius, line_width), (0.0091 * sketch_scale, 0.0286 * sketch_scale))
+    .lineTo(0, arc_radius)
+    .close()
+    .extrude(extrude_depth)
+)
+
+# Combine the sections
+part_1 = cylinder.union(rect_section)
+
+# Export the result to a STL file
+cq.exporters.export(part_1, './stlcq/0043/00437379.stl')
+
+# Export the result to a STL file
+cq.exporters.export(part_1, './stlcq/0043/00437379.stl')
+
+# Export the result to a STL file
+cq.exporters.export(part_1, './stlcq/0043/00437704.stl')
+
+# --- Assembly ---
+assembly = part_1
+
+# Export the assembly to a STL file
+cq.exporters.export(assembly, './stlc

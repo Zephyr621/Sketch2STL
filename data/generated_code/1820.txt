@@ -1,0 +1,36 @@
+import cadquery as cq
+import math
+from cadquery.vis import show
+
+# --- Part 1: Rectangular Box ---
+outer_width = 0.75 * 0.75  # Scaled width
+outer_length = 0.5795 * 0.75  # Scaled length
+inner_offset = 0.0398 * 0.75  # Scaled offset
+extrude_depth = 0.2727
+
+part_1 = (
+    cq.Workplane("XY")
+    .moveTo(0, 0)
+    .lineTo(outer_length - 2 * inner_offset, 0)
+    .threePointArc((outer_length + inner_offset, outer_width), (outer_length - 2 * inner_offset, outer_width))
+    .lineTo(2 * inner_offset, outer_width)
+    .threePointArc((outer_length - 2 * inner_offset, outer_width + inner_offset), (outer_length - 2 * inner_offset, outer_width))
+    .lineTo(0, outer_width)
+    .close()
+    .moveTo(outer_length - 2 * inner_offset, 0)
+    .lineTo(outer_length - 2 * inner_offset, outer_width)
+    .threePointArc((outer_length + inner_offset, outer_width + inner_offset), (outer_length - 2 * inner_offset, outer_width))
+    .lineTo(outer_length - 2 * inner_offset, outer_width)
+    .threePointArc((outer_length - 2 * inner_offset, outer_width - inner_offset), (outer_length - 2 * inner_offset, outer_width))
+    .lineTo(outer_length - 2 * inner_offset, 0)
+    .close()
+    .extrude(extrude_depth)
+)
+
+# --- Assembly (if needed, based on the single part) ---
+# In this case, there's only one part, so no assembly is needed.
+
+# --- Final Result ---
+result = part_1
+
+cq.exporters.export(result, './stlcq/0043/00437451.stl')

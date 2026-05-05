@@ -1,0 +1,49 @@
+import cadquery as cq
+import math
+from cadquery.vis import show
+
+# --- Part 1: Rectangular Bracket ---
+sketch_scale = 0.75
+length = 0.75 * sketch_scale
+width = 0.2774 * sketch_scale
+height = 0.0273
+corner_radius = 0.1055 * sketch_scale
+hole_radius = 0.0115 * sketch_scale
+hole_center_1 = (0.0937 * sketch_scale - length/2, 0.1369 * sketch_scale - width/2)
+hole_center_2 = (0.6587 * sketch_scale - length/2, 0.1369 * sketch_scale - width/2)
+
+part_1 = (
+    cq.Workplane("XY")
+    .moveTo(corner_radius, 0)
+    .lineTo(length/2, corner_radius)
+    .threePointArc((length/2 + corner_radius, corner_radius), (length/2, width))
+    .lineTo(corner_radius, width)
+    .threePointArc((0, width/2 - corner_radius), (corner_radius, 0))
+    .close()
+    .extrude(height)
+)
+
+# Create holes
+part_1 = (
+    part_1.faces(">Z")
+    .workplane()
+    .hole(2 * hole_radius, clean=True)
+)
+
+part_1 = (
+    part_1.faces(">Z")
+    .workplane()
+    .pushPoints([hole_center_1])
+    .hole(2 * hole_radius, clean=True)
+)
+
+part_1 = (
+    part_1.faces(">Z")
+    .workplane()
+    .pushPoints([hole_center_2])
+    .hole(2 * hole_radius, clean=True)
+)
+
+# Apply rotation
+part_1 = part_1.rotate((0, 0, 0), (0, 0, 1), -90)
+part_1 = part_1.translate((0, 0.0273, 0

@@ -1,0 +1,48 @@
+import cadquery as cq
+
+# --- Part 1: Square Plate ---
+plate_size = 0.75 * 0.75  # Scaled size
+plate_thickness = 0.0625
+
+part_1 = cq.Workplane("XY").rect(plate_size, plate_size).extrude(plate_thickness)
+
+# --- Part 2: Holes ---
+hole_radius = 0.0156 * 0.75  # Scaled radius
+hole_depth = 0.25
+
+hole_locations = [
+    (0.0234 + 0.0156) * 0.75,  # Scaled hole locations
+    (0.0234 + 0.4956) * 0.75,
+    (0.0234 + 0.7333) * 0.75,
+    (0.0234 + 0.4956) * 0.75,
+]
+
+# Create holes
+for x, y in hole_locations:
+    part_1 = part_1.faces(">Z").workplane().pushPoints([(x - plate_size/2, y - plate_size/2)]).hole(2 * hole_radius)
+
+# --- Assembly ---
+assembly = part_1
+
+cq.exporters.export(assembly, "./stlcq/0026/00269251.stl")
+
+# --- Export to STL ---
+cq.exporters.export(assembly, "./stlcq/0026/002690032.stl")
+
+# --- Export to STL ---
+cq.exporters.export(assembly, './stlcq/0026/002690032.stl')
+
+# --- Export to STL ---
+cq.exporters.export(assembly, "./stlcq/0026/002690032.stl")
+
+# --- Export to STL ---
+cq.exporters.export(assembly, "./stlcq/0026/002690032.stl")
+
+# --- Export to STL ---
+cq.exporters.export(assembly, "./stlcq/0026/002690032.stl")
+
+# --- Export to STL ---
+cq.exporters.export(assembly, "./stlcq/0026/002690032.stl")
+
+# --- Export to STL ---
+cq.exp

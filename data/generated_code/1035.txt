@@ -1,0 +1,42 @@
+import cadquery as cq
+import math
+from cadquery import exporters
+
+# --- Part 1: Rectangular Plate ---
+sketch_scale = 0.6739
+length = 0.5934 * sketch_scale
+width = 0.6739 * sketch_scale
+height = 0.0645
+
+# Scaled parameters
+arc_radius = 0.0341 * sketch_scale
+hole1_center = (0.0268 * sketch_scale, 0.1154 * sketch_scale)
+hole2_center = (0.2357 * sketch_scale, 0.0469 * sketch_scale)
+hole3_center = (0.4115 * sketch_scale, 0.1301 * sketch_scale)
+hole4_center = (0.5863 * sketch_scale, 0.0341 * sketch_scale)
+
+part_1 = (
+    cq.Workplane("XY")
+    .moveTo(0, arc_radius)
+    .threePointArc((arc_radius, 0), (0.0019 * sketch_scale, 0.0019 * sketch_scale))
+    .lineTo(length - arc_radius, 0)
+    .threePointArc((length, arc_radius), (0.5934 * sketch_scale, 0.0019 * sketch_scale))
+    .lineTo(length, width - arc_radius)
+    .threePointArc((length - arc_radius, width), (0.5934 * sketch_scale, 0.6739 * sketch_scale))
+    .lineTo(arc_radius, width)
+    .threePointArc((0, width - arc_radius), (0.0019 * sketch_scale, 0.6739 * sketch_scale))
+    .close()
+    .extrude(height)
+)
+
+# Create holes
+part_1 = (
+    part_1.faces(">Z")
+    .workplane()
+    .pushPoints([hole1_center])
+    .hole(2 * hole1_center[0], clean=True)
+)
+
+part_1 = (
+    part_1.faces(">Z")
+    .workplane()

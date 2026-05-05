@@ -1,0 +1,48 @@
+import cadquery as cq
+from math import *
+
+# --- Part 1: Cube ---
+part_1_size = 0.75 * 0.75  # Sketch size scaled
+part_1_height = 0.0099
+
+part_1 = cq.Workplane("XY").box(part_1_size, part_1_size, part_1_height)
+
+# --- Part 2: Cutout ---
+cutout_size = 0.3789 * 0.7498
+cutout_depth = 0.0039
+
+cutout = cq.Workplane("XY").box(cutout_size, cutout_size, cutout_depth)
+
+# --- Coordinate System Transformation for Part 2 ---
+cutout = cutout.translate((0.0309, 0.0309, part_1_height))
+
+# --- Assembly: Cut Part 2 from Part 1 ---
+result = part_1.cut(cutout)
+
+# --- Export to STL ---
+cq.exporters.export(result, './stlcq/0082/00820797.stl')
+
+# --- Export to STL ---
+cq.exporters.export(result, './stlcq/0082/00820798.stl')
+
+# --- Export to STL ---
+cq.exporters.export(result, './stlcq/0082/00820798.stl')
+
+# --- Export to STL ---
+cq.exporters.export(result, './stlcq/0082/00820798.stl')
+
+# --- Export to STL ---
+cq.exporters.export(result, './stlcq/0082/00820798.stl')
+
+# --- Export to STL ---
+cq.exporters.export(result, './stlcq/0082/00820849.stl')
+
+# --- Apply rotation and translation ---
+cutout = cutout.rotate((0, 0, 0), (0, 0, 1), -90)
+cutout = cutout.translate((0, 0.0099, 0))
+
+# --- Export to STL ---
+cq.exporters.export(cutout, './stlcq/0082/00820767.stl')
+
+# --- Export to STL ---
+cq.exporters.export(result, './stlcq/0082/008207678.stl

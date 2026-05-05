@@ -1,0 +1,46 @@
+import cadquery as cq
+from cadquery import exporters
+
+# --- Part 1: Cube with Circular Hole ---
+part_1_size = 0.75 * 0.75  # Scale the size
+part_1_hole_radius = 0.1312 * 0.75  # Scale the radius
+part_1_extrude_depth = 0.75
+
+part_1 = (
+    cq.Workplane("XY")
+    .rect(part_1_size, part_1_size)
+    .extrude(part_1_extrude_depth)
+    .faces(">Z")
+    .workplane()
+    .circle(part_1_hole_radius)
+    .cutThruAll()
+)
+
+# --- Coordinate System Transformation for Part 1 ---
+part_1 = part_1.rotate((0, 0, 0), (0, 0, 1), -90)
+part_1 = part_1.translate((0, 0.75, 0))
+
+# --- Part 2: Cut Feature ---
+cut_size = 0.1875 * 0.2212  # Scale the size
+cut_depth = 0.15
+
+cut_sketch = (
+    cq.Workplane("XY")
+    .moveTo(0, 0)
+    .lineTo(cut_size, 0)
+    .lineTo(cut_size, cut_size)
+    .close()
+)
+
+cut_hole = (
+    cq.Workplane("XY")
+    .moveTo(0.1875 * 0.2212, 0.2812 * 0.2212)
+    .lineTo(0.1875 * 0.2212, 0.2812 * 0.2212)
+    .lineTo(0.1875 * 0.2212, cut_size)
+    .close()
+)
+
+cut_hole2 = (
+    cq.Workplane("XY")
+    .moveTo(0.1875 * 0.2212, 0.2812 * 0.2212)
+    .lineTo(0.1875 * 0.2212, 0.2812 * 0.22

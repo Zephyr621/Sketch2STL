@@ -1,0 +1,41 @@
+import cadquery as cq
+import math
+from cadquery import exporters
+
+# --- Part 1: Base with Holes ---
+part_1_scale = 0.75
+part_1_length = 0.75 * part_1_scale
+part_1_width = 0.75 * part_1_scale
+part_1_height = 0.375
+
+hole_radius_outer = 0.1875 * part_1_scale
+hole_radius_inner = 0.0844 * part_1_scale
+
+part_1 = (
+    cq.Workplane("XY")
+    .moveTo(0.1875 * part_1_scale, 0)
+    .threePointArc((0.5625 * part_1_scale, 0.1875 * part_1_scale), (0.5625 * part_1_scale, 0.375 * part_1_scale))
+    .lineTo(0.5625 * part_1_scale, 0.75 * part_1_scale)
+    .lineTo(0.1875 * part_1_scale, 0.75 * part_1_scale)
+    .threePointArc((0, 0.1875 * part_1_scale), (0.1875 * part_1_scale, 0))
+    .close()
+    .extrude(-part_1_height)
+)
+
+hole_center_1 = (0.1875 * part_1_scale, 0.1875 * part_1_scale)
+hole_center_2 = (0.5625 * part_1_scale, 0.1875 * part_1_scale)
+
+part_1 = (
+    part_1.faces(">Z")
+    .workplane()
+    .pushPoints([hole_center_1, hole_center_2])
+    .hole(hole_radius_outer * 2)
+)
+
+# --- Part 2: Top Cylinder ---
+part_2_scale = 0.375
+part_2_radius = 0.1875 * part_2_scale
+part_2_height = 0.225
+
+part_2 = (
+    cq.Workplane("XY")

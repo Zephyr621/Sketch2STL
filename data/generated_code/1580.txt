@@ -1,0 +1,48 @@
+import cadquery as cq
+from math import radians
+
+# --- Part 1: Circular Plate ---
+part_1_outer_radius = 0.375 * 0.75  # Sketch radius scaled
+part_1_inner_radius = 0.1667 * 0.75
+part_1_height = 0.0281
+
+part_1 = (
+    cq.Workplane("XY")
+    .circle(part_1_outer_radius)
+    .extrude(part_1_height)
+    .cut(cq.Workplane("XY").circle(part_1_inner_radius).extrude(part_1_height))
+)
+
+# --- Part 2: Cylinder ---
+part_2_outer_radius = 0.1383 * 0.2766  # Sketch radius scaled
+part_2_inner_radius = 0.0937 * 0.2766
+part_2_height = 0.2812
+
+part_2 = (
+    cq.Workplane("XY")
+    .circle(part_2_outer_radius)
+    .extrude(part_2_height)
+    .cut(cq.Workplane("XY").circle(part_2_inner_radius).extrude(part_2_height))
+)
+
+# --- Part 3: Cylinder ---
+part_3_outer_radius = 0.375 * 0.75  # Sketch radius scaled
+part_3_inner_radius = 0.1383 * 0.75
+part_3_height = 0.0281
+
+part_3 = (
+    cq.Workplane("XY")
+    .circle(part_3_outer_radius)
+    .extrude(part_3_height)
+    .cut(cq.Workplane("XY").circle(part_3_inner_radius).extrude(part_3_height))
+)
+
+# --- Assembly ---
+assembly = part_1
+
+# Translate and combine part 2
+part_2 = part_2.translate((0.2368, 0.2368, 0))
+assembly = assembly.union(part_2)
+
+# Rotate and translate part 3
+part_3 = part_3.rotate

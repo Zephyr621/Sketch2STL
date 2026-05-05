@@ -1,0 +1,46 @@
+import cadquery as cq
+import math
+from cadquery import exporters
+
+# --- Part 1: Rectangular Plate ---
+part_1_length = 0.3937 * 0.75
+part_1_width = 0.75 * 0.75
+part_1_height = 0.0118
+
+part_1 = (
+    cq.Workplane("XY")
+    .rect(part_1_length, part_1_width)
+    .extrude(-part_1_height)
+)
+
+# --- Part 2: Cylinder ---
+part_2_radius = 0.0061 * 0.0059
+part_2_height = 0.0059
+
+part_2 = cq.Workplane("XY").circle(part_2_radius).extrude(part_2_height)
+
+# --- Coordinate System Transformation for Part 2 ---
+part_2 = part_2.translate((0.0227, 0.0227, 0.0118))
+
+# --- Part 3: Cylinder ---
+part_3_radius = 0.0061 * 0.3819
+part_3_height = 0.0059
+
+part_3 = cq.Workplane("XY").circle(part_3_radius).extrude(part_3_height)
+
+# --- Coordinate System Transformation for Part 3 ---
+part_3 = part_3.rotate((0, 0, 0), (0, 0, 1), 180)
+part_3 = part_3.translate((0.0433, 0.7425, 0.0118))
+
+# --- Part 4: Rod ---
+part_4_radius = 0.0059 * 0.3819
+part_4_height = 0.0059
+
+part_4 = cq.Workplane("XY").circle(part_4_radius).extrude(part_4_height)
+
+# --- Coordinate System Transformation for Part 4 ---
+part_4 = part_4.rotate((0, 0, 0), (0, 0, 1), -90)
+part_4 = part_4.translate((0.0353, 0.0059, 0.7179))
+
+# --- Part 5: Cylinder ---
+part_5_radius = 0.0059 * 0.3819

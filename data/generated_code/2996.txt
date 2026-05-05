@@ -1,0 +1,48 @@
+import cadquery as cq
+import math
+from cadquery import exporters
+
+# --- Part 1: Octagonal Plate ---
+part_1_scale = 0.75
+part_1 = (
+    cq.Workplane("XY")
+    .moveTo(0.0, 0.0)
+    .lineTo(0.4167 * part_1_scale, 0.0)
+    .lineTo(0.5294 * part_1_scale, 0.1089 * part_1_scale)
+    .lineTo(0.75 * part_1_scale, 0.6563 * part_1_scale)
+    .lineTo(0.6458 * part_1_scale, 0.75 * part_1_scale)
+    .lineTo(0.1089 * part_1_scale, 0.6458 * part_1_scale)
+    .lineTo(0.0, 0.6563 * part_1_scale)
+    .close()
+    .extrude(-0.0849)
+)
+
+# --- Part 2: Cylinder Cutout ---
+part_2_scale = 0.7075
+part_2 = (
+    cq.Workplane("XY")
+    .circle(0.3103 * part_2_scale)
+    .extrude(-0.0283)
+)
+
+# --- Part 3: Cylinder Cutout 2 ---
+part_3_scale = 0.6509
+part_3 = (
+    cq.Workplane("XY")
+    .circle(0.1696 * part_3_scale)
+    .extrude(-0.0708)
+)
+
+# --- Part 4: Cylinder Cutout 3 ---
+part_4_scale = 0.6509
+part_4 = (
+    cq.Workplane("XY")
+    .circle(0.0469 * part_4_scale)
+    .extrude(-0.0708)
+)
+
+# --- Assembly ---
+assembly = part_1
+
+# Translate and Join Part 2
+assembly = assembly.union(part_2.translate((0.0592, 0.0203

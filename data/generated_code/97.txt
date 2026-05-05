@@ -1,0 +1,47 @@
+import cadquery as cq
+
+# --- Part 1: Octagonal Prism ---
+sketch_scale = 0.75
+height = 0.3373
+
+points = [
+    (0.0 * sketch_scale, 0.4286 * sketch_scale),
+    (0.1876 * sketch_scale, 0.0 * sketch_scale),
+    (0.5664 * sketch_scale, 0.0 * sketch_scale),
+    (0.75 * sketch_scale, 0.4286 * sketch_scale),
+    (0.5664 * sketch_scale, 0.5357 * sketch_scale),
+    (0.1876 * sketch_scale, 0.7431 * sketch_scale)
+]
+
+part_1 = (
+    cq.Workplane("XY")
+    .polyline(points)
+    .close()
+    .extrude(height)
+)
+
+# --- Assembly (if needed, based on the single part) ---
+# In this case, there's only one part, so no assembly is needed.
+# If there were multiple parts, you would use .union() or .cut() to combine them.
+
+# --- Final Result ---
+result = part_1
+
+cq.exporters.export(result, './stlcq/0032/00328605.stl')
+
+# Export to STL
+cq.exporters.export(result, './stlcq/0032/00322978.stl')
+
+cq.exporters.export(result, './stlcq/0032/00322427.stl')
+
+cq.exporters.export(result, './stlcq/0032/00322593.stl')
+
+cq.exporters.export(result, './stlcq/0032/00322845.stl')
+
+cq.exporters.export(result, './stlcq/0032/00322835.stl')
+
+cq.exporters.export(result, './stlcq/0032/00329506.stl')
+
+cq.exporters.export(result, './stlcq/0032/00329506.stl')
+
+cq.exporters.export(result, './

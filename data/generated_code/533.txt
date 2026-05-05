@@ -1,0 +1,46 @@
+import cadquery as cq
+
+# --- Part 1: Cube with Hole ---
+cube_size = 0.75 * 0.75  # Scaled size
+hole_x1 = 0.1875 * 0.75  # Scaled x position
+hole_y1 = 0.5625 * 0.75  # Scaled y position
+hole_x2 = 0.5625 * 0.75  # Scaled x position
+hole_y2 = 0.5625 * 0.75  # Scaled y position
+extrude_depth = 0.25
+
+part_1 = (
+    cq.Workplane("XY")
+    .rect(cube_size, cube_size)
+    .extrude(extrude_depth)
+    .faces(">Z").workplane()
+    .moveTo(hole_x1 - cube_size/2, hole_y1 - cube_size/2)
+    .rect(hole_x2 - hole_x1, hole_y2 - hole_y1)
+    .cutThruAll()
+)
+
+# --- Assembly ---
+assembly = part_1
+
+# --- Export to STL ---
+cq.exporters.export(assembly, "./stlcq/0059/00598376.stl")
+
+# --- Export to STL ---
+cq.exporters.export(assembly, "./stlcq/0059/00596169.stl")
+
+# --- Export to STL ---
+cq.exporters.export(assembly, "./stlcq/0059/00596169.stl")
+
+# --- Export to STL ---
+cq.exporters.export(assembly, "./stlcq/0059/00599891.stl")
+
+# --- Export to STL ---
+cq.exporters.export(assembly, "./stlcq/0059/00599522.stl")
+
+# --- Export to STL ---
+cq.exporters.export(assembly, "./stlcq/0059/00599522.stl")
+
+# --- Export to STL ---
+cq.exporters.export(assembly, "./stlcq/0059/00599522.stl")
+
+# --- Export to STL ---
+cq.exporters.export(

@@ -1,0 +1,42 @@
+import cadquery as cq
+from math import tan, radians, sqrt
+
+# --- Part 1: Hexagonal Prism ---
+hex_width = 0.1473 * 0.1473  # Scaled width
+hex_height = 0.0595
+hex_points = [
+    (0.0 * 0.1473, 0.0662 * 0.1473),
+    (0.0402 * 0.1473, 0.0 * 0.1473),
+    (0.1023 * 0.1473, 0.0 * 0.1473),
+    (0.1453 * 0.1473, 0.0662 * 0.1473),
+    (0.1135 * 0.1473, 0.0662 * 0.1473),
+    (0.1209 * 0.1473, 0.1555 * 0.1473),
+    (0.0 * 0.1473, 0.1375 * 0.1473),
+    (0.0402 * 0.1473, 0.1377 * 0.1473)
+]
+
+part_1 = (
+    cq.Workplane("XY")
+    .polyline(hex_points)
+    .close()
+    .extrude(-hex_height)
+)
+
+# --- Coordinate System Transformation for Part 1 ---
+part_1 = part_1.rotate((0, 0, 0), (0, 0, 1), -90)
+part_1 = part_1.translate((0, 0, 0))
+
+# --- Part 2: Cylinder ---
+cylinder_radius = 0.0499 * 0.0937  # Scaled radius
+cylinder_height = 0.7031
+
+part_2 = (
+    cq.Workplane("XY")
+    .circle(cylinder_radius)
+    .extrude(cylinder_height)
+)
+
+# --- Coordinate System Transformation for Part 2 ---
+part_2 = part_2.rotate((0, 0, 0), (1, 0, 0), 90)
+part_2 = part_2.rotate((0, 0, 0), (0, 0, 1), -90)
+part_

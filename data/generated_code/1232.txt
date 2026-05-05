@@ -1,0 +1,45 @@
+import cadquery as cq
+from cadquery import exporters
+
+# --- Part 1: Cylinder ---
+part_1_radius = 0.3596 * 0.7248  # Sketch radius scaled
+part_1_height = 0.2679
+
+part_1 = cq.Workplane("XY").circle(part_1_radius).extrude(part_1_height)
+
+# --- Coordinate System Transformation for Part 1 ---
+part_1 = part_1.translate((0.0091, 0.0091, 0.2679))
+
+# --- Part 2: Cut (Ring) ---
+part_2_outer_radius = 0.3508 * 0.6014
+part_2_inner_radius = 0.2754 * 0.6014
+part_2_depth = 0.2679
+
+part_2 = (
+    cq.Workplane("XY")
+    .moveTo(0.0006, 0.0006)  # Translation Vector
+    .circle(part_2_outer_radius)
+    .moveTo(0.0409, 0.0006)  # Translation Vector
+    .circle(part_2_inner_radius)
+    .extrude(-part_2_depth)
+)
+
+# --- Coordinate System Transformation for Part 2 ---
+part_2 = part_2.translate((0.0563, 0.0563, 0.2679))
+
+# --- Part 3: Ring ---
+part_3_outer_radius = 0.3354 * 0.6771
+part_3_inner_radius = 0.1758 * 0.6771
+part_3_depth = 0.067
+
+part_3 = (
+    cq.Workplane("XY")
+    .moveTo(0.3098, 0.3098)  # Translation Vector
+    .circle(part_3_outer_radius)
+    .moveTo(0.6659, 0.3098)  # Translation Vector
+    .circle(part_3_inner_radius)
+    .extrude(-part_3_depth)
+)
+
+# --- Assembly ---
+assembly = part_1.cut(part_2).union(part_3)

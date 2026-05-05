@@ -1,0 +1,41 @@
+import cadquery as cq
+from math import radians
+
+# --- Part 1: T-shaped base ---
+part_1_scale = 0.6307
+part_1_depth = 0.0938
+
+part_1 = (
+    cq.Workplane("XY")
+    .moveTo(0, 0)
+    .lineTo(0.0639 * part_1_scale, 0)
+    .lineTo(0.0639 * part_1_scale, 0.3125 * part_1_scale)
+    .lineTo(0.1519 * part_1_scale, 0.3125 * part_1_scale)
+    .lineTo(0.1519 * part_1_scale, 0.4375 * part_1_scale)
+    .lineTo(0.0639 * part_1_scale, 0.4375 * part_1_scale)
+    .lineTo(0.0639 * part_1_scale, 0.6307 * part_1_scale)
+    .lineTo(0, 0.6307 * part_1_scale)
+    .close()
+    .extrude(part_1_depth)
+)
+
+# --- Coordinate System Transformation for Part 1 ---
+part_1 = part_1.translate((0.0639, 0.0542, 0))
+
+# --- Part 2: Rectangular Block ---
+part_2_scale = 0.1398
+part_2_depth = 0.0375
+
+part_2 = (
+    cq.Workplane("XY")
+    .rect(0.1398 * part_2_scale, 0.1398 * part_2_scale)
+    .extrude(part_2_depth)
+)
+
+# --- Coordinate System Transformation for Part 2 ---
+part_2 = part_2.rotate((0, 0, 0), (0, 0, 1), -90)
+part_2 = part_2.translate((0.0938, 0.0559, 0.0938))
+
+# --- Part 3: Rectangular Prism ---
+part_3_scale = 0.1398
+part_3_depth = 0.0375

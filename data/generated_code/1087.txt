@@ -1,0 +1,53 @@
+import cadquery as cq
+
+# --- Part 1: Base ---
+part_1_length = 0.75 * 0.75
+part_1_width = 0.4982 * 0.75
+part_1_height = 0.0173
+
+part_1 = (
+    cq.Workplane("XY")
+    .rect(part_1_length, part_1_width)
+    .extrude(part_1_height)
+)
+
+# --- Part 2: Circular Hole ---
+part_2_radius = 0.2083 * 0.4257
+part_2_depth = 0.2475
+
+part_2 = (
+    cq.Workplane("XY")
+    .circle(part_2_radius)
+    .extrude(-part_2_depth)
+)
+
+# --- Coordinate System Transformation for Part 2 ---
+part_2 = part_2.translate((0.1522, 0.0563, 0.0173))
+
+# --- Part 3: Ring (Cut) ---
+part_3_outer_radius = 0.2206 * 0.4455
+part_3_inner_radius = 0.2083 * 0.4455
+part_3_depth = 0.1485
+
+part_3 = (
+    cq.Workplane("XY")
+    .circle(part_3_outer_radius)
+    .circle(part_3_inner_radius)
+    .extrude(-part_3_depth)
+)
+
+# --- Assembly ---
+assembly = part_1.cut(part_2).cut(part_3)
+
+# --- Export to STL ---
+cq.exporters.export(assembly, "./stlcq/0079/00798277.stl")
+
+# --- Export to STL ---
+cq.exporters.export(assembly, "./stlcq/0079/00795490.stl")
+
+# --- Export to STL ---
+cq.exporters.export(assembly, "./stlcq/0079/00795939.stl")
+
+cq.exporters.export(assembly, "./stlcq/0079/00795939.stl")
+
+# --- Export to STL ---

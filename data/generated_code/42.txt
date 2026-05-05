@@ -1,0 +1,37 @@
+import cadquery as cq
+import math
+from cadquery.vis import show
+
+# --- Part 1: Cube with Circular Hole ---
+part_1_length = 0.3214 * 0.3214  # Scaled length
+part_1_width = 0.3214 * 0.3214  # Scaled width
+part_1_height = 0.1607
+hole_radius = 0.0429 * 0.3214  # Scaled radius
+hole_center_x = 0.2143 * 0.3214  # Scaled center x
+hole_center_y = 0.2143 * 0.3214  # Scaled center y
+
+part_1 = (
+    cq.Workplane("XY")
+    .rect(part_1_length, part_1_width)
+    .extrude(part_1_height)
+    .faces(">Z").workplane()
+    .circle(hole_radius)
+    .cutThruAll()
+)
+
+# --- Coordinate System Transformation for Part 1 ---
+part_1 = part_1.rotate((0, 0, 0), (1, 0, 0), -90)
+part_1 = part_1.rotate((0, 0, 0), (0, 0, 1), -90)
+part_1 = part_1.translate((0.1607, 0, 0))
+
+# --- Part 2: Rectangular Plate with Rounded Edges ---
+part_2_length = 0.4286 * 0.4286  # Scaled length
+part_2_width = 0.3214 * 0.4286  # Scaled width
+part_2_height = 0.0536
+
+part_2 = (
+    cq.Workplane("XY")
+    .moveTo(0.0, 0.0)
+    .lineTo(0.4286 * 0.4286, 0.0)
+    .threePointArc((0.4286 * 0.4286, 0.1071 * 0.4286), (0.4286 * 0.4286, 0.3214 * 0.4286))
+    .lineTo(0.0, 0.3214 * 0.4286)

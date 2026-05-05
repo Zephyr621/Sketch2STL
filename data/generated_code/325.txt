@@ -1,0 +1,38 @@
+import cadquery as cq
+from cadquery.vis import show
+
+# --- Part 1: Rectangular Box ---
+part_1_length = 0.75 * 0.75  # Scaled length
+part_1_width = 0.375 * 0.75   # Scaled width
+part_1_height = 0.3214
+
+part_1 = (
+    cq.Workplane("XY")
+    .rect(part_1_length, part_1_width)
+    .extrude(part_1_height)
+)
+
+# --- Coordinate System Transformation for Part 1 ---
+part_1 = part_1.rotate((0, 0, 0), (0, 0, 1), -90)
+part_1 = part_1.translate((0, 0.3214, 0))
+
+# --- Part 2: Cut Feature ---
+cut_depth = 0.1607
+sketch_scale_part2 = 0.3214
+
+cut_1 = (
+    cq.Workplane("XY")
+    .moveTo(0.0, 0.0)
+    .lineTo(0.0804 * sketch_scale_part2, 0.0)
+    .threePointArc((0.0405 * sketch_scale_part2, 0.0156 * sketch_scale_part2), (0.0804 * sketch_scale_part2, 0.3214 * sketch_scale_part2))
+    .lineTo(0.0, 0.3214 * sketch_scale_part2)
+    .lineTo(0.0, 0.0)
+    .close()
+    .extrude(-cut_depth)
+)
+
+cut_2 = (
+    cq.Workplane("XY")
+    .moveTo(0.0804 * sketch_scale_part2, 0.0)
+    .lineTo(0.1607 * sketch_scale_part2, 0.0)
+    .threePointArc((0.1607 * sketch_scale_part2, 0.0156 * sketch_scale_part2), (0.1607 * sketch_scale_part2, 0.3214 * sketch_scale_part2))

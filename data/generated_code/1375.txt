@@ -1,0 +1,32 @@
+import cadquery as cq
+from cadquery.vis import show
+
+# --- Parameters from JSON ---
+outer_radius = 0.3077 * 0.6174  # Scaled outer radius
+inner_radius = 0.2072 * 0.6174  # Scaled inner radius
+hole1_center = (0.1545 * 0.6174, 0.1471 * 0.6174)  # Scaled hole 1 center
+hole2_center = (0.5937 * 0.6174, 0.1243 * 0.6174)  # Scaled hole 2 center
+hole3_center = (0.5787 * 0.6174, 0.2422 * 0.6174)  # Scaled hole 3 center
+hole4_center = (0.4968 * 0.6174, 0.3986 * 0.6174)  # Scaled hole 4 center
+height = 0.75
+
+# --- Create Cylinder ---
+cylinder = cq.Workplane("XY").circle(outer_radius).extrude(height)
+
+# --- Cut Holes ---
+result = cylinder.cut(cq.Workplane("XY").moveTo(hole1_center[0], hole1_center[1]).circle(inner_radius).extrude(height))
+result = result.cut(cq.Workplane("XY").moveTo(hole2_center[0], hole2_center[1]).circle(inner_radius).extrude(height))
+result = result.cut(cq.Workplane("XY").moveTo(hole3_center[0], hole3_center[1]).circle(inner_radius).extrude(height))
+result = result.cut(cq.Workplane("XY").moveTo(hole4_center[0], hole4_center[1]).circle(inner_radius).extrude(height))
+
+# --- Apply Translation ---
+result = result.translate((0, 0, 0.75))
+
+# --- Export to STL ---
+cq.exporters.export(result, './stlcq/0035/00350947.stl')
+
+# --- Export to STL ---
+cq.exporters.export(result, './stlcq/0035/00350947.stl')
+
+# --- Export to STL ---
+cq.exporters.export(result,

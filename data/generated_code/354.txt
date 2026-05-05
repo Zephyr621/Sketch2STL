@@ -1,0 +1,48 @@
+import cadquery as cq
+from cadquery import exporters
+
+# --- Part 1: Pentagon Base ---
+part_1_points = [
+    (0.0, 0.5046),
+    (0.1561, 0.5046),
+    (0.6037, 0.0),
+    (0.6037, 0.5046),
+    (0.1561, 0.75),
+    (0.0, 0.75)
+]
+part_1_height = 0.2287
+sketch_scale_1 = 0.75
+part_1_height = 0.1199
+
+scaled_points = [(x * sketch_scale_1, y * sketch_scale_1) for x, y in part_1_points]
+
+part_1 = (
+    cq.Workplane("XY")
+    .polyline(scaled_points)
+    .close()
+    .extrude(part_1_height)
+)
+
+# --- Part 2: Rectangular Block ---
+part_2_length = 0.2613 * 0.4021
+part_2_width = 0.4021 * 0.4021
+part_2_height = 0.0457
+
+part_2 = (
+    cq.Workplane("XY")
+    .rect(part_2_length, part_2_width)
+    .extrude(part_2_height)
+)
+
+# --- Coordinate System Transformation for Part 2 ---
+part_2 = part_2.translate((0.1561, 0.0, 0.2287))
+
+# --- Assembly ---
+assembly = part_1.union(part_2)
+
+# --- Export to STL ---
+exporters.export(assembly, './stlcq/0031/00314258.stl')
+exporters.export(assembly, './stlcq/00210345.stl')
+exporters.export(assembly, './stlcq/0031/00313602.stl')
+exporters.export(assembly, './stlcq/0031/00313534.stl')
+exporters.export(assembly, './stlcq/0031/003135

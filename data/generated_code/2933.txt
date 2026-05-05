@@ -1,0 +1,42 @@
+import cadquery as cq
+from math import radians
+
+# --- Part 1: Door Stopper ---
+sketch_scale = 0.75
+extrude_depth = 0.1587
+
+part_1 = (
+    cq.Workplane("XY")
+    .moveTo(0.0, 0.1622 * sketch_scale)
+    .threePointArc((0.0147 * sketch_scale, 0.0147 * sketch_scale), (0.1622 * sketch_scale, 0.0))
+    .lineTo(0.3502 * sketch_scale, 0.0)
+    .threePointArc((0.3484 * sketch_scale, 0.0147 * sketch_scale), (0.3502 * sketch_scale, 0.1622 * sketch_scale))
+    .close()
+    .extrude(extrude_depth)
+)
+
+# Create the hole in part 1
+hole_radius = 0.0545 * sketch_scale
+part_1 = part_1.faces(">Z").workplane().center(0.1779 * sketch_scale - (0.375 * sketch_scale)/2, 0.1192 * sketch_scale - (0.375 * sketch_scale)/2).circle(hole_radius).cutThruAll()
+
+# --- Coordinate System Transformation for Part 1 ---
+part_1 = part_1.rotate((0, 0, 0), (0, 0, 1), -90)
+part_1 = part_1.translate((0, 0.1587, 0))
+
+# --- Assembly ---
+assembly = part_1
+
+# Export to STL
+cq.exporters.export(assembly, "./stlcq/0051/00519406.stl")
+
+# Export to STL
+cq.exporters.export(assembly, "./stlcq/00512955.stl")
+
+# Export to STL
+cq.exporters.export(assembly, "./stlcq/00512955.stl")
+
+# Export to STL
+cq.exporters.export(assembly, "./stlcq/00512955.stl")
+
+# Export to STL
+cq.exporters.export(assembly, "./stlcq/005129

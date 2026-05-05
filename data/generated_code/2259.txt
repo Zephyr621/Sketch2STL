@@ -1,0 +1,51 @@
+import cadquery as cq
+
+# --- Part 1: Cube with Hole ---
+outer_rect_size = 0.75 * 0.75  # Scaled size
+inner_rect_offset = 0.0714 * 0.75 # Scaled offset for inner rectangle
+height = 0.5357
+
+part_1 = (
+    cq.Workplane("XY")
+    .rect(outer_rect_size, outer_rect_size)
+    .extrude(height)
+)
+
+hole = (
+    cq.Workplane("XY")
+    .rect(outer_rect_size - 2 * inner_rect_offset, outer_rect_size - 2 * inner_rect_offset)
+    .extrude(height + 0.001)  # Extrude slightly more to ensure complete cut
+)
+
+part_1 = part_1.cut(hole)
+
+# --- Coordinate System Transformation for Part 1 ---
+part_1 = part_1.rotate((0, 0, 0), (0, 0, 1), -90)
+part_1 = part_1.translate((0, 0.5357, 0))
+
+# --- Assembly ---
+assembly = part_1
+
+# Export to STL
+cq.exporters.export(assembly, "./stlcq/0023/00232782.stl")
+
+# Export to STL
+cq.exporters.export(assembly, "./stlcq/002393.stl")
+
+# Export to STL
+cq.exporters.export(assembly, "./stlcq/002393.stl")
+
+cq.exporters.export(assembly, "./stlcq/002393.stl")
+
+# Export to STL
+cq.exporters.export(assembly, "./stlcq/002393.stl")
+
+# Export to STL
+cq.exporters.export(assembly, "./stlcq/002393.stl")
+
+cq.exporters.export(assembly, "./stlcq/002393.stl")
+
+# Export to STL
+cq.exporters.export(assembly, "./stlcq/002393.stl")
+
+cq.exporters.export(assembly, "./stlcq/0023

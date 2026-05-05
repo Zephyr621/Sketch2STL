@@ -1,0 +1,47 @@
+import cadquery as cq
+
+# --- Part 1: Torus ---
+outer_radius = 0.375 * 0.75  # Sketch radius scaled
+inner_radius = 0.1714 * 0.75
+height = 0.1875
+
+part_1 = (
+    cq.Workplane("XY")
+    .circle(outer_radius)
+    .circle(inner_radius)
+    .extrude(height)
+)
+
+# --- Assembly (if needed, based on the single part) ---
+# In this case, there's only one part, so no assembly is needed.
+# If there were multiple parts, you would use .union() or .cut() to combine them.
+
+# --- Final Result ---
+result = part_1
+
+cq.exporters.export(result, './stlcq/0055/00555102.stl')
+
+# Export to STL
+cq.exporters.export(result, './stlcq/0055/00577490.stl')
+
+cq.exporters.export(result, './stlcq/0055/00552533.stl')
+
+cq.exporters.export(result, './stlcq/0055/00558646.stl')
+
+cq.exporters.export(result, './stlcq/0055/00557994.stl')
+
+cq.exporters.export(result, './stlcq/0055/00556649.stl')
+
+cq.exporters.export(result, './stlcq/0055/00554828.stl')
+
+cq.exporters.export(result, './stlcq/0055/00554956.stl')
+
+cq.exporters.export(result, './stlcq/0055/00554711.stl')
+
+cq.exporters.export(result, './stlcq/0055/00553562.stl')
+
+cq.exporters.export(result, './stlcq/0055/00553497.stl')
+
+cq.exporters.export(result, './stlcq/0055/00552906.stl')
+
+cq.exporters.export(result, './stlcq/0055/00552842.

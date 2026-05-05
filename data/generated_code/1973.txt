@@ -1,0 +1,34 @@
+import cadquery as cq
+
+# --- Part 1 ---
+sketch_scale = 0.75
+extrude_depth = 0.0053 * 2  # Total extrusion depth (towards + opposite normal)
+
+part_1 = (
+    cq.Workplane("XY")
+    .moveTo(0.0, 0.0043 * sketch_scale)
+    .lineTo(0.0, 0.0437 * sketch_scale)
+    .threePointArc((0.0189 * sketch_scale, 0.0189 * sketch_scale), (0.0437 * sketch_scale, 0.0))
+    .lineTo(0.7031 * sketch_scale, 0.0)
+    .threePointArc((0.7428 * sketch_scale, 0.0189 * sketch_scale), (0.75 * sketch_scale, 0.0043 * sketch_scale))
+    .lineTo(0.75 * sketch_scale, 0.1772 * sketch_scale)
+    .threePointArc((0.7428 * sketch_scale, 0.1956 * sketch_scale), (0.7031 * sketch_scale, 0.1833 * sketch_scale))
+    .lineTo(0.0437 * sketch_scale, 0.1833 * sketch_scale)
+    .threePointArc((0.0189 * sketch_scale, 0.1956 * sketch_scale), (0.0, 0.1772 * sketch_scale))
+    .lineTo(0.0, 0.0043 * sketch_scale)
+    .close()
+    .extrude(extrude_depth)
+)
+
+# --- Coordinate System Transformation for Part 1 ---
+part_1 = part_1.translate((0, 0.0024, 0))
+
+# --- Assembly ---
+assembly = part_1
+
+cq.exporters.export(assembly, "./stlcq/0067/00675361.stl")
+
+# Export to STL
+cq.exporters.export(assembly, "./stlcq/00676/00676361.stl")
+
+cq.exporters.export(assembly, "./stlcq/00676/00676361.stl")

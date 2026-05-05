@@ -1,0 +1,42 @@
+import cadquery as cq
+import math
+from cadquery import exporters
+
+# --- Part 1: Cylinder with Hole ---
+part_1_outer_radius = 0.1562 * 0.375  # Sketch radius scaled
+part_1_inner_radius = 0.0759 * 0.375  # Sketch radius scaled
+part_1_height = 0.375
+
+part_1 = (
+    cq.Workplane("XY")
+    .circle(part_1_outer_radius)
+    .extrude(part_1_height)
+    .cut(cq.Workplane("XY").circle(part_1_inner_radius).extrude(part_1_height))
+)
+
+# --- Coordinate System Transformation for Part 1 ---
+part_1 = part_1.rotate((0, 0, 0), (0, 0, 1), -90)
+part_1 = part_1.translate((0, 0.75, 0))
+
+# --- Part 2: Cut Feature ---
+part_2_outer_radius = 0.1562 * 0.3675  # Sketch radius scaled
+part_2_inner_radius = 0.0759 * 0.3675  # Sketch radius scaled
+part_2_height = 0.3856
+
+part_2 = (
+    cq.Workplane("XY")
+    .circle(part_2_outer_radius)
+    .extrude(-part_2_height)
+    .cut(cq.Workplane("XY").circle(part_2_inner_radius).extrude(-part_2_height))
+)
+
+# --- Coordinate System Transformation for Part 2 ---
+part_2 = part_2.rotate((0, 0, 0), (0, 0, 1), -90)
+part_2 = part_2.translate((0.1562, 0, 0.1562))
+
+# --- Part 3: Join Feature ---
+part_3_outer_radius = 0.0469 * 0.0937  # Sketch radius scaled
+part_3_inner_radius = 0.0312 * 0.0937  # Sketch radius scaled
+part_3_height = 0.3856
+
+part_3 = (

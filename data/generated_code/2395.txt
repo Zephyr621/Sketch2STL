@@ -1,0 +1,38 @@
+import cadquery as cq
+
+# --- Part 1: Rectangular Box ---
+part_1_length = 0.4375 * 0.75  # Scaled length
+part_1_width = 0.75 * 0.75   # Scaled width
+part_1_height = 0.125
+
+part_1 = cq.Workplane("XY").rect(part_1_length, part_1_width).extrude(part_1_height)
+
+# --- Part 2: Cylindrical Protrusions ---
+cylinder_radius = 0.0297 * 0.5114  # Scaled radius
+cylinder_height = 0.125
+
+# Cylinder positions (scaled and translated)
+cylinder_positions = [
+    (0.0469 + 0.0297) * 0.5114 - part_1_length / 2,  # Left
+    (0.0469 + 0.2368) * 0.5114 - part_1_length / 2,  # Right
+    (0.0469 + 0.3438) * 0.5114 - part_1_length / 2,  # Bottom
+    (0.0469 + 0.3438) * 0.5114 - part_1_length / 2,  # Top
+    (0.0469 + 0.6261) * 0.5114 - part_1_length / 2,  # Bottom
+]
+
+# Create cylinders and translate them
+cylinders = []
+for x, y in cylinder_positions:
+    cylinder = cq.Workplane("XY").circle(cylinder_radius).extrude(cylinder_height)
+    cylinder = cylinder.translate((x, y, 0))
+    cylinders.append(cylinder)
+
+# Combine cylinders
+part_2 = cq.Compound.makeCompound([c.val() for c in cylinders])
+
+# --- Part 3: Cut Feature 1 ---
+cut_depth = 0.0625
+
+cut_1 = cq.Workplane("XY").moveTo(0,0).threePointArc((0.0469 + 0.0899), (0.0703 + 0.0089)).close().extrude(-cut_depth)
+
+cut_1 = cut_1

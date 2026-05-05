@@ -1,0 +1,50 @@
+import cadquery as cq
+
+# --- Parameters from JSON ---
+length = 0.3 * 0.75  # Scaled length
+width = 0.75 * 0.75   # Scaled width
+height = 0.0125
+corner_radius = 0.02  # No corner radius specified, setting to 0
+
+# --- Create the base rectangular plate ---
+plate = cq.Workplane("XY").rect(length, width).extrude(height)
+
+# --- Fillet the corners ---
+fillet_radius = min(length, width) / 10  # Adjust as needed; avoid large values
+plate = plate.edges("|Z").fillet(fillet_radius)
+
+# --- Export to STL ---
+cq.exporters.export(plate, './stlcq/0027/00277089.stl')
+
+# --- Export to STL ---
+cq.exporters.export(plate, './stlcq/0027/00264620.stl')
+
+# --- Export to STL ---
+cq.exporters.export(plate, './stlcq/0027/00264620.stl')
+
+# --- Export to STL ---
+cq.exporters.export(plate, './stlcq/0027611.stl')
+
+# --- Export to STL ---
+cq.exporters.export(plate, './stlcq/0027611.stl')
+
+# --- Export to STL ---
+cq.exporters.export(plate, "./stlcq/0027611.stl")
+
+# --- Export to STL ---
+cq.exporters.export(plate, './stlcq/0027611.stl')
+
+# --- Export to STL ---
+cq.exporters.export(plate, './stlcq/0027611.stl')
+
+# --- Export to STL ---
+cq.exporters.export(plate, './stlcq/0027611.stl')
+
+# --- Export to STL ---
+cq.exporters.export(plate, './stlcq/0027611.stl')
+
+# --- Export to STL ---
+cq.exporters.export(plate, './stlcq/0027611.stl')
+
+# --- Export to STL ---
+cq.exporters.export(plate, './stlc

@@ -1,0 +1,44 @@
+import cadquery as cq
+from cadquery import exporters
+
+# --- Part 1: Cylinder ---
+part_1_radius = 0.2259 * 0.4546  # Sketch radius scaled
+part_1_height = 0.1254
+
+part_1 = cq.Workplane("XY").circle(part_1_radius).extrude(part_1_height)
+
+# --- Coordinate System Transformation for Part 1 ---
+part_1 = part_1.rotate((0, 0, 0), (0, 0, 1), -90)
+part_1 = part_1.translate((0.0313, 0.2509, 0.0163))
+
+# --- Part 2: Rectangular Prism ---
+part_2_width = 0.75 * 0.75  # Sketch width scaled
+part_2_length = 0.5545 * 0.75  # Sketch length scaled
+part_2_height = 0.2509
+
+part_2 = cq.Workplane("XY").rect(part_2_width, part_2_length).extrude(part_2_height)
+
+# --- Coordinate System Transformation for Part 2 ---
+part_2 = part_2.rotate((0, 0, 0), (0, 0, 1), -90)
+part_2 = part_2.translate((0, 0.2509, 0))
+
+# --- Assembly ---
+assembly = part_1.union(part_2)
+
+# --- Export to STL ---
+exporters.export(assembly, './stlcq/0061/00614594.stl')
+exporters.export(assembly, './stlcq/0061/00614718.stl')
+
+# --- Export to STL ---
+exporters.export(assembly, './stlcq/0061/006147185.stl')
+
+# --- Export to STL ---
+exporters.export(assembly, './stlcq/0061/006147185.stl')
+
+# --- Export to STL ---
+exporters.export(assembly, './stlcq/0061/006147185.stl')
+
+# --- Export to STL ---
+exporters.export(assembly, './stlcq/0061/006147185.stl')
+
+# --- Export to ST

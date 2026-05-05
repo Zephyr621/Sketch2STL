@@ -1,0 +1,49 @@
+import cadquery as cq
+
+# --- Part 1: Rectangular Block with Notch ---
+notch_width = 0.1125 * 0.75  # Scaled width
+notch_height = 0.225 * 0.75  # Scaled height
+notch_depth = 0.075 * 0.75  # Scaled depth
+
+part_1 = (
+    cq.Workplane("XY")
+    .moveTo(0, 0)
+    .lineTo(notch_width, 0)
+    .lineTo(notch_width, notch_height)
+    .lineTo(0, notch_height)
+    .close()
+    .extrude(notch_depth)
+)
+
+# --- Assembly (if needed, based on the single part) ---
+# In this case, there's only one part, so no assembly is needed.
+# If there were multiple parts, you would use .union() or .cut() to combine them.
+
+# --- Final Result ---
+result = part_1
+
+cq.exporters.export(result, './stlcq/0068/00688361.stl')
+
+# Export to STL
+cq.exporters.export(result, './stlcq/0068/00688535.stl')
+
+# Export to STL
+cq.exporters.export(result, './stlcq/0068/00688535.stl')
+
+# Export to STL
+cq.exporters.export(result, './stlcq/0068/00688639.stl')
+
+# Export to STL
+cq.exporters.export(result, './stlcq/0068/00688639.stl')
+
+# Export to STL
+cq.exporters.export(result, './stlcq/0068/00688639.stl')
+
+# Export to STL
+cq.exporters.export(result, './stlcq/0068/00688639.stl')
+
+# Export to STL
+cq.exporters.export(result, './stlcq/0068/00688639.stl')
+
+# Export to STL
+cq.exporters.export(result, './stlcq/0068/00688639.stl

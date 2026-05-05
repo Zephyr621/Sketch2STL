@@ -1,0 +1,52 @@
+import cadquery as cq
+
+# --- Part 1: Rectangular Plate ---
+length = 0.75 * 0.75  # Scaled length
+width = 0.6505 * 0.75  # Scaled width
+height = 0.0141
+
+part_1 = (
+    cq.Workplane("XY")
+    .rect(length, width)
+    .extrude(height)
+)
+
+# --- Coordinate System Transformation for Part 1 ---
+part_1 = part_1.translate((0, 0, 0.0047))
+
+# --- Assembly ---
+assembly = part_1
+
+# --- Export to STL ---
+cq.exporters.export(assembly, "./stlcq/0079/00799449.stl")
+
+# --- Fillet Edges ---
+edge_radius = min(length, width) / 10  # Adjust as needed
+assembly = assembly.edges("|Z").fillet(edge_radius)
+
+# --- Export to STL ---
+cq.exporters.export(assembly, "./stlcq/0079/00799394.stl")
+
+# --- Export to STL ---
+cq.exporters.export(assembly, "./stlcq/0079/00799548.stl")
+
+# --- Export to STL ---
+cq.exporters.export(assembly, "./stlcq/0079/00799548.stl")
+
+# --- Export to STL ---
+cq.exporters.export(assembly, "./stlcq/0079/00799548.stl")
+
+# --- Export to STL ---
+cq.exporters.export(assembly, "./stlcq/0079/00799548.stl")
+
+# --- Export to STL ---
+cq.exporters.export(assembly, "./stlcq/0079/00799548.stl")
+
+# --- Export to STL ---
+cq.exporters.export(assembly, "./stlcq/0079/00799548.stl")
+
+# --- Export to STL ---
+cq.exporters.export(assembly, "./stlcq/0079/00799548.stl")
+
+# --- Export to STL ---
+cq.exporters.export(assembly, "./stlcq/0079/00799548.stl

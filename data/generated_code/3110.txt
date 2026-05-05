@@ -1,0 +1,54 @@
+This process results in a solid body that can be used as a component in larger assemblies.
+import cadquery as cq
+
+# --- Part 1: Rectangular Prism ---
+length = 0.75 * 0.75  # Scaled length
+width = 0.3804 * 0.75  # Scaled width
+height = 0.0002  # Height
+
+part_1 = cq.Workplane("XY").rect(length, width).extrude(height)
+
+# --- Assembly (if needed, based on the single part) ---
+# In this case, there's only one part, so no assembly is needed.
+
+# --- Final Result ---
+result = part_1
+
+# Export to STL
+cq.exporters.export(result, './stlcq/0074/00746170.stl')
+
+# Export to STL
+cq.exporters.export(result, './stlcq/0074/00746171.stl')
+
+# Export to STL
+cq.exporters.export(result, './stlcq/0074/00745711.stl')
+
+# Export to STL
+cq.exporters.export(result, './stlcq/0074/00745711.stl')
+
+# Export to STL
+cq.exporters.export(result, './stlcq/0074/00745711.stl')
+
+# Export to STL
+cq.exporters.export(result, './stlcq/0074/00745711.stl')
+
+# Export to STL
+cq.exporters.export(result, './stlcq/0074/00745711.stl')
+
+# --- Final Result ---
+result = part_1
+
+# Export to STL
+cq.exporters.export(result, './stlcq/0074/00745710.stl')
+
+# Export to STL
+cq.exporters.export(result, './stlcq/0074/00745710.stl')
+
+# Export to STL
+cq.exporters.export(result, './stlcq/0074/00745710.stl')
+
+# Export to STL
+cq.exporters.export(result, './stlcq/0074/00745710.stl')
+
+# Export to STL
+cq.exp

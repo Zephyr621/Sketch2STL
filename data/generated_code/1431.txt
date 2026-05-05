@@ -1,0 +1,38 @@
+import cadquery as cq
+
+# --- Part 1: Door with Cutout ---
+door_width = 0.75 * 0.75  # Scaled width
+door_height = 0.675 * 0.75  # Scaled height
+door_depth = 0.0264  # Depth
+
+# Create the outer square
+outer_square = cq.Workplane("XY").rect(door_width, door_height)
+
+# Create the inner square (cutout)
+inner_square = cq.Workplane("XY").rect((0.5107 - 0.0023) * 0.75, (0.7031 - 0.0023) * 0.75).translate((0.0023, 0.0023, 0))
+
+# Extrude the outer square and cut the inner square to create the door
+door = outer_square.extrude(door_depth).cut(inner_square.extrude(door_depth))
+
+# Apply rotation and translation
+door = door.rotate((0, 0, 0), (0, 0, 1), -90)
+door = door.translate((0, 0.0264, 0))
+
+# Export the result to a STL file
+cq.exporters.export(door, './stlcq/0083/00834592.stl')
+
+# --- Coordinate System Transformation for Part 1 ---
+door = door.rotate((0, 0, 0), (0, 0, 1), -90)
+door = door.translate((0, 0.0264, 0))
+
+# --- Assembly ---
+assembly = door
+
+# Export the assembly to a STL file
+cq.exporters.export(assembly, "./stlcq/0083/00835170.stl")
+
+# Export the result to a STL file
+cq.exporters.export(assembly, "./stlcq/0083/00835922.stl")
+
+# Export the result to a T-shaped CAD model
+cq.exporters.export(cq.exporters.export(cq.exporters.export(cq.exporters.export(cq.exporters.export(cq.exporters.export(cq.exporters.export(cq.exporters.export(cq.exporters.export(cq.exporters.export(

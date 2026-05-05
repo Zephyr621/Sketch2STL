@@ -1,0 +1,44 @@
+import cadquery as cq
+
+# --- Part 1: Rectangular Block ---
+part_1_length = 0.6121 * 0.6121  # Scaled length
+part_1_width = 0.3074 * 0.6121  # Scaled width
+part_1_height = 0.319
+
+part_1 = (
+    cq.Workplane("XY")
+    .rect(part_1_length, part_1_width)
+    .extrude(-part_1_height)  # Extrude in the opposite direction
+)
+
+# --- Coordinate System Transformation for Part 1 ---
+part_1 = part_1.translate((0.0234, 0.0, 0.0))
+
+# --- Part 2: Cutout ---
+part_2_length = 0.3017 * 0.3017  # Scaled length
+part_2_width = 0.1638 * 0.3017  # Scaled width
+part_2_height = 0.0431
+
+part_2 = (
+    cq.Workplane("XY")
+    .rect(part_2_length, part_2_width)
+    .extrude(-part_2_height)  # Extrude in the opposite direction
+)
+
+# --- Coordinate System Transformation for Part 2 ---
+part_2 = part_2.rotate((0, 0, 0), (1, 0, 0), -90)
+part_2 = part_2.rotate((0, 0, 0), (0, 0, 1), -90)
+part_2 = part_2.translate((0.0431, 0.2763, 0.0))
+
+# --- Part 3: Protrusion ---
+part_3_length = 0.1509 * 0.1509  # Scaled length
+part_3_width = 0.2946 * 0.1509  # Scaled width
+part_3_height = 0.2586
+
+part_3 = (
+    cq.Workplane("XY")
+    .rect(part_3_length, part_3_width)
+    .extrude(-part_3_height)  # Extrude in the opposite direction
+)
+
+# --- Coordinate

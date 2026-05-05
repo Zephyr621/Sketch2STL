@@ -1,0 +1,48 @@
+import cadquery as cq
+
+# --- Part 1: Cylinder ---
+part_1_radius = 0.375 * 0.75  # Sketch radius scaled
+part_1_height = 0.15
+
+part_1 = cq.Workplane("XY").circle(part_1_radius).extrude(part_1_height)
+
+# --- Part 2: Smaller Cylinder on Top ---
+part_2_radius = 0.1875 * 0.375  # Sketch radius scaled
+part_2_height = 0.15
+
+part_2 = (
+    cq.Workplane("XY")
+    .moveTo(0.1875, 0.1875)  # Move to the center of the circle
+    .circle(part_2_radius)
+    .extrude(-part_2_height)  # Extrude downwards for the cut
+)
+
+# --- Assembly: Join Part 2 onto Part 1 ---
+result = part_1.union(part_2)
+
+# --- Export to STL ---
+cq.exporters.export(result, "./stlcq/0022/00227498.stl")
+
+# --- Export to STL ---
+cq.exporters.export(result, "./stlcq/0022/00227967.stl")
+
+# --- Export to STL ---
+cq.exporters.export(result, "./stlcq/0022/00227967.stl")
+
+# --- Export to STL ---
+cq.exporters.export(result, "./stlcq/0022/00227833.stl")
+
+# --- Export to STL ---
+cq.exporters.export(result, "./stlcq/0022/00227833.stl")
+
+# --- Export to STL ---
+cq.exporters.export(result, './stlcq/0022/00227833.stl')
+
+# --- Export to STL ---
+cq.exporters.export(result, "./stlcq/0022/00227833.stl")
+
+# --- Export to STL ---
+cq.exporters.export(result, "./stlcq/0022/00227833.stl")
+
+# --- Export to STL ---
+cq.exporters.export(result

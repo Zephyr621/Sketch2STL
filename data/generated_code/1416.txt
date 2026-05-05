@@ -1,0 +1,46 @@
+import cadquery as cq
+import math
+from cadquery.vis import show
+
+# --- Part 1: Cube with Rounded Edges ---
+sketch_scale = 0.75
+extrude_depth = 0.0222 * 2  # Total extrusion depth (towards + opposite normal)
+
+# Scaled dimensions
+arc_radius = 0.0094 * sketch_scale
+length = 0.7258 * sketch_scale
+width = 0.3984 * sketch_scale
+height = extrude_depth
+
+part_1 = (
+    cq.Workplane("XY")
+    .moveTo(0, arc_radius)
+    .threePointArc((arc_radius, 0), (0.0105 * sketch_scale, 0.0105 * sketch_scale))
+    .lineTo(length - arc_radius, 0)
+    .threePointArc((length, arc_radius), (length, 0.0105 * sketch_scale))
+    .lineTo(length, width - arc_radius)
+    .threePointArc((length - arc_radius, width), (length - arc_radius, width - 0.0105 * sketch_scale))
+    .lineTo(arc_radius, width)
+    .threePointArc((0, width - arc_radius), (0, width - 0.0105 * sketch_scale))
+    .close()
+    .extrude(height)
+)
+
+# --- Coordinate System Transformation for Part 1 ---
+part_1 = part_1.rotate((0, 0, 0), (0, 0, 1), -90)
+part_1 = part_1.translate((0, 0.0222, 0))
+
+# --- Assembly ---
+assembly = part_1
+
+# Export to STL
+cq.exporters.export(assembly, "./stlcq/0027/00270789.stl")
+
+# Export to STL
+cq.exporters.export(assembly, "./stlcq/0027/00279381.stl")
+
+# Export to STL
+cq.exporters.export(assembly, "./stlcq/0027825.stl")
+
+# Export to STL
+cq.exporters.export(assembly, "./

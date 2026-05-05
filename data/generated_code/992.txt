@@ -1,0 +1,44 @@
+import cadquery as cq
+from cadquery import exporters
+
+# --- Part 1: Cylinder with Hollow Center ---
+part_1_outer_radius = 0.375 * 0.75  # Sketch radius scaled
+part_1_inner_radius = 0.3588 * 0.75  # Inner radius scaled
+part_1_height = 0.3409
+
+part_1 = (
+    cq.Workplane("XY")
+    .circle(part_1_outer_radius)
+    .circle(part_1_inner_radius)
+    .extrude(-part_1_height)  # Extrude in the opposite direction for cutting
+)
+
+# --- Coordinate System Transformation for Part 1 ---
+part_1 = part_1.translate((0, 0, 0.1705))
+
+# --- Part 2: Torus (Cut Feature) ---
+part_2_outer_radius = 0.375 * 0.75  # Sketch radius scaled
+part_2_inner_radius = 0.3588 * 0.75  # Inner radius scaled
+part_2_height = 0.1705
+
+part_2 = (
+    cq.Workplane("XY")
+    .circle(part_2_outer_radius)
+    .circle(part_2_inner_radius)
+    .extrude(-part_2_height)  # Extrude in the opposite direction for cutting
+)
+
+# --- Coordinate System Transformation for Part 2 ---
+part_2 = part_2.rotate((0, 0, 0), (0, 0, 1), 180)
+part_2 = part_2.translate((0, 0.75, 0))
+
+# --- Part 3: Ring (Cut Feature) ---
+part_3_outer_radius = 0.3791 * 0.75  # Sketch radius scaled
+part_3_inner_radius = 0.3588 * 0.75  # Inner radius scaled
+part_3_height = 0.0341
+
+part_3 = (
+    cq.Workplane("XY")
+    .circle(part_3_outer_radius)
+    .circle(part_3_inner_radius)
+    .extr

@@ -1,0 +1,32 @@
+import cadquery as cq
+import math
+from cadquery import exporters
+
+# --- Part 1: Support Bracket ---
+sketch_scale = 0.75
+extrude_depth = 0.1455 * sketch_scale
+
+# Scaled coordinates for the bracket's profile
+p1 = (0.0, 0.1751 * sketch_scale)
+p2 = (0.0495 * sketch_scale, 0.0)
+p3 = (0.1985 * sketch_scale, 0.1751 * sketch_scale)
+p4 = (0.3915 * sketch_scale, 0.2344 * sketch_scale)
+p5 = (0.3915 * sketch_scale, 0.5988 * sketch_scale)
+p6 = (0.3915 * sketch_scale, 0.75 * sketch_scale)
+p7 = (0.2426 * sketch_scale, 0.75 * sketch_scale)
+p8 = (0.1292 * sketch_scale, 0.5311 * sketch_scale)
+p9 = (0.0835 * sketch_scale, 0.5601 * sketch_scale)
+p10 = (0.1113 * sketch_scale, 0.6782 * sketch_scale)
+p11 = (0.1113 * sketch_scale, 0.6818 * sketch_scale)
+p12 = (0.2583 * sketch_scale, 0.6818 * sketch_scale)
+p13 = (0.2941 * sketch_scale, 0.5601 * sketch_scale)
+p14 = (0.2862 * sketch_scale, 0.5427 * sketch_scale)
+p15 = (0.0706 * sketch_scale, 0.75 * sketch_scale)
+p16 = (0.0706 * sketch_scale, 0.6159 * sketch_scale)
+p17 = (0.0284 * sketch_scale, 0.6159 * sketch_scale)
+p18 = (0.0031 * sketch_scale, 0.6633 * sketch_scale)
+
+# Create the solid by extruding the outer shape
+part_1 = (
+    cq.Workplane("XY")
+    .moveTo(p1[0], p1[1])

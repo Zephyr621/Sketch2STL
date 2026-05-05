@@ -1,0 +1,42 @@
+Together, these parts form a complex structure with precise dimensions and features.
+import cadquery as cq
+from math import radians
+
+# --- Part 1: Rectangular Plate ---
+part_1_length = 0.75 * 0.75  # Scaled length
+part_1_width = 0.375 * 0.75  # Scaled width
+part_1_height = 0.0188
+
+part_1 = cq.Workplane("XY").rect(part_1_length, part_1_width).extrude(part_1_height)
+
+# --- Coordinate System Transformation for Part 1 ---
+part_1 = part_1.rotate((0, 0, 0), (0, 0, 1), -90)
+part_1 = part_1.translate((0, 0.1875, 0))
+
+# --- Part 2: Cylindrical Protrusions ---
+part_2_radius = 0.0625 * 0.5  # Scaled radius
+part_2_depth = 0.4687
+
+# Define the centers of the circles in the sketch
+circles = [
+    (0.0312, 0.0312),
+    (0.0312, 0.2438),
+    (0.0312, 0.3188),
+    (0.4709, 0.0312),
+    (0.4709, 0.2438),
+    (0.4969, 0.0312),
+    (0.4969, 0.2438),
+]
+
+# Create the cylinders using lines and arcs
+part_2 = cq.Workplane("XY")
+for circle in circles:
+    part_2 = part_2.moveTo(circle[0], circle[1]).circle(part_2_radius)
+part_2 = part_2.extrude(-part_2_depth)
+
+# --- Coordinate System Transformation for Part 2 ---
+part_2 = part_2.rotate((0, 0, 0), (0, 0, 1), -90)
+part_2 = part_2.translate((0.1312, 0, 0.2344))
+
+# --- Part 3: Cylindrical Holes ---
+hole_radius = 0.0312 * 0.475

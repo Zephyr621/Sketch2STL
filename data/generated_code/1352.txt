@@ -1,0 +1,42 @@
+import cadquery as cq
+import math
+from cadquery import exporters
+
+# --- Part 1: U-shaped Base ---
+part_1 = (
+    cq.Workplane("XY")
+    .moveTo(0.0, 0.0)
+    .lineTo(0.2111 * 0.2111, 0.0)
+    .lineTo(0.2111 * 0.2111, 0.0536 * 0.2111)
+    .lineTo(0.1765 * 0.2111, 0.0536 * 0.2111)
+    .threePointArc((0.1186 * 0.2111, 0.1056 * 0.2111), (0.0, 0.0536 * 0.2111))
+    .lineTo(0.0, 0.0)
+    .close()
+    .extrude(0.375/2)
+)
+
+# --- Coordinate System Transformation for Part 1 ---
+part_1 = part_1.translate((0.1261, 0.0, 0.0))
+
+# --- Part 2: Cube ---
+cube_scale = 0.3452
+cube = cq.Workplane("XY").box(0.3452 * cube_scale, 0.2732 * cube_scale, 0.2483 * cube_scale)
+
+# --- Part 3: Cylinder Cutout ---
+cylinder_radius = 0.0238 * 0.0439
+cylinder_depth = 0.2732
+
+cylinder = cq.Workplane("XY").circle(cylinder_radius).extrude(-cylinder_depth)
+
+# --- Coordinate System Transformation for Part 3 ---
+cylinder = cylinder.rotate((0, 0, 0), (1, 0, 0), 90)
+cylinder = cylinder.rotate((0, 0, 0), (0, 0, 1), -90)
+cylinder = cylinder.translate((0.1261, 0.1882, 0.1882))
+
+# --- Part 4: Cylinder Cutout ---
+cylinder_radius = 0.0238 * 0.0422
+cylinder_depth = 0.2732
+
+cylinder = cq.Workplane("XY").circle(cylinder_radius).extrude(-cylinder_depth)
+
+# --- Coordinate System

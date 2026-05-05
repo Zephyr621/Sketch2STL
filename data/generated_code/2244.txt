@@ -1,0 +1,41 @@
+import cadquery as cq
+from math import radians
+
+# --- Part 1: Cylinder ---
+part_1_radius = 0.0659 * 0.1293  # Sketch radius scaled
+part_1_height = 1.1842
+
+part_1 = cq.Workplane("XY").circle(part_1_radius).extrude(-part_1_height)
+
+# --- Coordinate System Transformation for Part 1 ---
+part_1 = part_1.translate((0.0061, 0.0061, 0.375))
+
+# --- Part 2: Cut Feature ---
+sketch_scale_part2 = 1.4833
+cut_depth = 0.1315
+
+# Define cut points (scaled)
+cut_points = [
+    (0.0471 * sketch_scale_part2, 0.0165 * sketch_scale_part2),
+    (0.0659 * sketch_scale_part2, 0.1172 * sketch_scale_part2),
+    (0.6136 * sketch_scale_part2, 0.1172 * sketch_scale_part2),
+    (0.6136 * sketch_scale_part2, 0.4441 * sketch_scale_part2),
+]
+
+# Create cut feature by creating points and extruding them
+cut_feature = cq.Workplane("XY")
+for point in cut_points:
+    cut_feature = cut_feature.moveTo(point[0], point[1]).lineTo(point[0], point[1]).close()
+
+cut_feature = cut_feature.extrude(-cut_depth)
+
+# --- Coordinate System Transformation for Part 2 ---
+cut_feature = cut_feature.rotate((0, 0, 0), (1, 0, 0), 180)
+cut_feature = cut_feature.rotate((0, 0, 0), (0, 0, 1), -90)
+cut_feature = cut_feature.translate((0.1953, 0.0392, 0.2386))
+
+# --- Assembly ---
+assembly = part_1.cut(cut_feature)
+
+# --- Export to STL ---
+cq.exporters.export(assembly, "./stlcq/0055/00558690.stl")

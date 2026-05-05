@@ -1,0 +1,35 @@
+These parts are carefully aligned and positioned to fit together seamlessly.
+import cadquery as cq
+import math
+from cadquery import exporters
+
+# --- Part 1: Rectangular Base ---
+part_1_scale = 0.75
+part_1 = (
+    cq.Workplane("XY")
+    .moveTo(0.0, 0.0)
+    .lineTo(0.0268 * part_1_scale, 0.0)
+    .lineTo(0.0268 * part_1_scale, 0.0938 * part_1_scale)
+    .lineTo(0.7286 * part_1_scale, 0.0938 * part_1_scale)
+    .threePointArc((0.75 * part_1_scale, 0.6429 * part_1_scale), (0.7286 * part_1_scale, 0.6571 * part_1_scale))
+    .lineTo(0.0, 0.6571 * part_1_scale)
+    .lineTo(0.0, 0.0)
+    .close()
+    .extrude(0.0107 + 0.0107)
+)
+
+# --- Part 2: Cylinder Cutout ---
+part_2_radius = 0.1071 * 0.2143
+part_2 = cq.Workplane("XY").circle(part_2_radius).extrude(-0.1429)
+
+# --- Part 3: Rectangular Top ---
+part_3_scale = 0.0429
+part_3 = (
+    cq.Workplane("XY")
+    .moveTo(0.0, 0.0429 * part_3_scale)
+    .lineTo(0.0099 * part_3_scale, 0.0)
+    .lineTo(0.0179 * part_3_scale, 0.0)
+    .lineTo(0.0429 * part_3_scale, 0.0429 * part_3_scale)
+    .lineTo(0.0, 0.0429 * part_3_scale)
+    .close()
+    .extrude(-0.11

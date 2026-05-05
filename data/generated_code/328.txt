@@ -1,0 +1,45 @@
+import cadquery as cq
+import math
+from cadquery.vis import show
+
+# --- Parameters from JSON ---
+plate_size = 0.75 * 0.75  # Scaled
+hole_radius_small = 0.0479 * 0.75  # Scaled
+hole_radius_large = 0.0479 * 0.75  # Scaled
+corner_offset = 0.0694 * 0.75  # Scaled
+plate_thickness = 0.0156
+
+# --- Create the base square plate ---
+plate = cq.Workplane("XY").rect(plate_size, plate_size).extrude(plate_thickness)
+
+# --- Create the holes ---
+hole_locations = [
+    (corner_offset - plate_size/2, corner_offset - plate_size/2),
+    (corner_offset - plate_size/2, plate_size/2 - corner_offset),
+    (plate_size/2 - corner_offset, corner_offset - plate_size/2),
+    (plate_size/2 - corner_offset, plate_size/2 - corner_offset)
+]
+
+for x, y in hole_locations:
+    plate = plate.faces(">Z").workplane().pushPoints([(x, y)]).hole(2 * hole_radius_small)
+
+# --- Export to STL ---
+cq.exporters.export(plate, './stlcq/0048/00487381.stl')
+
+# --- Export to STL ---
+cq.exporters.export(plate, './stlcq/0048/00486198.stl')
+
+# --- Export to STL ---
+cq.exporters.export(plate, './stlcq/0048/00488915.stl')
+
+# --- Export to STL ---
+cq.exporters.export(plate, './stlcq/0048/00488914.stl')
+
+# --- Export to STL ---
+cq.exporters.export(plate, "./stlcq/0048738.stl")
+
+# --- Export to STL ---
+cq.exporters.export(plate, './stlcq/0048738.stl')
+
+# --- Export to STL ---
+cq.exporters.export(plate,

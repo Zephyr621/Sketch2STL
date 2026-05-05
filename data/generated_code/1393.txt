@@ -1,0 +1,35 @@
+import cadquery as cq
+import math
+from cadquery import exporters
+
+# --- Part 1: Rectangular Block with U-shaped Cutout ---
+part_1 = (
+    cq.Workplane("XY")
+    .moveTo(0.0, 0.0)
+    .lineTo(0.75 * 0.75, 0.0)
+    .lineTo(0.75 * 0.75, 0.3724 * 0.75)
+    .lineTo(0.4687 * 0.75, 0.3724 * 0.75)
+    .lineTo(0.4687 * 0.75, 0.1607 * 0.75)
+    .lineTo(0.6136 * 0.75, 0.1607 * 0.75)
+    .threePointArc((0.375 * 0.75, 0.1765 * 0.75), (0.1071 * 0.75, 0.1607 * 0.75))
+    .lineTo(0.1071 * 0.75, 0.0)
+    .lineTo(0.0, 0.0)
+    .close()
+    .extrude(0.1293)
+)
+
+# --- Part 2: Cube ---
+part_2_size = 0.3724 * 0.3724
+part_2 = cq.Workplane("XY").box(part_2_size, part_2_size, part_2_size)
+
+# --- Coordinate System Transformation for Part 2 ---
+part_2 = part_2.translate((0.0156, 0.0156, 0.1293))
+
+# --- Part 3: Cylinder ---
+part_3_radius = 0.0647 * 0.1241
+part_3 = cq.Workplane("XY").circle(part_3_radius).extrude(-0.2772)
+
+# --- Coordinate System Transformation for Part 3 ---
+part_3 = part_3.rotate((0, 0, 0), (1, 0, 0), 90)
+part_3 = part_3.rotate((0, 0, 0), (0, 0, 1), -90)
+part_3 = part_3.translate((0.74

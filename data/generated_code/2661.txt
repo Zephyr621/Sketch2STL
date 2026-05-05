@@ -1,0 +1,45 @@
+import cadquery as cq
+from math import radians
+
+# --- Part 1: Rectangular Block ---
+part_1_length = 0.2647 * 0.75
+part_1_width = 0.75 * 0.75
+part_1_height = 0.0882
+
+part_1 = (
+    cq.Workplane("XY")
+    .rect(part_1_length, part_1_width)
+    .extrude(part_1_height)
+)
+
+# --- Coordinate System Transformation for Part 1 ---
+part_1 = part_1.rotate((0, 0, 0), (0, 0, 1), -90)
+part_1 = part_1.translate((0, 0.0882, 0))
+
+# --- Part 2: Cylindrical Protrusions ---
+part_2_radius = 0.0221 * 0.5680
+part_2_depth = 0.2206
+
+part_2 = cq.Workplane("XY").circle(part_2_radius).extrude(-part_2_depth)
+
+# --- Coordinate System Transformation for Part 2 ---
+part_2 = part_2.rotate((0, 0, 0), (1, 0, 0), 90)
+part_2 = part_2.rotate((0, 0, 0), (0, 0, 1), -90)
+part_2 = part_2.translate((0.2647, 0.4559, 0.1325))
+
+# --- Part 3: Cut Feature ---
+part_3_length = 0.75 * 0.75
+part_3_width = 0.0882 * 0.75
+part_3_height = 0.2757
+
+part_3 = cq.Workplane("XY").rect(part_3_length, part_3_width).extrude(-part_3_height)
+
+# --- Coordinate System Transformation for Part 3 ---
+part_3 = part_3.translate((0, 0.0893, 0.0441))
+
+# --- Part 4: Join Feature ---
+part_4_length = 0.1765 * 0.6518
+part_4_width = 0.6518 * 0.6518
+part_4_height = 0.2757
+
+part_4

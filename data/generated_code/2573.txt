@@ -1,0 +1,38 @@
+import cadquery as cq
+import math
+from cadquery.vis import show
+
+# --- Part 1: S-shaped Object ---
+sketch_scale = 0.6397
+extrude_depth = 0.0481 * sketch_scale
+
+# Scaled dimensions
+arc1_start = (0.1749 * sketch_scale, 0.0)
+arc1_mid = (0.3512 * sketch_scale, 0.3158 * sketch_scale)
+arc1_end = (0.3512 * sketch_scale, 0.6302 * sketch_scale)
+
+arc2_start = (0.3512 * sketch_scale, 0.6302 * sketch_scale)
+arc2_mid = (0.3512 * sketch_scale, 0.6377 * sketch_scale)
+arc2_end = (0.1749 * sketch_scale, 0.6302 * sketch_scale)
+
+circle1_center = (0.1549 * sketch_scale, 0.2259 * sketch_scale)
+circle1_radius = 0.0197 * sketch_scale
+circle2_center = (0.1442 * sketch_scale, 0.2259 * sketch_scale)
+circle2_radius = 0.0197 * sketch_scale
+
+# Create the S-shaped profile
+s_shape = (
+    cq.Workplane("XY")
+    .moveTo(arc1_start[0], arc1_start[1])
+    .threePointArc(arc1_mid, arc1_end)
+    .lineTo(arc2_start[0], arc2_start[1])
+    .threePointArc(arc2_mid, arc2_end)
+    .close()
+)
+
+# Extrude the S-shape to create the solid
+part_1 = s_shape.extrude(extrude_depth)
+
+# Create the circles for cutting
+circle1 = cq.Workplane("XY").moveTo(circle1_center[0], circle1_center[1]).circle(circle1_radius).extrude(extrude_depth + 0.1) # Extrude slightly more to ensure full cut
+circle2 = cq.Workplane("XY").moveTo(circle2_center[0

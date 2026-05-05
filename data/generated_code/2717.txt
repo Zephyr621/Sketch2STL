@@ -1,0 +1,49 @@
+This forms a hollow cylinder with a hexagonal hole running through its center.
+import cadquery as cq
+from cadquery.vis import show
+
+# --- Part 1: Cylinder with Hexagonal Hole ---
+outer_radius = 0.375 * 0.75  # Sketch radius scaled
+inner_hex_side = (0.2812 - 0.1312) * 0.75
+height = 0.625
+
+part_1 = (
+    cq.Workplane("XY")
+    .circle(outer_radius)
+    .extrude(height)
+    .faces(">Z")
+    .workplane()
+    .moveTo(inner_hex_side/2, inner_hex_side/2)
+    .cutThruAll()
+)
+
+# --- Assembly (if needed, based on the single part) ---
+# In this case, there's only one part, so no assembly is needed.
+# If there were multiple parts, you would use .union() or .cut() to combine them.
+
+# --- Final Result ---
+result = part_1
+
+cq.exporters.export(result, './stlcq/0019/00199441.stl')
+
+cq.exporters.export(result, './stlcq/00198704.stl')
+
+cq.exporters.export(result, './stlcq/00198704.stl')
+
+cq.exporters.export(result, './stlcq/00198704.stl')
+
+cq.exporters.export(result, './stlcq/00198704.stl')
+
+cq.exporters.export(result, './stlcq/00198704.stl')
+
+cq.exporters.export(result, './stlcq/00198704.stl')
+
+cq.exporters.export(result, './stlcq/00198704.stl')
+
+cq.exporters.export(result, './stlcq/00198704.stl')
+
+cq.exporters.export(result, './stlcq/00198704.stl')
+
+cq.exporters.export(result, './stlcq/00198704.stl')
+
+cq.exporters

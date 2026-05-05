@@ -1,0 +1,50 @@
+import cadquery as cq
+
+# --- Part 1: Cylinder with Hole ---
+outer_square_side = 0.025 * 0.025  # Scaled side length
+inner_square_side = (0.0225 - 0.0062) * 0.025 # Scaled side length
+height = 0.75
+
+part_1 = (
+    cq.Workplane("XY")
+    .rect(outer_square_side, outer_square_side)
+    .extrude(height)
+    .cut(cq.Workplane("XY").rect(inner_square_side, inner_square_side).extrude(height))
+)
+
+# --- Coordinate System Transformation for Part 1 ---
+part_1 = part_1.rotate((0, 0, 0), (1, 0, 0), -90)
+part_1 = part_1.rotate((0, 0, 0), (0, 0, 1), -90)
+
+# --- Assembly ---
+assembly = part_1
+
+# Export to STL
+cq.exporters.export(assembly, "./stlcq/0049/00497272.stl")
+
+# --- Export to STL ---
+cq.exporters.export(assembly, "./stlcq/0049477.stl")
+
+# Export to STL
+cq.exporters.export(assembly, "./stlcq/0049538.stl")
+
+# --- Export to STL ---
+cq.exporters.export(assembly, "./stlcq/00495389.stl")
+
+# --- Export to STL ---
+cq.exporters.export(assembly, "./stlcq/0049699.stl")
+
+# --- Export to STL ---
+cq.exporters.export(assembly, "./stlcq/00496339.stl")
+
+# --- Export to STL ---
+cq.exporters.export(assembly, "./stlcq/00496339.stl")
+
+# --- Export to STL ---
+cq.exporters.export(assembly, "./stlcq/00496339.stl")
+
+# --- Export to STL ---
+cq.exporters.export(assembly, "./stlcq/00496339.stl")
+
+# --- Export to STL ---
+cq.

@@ -1,0 +1,48 @@
+import cadquery as cq
+from cadquery import exporters
+
+# --- Part 1: Rectangular Prism ---
+part_1_length = 0.0156 * 0.75  # Scaled length
+part_1_width = 0.75 * 0.75   # Scaled width
+part_1_height = 0.0156
+
+part_1 = (
+    cq.Workplane("XY")
+    .rect(part_1_length, part_1_width)
+    .extrude(part_1_height)
+)
+
+# --- Coordinate System Transformation for Part 1 ---
+part_1 = part_1.rotate((0, 0, 0), (0, 0, 1), -90)
+part_1 = part_1.translate((0, 0.0156, 0))
+
+# --- Part 2: Cylindrical Cutouts ---
+sketch_scale_part2 = 0.734
+cutout_radius = 0.0081 * sketch_scale_part2
+cut_depth = 0.0156
+
+# Create the first cutout
+cutout1 = (
+    cq.Workplane("XY")
+    .moveTo(0.0081 * sketch_scale_part2, 0.0081 * sketch_scale_part2)
+    .circle(cutout_radius)
+    .extrude(-cut_depth)
+)
+
+# Create the second cutout
+cutout2 = (
+    cq.Workplane("XY")
+    .moveTo(0.7013 * sketch_scale_part2, 0.0081 * sketch_scale_part2)
+    .circle(cutout_radius)
+    .extrude(-cut_depth)
+)
+
+# --- Coordinate System Transformation for Part 2 ---
+cutout1 = cutout1.rotate((0, 0, 0), (0, 0, 1), -90)
+cutout1 = cutout1.translate((0.0051, 0.0156, 0))
+
+cutout2 = cutout2.rotate((0, 0, 0), (0, 0, 1), -90)
+cutout2 = cutout2.translate((0.7428, 0.0156, 0))
+
+# --- Assembly ---
+assembly = part_1.cut(

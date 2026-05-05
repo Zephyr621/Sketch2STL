@@ -1,0 +1,51 @@
+import cadquery as cq
+
+# --- Part 1: Rectangular Prism with Cutout ---
+sketch_scale = 0.75
+length = 0.5357 * sketch_scale
+width = 0.75 * sketch_scale
+height = 0.1071
+
+# Create the outer rectangle
+outer_rect = cq.Workplane("XY").rect(length, width).extrude(height)
+
+# Create the inner rectangle (cutout)
+inner_length = 0.2571 * sketch_scale
+inner_width = 0.7143 * sketch_scale
+inner_x_offset = 0.0938 * sketch_scale
+inner_y_offset = 0.0937 * sketch_scale
+inner_z_offset = 0.1071
+
+# Create the cutout
+cutout = (
+    cq.Workplane("XY")
+    .moveTo(inner_x_offset, inner_y_offset)
+    .rect(inner_length, inner_width)
+    .extrude(height + 0.1)  # Extrude slightly more to ensure complete cut
+)
+
+# Subtract the cutout from the outer rectangle
+part_1 = outer_rect.cut(cutout)
+
+# --- Coordinate System Transformation for Part 1 ---
+part_1 = part_1.rotate((0, 0, 0), (0, 0, 1), -90)
+part_1 = part_1.translate((0, 0.1071, 0))
+
+# --- Assembly ---
+assembly = part_1
+
+# Export the result to a STL file
+cq.exporters.export(assembly, "./stlcq/0061/00618792.stl")
+
+# Export the result to a STL file
+cq.exporters.export(assembly, "./stlcq/0061/00618793.stl")
+
+# Export the result to a STL file
+cq.exporters.export(assembly, "./stlcq/0061/00618512.stl")
+
+cq.exporters.export(assembly, "./stlcq/0061/00618512.stl")
+
+# Export the result to a T-shaped object
+cq.exporters.export(assembly, "./stlcq/0061/00618512.stl")
+
+cq.exporters.

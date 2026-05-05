@@ -1,0 +1,46 @@
+import cadquery as cq
+
+# --- Part 1: Rectangular Extrusion ---
+part_1_width = 0.0311 * 0.75
+part_1_length = 0.75 * 0.75
+part_1_height = 0.0099 * 2  # Total extrusion depth (towards + opposite)
+
+part_1 = (
+    cq.Workplane("XY")
+    .rect(part_1_width, part_1_length)
+    .extrude(part_1_height)
+)
+
+# --- Coordinate System Transformation for Part 1 ---
+part_1 = part_1.rotate((0, 0, 0), (0, 0, 1), -90)
+part_1 = part_1.translate((0, 0.0195, 0))
+
+# --- Part 2: Cut Feature ---
+cut_width = 0.015 * 0.015
+cut_depth = 0.0105 * 0.015
+cut_inner_offset = 0.0099 * 0.015
+cut_x_offset = 0.0073 * 0.015
+cut_y_offset = 0.0099 * 0.015
+
+cut_sketch = (
+    cq.Workplane("XY")
+    .moveTo(0, 0)
+    .lineTo(cut_width, cut_height)
+    .lineTo(cut_width, cut_height + cut_inner_offset)
+    .lineTo(0, cut_height + cut_inner_offset)
+    .close()
+)
+
+cut_sketch2 = (
+    cq.Workplane("XY")
+    .moveTo(0, cut_height)
+    .lineTo(cut_width, cut_height + cut_inner_offset)
+    .lineTo(cut_width, cut_height + cut_inner_offset + cut_height)
+    .lineTo(0, cut_height + cut_inner_offset + cut_height)
+    .close()
+)
+
+cut_sketch3 = (
+    cq.Workplane("XY")
+    .moveTo(0, cut_height)
+    .lineTo(cut_width, cut_

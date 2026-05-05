@@ -1,0 +1,52 @@
+import cadquery as cq
+import math
+from cadquery import exporters
+
+# --- Part 1: Square Plate ---
+plate_length = 0.75 * 0.75
+plate_width = 0.6702 * 0.75
+plate_height = 0.0798
+hole_radius_small = 0.0469 * 0.75
+hole_radius_large = 0.0337 * 0.75
+
+part_1 = (
+    cq.Workplane("XY")
+    .rect(plate_length, plate_width)
+    .extrude(plate_height)
+)
+
+# Create the holes
+part_1 = (
+    part_1.faces(">Z")
+    .workplane()
+    .pushPoints([
+        (0.0625 * 0.75 - plate_length/2, 0.0341 * 0.75 - plate_width/2),
+        (0.0625 * 0.75 - plate_length/2, 0.3173 * 0.75 - plate_width/2)
+    ])
+    .hole(2 * hole_radius_small)
+)
+
+# --- Part 2: Rectangular Block ---
+block_length = 0.0798 * 0.6702
+block_width = 0.6702 * 0.6702
+block_height = 0.3191
+
+part_2 = (
+    cq.Workplane("XY")
+    .rect(block_length, block_width)
+    .extrude(block_height)
+)
+
+# --- Coordinate System Transformation for Part 2 ---
+part_2 = part_2.translate((0.0156, 0.0156, 0))
+
+# --- Part 3: Cut Feature ---
+cut_length = 0.5106 * 0.5106
+cut_width = 0.0798 * 0.5106
+cut_height = 0.3989
+
+cut1 = (
+    cq.Workplane("XY")
+    .moveTo(0, 0)
+    .lineTo(cut_length, 0)
+    .threePointArc((cut_length + cut_length / 2

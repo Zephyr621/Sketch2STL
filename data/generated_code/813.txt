@@ -1,0 +1,47 @@
+import cadquery as cq
+
+# --- Part 1: Rectangular Prism ---
+part_1_width = 0.1813 * 0.1813  # Sketch width scaled
+part_1_height = 0.2163 * 0.1813 # Sketch height scaled
+part_1_depth = 0.1894
+
+part_1 = (
+    cq.Workplane("XY")
+    .rect(part_1_width, part_1_height)
+    .extrude(part_1_depth)
+)
+
+# --- Coordinate System Transformation for Part 1 ---
+part_1 = part_1.translate((0.1896, 0.0, 0))
+
+# --- Part 2: Rectangular Prism ---
+part_2_width = 0.1813 * 0.4257  # Sketch width scaled
+part_2_height = 0.4257 * 0.4257  # Sketch height scaled
+part_2_depth = 0.2679
+
+part_2 = (
+    cq.Workplane("XY")
+    .rect(part_2_width, part_2_height)
+    .extrude(part_2_depth)
+)
+
+# --- Coordinate System Transformation for Part 2 ---
+part_2 = part_2.rotate((0, 0, 0), (0, 0, 1), 180)
+part_2 = part_2.translate((0, 0.1894, 0))
+
+# --- Part 3: Rectangular Prism ---
+part_3_length = 0.1813 * 0.4257  # Sketch length scaled
+part_3_width = 0.4257 * 0.4257  # Sketch width scaled
+part_3_height = 0.2679
+
+part_3 = (
+    cq.Workplane("XY")
+    .rect(part_3_length, part_3_width)
+    .extrude(part_3_height)
+)
+
+# --- Coordinate System Transformation for Part 3 ---
+part_3 = part_3.translate((0, 0.375, 0))
+
+# --- Part 4: Rectangular Prism ---
+part_4_length = 0.1813 * 0.4

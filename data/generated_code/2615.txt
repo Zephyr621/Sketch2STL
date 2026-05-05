@@ -1,0 +1,47 @@
+import cadquery as cq
+from math import *
+
+# --- Part 1: Pentagon Base ---
+part_1_scale = 0.75
+part_1_height = 0.2188
+
+part_1 = (
+    cq.Workplane("XY")
+    .moveTo(0, 0)
+    .lineTo(0.625 * part_1_scale, 0)
+    .lineTo(0.625 * part_1_scale, 0.2531 * part_1_scale)
+    .lineTo(0.5156 * part_1_scale, 0.2531 * part_1_scale)
+    .lineTo(0.5156 * part_1_scale, 0.75 * part_1_scale)
+    .lineTo(0, 0.75 * part_1_scale)
+    .close()
+    .extrude(part_1_height)
+)
+
+# --- Part 2: Rectangular Prism ---
+part_2_scale = 0.4167
+part_2_height = 0.2083
+
+part_2 = (
+    cq.Workplane("XY")
+    .rect(0.3125 * part_2_scale, 0.4167 * part_2_scale)
+    .extrude(part_2_height)
+)
+
+# --- Coordinate System Transformation for Part 2 ---
+part_2 = part_2.translate((0.0625, 0.0625, 0))
+
+# --- Assembly ---
+assembly = part_1.union(part_2)
+
+cq.exporters.export(assembly, "./stlcq/0034/00344272.stl")
+
+# --- Export to STL ---
+cq.exporters.export(assembly, './stlcq/0034/00344899.stl')
+
+cq.exporters.export(assembly, "./stlcq/0034/00347242.stl")
+
+cq.exporters.export(assembly, './stlcq/00347241.stl')
+
+cq.exporters.export(assembly, "./stlcq/00347241.stl")
+
+cq.exporters.export(assembly, "./stlcq

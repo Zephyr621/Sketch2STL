@@ -1,0 +1,42 @@
+import cadquery as cq
+
+# --- Part 1: Triangular Prism ---
+part_1 = (
+    cq.Workplane("XY")
+    .moveTo(0.0, 0.75 * 0.75)  # Scale the sketch
+    .lineTo(0.1295 * 0.75, 0.6201 * 0.75)  # Scale the sketch
+    .lineTo(0.1541 * 0.75, 0.6466 * 0.75)  # Scale the sketch
+    .lineTo(0.0, 0.0)
+    .close()
+    .extrude(0.0162)
+)
+
+# --- Assembly (if needed, based on the single part) ---
+# In this case, there's only one part, so no assembly is needed.
+# If there were multiple parts, you would use .union() or .cut() to combine them.
+
+# --- Final Result ---
+result = part_1
+
+cq.exporters.export(result, './stlcq/0031/00317756.stl')
+
+# Export to STL
+cq.exporters.export(result, './stlcq/003167/00315679.stl')
+
+cq.exporters.export(result, './stlcq/003167/00315679.stl')
+
+cq.exporters.export(result, './stlcq/003167/00315673.stl')
+
+cq.exporters.export(result, './stlcq/003167/00315673.stl')
+
+cq.exporters.export(result, './stlcq/003167/00315672.stl')
+
+cq.exporters.export(result, './stlcq/003167/00315672.stl')
+
+cq.exporters.export(result, './stlcq/003167/00315672.stl')
+
+cq.exporters.export(result, './stlcq/003167/00315672.stl')
+
+cq.exporters.export(result, './stlcq/003167/00315672.stl')
+
+cq.exporters.export(result, './stlcq/003167/00315

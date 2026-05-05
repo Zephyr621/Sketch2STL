@@ -1,0 +1,45 @@
+import cadquery as cq
+from math import radians
+
+# --- Part 1: Rectangular Prism with Holes ---
+part_1_length = 0.75 * 0.75
+part_1_width = 0.2893 * 0.75
+part_1_height = 0.1262
+
+hole1_center_x = 0.1346 * 0.75
+hole1_center_y = 0.1495 * 0.75
+hole2_center_x = 0.6158 * 0.75
+hole2_center_y = 0.1495 * 0.75
+hole_radius = 0.0792 * 0.75
+
+part_1 = (
+    cq.Workplane("XY")
+    .rect(part_1_length, part_1_width)
+    .extrude(part_1_height)
+    .faces(">Z")
+    .workplane()
+    .pushPoints([(hole1_center_x - part_1_length/2, hole1_center_y - part_1_width/2), (hole2_center_x - part_1_length/2, hole2_center_y - part_1_width/2)])
+    .hole(2 * hole_radius)
+)
+
+# --- Part 2: Cylinder with Hole ---
+part_2_outer_radius = 0.1495 * 0.2893
+part_2_inner_radius = 0.0792 * 0.2893
+part_2_height = 0.2463
+
+part_2 = (
+    cq.Workplane("XY")
+    .circle(part_2_outer_radius)
+    .extrude(part_2_height)
+    .faces(">Z")
+    .workplane()
+    .circle(part_2_inner_radius)
+    .cutThruAll()
+)
+
+# --- Coordinate System Transformations ---
+# Part 1
+part_1 = part_1.rotate((0, 0, 0), (0, 0, 1), -90)
+part_1 = part_1.translate((0, 0.1262, 0))
+
+# Part 2

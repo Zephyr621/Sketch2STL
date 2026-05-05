@@ -1,0 +1,44 @@
+import cadquery as cq
+
+# --- Part 1: Cube ---
+side_length = 0.2824 * 0.2824  # Sketch side length scaled
+cube = cq.Workplane("XY").box(side_length, side_length, side_length)
+
+# --- Coordinate System Transformation for Part 1 ---
+cube = cube.rotate((0, 0, 0), (1, 0, 0), -90)
+cube = cube.rotate((0, 0, 0), (0, 0, 1), -90)
+
+# --- Fillet Edges ---
+edge_radius = 0.05  # Adjust as needed for desired roundness
+cube = cube.edges().fillet(edge_radius)
+
+# --- Export to STL ---
+cq.exporters.export(cube, "./stlcq/0030/00303041.stl")
+
+# --- Export to STL ---
+cq.exporters.export(cube, "./stlcq/0030775.stl")
+
+# --- Apply fillets to edges ---
+cube = cube.edges().fillet(edge_radius)
+
+# --- Coordinate System Transformation for Part 1 ---
+cube = cube.rotate((0, 0, 0), (1, 0, 0), 90)
+cube = cube.rotate((0, 0, 0), (0, 0, 1), -90)
+cube = cube.translate((0.2824, 0.0262, 0.0262))
+
+# --- Export to STL ---
+cq.exporters.export(cube, "./stlcq/0030775.stl")
+
+# --- Export to STL ---
+cq.exporters.export(cube, "./stlcq/0030775.stl")
+
+# --- Apply fillets to corners ---
+cube = cube.edges().fillet(edge_radius)
+
+# --- Coordinate System Transformation for Part 2 ---
+cube = cube.rotate((0, 0, 0), (1, 0, 0), -90)
+cube = cube.rotate((0, 0, 0), (0, 0, 1), -90)
+cube = cube.translate((0.2712, 0.0131, 0.0131))
+
+# --- Export to STL ---
+cq.exporters.export(cube, "./stlcq/00

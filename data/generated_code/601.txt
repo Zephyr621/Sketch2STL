@@ -1,0 +1,45 @@
+import cadquery as cq
+from cadquery.vis import show
+
+# --- Part 1: Cube with Missing Corner ---
+part_1_size = 0.57 * 0.57  # Sketch size scaled
+part_1_height = 0.525
+
+part_1 = (
+    cq.Workplane("XY")
+    .rect(part_1_size, part_1_size)
+    .extrude(-part_1_height)  # Extrude in the opposite direction for cutting
+)
+
+# --- Coordinate System Transformation for Part 1 ---
+part_1 = part_1.translate((0.1567, 0.1173, 0.45))
+
+# --- Part 2: Cutout ---
+part_2_depth = 0.47  # Depth of extrusion
+
+cutout = (
+    cq.Workplane("XY")
+    .moveTo(0, 0.2833 * 0.513)
+    .lineTo(0.2833 * 0.513, 0.2833 * 0.513)
+    .lineTo(0.2833 * 0.513, 0.4688 * 0.513)
+    .lineTo(0, 0.4688 * 0.513)
+    .close()
+    .extrude(-part_2_depth)  # Extrude in the opposite direction for cutting
+)
+
+# --- Coordinate System Transformation for Part 2 ---
+cutout = cutout.rotate((0, 0, 0), (1, 0, 0), -90)
+cutout = cutout.rotate((0, 0, 0), (0, 0, 1), -90)
+cutout = cutout.translate((0.3783, 0.1173, 0.4412))
+
+# --- Assembly: Cut Part 2 from Part 1 ---
+result = part_1.cut(cutout)
+
+# --- Export to STL ---
+cq.exporters.export(result, './stlcq/0035/00359446.stl')
+
+cq.exporters.export(result, './stlcq/0035871.stl')
+
+cq.exporters.export(result, './stlcq/0035871.stl')
+
+cq

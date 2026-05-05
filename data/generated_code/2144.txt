@@ -1,0 +1,46 @@
+The overall dimensions are approximately 0.6037 in length, 0.4024 in width, and 0.1463 in height.
+import cadquery as cq
+
+# --- Part 1: Rectangular Box ---
+part_1_length = 0.6037 * 0.6037  # Scaled length
+part_1_width = 0.4024 * 0.6037  # Scaled width
+part_1_height = 0.1866
+
+part_1 = (
+    cq.Workplane("XY")
+    .rect(part_1_length, part_1_width)
+    .extrude(-part_1_height)  # Extrude in the opposite direction
+)
+
+# --- Coordinate System Transformation for Part 1 ---
+part_1 = part_1.rotate((0, 0, 0), (0, 0, 1), -90)
+
+# --- Part 2: Rectangular Block ---
+part_2_length = 0.1463 * 0.4024  # Scaled length
+part_2_width = 0.4024 * 0.4024  # Scaled width
+part_2_height = 0.0549
+
+part_2 = (
+    cq.Workplane("XY")
+    .rect(part_2_length, part_2_width)
+    .extrude(part_2_height)
+)
+
+# --- Coordinate System Transformation for Part 2 ---
+part_2 = part_2.translate((0.0617, 0.0, 0.375))
+
+# --- Assembly ---
+assembly = part_1.union(part_2)
+
+cq.exporters.export(assembly, "./stlcq/0061/00611677.stl")
+
+# --- Export to STL ---
+cq.exporters.export(assembly, './stlcq/0061/00619382.stl')
+
+cq.exporters.export(assembly, "./stlcq/0061/00619383.stl")
+
+cq.exporters.export(assembly, "./stlcq/0061/00619383.stl")
+
+cq.exporters.export(assembly, "./stlcq/0061/00619383.stl")
+
+cq.exporters.export(assembly,

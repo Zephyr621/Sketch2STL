@@ -1,0 +1,40 @@
+import cadquery as cq
+import math
+from cadquery.vis import show
+
+# --- Parameters from JSON ---
+outer_radius = 0.375 * 0.75
+hole1_center = (0.1738 * 0.75, 0.3125 * 0.75)
+hole2_center = (0.5045 * 0.75, 0.1597 * 0.75)
+hole_radius = 0.0162 * 0.75
+extrude_depth = 0.0225
+
+# --- Create the Disk ---
+disk = cq.Workplane("XY").circle(outer_radius).extrude(extrude_depth)
+
+# --- Create the Hexagon ---
+hexagon = cq.Workplane("XY").moveTo(hole1_center[0] - outer_radius, hole1_center[1] - outer_radius).lineTo(hole2_center[0] - outer_radius, hole2_center[1] - outer_radius).threePointArc((hole2_center[0] - outer_radius, hole2_center[1] - outer_radius), (hole1_center[0] - outer_radius, hole1_center[1] - outer_radius)).close().extrude(extrude_depth + 0.1)
+
+# --- Subtract the Hexagon from the Disk ---
+result = disk.cut(hexagon)
+
+# --- Export to STL ---
+cq.exporters.export(result, './stlcq/0016/00167169.stl')
+
+# --- Export to STL ---
+cq.exporters.export(result, './stlcq/00166750.stl')
+
+# --- Export to STL ---
+cq.exporters.export(result, './stlcq/0016850.stl')
+
+# --- Export to STL ---
+cq.exporters.export(result, './stlcq/0016850.stl')
+
+# --- Export to STL ---
+cq.exporters.export(result, './stlcq/0016850.stl')
+
+# --- Export to STL ---
+cq.exporters.export(result, './stlcq/0016850.stl')
+
+# --- Export to STL ---
+cq.exporters.export(result, './stlcq/00

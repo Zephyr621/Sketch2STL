@@ -1,0 +1,52 @@
+import cadquery as cq
+
+# --- Part 1: Rectangular Hollow Block ---
+part_1_width = 0.4688 * 0.75  # Scaled width
+part_1_length = 0.75 * 0.75  # Scaled length
+part_1_height = 0.0938
+
+inner_rect_width = (0.3749 - 0.0075) * 0.75
+inner_rect_length = (0.7031 - 0.0075) * 0.75
+
+part_1 = (
+    cq.Workplane("XY")
+    .rect(part_1_width, part_1_length)
+    .extrude(part_1_height)
+    .faces(">Z")
+    .workplane()
+    .rect(inner_rect_width, inner_rect_length)
+    .cutThruAll()
+)
+
+# --- Part 2: Cube ---
+part_2_x = 0.0168 * 0.0375
+part_2_y = 0.0375 * 0.0375
+part_2_z = 0.1875
+
+part_2 = (
+    cq.Workplane("XY")
+    .rect(part_2_x, part_2_y)
+    .extrude(part_2_z)
+)
+
+# --- Part 3: Cylinder ---
+part_3_radius = 0.0094 * 0.0375
+part_3_height = 0.0938
+
+part_3 = (
+    cq.Workplane("XY")
+    .circle(part_3_radius)
+    .extrude(part_3_height)
+)
+
+# --- Assembly ---
+assembly = part_1
+
+# Translate and Join Part 2
+assembly = assembly.union(part_2.translate((0.0169, 0.0168, part_1_height)))
+
+# Translate and Join Part 3
+assembly = assembly.union(part_3.translate((0.7031, 0.0168, part_1_height)))
+
+# --- Export to STL ---
+cq.exporters.export(assembly, "./stlcq

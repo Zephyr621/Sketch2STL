@@ -1,0 +1,46 @@
+import cadquery as cq
+import math
+from cadquery.vis import show
+
+# --- Part 1: Cylinder with Holes ---
+outer_radius = 0.375 * 0.75  # Sketch radius scaled
+inner_radius = 0.3305 * 0.75  # Inner hole radius scaled
+height = 0.0239
+
+# Create the outer cylinder
+outer_cylinder = cq.Workplane("XY").circle(outer_radius).extrude(height)
+
+# Create the inner cylinder (hole)
+inner_cylinder = cq.Workplane("XY").circle(inner_radius).extrude(height)
+
+# Subtract the inner cylinder from the outer cylinder to create the hollow cylinder
+part_1 = outer_cylinder.cut(inner_cylinder)
+
+# Export the result to a STL file
+cq.exporters.export(part_1, './stlcq/0076/00767592.stl')
+
+# Export the result to a STL file
+cq.exporters.export(part_1, './stlcq/0076/00767620.stl')
+
+# Export the result to a STL file
+cq.exporters.export(part_1, './stlcq/0076/00767435.stl')
+
+# Export the result to a STL file
+cq.exporters.export(part_1, './stlcq/0076/00767635.stl')
+
+# Export the result to a T L file
+cq.exporters.export(part_1, './stlcq/0076/00767435.stl')
+
+# Export the result to a T L file
+cq.exporters.export(part_1, './stlcq/0076/00767735.stl')
+
+# Export the result to a T L file
+cq.exporters.export(part_1, './stlcq/0076/00767635.stl')
+
+# Export the result to a T L file
+cq.exporters.export(part_1, './stlcq/0076/00767435.stl')
+
+# Export the result to a T L file
+cq.exporters.export(part_1, './stlcq/0076/00767635.stl')
+
+# Export the result to a U

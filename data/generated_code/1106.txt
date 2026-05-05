@@ -1,0 +1,47 @@
+import cadquery as cq
+from math import tan, radians, sqrt
+
+# --- Parameters from JSON ---
+sketch_scale = 0.0946
+extrude_depth = 0.2383
+translation_vector = (0.0295, 0.0295, 0.0)
+
+# Scaled dimensions for the hexagon
+hexagon_width = 0.0469 * sketch_scale
+hexagon_height = 0.0946 * sketch_scale
+center_x1 = 0.0469 * sketch_scale
+center_y1 = 0.0469 * sketch_scale
+center_x2 = 0.0469 * sketch_scale
+center_y2 = 0.0396 * sketch_scale
+radius = 0.0469 * sketch_scale
+
+# --- Part 1: Hexagon Base ---
+part_1 = (
+    cq.Workplane("XY")
+    .moveTo(0.0, 0.0027 * sketch_scale)
+    .lineTo(0.0189 * sketch_scale, 0.0)
+    .lineTo(0.0945 * sketch_scale, 0.0)
+    .lineTo(0.0946 * sketch_scale, 0.0027 * sketch_scale)
+    .close()
+    .extrude(extrude_depth)
+)
+
+# Create the hole
+hole = (
+    cq.Workplane("XY")
+    .circle(radius)
+    .extrude(extrude_depth + 0.1)  # Extrude slightly more to ensure complete cut
+    .translate((center_x1 - hexagon_width/2, center_y1 - hexagon_height/2, 0))
+)
+
+# Subtract the hole from the base
+part_1 = part_1.cut(hole)
+
+# --- Part 2: Cylinder Cutout ---
+part_2_radius = 0.0469 * sketch_scale
+part_2_depth = 0.2885 * 2  # Total depth of the cylinder
+
+part_2 = (
+    cq.Workplane("XY")
+    .workplane(offset=0.6562)  # Move to the correct Z position
+    .moveTo(

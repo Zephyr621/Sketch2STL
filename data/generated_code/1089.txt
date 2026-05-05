@@ -1,0 +1,38 @@
+import cadquery as cq
+from cadquery.vis import show
+
+# --- Part 1: L-shaped base ---
+part_1 = (
+    cq.Workplane("XY")
+    .moveTo(0.0, 0.0)
+    .lineTo(0.2893 * 0.3859, 0.0)
+    .lineTo(0.3859 * 0.3859, 0.1958 * 0.3859)
+    .lineTo(0.3529 * 0.3859, 0.1958 * 0.3859)
+    .lineTo(0.2709 * 0.3859, 0.1958 * 0.3859)
+    .lineTo(0.2709 * 0.3859, 0.2268 * 0.3859)
+    .lineTo(0.1871 * 0.3859, 0.2268 * 0.3859)
+    .lineTo(0.0, 0.2268 * 0.3859)
+    .lineTo(0.0, 0.0)
+    .close()
+    .extrude(0.375/2)
+)
+
+# --- Coordinate System Transformation for Part 1 ---
+part_1 = part_1.rotate((0, 0, 0), (0, 0, 1), -90)
+part_1 = part_1.translate((0, 0.375, 0))
+
+# --- Part 2: Triangular Cutout ---
+part_2_scale = 0.1687
+cutout = (
+    cq.Workplane("XY")
+    .moveTo(0.0, 0.0)
+    .lineTo(0.1687 * part_2_scale, 0.0)
+    .lineTo(0.1687 * part_2_scale, 0.0589 * part_2_scale)
+    .lineTo(0.0, 0.0589 * part_2_scale)
+    .lineTo(0.0, 0.0)
+    .close()
+    .extrude(-0.0625)
+)
+
+# --- Coordinate System Transformation for Part 2 ---
+cutout = cutout.rotate((0

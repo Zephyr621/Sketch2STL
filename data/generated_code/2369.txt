@@ -1,0 +1,48 @@
+import cadquery as cq
+from cadquery.vis import show
+
+# --- Part 1: Cylinder with Cup ---
+part_1_outer_radius = 0.3357 * 0.6729  # Sketch radius scaled
+part_1_inner_radius = 0.2143 * 0.6729  # Inner circle radius scaled
+part_1_height = 0.4899
+
+part_1 = (
+    cq.Workplane("XY")
+    .circle(part_1_outer_radius)
+    .circle(part_1_inner_radius)
+    .extrude(part_1_height)
+)
+
+# --- Coordinate System Transformation for Part 1 ---
+part_1 = part_1.translate((0.0477, 0.0477, 0))
+
+# --- Part 2: Ring ---
+part_2_outer_radius = 0.375 * 0.75  # Sketch radius scaled
+part_2_inner_radius = 0.3214 * 0.75  # Inner circle radius scaled
+part_2_height = 0.0205
+
+part_2 = (
+    cq.Workplane("XY")
+    .circle(part_2_outer_radius)
+    .circle(part_2_inner_radius)
+    .extrude(part_2_height)
+)
+
+# --- Assembly ---
+assembly = part_1.union(part_2)
+
+cq.exporters.export(assembly, "./stlcq/0072/00724323.stl")
+
+cq.exporters.export(assembly, "./stlcq/0072/00724339.stl")
+
+cq.exporters.export(assembly, "./stlcq/0072/00724468.stl")
+
+cq.exporters.export(assembly, "./stlcq/0072/00724766.stl")
+
+cq.exporters.export(assembly, "./stlcq/0072/00724766.stl")
+
+cq.exporters.export(assembly, "./stlcq/0072/00724766.stl")
+
+cq.exporters.export(assembly, "./stlcq/0072/00724766.stl")
+
+cq.

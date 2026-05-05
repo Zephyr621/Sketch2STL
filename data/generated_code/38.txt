@@ -1,0 +1,51 @@
+import cadquery as cq
+
+# --- Part 1: Rectangular Prism ---
+part_1_width = 0.3281 * 0.75  # Sketch width scaled
+part_1_length = 0.75 * 0.75  # Sketch length scaled
+part_1_height = 0.229
+
+part_1 = (
+    cq.Workplane("XY")
+    .rect(part_1_width, part_1_length)
+    .extrude(-part_1_height)  # Extrude in the opposite direction
+)
+
+# --- Coordinate System Transformation for Part 1 ---
+part_1 = part_1.rotate((0, 0, 0), (0, 0, 1), -90)
+
+# --- Part 2: Cylinders ---
+cylinder_radius = 0.0046 * 0.4687  # Sketch radius scaled
+cylinder_height = 0.0491
+
+# Cylinder 1
+cylinder_1_x = 0.0047 * 0.4687
+cylinder_1_y = 0.0046 * 0.4687
+cylinder_1 = (
+    cq.Workplane("XY")
+    .circle(cylinder_radius)
+    .extrude(cylinder_height)
+)
+
+# Cylinder 2
+cylinder_2_x = 0.0047 * 0.4687
+cylinder_2_y = 0.0046 * 0.4687
+cylinder_2 = (
+    cq.Workplane("XY")
+    .moveTo(cylinder_2_x, cylinder_2_y)
+    .circle(cylinder_radius)
+    .extrude(cylinder_height)
+)
+
+# Cylinder 3
+cylinder_3_x = 0.2848 * 0.2712
+cylinder_3_y = 0.2712 * 0.2712
+cylinder_3 = (
+    cq.Workplane("XY")
+    .moveTo(cylinder_3_x, cylinder_3_y)
+    .circle(cylinder_radius)
+    .extrude(cylinder_height)
+)
+
+# --- Coordinate System Transformation for Part 2 ---
+cylinder_1 = cylinder_1.rotate((0, 0,

@@ -1,0 +1,47 @@
+import cadquery as cq
+
+# --- Part 1 ---
+part_1 = (
+    cq.Workplane("XY")
+    .moveTo(0.0, 0.0)
+    .lineTo(0.0937 * 0.0937, 0.0)
+    .lineTo(0.0937 * 0.0937, 0.0937 * 0.0937)
+    .lineTo(0.0, 0.0937 * 0.0937)
+    .lineTo(0.0, 0.0)
+    .close()
+    .extrude(0.75)
+)
+
+# --- Assembly ---
+assembly = part_1
+
+cq.exporters.export(assembly, "./stlcq/0048/00483450.stl")
+
+# Export to STL
+cq.exporters.export(assembly, "./stlcq/0048/00483736.stl")
+
+# Export to STL
+cq.exporters.export(assembly, "./stlcq/0048/00480766.stl")
+
+# Export to STL
+cq.exporters.export(assembly, "./stlcq/0048/00480766.stl")
+
+cq.exporters.export(assembly, "./stlcq/0048/00480766.stl")
+
+# Export to STL
+cq.exporters.export(assembly, "./stlcq/0048/00480766.stl")
+
+# Export to STL
+cq.exporters.export(assembly, "./stlcq/0048/00480766.stl")
+
+cq.exporters.export(assembly, "./stlcq/0048/00480766.stl")
+
+cq.exporters.export(assembly, "./stlcq/0048/00480766.stl")
+
+cq.exporters.export(assembly, "./stlcq/0048/00480766.stl")
+
+cq.exporters.export(assembly, "./stlcq/0048/00480766.stl")
+
+cq.exporters.export(assembly, "./stlcq/0048/00480766.stl")
+
+cq.exporters.export(assembly, "./stlcq/0048

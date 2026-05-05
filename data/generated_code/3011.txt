@@ -1,0 +1,40 @@
+import cadquery as cq
+import math
+from cadquery import exporters
+
+# --- Part 1: Rectangular Prism ---
+part_1_width = 0.75 * 0.75  # Scaled width
+part_1_length = 0.75 * 0.75  # Scaled length
+part_1_height = 0.0367
+
+part_1 = (
+    cq.Workplane("XY")
+    .rect(part_1_length, part_1_width)
+    .extrude(part_1_height)
+)
+
+# Create the first hole
+hole_radius = 0.0117 * 0.75
+part_1 = part_1.faces(">Z").workplane().center(0.6136 * 0.75 - part_1_length/2, 0.0418 * 0.75 - part_1_width/2).circle(hole_radius).cutThruAll()
+
+# Create the second hole
+hole_radius = 0.0078 * 0.75
+part_1 = part_1.faces(">Z").workplane().center(0.5637 * 0.75 - part_1_length/2, 0.0418 * 0.75 - part_1_width/2).circle(hole_radius).cutThruAll()
+
+# --- Coordinate System Transformation for Part 1 ---
+part_1 = part_1.rotate((0, 0, 0), (0, 0, 1), -90)
+part_1 = part_1.translate((0, 0.0367, 0))
+
+# --- Part 2: Cylinder with Holes ---
+part_2_outer_radius = 0.1172 * 0.6089
+part_2_inner_radius = 0.0714 * 0.6089
+part_2_height = 0.2143
+
+# Create the first hole
+hole_1_x = 0.1172 * 0.6089
+hole_1_y = 0.1172 * 0.6089
+
+part_2 = (
+    cq.Workplane("XY")
+    .moveTo(0, 0.1172 * 0.6089)
+    .threePointArc((0.0281 * 0.6089, 0.05

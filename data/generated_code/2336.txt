@@ -1,0 +1,41 @@
+import cadquery as cq
+from math import *
+
+# --- Part 1: Cube ---
+part_1_size = 0.75 * 0.75  # Sketch size scaled
+part_1_height = 0.0029
+
+part_1 = cq.Workplane("XY").rect(part_1_size, part_1_size).extrude(-part_1_height)
+
+# --- Coordinate System Transformation for Part 1 ---
+part_1 = part_1.translate((0, 0, 0.0361))
+
+# --- Part 2: Cut Feature ---
+sketch_scale_part2 = 0.649
+cutout_depth_part2 = 0.0361
+
+part_2 = (
+    cq.Workplane("XY")
+    .moveTo(0.0, 0.0)
+    .lineTo(0.7083 * sketch_scale_part2, 0.0)
+    .lineTo(0.7083 * sketch_scale_part2, 0.6495 * sketch_scale_part2)
+    .threePointArc((0.733 * sketch_scale_part2, 0.5957 * sketch_scale_part2), (0.7091 * sketch_scale_part2, 0.649 * sketch_scale_part2))
+    .lineTo(0.0, 0.6495 * sketch_scale_part2)
+    .lineTo(0.0, 0.0)
+    .close()
+    .extrude(-cutout_depth_part2)
+)
+
+# --- Coordinate System Transformation for Part 2 ---
+part_2 = part_2.rotate((0, 0, 0), (0, 0, 1), -90)
+part_2 = part_2.translate((0.0223, 0.0, 0.0361))
+
+# --- Part 3: Small Cylinder ---
+sketch_scale_part3 = 0.0115
+cylinder_radius = 0.0058 * sketch_scale_part3
+cylinder_height = 0.0144
+
+cylinder = cq.Workplane("XY").circle(cylinder_radius).extrude(-cylinder_height)
+
+# --- Coordinate System Transformation for Part 3 ---
+cylinder = cylinder.translate((

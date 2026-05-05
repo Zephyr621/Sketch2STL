@@ -1,0 +1,47 @@
+import cadquery as cq
+import math
+from cadquery import exporters
+
+# --- Parameters from JSON ---
+length = 0.75 * 0.75  # Scaled length
+width = 0.1845 * 0.75  # Scaled width
+height = 0.003  # Height
+corner_radius = 0.0274 * 0.75  # Scaled corner radius
+cutout_offset = 0.0097 * 0.75  # Scaled cutout offset
+hole_offset = 0.0099 * 0.75  # Scaled hole offset
+hole1_x = 0.0137 * 0.75  # Scaled hole 1 x-coordinate
+hole2_x = 0.7125 * 0.75  # Scaled hole 2 x-coordinate
+hole3_x = 0.7125 * 0.75  # Scaled hole 3 x-coordinate
+hole4_x = 0.7312 * 0.75  # Scaled hole 4 x-coordinate
+
+# --- Create the base plate ---
+plate = cq.Workplane("XY").rect(length, width).extrude(height)
+
+# --- Create the holes ---
+plate = (
+    plate.faces(">Z")
+    .workplane()
+    .moveTo(-length/2 + cutout_offset, -width/2 + cutout_offset)
+    .circle(hole_radius)
+    .cutThruAll()
+)
+
+plate = (
+    plate.faces(">Z")
+    .workplane()
+    .moveTo(-length/2 + cutout_offset, -width/2 + cutout_offset)
+    .circle(hole_radius)
+    .cutThruAll()
+)
+
+# --- Export to STL ---
+exporters.export(plate, "./stlcq/0035/00354201.stl")
+
+# --- Export to STL ---
+exporters.export(plate, "./stlcq/0035/00350415.stl")
+
+# --- Export to STL ---
+exporters.export(plate, "./stlcq/0035/00359166.stl")
+
+# --- Export to STL ---
+exporters.export(plate, './stlcq/0035/00359166

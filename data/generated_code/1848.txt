@@ -1,0 +1,47 @@
+import cadquery as cq
+
+# --- Part 1: Base with Cutout ---
+base_width = 0.25 * 0.75
+base_length = 0.75 * 0.75
+cutout_x_start = 0.125 * 0.75
+cutout_y_start = 0.2 * 0.75
+cutout_width = (0.25 - 0.125) * 0.75
+cutout_height = (0.625 - 0.2) * 0.75
+cutout_depth = 0.5 * 0.75
+
+part_1 = (
+    cq.Workplane("XY")
+    .moveTo(0, 0)
+    .lineTo(base_length, 0)
+    .lineTo(base_length, base_width)
+    .lineTo(cutout_x_start + cutout_width, base_width)
+    .lineTo(cutout_x_start + cutout_width, cutout_y_start)
+    .lineTo(0, cutout_y_start)
+    .close()
+    .extrude(-cutout_depth)
+)
+
+# --- Part 2: Vertical Extension ---
+extension_width = 0.1 * 0.25
+extension_length = 0.25 * 0.25
+extension_height = 0.75 * 0.25
+
+part_2 = (
+    cq.Workplane("XY")
+    .rect(extension_length, extension_width)
+    .extrude(extension_height)
+)
+
+# --- Assembly ---
+assembly = part_1.cut(part_2.translate((0, 0, 0.5)))
+
+cq.exporters.export(assembly, "./stlcq/0049/00498642.stl")
+
+# --- Export to STL ---
+cq.exporters.export(assembly, "./stlcq/0049/00499893.stl")
+
+cq.exporters.export(assembly, "./stlcq/0049/00499893.stl")
+
+cq.exporters.export(assembly, "./stlcq/0049/00499893.stl")
+
+cq.exporters.export(assembly, "./stlcq/0049/00499536.stl

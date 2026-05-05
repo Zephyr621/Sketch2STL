@@ -1,0 +1,45 @@
+import cadquery as cq
+from math import radians
+
+# --- Part 1: Ring ---
+part_1_outer_radius = 0.2945 * 0.5893  # Sketch radius scaled
+part_1_inner_radius = 0.1154 * 0.5893
+part_1_height = 0.1154
+
+part_1 = (
+    cq.Workplane("XY")
+    .circle(part_1_outer_radius)
+    .circle(part_1_inner_radius)
+    .extrude(part_1_height)
+)
+
+# --- Coordinate System Transformation for Part 1 ---
+part_1 = part_1.rotate((0, 0, 0), (0, 0, 1), -90)
+part_1 = part_1.translate((0.0789, 0.6322, 0.0789))
+
+# --- Part 2: Cylinder with Hole ---
+part_2_outer_radius = 0.216 * 0.4649  # Sketch radius scaled
+part_2_inner_radius = 0.1154 * 0.4649
+part_2_height = 0.0268
+
+part_2 = (
+    cq.Workplane("XY")
+    .circle(part_2_outer_radius)
+    .circle(part_2_inner_radius)
+    .extrude(part_2_height)
+)
+
+# --- Coordinate System Transformation for Part 2 ---
+part_2 = part_2.rotate((0, 0, 0), (0, 0, 1), -90)
+part_2 = part_2.translate((0.0517, 0.6322, 0.0517))
+
+# --- Assembly ---
+assembly = part_1.union(part_2)
+
+cq.exporters.export(assembly, "./stlcq/0032/00324825.stl")
+
+cq.exporters.export(assembly, "./stlcq/0032/00324825.stl")
+
+cq.exporters.export(assembly, "./stlcq/0032/00324825.stl")
+
+cq.exporters.export(assembly, "./stlcq/0032/00

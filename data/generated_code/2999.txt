@@ -1,0 +1,51 @@
+The final shape is a square plate with a central circular hole, suitable for applications requiring a flat surface with smooth transitions between surfaces.
+import cadquery as cq
+
+# --- Part 1: Square Plate ---
+plate_length = 0.6868 * 0.75  # Scaled length
+plate_width = 0.75 * 0.75  # Scaled width
+plate_height = 0.0703
+
+part_1 = (
+    cq.Workplane("XY")
+    .rect(plate_length, plate_width)
+    .extrude(plate_height)
+)
+
+# --- Part 2: Circular Hole ---
+hole_radius = 0.0043 * 0.0885  # Scaled radius
+hole_depth = 0.0703
+
+# Create the hole
+hole = (
+    cq.Workplane("XY")
+    .circle(hole_radius)
+    .extrude(-hole_depth)
+)
+
+# --- Assembly: Cut the hole from the plate ---
+assembly = part_1.cut(hole.translate((0.0188, 0.0188, plate_height)))
+
+# --- Export to STL ---
+cq.exporters.export(assembly, "./stlcq/0052/00523034.stl")
+
+# --- Export to STL ---
+cq.exporters.export(assembly, './stlcq/0052/00523944.stl')
+
+# --- Export to STL ---
+cq.exporters.export(assembly, "./stlcq/0052/00523825.stl")
+
+# --- Export to STL ---
+cq.exporters.export(assembly, "./stlcq/0052/00523714.stl")
+
+# --- Export to STL ---
+cq.exporters.export(assembly, "./stlcq/0052/00526906.stl")
+
+# --- Export to STL ---
+cq.exporters.export(assembly, "./stlcq/0052/00523714.stl")
+
+# --- Export to STL ---
+cq.exporters.export(assembly, "./stlcq/0052/00526693.stl")
+
+# --- Export to STL ---
+cq.exporters.export(assembly, "./st

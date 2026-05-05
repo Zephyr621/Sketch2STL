@@ -1,0 +1,33 @@
+import cadquery as cq
+from cadquery.vis import show
+
+# --- Part 1: Cube with Diagonal Cut ---
+sketch_scale = 0.75
+extrude_depth = 0.2143 * sketch_scale
+
+# Scaled dimensions
+arc_1_start = (0.1749 * sketch_scale, 0.0)
+arc_1_mid = (0.375 * sketch_scale, 0.0303 * sketch_scale)
+arc_1_end = (0.5751 * sketch_scale, 0.0)
+
+arc_2_start = (0.5751 * sketch_scale, 0.0)
+arc_2_mid = (0.75 * sketch_scale, 0.7286 * sketch_scale)
+arc_2_end = (0.5751 * sketch_scale, 0.75 * sketch_scale)
+
+arc_3_start = (0.5751 * sketch_scale, 0.75 * sketch_scale)
+arc_3_mid = (0.375 * sketch_scale, 0.7286 * sketch_scale)
+arc_3_end = (0.1749 * sketch_scale, 0.75 * sketch_scale)
+
+arc_4_start = (0.1749 * sketch_scale, 0.75 * sketch_scale)
+arc_4_mid = (0.0 * sketch_scale, 0.7286 * sketch_scale)
+arc_4_end = (0.1749 * sketch_scale, 0.6601 * sketch_scale)
+
+arc_5_start = (0.1749 * sketch_scale, 0.6601 * sketch_scale)
+arc_5_mid = (0.0 * sketch_scale, 0.7286 * sketch_scale)
+arc_5_end = (0.1749 * sketch_scale, 0.0)
+
+part_1 = (
+    cq.Workplane("XY")
+    .moveTo(arc_1_start[0], arc_1_start[1])
+    .threePointArc(arc_1_mid, arc_1_end)
+    .lineTo(arc_2_start[0], arc_2_start[1])

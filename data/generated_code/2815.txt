@@ -1,0 +1,52 @@
+import cadquery as cq
+import math
+from cadquery.vis import show
+
+# --- Part 1: Triangle Prism ---
+part_1_scale = 0.5
+part_1_length = 0.5 * part_1_scale
+part_1_height = 0.75
+
+part_1 = (
+    cq.Workplane("XY")
+    .moveTo(0, 0)
+    .lineTo(part_1_length, 0)
+    .lineTo(part_1_length / 2, part_1_width)
+    .lineTo(0, 0)
+    .close()
+    .extrude(-part_1_height)
+)
+
+# --- Coordinate System Transformation for Part 1 ---
+part_1 = part_1.rotate((0, 0, 0), (1, 0, 0), -90)
+part_1 = part_1.rotate((0, 0, 0), (0, 0, 1), -90)
+
+
+# --- Part 2: Cylinder (Cut) ---
+part_2_radius = 0.1023 * 0.2086
+part_2_depth = 0.125
+
+part_2 = (
+    cq.Workplane("XY")
+    .workplane(offset=0.75)
+    .circle(part_2_radius)
+    .extrude(-part_2_depth)
+)
+
+# --- Coordinate System Transformation for Part 2 ---
+part_2 = part_2.translate((0.0565, 0.0835, 0.5))
+
+# --- Assembly: Cut Part 2 from Part 1 ---
+assembly = part_1.cut(part_2)
+
+# --- Export to STL ---
+cq.exporters.export(assembly, "./stlcq/0042/00424393.stl")
+
+# --- Export to STL ---
+cq.exporters.export(assembly, "./stlcq/0042/00424429.stl")
+
+# --- Export to STL ---
+cq.exporters.export(assembly, "./stlcq/0042/00424428.stl")
+
+# --- Export to STL ---
+cq.exporters.export(assembly, "./st

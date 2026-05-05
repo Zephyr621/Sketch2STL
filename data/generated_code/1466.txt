@@ -1,0 +1,43 @@
+import cadquery as cq
+
+# --- Part 1: Rectangular Bar ---
+sketch_scale = 0.75
+extrude_depth = 0.0782 * sketch_scale
+
+# Define the points for the sketch
+p1 = (0.0 * sketch_scale, 0.0238 * sketch_scale)
+p2 = (0.0146 * sketch_scale, 0.0238 * sketch_scale)
+p3 = (0.0063 * sketch_scale, 0.0238 * sketch_scale)
+p4 = (0.0248 * sketch_scale, 0.0238 * sketch_scale)
+p5 = (0.7083 * sketch_scale, 0.0238 * sketch_scale)
+p6 = (0.75 * sketch_scale, 0.0238 * sketch_scale)
+p7 = (0.7083 * sketch_scale, 0.0 * sketch_scale)
+p8 = (0.7084 * sketch_scale, 0.0063 * sketch_scale)
+
+# Create the sketch using the points
+part_1 = (
+    cq.Workplane("XY")
+    .moveTo(p1[0], p1[1])
+    .lineTo(p2[0], p2[1])
+    .lineTo(p3[0], p3[1])
+    .lineTo(p4[0], p4[1])
+    .lineTo(p5[0], p5[1])
+    .lineTo(p6[0], p6[1])
+    .lineTo(p7[0], p7[1])
+    .close()
+    .extrude(extrude_depth)
+)
+
+# --- Assembly ---
+assembly = part_1
+
+# Export to STL
+cq.exporters.export(assembly, "./stlcq/0031/00318379.stl")
+
+# Export the result to a STL file
+cq.exporters.export(assembly, "./stlcq/00316/00315457.stl")
+
+# --- Export to STL ---
+cq.exporters.export(assembly, './stlcq/00315/00315457.stl')
+
+# Export the

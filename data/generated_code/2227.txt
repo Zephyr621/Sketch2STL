@@ -1,0 +1,52 @@
+import cadquery as cq
+
+# --- Part 1: Cube ---
+length = 0.75 * 0.75  # Scaled length
+width = 0.6831 * 0.75  # Scaled width
+height = 0.0281
+
+part_1 = cq.Workplane("XY").box(length, width, height)
+
+# --- Fillet Edges ---
+edge_radius = min(length, width, height) / 10  # Adjust as needed
+part_1 = part_1.edges("|Z").fillet(edge_radius)
+part_1 = part_1.edges(">Z").fillet(edge_radius)
+
+# --- Assembly (if needed, based on the single part) ---
+# In this case, there's only one part, so no assembly is needed.
+
+# --- Final Result ---
+result = part_1
+
+cq.exporters.export(result, './stlcq/0070/00708452.stl')
+
+# Export to STL
+cq.exporters.export(result, './stlcq/0070/00708452.stl')
+
+# Export to STL
+cq.exporters.export(result, './stlcq/0070/00708452.stl')
+
+# Export to STL
+cq.exporters.export(result, './stlcq/0070/00708452.stl')
+
+# Export to STL
+cq.exporters.export(result, './stlcq/0070/00708452.stl')
+
+# Export to STL
+cq.exporters.export(result, './stlcq/0070/00708452.stl')
+
+# Export to STL
+cq.exporters.export(result, './stlcq/0070/00708452.stl')
+
+# Export to STL
+cq.exporters.export(result, './stlcq/0070/00708452.stl')
+
+# Export to STL
+cq.exporters.export(result, './stlcq/0070/00708452.stl')
+
+# --- Final Result ---
+result = part_1
+
+cq.exporters.export(result, './stlcq/0070/00708528.stl')
+
+cq.exporters.export(

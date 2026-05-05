@@ -1,0 +1,41 @@
+import cadquery as cq
+from math import radians
+
+# --- Part 1: Cylinder ---
+part_1_radius = 0.3125 * 0.625  # Sketch radius scaled
+part_1_height = 0.1875 + 0.1875
+
+part_1 = cq.Workplane("XY").circle(part_1_radius).extrude(part_1_height)
+
+# --- Coordinate System Transformation for Part 1 ---
+part_1 = part_1.rotate((0, 0, 0), (0, 0, 1), -90)
+part_1 = part_1.translate((0, 0.375, 0))
+
+# --- Part 2: Cut Cylinder ---
+part_2_radius = 0.1 * 0.2  # Sketch radius scaled
+part_2_height = 0.25
+
+part_2 = cq.Workplane("XY").circle(part_2_radius).extrude(-part_2_height)
+
+# --- Coordinate System Transformation for Part 2 ---
+part_2 = part_2.rotate((0, 0, 0), (0, 0, 1), -90)
+part_2 = part_2.translate((0.0156, 0.25, 0.0156))
+
+# --- Part 3: Join Cylinder ---
+part_3_radius = 0.0938 * 0.15  # Sketch radius scaled
+part_3_height = 0.25
+
+part_3 = cq.Workplane("XY").circle(part_3_radius).extrude(part_3_height)
+
+# --- Coordinate System Transformation for Part 3 ---
+part_3 = part_3.rotate((0, 0, 0), (0, 0, 1), -90)
+part_3 = part_3.translate((0.1406, 0.25, 0.1406))
+
+# --- Part 4: Cut Rectangular Prism ---
+part_4_width = 0.0513 * 0.55
+part_4_length = 0.55 * 0.55
+part_4_height = 0.25
+
+part_4 = cq.Workplane("XY").rect(part_4_width, part_4_length).extrude(-part_4_height)
+
+# --- Coordinate System Transformation for Part 4

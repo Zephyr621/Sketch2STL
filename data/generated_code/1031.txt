@@ -1,0 +1,52 @@
+This process results in a solid body that can be used as a component in larger assemblies.
+import cadquery as cq
+
+# --- Part 1: Cylinder with Hollow Center ---
+outer_radius = 0.1485 * 0.2813  # Sketch radius scaled
+inner_radius = 0.0634 * 0.2813  # Inner radius scaled
+height = 0.75
+
+part_1 = (
+    cq.Workplane("XY")
+    .circle(outer_radius)
+    .extrude(height)
+    .faces(">Z").workplane()
+    .circle(inner_radius)
+    .cutThruAll()
+)
+
+# --- Assembly (if needed, based on the single part) ---
+# In this case, there's only one part, so no assembly is needed.
+
+# --- Final Result ---
+result = part_1
+
+# Export to STL
+cq.exporters.export(result, './stlcq/0087/00879462.stl')
+
+# Export to STL
+cq.exporters.export(result, './stlcq/0087/00879419.stl')
+
+# Export to STL
+cq.exporters.export(result, './stlcq/0087/00879632.stl')
+
+# Export to STL
+cq.exporters.export(result, './stlcq/0087/00879733.stl')
+
+# Export to STL
+cq.exporters.export(result, './stlcq/0087/00879733.stl')
+
+# Export to STL
+cq.exporters.export(result, './stlcq/0087/00879633.stl')
+
+# Export to STL
+cq.exporters.export(result, './stlcq/0087/00879733.stl')
+
+# Export to STL
+cq.exporters.export(result, './stlcq/0087/00879633.stl')
+
+# Export to STL
+cq.exporters.export(result, './stlcq/0087/00879733.stl')
+
+# Export to STL
+cq.exporters.export(result, './stlcq/0087/00879733.

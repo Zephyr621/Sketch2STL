@@ -1,0 +1,40 @@
+import cadquery as cq
+
+# --- Part 1: Cube with Protrusion ---
+part_1 = (
+    cq.Workplane("XY")
+    .moveTo(0.0, 0.0)
+    .lineTo(0.5258 * 0.5929, 0.0)
+    .lineTo(0.5258 * 0.5929, 0.4167 * 0.5929)
+    .lineTo(0.2727 * 0.5929, 0.4167 * 0.5929)
+    .lineTo(0.2727 * 0.5929, 0.1705 * 0.5929)
+    .lineTo(0.2383 * 0.5929, 0.1705 * 0.5929)
+    .lineTo(0.2383 * 0.5929, 0.1667 * 0.5929)
+    .lineTo(0.0, 0.1667 * 0.5929)
+    .lineTo(0.0, 0.0)
+    .close()
+    .extrude(0.75)
+)
+
+# --- Assembly (if needed, based on the single part) ---
+# In this case, there's only one part, so no assembly is needed.
+# If there were multiple parts, you would use .union() or .cut() to combine them.
+
+# --- Final Result ---
+result = part_1
+
+cq.exporters.export(result, './stlcq/0047/00477036.stl')
+
+cq.exporters.export(result, './stlcq/0047/00477412.stl')
+
+cq.exporters.export(result, './stlcq/0047/00477413.stl')
+
+cq.exporters.export(result, './stlcq/0047/00477412.stl')
+
+cq.exporters.export(result, './stlcq/0047/00477413.stl')
+
+cq.exporters.export(result, './stlcq/0047/00477413.stl')
+
+cq.exporters.export(result, './stlcq/0047/00477413.stl')
+
+cq

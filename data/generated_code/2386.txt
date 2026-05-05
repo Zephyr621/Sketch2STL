@@ -1,0 +1,50 @@
+import cadquery as cq
+
+# --- Part 1: Oval Object ---
+outer_radius = 0.375 * 0.75  # Sketch radius scaled
+inner_radius = 0.25 * 0.75
+height = 0.0037
+
+part_1 = (
+    cq.Workplane("XY")
+    .circle(outer_radius)
+    .extrude(height)
+    .cut(cq.Workplane("XY").circle(inner_radius).extrude(height))
+)
+
+# --- Assembly (if needed, based on the single part) ---
+# In this case, there's only one part, so no assembly is needed.
+# If there were multiple parts, you would use .union() or .cut() to combine them.
+
+# --- Final Result ---
+result = part_1
+
+cq.exporters.export(result, './stlcq/0079/00795185.stl')
+
+# Export to STL
+cq.exporters.export(result, './stlcq/00798067.stl')
+
+# Export to STL
+cq.exporters.export(result, './stlcq/00798847.stl')
+
+cq.exporters.export(result, './stlcq/007986.stl')
+
+cq.exporters.export(result, './stlcq/007987.stl')
+
+cq.exporters.export(result, './stlcq/007987.stl')
+
+cq.exporters.export(result, './stlcq/007986.stl')
+
+cq.exporters.export(result, './stlcq/007987.stl')
+
+cq.exporters.export(result, './stlcq/007987.stl')
+
+cq.exporters.export(result, './stlcq/007987.stl')
+
+cq.exporters.export(result, './stlcq/007987.stl')
+
+cq.exporters.export(result, './stlcq/007987.stl')
+
+cq.exporters.export(result, './stlcq/007987.stl')
+
+cq.exporters.export(result, './stlcq/007987.

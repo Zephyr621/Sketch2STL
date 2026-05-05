@@ -1,0 +1,60 @@
+import cadquery as cq
+import math
+from cadquery import exporters
+
+# --- Part 1: Triangle with Curved Top ---
+sketch_scale = 0.75
+length = 0.75 * sketch_scale
+width = 0.375 * sketch_scale
+height = 0.0312
+
+part_1 = (
+    cq.Workplane("XY")
+    .moveTo(0, 0)
+    .lineTo(length, 0)
+    .threePointArc((length + (0.75 - 0.75)/2, width/2), (length, width))
+    .lineTo(0, width)
+    .close()
+    .extrude(height)
+)
+
+# --- Coordinate System Transformation for Part 1 ---
+part_1 = part_1.translate((0, 0, 0.0313))
+
+# --- Assembly ---
+assembly = part_1
+
+# Export to STL
+exporters.export(assembly, "./stlcq/0029/00299322.stl")
+
+# Export to STL
+exporters.export(assembly, "./stlcq/00295568.stl")
+
+# Export to STL
+exporters.export(assembly, './stlcq/00296711.stl')
+
+# Export to STL
+exporters.export(assembly, "./stlcq/00296696.stl")
+
+# Export to STL
+exporters.export(assembly, "./stlcq/0029679.stl")
+
+# Export to STL
+exporters.export(assembly, "./stlcq/00295870.stl")
+
+# Export to STL
+exporters.export(assembly, "./stlcq/00295701.stl")
+
+# Export to STL
+exporters.export(assembly, './stlcq/00295926.stl')
+
+# Export to STL
+exporters.export(assembly, "./stlcq/00295872.stl")
+
+# Export to STL
+exporters.export(assembly, "./stlcq/00296897.stl")
+
+# Export to STL
+exporters.export(assembly, "./stlcq/00295925.stl")
+
+# Export to

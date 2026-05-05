@@ -1,0 +1,55 @@
+import cadquery as cq
+
+# --- Part 1: Rectangular Plate ---
+length = 0.75 * 0.75  # Scaled length
+width = 0.6387 * 0.75  # Scaled width
+height = 0.0048
+
+part_1 = (
+    cq.Workplane("XY")
+    .rect(length, width)
+    .extrude(height)
+)
+
+# --- Fillet the corners ---
+corner_radius = min(length, width) / 10  # Adjust as needed; avoid large values
+part_1 = part_1.edges("|Z and >X").fillet(corner_radius)
+part_1 = part_1.edges("|Z and <X").fillet(corner_radius)
+
+# --- Assembly (if needed, based on the single part) ---
+# In this case, there's only one part, so no assembly is needed.
+
+# --- Final Result ---
+result = part_1
+
+cq.exporters.export(result, './stlcq/0009/00099093.stl')
+
+# Export to STL
+cq.exporters.export(result, './stlcq/00098782.stl')
+
+# Export to STL
+cq.exporters.export(result, './stlcq/00098782.stl')
+
+# Export to STL
+cq.exporters.export(result, './stlcq/00098782.stl')
+
+# Export to STL
+cq.exporters.export(result, './stlcq/00098432.stl')
+
+# Export to STL
+cq.exporters.export(result, './stlcq/00098524.stl')
+
+# Export to STL
+cq.exporters.export(result, './stlcq/00098785.stl')
+
+# Export to STL
+cq.exporters.export(result, './stlcq/00098734.stl')
+
+# Export to STL
+cq.exporters.export(result, './stlcq/00098787.stl')
+
+# Export to STL
+cq.exporters.export(result, './stlcq/00098787.stl')
+
+# Export to STL
+cq.

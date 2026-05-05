@@ -1,0 +1,41 @@
+import cadquery as cq
+from math import radians
+
+# --- Part 1: Rectangular Prism ---
+part_1_length = 0.3571 * 0.3571  # Scaled length
+part_1_width = 0.0893 * 0.3571   # Scaled width
+part_1_height = 0.5357
+
+part_1 = cq.Workplane("XY").rect(part_1_length, part_1_width).extrude(part_1_height)
+
+# --- Part 2: Cut Cylinder ---
+part_2_radius = 0.0179 * 0.0357  # Scaled radius
+part_2_height = 0.0536
+
+part_2 = cq.Workplane("XY").circle(part_2_radius).extrude(-part_2_height)  # Extrude in the opposite direction for cutting
+
+# --- Coordinate System Transformation for Part 2 ---
+part_2 = part_2.rotate((0, 0, 0), (0, 0, 1), -90)
+part_2 = part_2.translate((0.1786, 0.0268, 0.1786))
+
+# --- Part 3: Join Cylinder ---
+part_3_radius = 0.0179 * 0.3214  # Scaled radius
+part_3_height = 0.4554
+
+part_3 = cq.Workplane("XY").circle(part_3_radius).extrude(part_3_height)
+
+# --- Coordinate System Transformation for Part 3 ---
+part_3 = part_3.rotate((0, 0, 0), (0, 0, 1), -90)
+part_3 = part_3.translate((0.0536, 0.4554, 0.0536))
+
+# --- Assembly ---
+assembly = part_1.cut(part_2).union(part_3)
+
+cq.exporters.export(assembly, "./stlcq/0064/00642873.stl")
+
+# --- Export to STL ---
+cq.exporters.export(assembly, './stlcq/0064/00642873.stl')
+
+cq.exporters.export(assembly, './stlcq/0064/00642872.stl')
+
+cq

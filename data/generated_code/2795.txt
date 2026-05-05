@@ -1,0 +1,52 @@
+import cadquery as cq
+
+# --- Part 1: Rectangular Box ---
+outer_width = 0.1752 * 0.1688  # Scaled outer width
+outer_height = 0.1578 * 0.1688 # Scaled outer height
+inner_offset = 0.0408 * 0.1688 # Scaled inner offset
+extrude_depth = 0.75
+
+# Create the outer rectangle and extrude it
+outer_rect = (
+    cq.Workplane("XY")
+    .rect(outer_width, outer_height)
+    .extrude(extrude_depth)
+)
+
+# Create the inner rectangle (to be cut out) and extrude it
+inner_rect = (
+    cq.Workplane("XY")
+    .rect(outer_width - 2 * inner_offset, outer_height - 2 * inner_offset)
+    .extrude(extrude_depth)
+)
+
+# Cut the inner rectangle from the outer rectangle
+part_1 = outer_rect.cut(inner_rect)
+
+# --- Coordinate System Transformation for Part 1 ---
+part_1 = part_1.rotate((0, 0, 0), (0, 0, 1), -90)
+part_1 = part_1.translate((0, 0.75, 0))
+
+# --- Assembly ---
+assembly = part_1
+
+# Export to STL
+cq.exporters.export(assembly, "./stlcq/0029/00299682.stl")
+
+# Export to STL
+cq.exporters.export(assembly, "./stlcq/002968.stl")
+
+# Export to STL
+cq.exporters.export(assembly, "./stlcq/0029651.stl")
+
+# Export to STL
+cq.exporters.export(assembly, "./stlcq/002958.stl")
+
+# Export to STL
+cq.exporters.export(assembly, "./stlcq/002969.stl")
+
+# Export to STL
+cq.exporters.export(assembly, "./stlcq/002969.stl")
+
+# Export to STL
+cq.exporters.export(assembly, "./stlcq/0029592.

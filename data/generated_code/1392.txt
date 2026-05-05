@@ -1,0 +1,40 @@
+import cadquery as cq
+from math import radians
+
+# --- Part 1: Cylinder ---
+part_1_radius = 0.375 * 0.75  # Sketch radius scaled
+part_1_height = 0.25
+
+part_1 = cq.Workplane("XY").circle(part_1_radius).extrude(part_1_height)
+
+# --- Coordinate System Transformation for Part 1 ---
+part_1 = part_1.rotate((0, 0, 0), (0, 0, 1), -90)
+part_1 = part_1.translate((0, 0.5, 0))
+
+# --- Part 2: Holes ---
+hole_radius = 0.2893 * 0.5795
+hole_depth = 0.25
+
+hole_centers = [
+    (0.1406 + 0.2893/2, 0.1406 + 0.2893/2),  # Left
+    (0.1406 + 0.2893/2, 0.2893 + 0.2893/2),
+    (0.1406 + 0.2893/2, 0.2893 + 0.2893/2),
+    (0.1406 + 0.2893/2, 0.2893 + 0.2893/2),
+    (0.1406 + 0.2893/2, 0.2893 + 0.2893/2),
+]
+
+for x, y in hole_centers:
+    part_1 = part_1.faces(">Z").workplane().pushPoints([(x, y)]).hole(2 * hole_radius)
+
+# --- Coordinate System Transformation for Part 2 ---
+part_2 = part_2.rotate((0, 0, 0), (0, 0, 1), -90)
+part_2 = part_2.translate((0.2932, 0.5, 0.2893))
+
+# --- Assembly ---
+assembly = part_1.cut(part_2)
+
+cq.exporters.export(assembly, "./stlcq/0068/00682103.stl")
+
+cq.exporters.export(assembly, "./stlcq/0068536.stl")
+
+cq.exporters.export(assembly,

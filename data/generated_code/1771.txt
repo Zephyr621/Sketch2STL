@@ -1,0 +1,45 @@
+import cadquery as cq
+import math
+from cadquery import exporters
+
+# --- Part 1: Rectangular Plate ---
+part_1_length = 0.7493 * 0.7493  # Scaled length
+part_1_width = 0.5182 * 0.7493  # Scaled width
+part_1_height = 0.0745
+
+part_1 = (
+    cq.Workplane("XY")
+    .rect(part_1_length, part_1_width)
+    .extrude(-part_1_height)  # Extrude in the opposite direction
+)
+
+# Add hole
+hole_radius = 0.0072 * 0.7493
+part_1 = part_1.faces(">Z").workplane().circle(hole_radius).cutThruAll()
+
+# --- Coordinate System Transformation for Part 1 ---
+part_1 = part_1.translate((0.0349, 0.0, 0.0447))
+
+# --- Part 2: Rectangular Plate with Holes ---
+sketch_scale_part2 = 0.7493
+part_2_depth = 0.0745
+
+# Define hole positions relative to part_1
+hole_positions = [
+    (0.0124 * sketch_scale_part2, 0.0124 * sketch_scale_part2),
+    (0.0349 * sketch_scale_part2, 0.0124 * sketch_scale_part2),
+    (0.6923 * sketch_scale_part2, 0.0124 * sketch_scale_part2),
+]
+
+# Create holes in part 2
+for x, y in hole_positions:
+    part_2 = (
+        cq.Workplane("XY")
+        .moveTo(x, y)
+        .circle(hole_radius)
+        .extrude(-part_2_depth)
+    )
+
+# Apply rotation and translation
+part_2 = part_2.rotate((0, 0, 0), (0, 0, 1), -90)
+part_2 = part_2.translate((0.0079,

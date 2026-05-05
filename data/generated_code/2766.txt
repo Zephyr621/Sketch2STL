@@ -1,0 +1,41 @@
+import cadquery as cq
+from math import radians
+
+# --- Part 1: Cylinder ---
+part_1_radius = 0.375 * 0.75  # Sketch radius scaled
+part_1_height = 0.089
+
+part_1 = cq.Workplane("XY").circle(part_1_radius).extrude(-part_1_height)
+
+# --- Coordinate System Transformation for Part 1 ---
+part_1 = part_1.rotate((0, 0, 0), (0, 0, 1), -90)
+part_1 = part_1.translate((0, 0, 0))
+
+# --- Part 2: Small Cylinder on Top ---
+part_2_radius = 0.125 * 0.2542  # Sketch radius scaled
+part_2_height = 0.1424
+
+part_2 = cq.Workplane("XY").circle(part_2_radius).extrude(part_2_height)
+
+# --- Coordinate System Transformation for Part 2 ---
+part_2 = part_2.rotate((0, 0, 0), (0, 0, 1), -90)
+part_2 = part_2.translate((0.0985, 0, 0.0985))
+
+# --- Part 3: Even Smaller Cylinder on Top ---
+part_3_radius = 0.1161 * 0.2288  # Sketch radius scaled
+part_3_height = 0.1017
+
+part_3 = cq.Workplane("XY").circle(part_3_radius).extrude(part_3_height)
+
+# --- Coordinate System Transformation for Part 3 ---
+part_3 = part_3.rotate((0, 0, 0), (0, 0, 1), -90)
+part_3 = part_3.translate((0.2853, 0, 0.2853))
+
+# --- Part 4: Even Smaller Cylinder on Top ---
+part_4_radius = 0.0957 * 0.4576  # Sketch radius scaled
+part_4_height = 0.1017
+
+part_4 = cq.Workplane("XY").circle(part_4_radius).extrude(part_4_height)
+
+# --- Coordinate System Transformation for Part 4 ---
+part_4 = part_4.rotate((0

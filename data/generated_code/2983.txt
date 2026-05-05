@@ -1,0 +1,38 @@
+import cadquery as cq
+
+# --- Part 1: Cylinder ---
+part_1_radius = 0.0625 * 0.1213  # Sketch radius scaled
+part_1_height = 0.2036
+
+part_1 = cq.Workplane("XY").circle(part_1_radius).extrude(-part_1_height)
+
+# --- Coordinate System Transformation for Part 1 ---
+part_1 = part_1.rotate((0, 0, 0), (0, 0, 1), -90)
+part_1 = part_1.translate((0.0222, 0.2036, 0))
+
+# --- Part 2: Rectangular Prism ---
+part_2_length = 0.1213 * 0.1213  # Sketch length scaled
+part_2_width = 0.0881 * 0.1213  # Sketch width scaled
+part_2_height = 0.1393
+
+part_2 = cq.Workplane("XY").rect(part_2_length, part_2_width).extrude(part_2_height)
+
+# --- Coordinate System Transformation for Part 2 ---
+part_2 = part_2.rotate((0, 0, 0), (0, 0, 1), -90)
+part_2 = part_2.translate((0.0222, 0.2036, 0.0222))
+
+# --- Part 3: Small Rod ---
+part_3_length = 0.0118 * 0.0118  # Sketch length scaled
+part_3_width = 0.0118 * 0.0118  # Sketch width scaled
+part_3_height = 0.4072
+
+part_3 = cq.Workplane("XY").rect(part_3_length, part_3_width).extrude(part_3_height)
+
+# --- Coordinate System Transformation for Part 3 ---
+part_3 = part_3.rotate((0, 0, 0), (0, 0, 1), -90)
+part_3 = part_3.translate((0.0417, 0.2036, 0.0417))
+
+# --- Assembly ---
+assembly = part_1.union(part_2).union(part_3)
+
+cq.exporters.export(assembly, "./stlc

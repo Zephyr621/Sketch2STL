@@ -1,0 +1,38 @@
+import cadquery as cq
+
+# --- Parameters from JSON ---
+length = 0.15 * 0.75  # Scaled length
+width = 0.75 * 0.75  # Scaled width
+height = 0.0375
+hole_radius = 0.0225 * 0.75  # Scaled hole radius
+hole_center_1 = (0.075 * 0.75 - length/2, 0.075 * 0.75 - width/2)  # Scaled and centered
+hole_center_2 = (0.675 * 0.75 - length/2, 0.075 * 0.75 - width/2)  # Scaled and centered
+
+# --- Create the base rectangular prism ---
+base = cq.Workplane("XY").rect(length, width).extrude(height)
+
+# --- Create the holes ---
+hole1 = cq.Workplane("XY").moveTo(hole_center_1[0] - length/2, hole_center_1[1] - width/2).circle(hole_radius).extrude(height)
+hole2 = cq.Workplane("XY").moveTo(hole_center_2[0] - length/2, hole_center_2[1] - width/2).circle(hole_radius).extrude(height)
+
+# --- Subtract the holes from the base ---
+result = base.cut(hole1).cut(hole2)
+
+# --- Apply rotation and translation ---
+result = result.rotate((0, 0, 0), (0, 0, 1), -90)
+result = result.translate((0, 0.0375, 0))
+
+# --- Export to STL ---
+cq.exporters.export(result, "./stlcq/0030/00301257.stl")
+
+# --- Export to STL ---
+cq.exporters.export(result, './stlcq/0030/00301256.stl')
+
+# --- Export to STL ---
+cq.exporters.export(result, "./stlcq/0030/00301258.stl")
+
+# --- Export to STL ---
+cq.exporters.export(result, "./stlcq/0030/00301258.stl")
+
+# --- Export to STL ---
+cq.exporters.export(result, "./

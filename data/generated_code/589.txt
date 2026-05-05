@@ -1,0 +1,43 @@
+import cadquery as cq
+
+# --- Part 1: Rectangular Extrusion ---
+part_1_width = 0.1355 * 0.75  # Scaled width
+part_1_height = 0.3343 * 0.75  # Scaled height
+part_1_depth = 0.1355  # Depth
+
+part_1 = (
+    cq.Workplane("XY")
+    .rect(part_1_width, part_1_height)
+    .extrude(part_1_depth)
+)
+
+# --- Coordinate System Transformation for Part 1 ---
+part_1 = part_1.rotate((0, 0, 0), (0, 0, 1), -90)
+part_1 = part_1.translate((0, 0.1355, 0))
+
+# --- Part 2: Cutout ---
+part_2_width = 0.0398 * 0.0398  # Scaled width
+part_2_height = 0.0199 * 0.0398  # Scaled height
+part_2_depth = 0.2259  # Depth
+
+part_2 = (
+    cq.Workplane("XY")
+    .moveTo(0, 0)
+    .lineTo(part_2_width, 0)
+    .lineTo(part_2_width, part_2_height)
+    .lineTo(0, part_2_height)
+    .close()
+    .extrude(-part_2_depth)
+)
+
+# --- Coordinate System Transformation for Part 2 ---
+part_2 = part_2.rotate((0, 0, 0), (1, 0, 0), 90)
+part_2 = part_2.rotate((0, 0, 0), (0, 0, 1), -90)
+part_2 = part_2.translate((0.75, 0, 0.0721))
+
+# --- Part 3: Cutout 2 ---
+part_3_width = 0.0398 * 0.0398  # Scaled width
+part_3_height = 0.2259 * 0.0398  # Scaled height
+part_3_depth = 0.2259  # Depth
+
+part_3 = (

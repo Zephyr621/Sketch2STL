@@ -1,0 +1,48 @@
+import cadquery as cq
+
+# --- Part 1: Base with Rounded Edges ---
+part_1_scale = 0.75
+part_1_length = 0.75 * part_1_scale
+part_1_width = 0.3333 * part_1_scale
+part_1_height = 0.4167
+
+part_1 = (
+    cq.Workplane("XY")
+    .moveTo(0.0, 0.0)
+    .lineTo(part_1_length, 0.0)
+    .lineTo(part_1_length, part_1_width)
+    .lineTo(0.0, part_1_width)
+    .lineTo(0.0, 0.0)
+    .close()
+    .extrude(part_1_height)
+)
+
+# --- Coordinate System Transformation for Part 1 ---
+part_1 = part_1.rotate((0, 0, 0), (0, 0, 1), -90)
+part_1 = part_1.translate((0, 0.4167, 0))
+
+# --- Part 2: Box ---
+part_2_scale = 0.3333
+part_2_length = 0.3333 * part_2_scale
+part_2_width = 0.3333 * part_2_scale
+part_2_height = 0.1667
+
+part_2 = (
+    cq.Workplane("XY")
+    .rect(part_2_length, part_2_width)
+    .extrude(part_2_height)
+)
+
+# --- Coordinate System Transformation for Part 2 ---
+part_2 = part_2.translate((0.0833, 0.0517, 0.3333))
+
+# --- Assembly ---
+assembly = part_1.union(part_2)
+
+cq.exporters.export(assembly, "./stlcq/0050/00504557.stl")
+
+cq.exporters.export(assembly, "./stlcq/0050952.stl")
+
+cq.exporters.export(assembly, "./stlcq/00500/00502893.stl")
+
+cq.exporters.export(assembly, "./st

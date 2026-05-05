@@ -1,0 +1,53 @@
+import cadquery as cq
+import math
+from cadquery import exporters
+
+# --- Part 1: Rectangular Plate ---
+part_1_length = 0.75 * 0.75  # Scaled length
+part_1_width = 0.55 * 0.75  # Scaled width
+part_1_height = 0.025
+
+part_1 = (
+    cq.Workplane("XY")
+    .rect(part_1_length, part_1_width)
+    .extrude(part_1_height)
+)
+
+# --- Part 2: Circular Holes ---
+hole_radius = 0.0062 * 0.5123
+hole_depth = 0.025
+
+# Hole positions relative to the center of the plate
+hole_positions = [
+    (0.0225 * 0.5123, 0.0225 * 0.5123),
+    (0.0225 * 0.5123, 0.5225 * 0.5123),
+    (0.0225 * 0.5123, 0.5062 * 0.5123),
+]
+
+# Create holes by cutting cylinders
+for x, y in hole_positions:
+    part_1 = part_1.faces(">Z").workplane().hole(2 * hole_radius)
+
+# --- Assembly ---
+assembly = part_1
+
+# --- Export to STL ---
+exporters.export(assembly, './stlcq/0007/00076342.stl')
+
+# --- Export to STL ---
+exporters.export(assembly, './stlcq/0007/00077467.stl')
+
+# --- Export to STL ---
+exporters.export(assembly, "./stlcq/00078200.stl")
+
+# --- Export to STL ---
+exporters.export(assembly, './stlcq/00078722.stl')
+
+# --- Export to STL ---
+exporters.export(assembly, './stlcq/00078201.stl')
+
+# --- Export to STL ---
+exporters.export(assembly, './stlcq/00078922.stl')
+
+# --- Export to STL ---
+exporters.export(assembly, './stlcq/000

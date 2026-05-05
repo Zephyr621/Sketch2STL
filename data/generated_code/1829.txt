@@ -1,0 +1,43 @@
+import cadquery as cq
+
+# --- Part 1: Cube chair ---
+part_1 = (
+    cq.Workplane("XY")
+    .moveTo(0.0, 0.6207 * 0.75)
+    .lineTo(0.0, 0.5357 * 0.75)
+    .lineTo(0.4687 * 0.75, 0.5357 * 0.75)
+    .lineTo(0.4687 * 0.75, 0.0)
+    .lineTo(0.4293 * 0.75, 0.0)
+    .lineTo(0.4293 * 0.75, 0.6207 * 0.75)
+    .lineTo(0.0, 0.6207 * 0.75)
+    .close()
+    .extrude(-0.4038)
+)
+
+# --- Coordinate System Transformation for Part 1 ---
+part_1 = part_1.rotate((0, 0, 0), (0, 0, 1), -90)
+part_1 = part_1.translate((0, 0, 0))
+
+# --- Assembly ---
+assembly = part_1
+
+cq.exporters.export(assembly, "./stlcq/0068/00689341.stl")
+
+# --- Export to STL ---
+cq.exporters.export(assembly, "./stlcq/00689680.stl")
+
+cq.exporters.export(assembly, "./stlcq/00689680.stl")
+
+cq.exporters.export(assembly, "./stlcq/00689680.stl")
+
+cq.exporters.export(assembly, "./stlcq/00689680.stl")
+
+cq.exporters.export(assembly, "./stlcq/00689680.stl")
+
+cq.exporters.export(assembly, "./stlcq/00689680.stl")
+
+cq.exporters.export(assembly, "./stlcq/00689680.stl")
+
+cq.exporters.export(assembly, "./stlcq/00689680.stl")
+
+cq.exporters.export(assembly, "./stlcq/00689680.

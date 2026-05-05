@@ -1,0 +1,46 @@
+import cadquery as cq
+from math import *
+
+# --- Part 1: Rectangular Plate ---
+length = 0.75 * 0.75  # Scaled length
+width = 0.3812 * 0.75  # Scaled width
+height = 0.0476
+
+hole_center_1 = (0.1184 * 0.75 - length/2, 0.1207 * 0.75 - width/2)
+hole_center_2 = (0.6196 * 0.75 - length/2, 0.1207 * 0.75 - width/2)
+hole_radius = 0.0246 * 0.75
+
+part_1 = (
+    cq.Workplane("XY")
+    .rect(length, width)
+    .extrude(height)
+    .faces(">Z")
+    .workplane()
+    .pushPoints([hole_center_1, hole_center_2])
+    .hole(hole_radius * 2)
+)
+
+# --- Assembly (if needed, based on the single part) ---
+# In this case, there's only one part, so no assembly is needed.
+# If there were multiple parts, you would use .union() or .cut() to combine them.
+
+# --- Final Result ---
+result = part_1
+
+cq.exporters.export(result, './stlcq/0093/00939458.stl')
+
+cq.exporters.export(result, './stlcq/0093/00939767.stl')
+
+cq.exporters.export(result, './stlcq/0093/00939767.stl')
+
+cq.exporters.export(result, './stlcq/0093/00939818.stl')
+
+cq.exporters.export(result, './stlcq/0093/00939818.stl')
+
+cq.exporters.export(result, './stlcq/0093/00939818.stl')
+
+cq.exporters.export(result, './stlcq/0093/00939828.stl')
+
+cq.exporters.export(result, './stlcq/0093/00939828.stl')
+
+cq.exporters.export(result

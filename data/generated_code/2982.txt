@@ -1,0 +1,44 @@
+import cadquery as cq
+import math
+from cadquery import exporters
+
+# --- Part 1: Curved Shape ---
+sketch_scale = 0.75
+extrude_depth = 0.0197 * sketch_scale
+radius = 0.3214 * sketch_scale
+part_1 = (
+    cq.Workplane("XY")
+    .moveTo(0.0, 0.1071 * sketch_scale)
+    .threePointArc((0.375 * sketch_scale, 0.0), (0.75 * sketch_scale, 0.1071 * sketch_scale))
+    .lineTo(0.75 * sketch_scale, 0.6429 * sketch_scale)
+    .lineTo(0.1071 * sketch_scale, 0.6429 * sketch_scale)
+    .threePointArc((0.0536 * sketch_scale, 0.5396 * sketch_scale), (0.0, 0.6429 * sketch_scale))
+    .lineTo(0.0, 0.1071 * sketch_scale)
+    .close()
+    .extrude(extrude_depth)
+)
+
+# Create the hole
+hole = (
+    cq.Workplane("XY")
+    .circle(radius)
+    .extrude(extrude_depth + 0.1)  # Extrude slightly more to ensure complete cut
+)
+
+# Cut the hole from the base
+part_1 = part_1.cut(hole)
+
+# --- Part 2: Cylinder ---
+sketch_scale_part2 = 0.2143
+radius_part2 = 0.1071 * sketch_scale_part2
+height_part2 = 0.0197 * sketch_scale_part2
+radius_outer = 0.1071 * sketch_scale_part2
+radius_inner = 0.2679 * sketch_scale_part2
+
+part_2 = (
+    cq.Workplane("XY")
+    .circle(radius_outer)
+    .extrude(height_part2)
+    .faces(">Z")
+    .workplane()
+    .circle(radius_inner)

@@ -1,0 +1,34 @@
+import cadquery as cq
+import math
+from cadquery.vis import show
+
+# --- Part 1: L-shaped Bracket ---
+sketch_scale = 0.75
+extrude_depth = 0.0171 * sketch_scale
+
+# Scaled coordinates
+p1 = (0.1667 * sketch_scale, 0.1245 * sketch_scale)
+p2 = (0.2427 * sketch_scale, 0.0)
+p3 = (0.3897 * sketch_scale, 0.0)
+p4 = (0.3897 * sketch_scale, 0.1245 * sketch_scale)
+p5 = (0.3249 * sketch_scale, 0.1245 * sketch_scale)
+p6 = (0.3249 * sketch_scale, 0.75 * sketch_scale)
+p7 = (0.1667 * sketch_scale, 0.75 * sketch_scale)
+p8 = (0.1667 * sketch_scale, 0.6265 * sketch_scale)
+p9 = (0.0 * sketch_scale, 0.6265 * sketch_scale)
+
+center1 = (0.1513 * sketch_scale, 0.5893 * sketch_scale)
+radius1 = 0.1179 * sketch_scale
+center2 = (0.1513 * sketch_scale, 0.6196 * sketch_scale)
+radius2 = 0.0496 * sketch_scale
+
+part_1 = (
+    cq.Workplane("XY")
+    .moveTo(p1[0], p1[1])
+    .lineTo(p2[0], p2[1])
+    .threePointArc((0.1741 * sketch_scale, 0.2228 * sketch_scale), p3)
+    .lineTo(p4[0], p4[1])
+    .threePointArc((0.1667 * sketch_scale, 0.2761 * sketch_scale), p5)
+    .lineTo(p6[0], p6[1])
+    .threePointArc((0.1667 * sketch_scale, 0.2228 * sketch_scale), p7)
+    .lineTo(p8[0], p

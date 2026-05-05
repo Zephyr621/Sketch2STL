@@ -1,0 +1,40 @@
+import cadquery as cq
+
+# --- Part 1 ---
+part_1 = (
+    cq.Workplane("XY")
+    .moveTo(0.0, 0.0)
+    .lineTo(0.5625 * 0.5625, 0.0)
+    .lineTo(0.5625 * 0.5625, 0.1268 * 0.5625)
+    .lineTo(0.1875 * 0.5625, 0.1268 * 0.5625)
+    .lineTo(0.1875 * 0.5625, 0.2444 * 0.5625)
+    .lineTo(0.0, 0.2444 * 0.5625)
+    .lineTo(0.0, 0.0)
+    .close()
+    .extrude(-0.1148)
+)
+
+# Coordinate System Transformation for Part 1
+part_1 = part_1.rotate((0, 0, 0), (0, 0, 1), -90)
+part_1 = part_1.translate((0.1406, 0.1148, 0))
+
+# --- Part 2 ---
+part_2 = (
+    cq.Workplane("XY")
+    .moveTo(0.0, 0.0)
+    .lineTo(0.2625 * 0.2812, 0.0)
+    .lineTo(0.2625 * 0.2812, 0.2812 * 0.2812)
+    .lineTo(0.0, 0.2812 * 0.2812)
+    .lineTo(0.0, 0.0)
+    .close()
+    .extrude(0.0049)
+)
+
+# Coordinate System Transformation for Part 2
+part_2 = part_2.rotate((0, 0, 0), (0, 0, 1), -90)
+part_2 = part_2.translate((0.0937, 0.1148, 0.0312))
+
+# --- Part 3 ---
+part_3 = (
+    cq.Workplane("XY")
+    .moveTo(0.0, 0.0)

@@ -1,0 +1,43 @@
+import cadquery as cq
+
+# --- Part 1: Square Plate ---
+part_1_size = 0.2794 * 0.2794  # Sketch size scaled
+part_1_height = 0.75
+
+part_1 = cq.Workplane("XY").rect(part_1_size, part_1_size).extrude(-part_1_height)
+
+# --- Coordinate System Transformation for Part 1 ---
+part_1 = part_1.translate((0, 0, 0.75))
+
+# --- Assembly (if needed, based on the single part) ---
+# In this case, there's only one part, so no assembly is needed.
+# If there were multiple parts, you would use .union() or .cut() to combine them.
+
+# --- Final Result ---
+result = part_1
+
+cq.exporters.export(result, './stlcq/0050/00502892.stl')
+
+cq.exporters.export(result, './stlcq/005018/00501847.stl')
+
+cq.exporters.export(result, './stlcq/005009/005009822.stl')
+
+cq.exporters.export(result, './stlcq/005009/005009822.stl')
+
+cq.exporters.export(result, './stlcq/005009/005009822.stl')
+
+cq.exporters.export(result, './stlcq/005009/00500985.stl')
+
+cq.exporters.export(result, './stlcq/005009/00500985.stl')
+
+cq.exporters.export(result, './stlcq/005009/00500984.stl')
+
+cq.exporters.export(result, './stlcq/005009/00500984.stl')
+
+cq.exporters.export(result, './stlcq/005009/00500984.stl')
+
+cq.exporters.export(result, './stlcq/005009/00500984.stl')
+
+cq.exporters.export(result, './stlcq/005009/00500985.stl')
+
+cq.exporters.export(result, './st

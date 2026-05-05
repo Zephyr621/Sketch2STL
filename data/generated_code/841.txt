@@ -1,0 +1,46 @@
+import cadquery as cq
+from cadquery.vis import show
+
+# --- Part 1 ---
+part_1 = (
+    cq.Workplane("XY")
+    .moveTo(0.0, 0.0)
+    .lineTo(0.75 * 0.75, 0.0)
+    .threePointArc((0.75 * 0.75, 0.0804 * 0.75), (0.375 * 0.75, 0.1786 * 0.75))
+    .lineTo(0.0, 0.1786 * 0.75)
+    .lineTo(0.0, 0.0)
+    .close()
+    .extrude(-0.1786)
+)
+
+# --- Coordinate System Transformation for Part 1 ---
+part_1 = part_1.translate((0, 0, 0.1786))
+
+# --- Assembly ---
+assembly = part_1
+
+cq.exporters.export(assembly, "./stlcq/0037/00370131.stl")
+
+cq.exporters.export(assembly, "./stlcq/00374149.stl")
+
+cq.exporters.export(assembly, "./stlcq/00374149.stl")
+
+cq.exporters.export(assembly, "./stlcq/00374149.stl")
+
+cq.exporters.export(assembly, "./stlcq/00374148.stl")
+
+cq.exporters.export(assembly, "./stlcq/00374148.stl")
+
+cq.exporters.export(assembly, "./stlcq/00374148148.stl")
+
+cq.exporters.export(assembly, "./stlcq/00374148148.stl")
+
+cq.exporters.export(assembly, "./stlcq/00374148148148.stl")
+
+cq.exporters.export(assembly, "./stlcq/00374148148148.stl")
+
+cq.exporters.export(assembly, "./stlcq/00374148148148.stl")
+
+cq.exporters.export(assembly, "./stlcq/00374148148148.stl")
+
+cq.exporters.export(assembly, "./stlcq/00374

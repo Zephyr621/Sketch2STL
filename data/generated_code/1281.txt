@@ -1,0 +1,49 @@
+import cadquery as cq
+
+# --- Part 1: Base ---
+part_1_length = 0.75 * 0.75  # Scaled length
+part_1_width = 0.5 * 0.75  # Scaled width
+part_1_height = 0.5
+
+part_1 = (
+    cq.Workplane("XY")
+    .rect(part_1_length, part_1_width)
+    .extrude(part_1_height)
+)
+
+# --- Part 2: Cutout ---
+part_2_length = 0.375 * 0.375  # Scaled length
+part_2_width = 0.375 * 0.375  # Scaled width
+part_2_height = 0.25
+
+part_2 = (
+    cq.Workplane("XY")
+    .rect(part_2_length, part_2_width)
+    .extrude(-part_2_height)  # Extrude in the opposite direction for cutting
+)
+
+# --- Coordinate System Transformation for Part 2 ---
+part_2 = part_2.translate((0.125, 0.125, part_1_height))
+
+# --- Assembly: Cut Part 2 from Part 1 ---
+result = part_1.cut(part_2)
+
+# --- Export to STL ---
+cq.exporters.export(result, './stlcq/0028/00282411.stl')
+
+# --- Export to STL ---
+cq.exporters.export(result, './stlcq/00286750.stl')
+
+# --- Fillet Edges ---
+edge_radius = min(part_1_length, part_1_width, part_1_height) / 10  # Adjust as needed
+
+result = result.edges("|Z").fillet(edge_radius)
+
+# --- Export to STL ---
+cq.exporters.export(result, './stlcq/0028583.stl')
+
+# --- Export to STL ---
+cq.exporters.export(result, './stlcq/00286014.stl')
+
+# --- Export to STL ---
+cq.exporters.export(result, './stlcq/00284

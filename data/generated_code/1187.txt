@@ -1,0 +1,53 @@
+import cadquery as cq
+
+# --- Part 1: Rectangular Prism ---
+length = 0.625 * 0.75  # Sketch length scaled
+width = 0.75 * 0.75  # Sketch width scaled
+height = 0.0156
+
+inner_length = (0.5114 - 0.0058) * 0.75
+inner_width = (0.75 - 0.0058) * 0.75
+
+part_1 = (
+    cq.Workplane("XY")
+    .rect(length, width)
+    .extrude(height)
+)
+
+inner_box = (
+    cq.Workplane("XY")
+    .rect(inner_length, inner_width)
+    .extrude(height)
+)
+
+part_1 = part_1.cut(inner_box)
+
+
+# --- Assembly (if needed, based on the single part) ---
+# In this case, there's only one part, so no assembly is needed.
+# If there were multiple parts, you would use .union() or .cut() to combine them.
+
+# --- Final Result ---
+result = part_1
+
+cq.exporters.export(result, './stlcq/0048/00488672.stl')
+
+cq.exporters.export(result, './stlcq/00481357.stl')
+
+cq.exporters.export(result, './stlcq/00481286.stl')
+
+cq.exporters.export(result, './stlcq/00481286.stl')
+
+cq.exporters.export(result, './stlcq/00481286.stl')
+
+cq.exporters.export(result, './stlcq/00481286.stl')
+
+cq.exporters.export(result, './stlcq/00481286.stl')
+
+cq.exporters.export(result, './stlcq/00481286.stl')
+
+cq.exporters.export(result, './stlcq/00481286.stl')
+
+cq.exporters.export(result, './stlcq/00481286.stl')
+
+cq.exporters.export(result,

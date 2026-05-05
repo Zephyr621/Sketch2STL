@@ -1,0 +1,42 @@
+import cadquery as cq
+
+# --- Part 1 ---
+outer_points = [
+    (0.0, 0.0),
+    (0.375, 0.0),
+    (0.75, 0.0),
+    (0.75, 0.4687),
+    (0.5667, 0.4687),
+    (0.5667, 0.75),
+    (0.375, 0.75),
+    (0.0, 0.75)
+]
+
+inner_circle_center = (0.1875, 0.3281)
+inner_circle_radius = 0.0703 * 0.75
+
+part_1 = (
+    cq.Workplane("XY")
+    .moveTo(outer_points[0][0], outer_points[0][1])
+    .lineTo(outer_points[1][0], outer_points[1][1])
+    .lineTo(outer_points[2][0], outer_points[2][1])
+    .lineTo(outer_points[3][0], outer_points[3][1])
+    .lineTo(outer_points[4][0], outer_points[4][1])
+    .lineTo(outer_points[5][0], outer_points[5][1])
+    .lineTo(outer_points[6][0], outer_points[6][1])
+    .lineTo(outer_points[7][0], outer_points[7][1])
+    .close()
+    .moveTo(inner_circle_center[0], inner_circle_center[1])
+    .circle(inner_circle_radius)
+    .extrude(-0.6625)
+)
+
+# --- Coordinate System Transformation for Part 1 ---
+part_1 = part_1.translate((0, 0, 0.3333))
+
+# --- Assembly ---
+assembly = part_1
+
+cq.exporters.export(assembly, "./stlcq/0028/00281699.stl")
+
+cq.exporters.export(assembly, "./stlcq/00288768.

@@ -1,0 +1,36 @@
+import cadquery as cq
+from math import radians
+
+# --- Part 1: Square Plate with Holes ---
+part_1_size = 0.75 * 0.75  # Scaled size
+part_1_hole_radius = 0.2833 * 0.75  # Scaled radius
+part_1_height = 0.0469
+
+hole_centers = [
+    (0.1167 * 0.75 - part_1_size/2, 0.1167 * 0.75 - part_1_size/2),
+    (0.1167 * 0.75 - part_1_size/2, 0.5717 * 0.75 - part_1_size/2),
+    (0.6346 * 0.75 - part_1_size/2, 0.1167 * 0.75 - part_1_size/2),
+    (0.6346 * 0.75 - part_1_size/2, 0.5717 * 0.75 - part_1_size/2)
+]
+
+part_1 = cq.Workplane("XY").rect(part_1_size, part_1_size).extrude(part_1_height)
+for center in hole_centers:
+    part_1 = part_1.faces(">Z").workplane().center(center[0], center[1]).circle(part_1_hole_radius).cutThruAll()
+
+# --- Part 2: Cylinder Cutout ---
+part_2_outer_radius = 0.1681 * 0.3281
+part_2_inner_radius = 0.1406 * 0.3281
+part_2_height = 0.6562
+
+part_2 = (
+    cq.Workplane("XY")
+    .circle(part_2_outer_radius)
+    .circle(part_2_inner_radius)
+    .extrude(-part_2_height)
+)
+
+# --- Coordinate System Transformation for Part 2 ---
+part_2 = part_2.translate((0.0705, 0.0341, 0.0469))
+
+# --- Part 3: Ring Join ---
+part_3_outer_radius = 0.16

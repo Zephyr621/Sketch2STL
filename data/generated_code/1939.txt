@@ -1,0 +1,45 @@
+import cadquery as cq
+from math import radians
+
+# --- Part 1: Cylinder ---
+part_1_outer_radius = 0.1758 * 0.3789  # Sketch radius scaled
+part_1_inner_radius = 0.0391 * 0.3789
+part_1_height = 0.75
+
+part_1 = (
+    cq.Workplane("XY")
+    .circle(part_1_outer_radius)
+    .circle(part_1_inner_radius)
+    .extrude(part_1_height)
+)
+
+# --- Coordinate System Transformation for Part 1 ---
+part_1 = part_1.rotate((0, 0, 0), (0, 0, 1), -90)
+part_1 = part_1.translate((0, 0.75, 0))
+
+# --- Part 2: Cylinder with Hole ---
+part_2_outer_radius = 0.0595 * 0.1198  # Sketch radius scaled
+part_2_inner_radius = 0.0274 * 0.1198
+part_2_height = 0.45
+
+part_2 = (
+    cq.Workplane("XY")
+    .circle(part_2_outer_radius)
+    .circle(part_2_inner_radius)
+    .extrude(part_2_height)
+)
+
+# --- Coordinate System Transformation for Part 2 ---
+part_2 = part_2.rotate((0, 0, 0), (0, 0, 1), -90)
+part_2 = part_2.translate((0.0056, 0.75, 0.0056))
+
+# --- Part 3: Cylinder with Hole ---
+part_3_outer_radius = 0.0595 * 0.1097  # Sketch radius scaled
+part_3_inner_radius = 0.0134 * 0.1097
+part_3_height = 0.300
+
+part_3 = (
+    cq.Workplane("XY")
+    .circle(part_3_outer_radius)
+    .circle(part_3_inner_radius)
+    .extrude(part_3_height

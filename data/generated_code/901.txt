@@ -1,0 +1,56 @@
+import cadquery as cq
+import math
+from cadquery.vis import show
+
+# --- Parameters from JSON ---
+outer_radius = 0.375 * 0.75
+inner_radius = 0.1172 * 0.75
+hole_radius = 0.0562 * 0.75
+height = 0.1172
+sketch_scale = 0.75
+
+# Hole centers (scaled)
+hole1_x = 0.1406 * sketch_scale
+hole1_y = 0.6057 * sketch_scale
+hole2_x = 0.5739 * sketch_scale
+hole2_y = 0.6057 * sketch_scale
+hole3_x = 0.6563 * sketch_scale
+hole3_y = 0.6057 * sketch_scale
+hole4_x = 0.3243 * sketch_scale
+hole4_y = 0.6057 * sketch_scale
+
+# --- Create Cylinder with Holes ---
+cylinder = (
+    cq.Workplane("XY")
+    .circle(outer_radius)
+    .extrude(height)
+)
+
+# --- Add Holes ---
+cylinder = (
+    cylinder.faces(">Z")
+    .workplane()
+    .pushPoints([(hole1_x - outer_radius, hole1_y - outer_radius)])
+    .hole(2 * hole_radius)
+)
+
+cylinder = (
+    cylinder.faces(">Z")
+    .workplane()
+    .pushPoints([(hole2_x - outer_radius, hole2_y - outer_radius)])
+    .hole(2 * hole_radius)
+)
+
+cylinder = (
+    cylinder.faces(">Z")
+    .workplane()
+    .pushPoints([(hole3_x - outer_radius, hole3_y - outer_radius)])
+    .hole(2 * hole_radius)
+)
+
+cylinder = (
+    cylinder.faces(">Z")
+    .workplane()
+    .pushPoints([(hole4_x - outer_radius, hole4_y - outer_radius)])
+    .hole(2 * hole_radius)
+)

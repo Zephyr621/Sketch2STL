@@ -1,0 +1,30 @@
+import cadquery as cq
+import math
+from cadquery.vis import show
+
+# --- Part 1: Ring with Rounded Edges ---
+sketch_scale = 0.6944
+extrude_depth = 0.0926 * sketch_scale
+
+# Scaled dimensions
+arc_radius1 = 0.0441 * sketch_scale
+arc_radius2 = 0.0423 * sketch_scale
+length = 0.6944 * sketch_scale
+width = 0.3704 * sketch_scale
+
+part_1 = (
+    cq.Workplane("XY")
+    .moveTo(0.0441 * sketch_scale, 0)
+    .lineTo(length, 0)
+    .threePointArc((length + arc_radius1), (length/2, arc_radius2))
+    .lineTo(length, width)
+    .threePointArc((length - arc_radius1), (0.0441 * sketch_scale, width/2))
+    .lineTo(0.0441 * sketch_scale, 0.3408 * sketch_scale)
+    .threePointArc((0, width/2 - arc_radius1), (0.0441 * sketch_scale, 0.3408 * sketch_scale))
+    .close()
+    .moveTo(0.4346 * sketch_scale, 0.0357 * sketch_scale)
+    .threePointArc((0.6151 * sketch_scale, 0.0764 * sketch_scale), (0.6207 * sketch_scale, 0.0357 * sketch_scale))
+    .lineTo(0.5114 * sketch_scale, 0.0357 * sketch_scale)
+    .threePointArc((0.7163 * sketch_scale, 0.0764 * sketch_scale), (0.6207 * sketch_scale, 0.3408 * sketch_scale))
+    .lineTo(0.4346 * sketch_scale, 0.3408 * sketch_scale)
+    .threePointArc((0.3679 * sketch_scale, 0.0764 * sketch_scale), (0.4346 * sketch_scale, 0.0357 * sketch_scale))

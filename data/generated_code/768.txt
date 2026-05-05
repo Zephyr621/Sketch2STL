@@ -1,0 +1,48 @@
+import cadquery as cq
+from cadquery.vis import show
+
+# --- Part 1: Rectangular Box ---
+part_1_length = 0.75 * 0.75  # Scaled length
+part_1_width = 0.4284 * 0.75  # Scaled width
+part_1_height = 0.3127
+
+part_1 = (
+    cq.Workplane("XY")
+    .rect(part_1_length, part_1_width)
+    .extrude(-part_1_height)  # Extrude in the opposite direction
+)
+
+# --- Coordinate System Transformation for Part 1 ---
+part_1 = part_1.translate((0, 0, 0.3127))
+
+# --- Part 2: Cube ---
+part_2_length = 0.3034 * 0.3034  # Scaled length
+part_2_width = 0.1882 * 0.3034  # Scaled width
+part_2_height = 0.2501
+
+part_2 = (
+    cq.Workplane("XY")
+    .rect(part_2_length, part_2_width)
+    .extrude(part_2_height)
+)
+
+# --- Coordinate System Transformation for Part 2 ---
+part_2 = part_2.rotate((0, 0, 0), (1, 0, 0), -90)
+part_2 = part_2.rotate((0, 0, 0), (0, 0, 1), -90)
+part_2 = part_2.translate((0.75, 0.0938, 0.1572))
+
+# --- Part 3: Cylinder ---
+part_3_radius = 0.0463 * 0.0896  # Scaled radius
+part_3_height = 0.5003
+
+part_3 = (
+    cq.Workplane("XY")
+    .circle(part_3_radius)
+    .extrude(part_3_height)
+)
+
+# --- Coordinate System Transformation for Part 3 ---
+part_3 = part_3.translate((0.2903, 0.1241, 0.0))
+
+# --- Assembly ---
+assembly = part_1.

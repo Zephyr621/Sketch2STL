@@ -1,0 +1,42 @@
+import cadquery as cq
+
+# --- Part 1: Square Plate with Hole ---
+part_1_length = 0.5081 * 0.75  # Scaled length
+part_1_width = 0.75 * 0.75  # Scaled width
+part_1_height = 0.0264
+hole_center_x = 0.2082 * 0.75  # Scaled center x
+hole_center_y = 0.2728 * 0.75  # Scaled center y
+hole_radius = 0.0469 * 0.75  # Scaled radius
+
+part_1 = (
+    cq.Workplane("XY")
+    .rect(part_1_length, part_1_width)
+    .extrude(part_1_height)
+    .faces(">Z")
+    .workplane()
+    .circle(hole_radius)
+    .cutThruAll()
+)
+
+# --- Part 2: Rectangular Box with Hole ---
+part_2_length = 0.532 * 0.6532  # Scaled length
+part_2_width = 0.6532 * 0.6532  # Scaled width
+part_2_height = 0.7044
+hole_center_x = 0.2082 * 0.6532  # Scaled center x
+hole_center_y = 0.2082 * 0.6532  # Scaled center y
+hole_radius = 0.0469 * 0.6532  # Scaled radius
+
+part_2 = (
+    cq.Workplane("XY")
+    .rect(part_2_length, part_2_width)
+    .extrude(-part_2_height)  # Extrude in the opposite direction for cutting
+    .faces(">Z")
+    .workplane()
+    .moveTo(hole_center_x - part_2_length/2, hole_center_y - part_2_width/2)
+    .circle(hole_radius)
+    .cutThruAll()
+)
+
+# --- Assembly ---
+assembly = part_1.translate((0, 0, 0.0264))
+assembly

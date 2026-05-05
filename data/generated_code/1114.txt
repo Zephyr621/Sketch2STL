@@ -1,0 +1,49 @@
+import cadquery as cq
+from math import *
+
+# --- Part 1: Circular Plate with Hole ---
+part_1_outer_radius = 0.375 * 0.75  # Sketch radius scaled
+part_1_inner_radius = 0.0573 * 0.75  # Inner hole radius scaled
+part_1_height = 0.0144
+
+part_1 = (
+    cq.Workplane("XY")
+    .circle(part_1_outer_radius)
+    .extrude(part_1_height)
+    .cut(cq.Workplane("XY").circle(part_1_inner_radius).extrude(part_1_height))
+)
+
+# --- Part 2: Central Hole ---
+part_2_radius = 0.0781 * 0.1459  # Sketch radius scaled
+part_2_depth = 0.0625
+
+part_2 = (
+    cq.Workplane("XY")
+    .workplane(offset=0.0469)  # Move to the top face of part_1
+    .moveTo(0.2885, 0.2885)
+    .circle(part_2_radius)
+    .extrude(-part_2_depth)
+)
+
+# --- Assembly: Cut the hole from the plate ---
+result = part_1.cut(part_2)
+
+# --- Export to STL ---
+cq.exporters.export(result, "./stlcq/0049/00499498.stl")
+
+# --- Export to STL ---
+cq.exporters.export(result, './stlcq/0049480.stl')
+
+# --- Export to STL ---
+cq.exporters.export(result, './stlcq/0049510.stl')
+
+# --- Export to STL ---
+cq.exporters.export(result, './stlcq/00495104.stl')
+
+# --- Export to STL ---
+cq.exporters.export(result, './stlcq/00495104.stl')
+
+# --- Export to STL ---
+cq.exporters.export(result, './stlcq/00495104.stl')
+
+# --- Export to ST

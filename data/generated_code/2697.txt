@@ -1,0 +1,40 @@
+import cadquery as cq
+import math
+from cadquery import exporters
+
+# --- Part 1: Cylinder ---
+part_1_radius = 0.0312 * 0.75  # Sketch radius scaled
+part_1_height = 0.0625
+
+part_1 = cq.Workplane("XY").circle(part_1_radius).extrude(-part_1_height)
+part_1 = part_1.rotate((0, 0, 0), (1, 0, 0), -90)
+part_1 = part_1.rotate((0, 0, 0), (0, 0, 1), -90)
+part_1 = part_1.translate((0.0625, 0.0062, 0.0062))
+
+# --- Part 2: Rectangular Section ---
+part_2_width = 0.008 * 0.0875
+part_2_length = 0.0875 * 0.0875
+part_2_height = 0.0375
+
+part_2 = cq.Workplane("XY").rect(part_2_width, part_2_length).extrude(part_2_height)
+part_2 = part_2.rotate((0, 0, 0), (1, 0, 0), 90)
+part_2 = part_2.rotate((0, 0, 0), (0, 0, 1), -90)
+part_2 = part_2.translate((0.0625, 0.6938, 0.0062))
+
+# --- Part 3: Cut Feature ---
+cut_depth = 0.0313
+sketch_scale = 0.0875
+
+cut_wp = cq.Workplane("XY")
+
+# Define the points for the sketch
+points = [
+    (0.0, 0.0422 * sketch_scale),
+    (0.0288 * sketch_scale, 0.0),
+    (0.01 * sketch_scale, 0.0),
+    (0.01 * sketch_scale, 0.0422 * sketch_scale),
+    (0.0288 * sketch_scale, 0.0875 * sketch_scale),
+]
+
+# Create the cut feature using arcs
+cut_feature = cut_wp.moveTo(points[

@@ -1,0 +1,32 @@
+import cadquery as cq
+import math
+from cadquery.vis import show
+
+# --- Part 1: Rectangular Prism ---
+sketch_scale = 0.1249
+extrude_depth = 0.75
+
+# Scaled parameters
+circle1_center = (0.0106 * sketch_scale, 0.0052 * sketch_scale)
+circle2_center = (0.0106 * sketch_scale, 0.0735 * sketch_scale)
+circle3_center = (0.0624 * sketch_scale, 0.0439 * sketch_scale)
+circle4_center = (0.0624 * sketch_scale, 0.1096 * sketch_scale)
+
+# Create the base shape
+base_shape = (
+    cq.Workplane("XY")
+    .moveTo(circle1_center[0], circle1_center[1])
+    .threePointArc((circle1_center[0], circle1_center[1]), (circle1_center[0], circle1_center[1]))
+    .lineTo(circle2_center[0], circle2_center[1])
+    .threePointArc((circle2_center[0], circle2_center[1]), (circle2_center[0], circle2_center[1]))
+    .close()
+)
+
+# Extrude the base shape
+part_1 = base_shape.extrude(extrude_depth)
+
+# Create the holes
+hole1 = cq.Workplane("XY").moveTo(circle1_center[0], circle1_center[1]).circle(circle1_radius).extrude(extrude_depth + 0.1)
+hole2 = cq.Workplane("XY").moveTo(circle2_center[0], circle2_center[1]).circle(circle2_radius).extrude(extrude_depth + 0.1)
+hole3 = cq.Workplane("XY").moveTo(circle3_center[0], circle3_center[1]).circle(circle3_radius).extrude(extrude_depth + 0.1)
+hole4 = cq.Workplane("XY").moveTo(circle4_center[0], circle4_center[1]).circle(circle4_radius).extrude(extr

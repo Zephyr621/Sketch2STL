@@ -1,0 +1,48 @@
+import cadquery as cq
+
+# --- Part 1: Ellipse ---
+part_1_outer_radius = 0.375 * 0.75  # Sketch radius scaled
+part_1_inner_radius = 0.3637 * 0.75
+part_1_height = 0.0053
+
+part_1 = (
+    cq.Workplane("XY")
+    .circle(part_1_outer_radius)
+    .circle(part_1_inner_radius)
+    .extrude(part_1_height)
+)
+
+# --- Assembly (if needed, based on the single part) ---
+# In this case, there's only one part, so no assembly is needed.
+# If there were multiple parts, you would use .union() or .cut() to combine them.
+
+# --- Final Result ---
+result = part_1
+
+cq.exporters.export(result, './stlcq/0098/00988441.stl')
+
+cq.exporters.export(result, './stlcq/00985480.stl')
+
+cq.exporters.export(result, './stlcq/0098/00988611.stl')
+
+cq.exporters.export(result, './stlcq/00985058.stl')
+
+cq.exporters.export(result, './stlcq/00985664.stl')
+
+cq.exporters.export(result, './stlcq/00985664.stl')
+
+cq.exporters.export(result, './stlcq/00986906.stl')
+
+cq.exporters.export(result, './stlcq/0098432.stl')
+
+cq.exporters.export(result, './stlcq/0098567.stl')
+
+cq.exporters.export(result, './stlcq/0098567.stl')
+
+cq.exporters.export(result, './stlcq/0098567.stl')
+
+cq.exporters.export(result, './stlcq/0098567.stl')
+
+cq.exporters.export(result, './stlcq/0098567.stl')
+
+cq.exporters.export(result, './stlcq/00

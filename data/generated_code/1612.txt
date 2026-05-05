@@ -1,0 +1,52 @@
+The washer has a length and width of approximately 0.6562 units and a height of 0.0987 units.
+import cadquery as cq
+from math import radians
+
+# --- Part 1: Washer ---
+outer_radius = 0.3281 * 0.6562  # Sketch radius scaled
+inner_radius = 0.1676 * 0.6562  # Inner hole radius scaled
+height = 0.0987
+
+part_1 = (
+    cq.Workplane("XY")
+    .circle(outer_radius)
+    .extrude(height)
+    .cut(cq.Workplane("XY").circle(inner_radius).extrude(height))
+)
+
+# --- Coordinate System Transformation for Part 1 ---
+part_1 = part_1.rotate((0, 0, 0), (0, 0, 1), -90)
+part_1 = part_1.translate((0, 0.0987, 0))
+
+# --- Assembly ---
+assembly = part_1
+
+# Export to STL
+cq.exporters.export(assembly, "./stlcq/0035/00355231.stl")
+
+# --- Export to STL ---
+cq.exporters.export(assembly, './stlcq/0035/00355419.stl')
+
+# --- Export to STL ---
+cq.exporters.export(assembly, "./stlcq/0035995.stl")
+
+# Export to STL
+cq.exporters.export(assembly, "./stlcq/0035995.stl")
+
+# --- Export to STL ---
+cq.exporters.export(assembly, './stlcq/0035995.stl')
+
+# --- Final Result ---
+result = assembly
+
+cq.exporters.export(result, './stlcq/0035995.stl')
+
+cq.exporters.export(result, './stlcq/0035995.stl')
+
+cq.exporters.export(result, './stlcq/0035825.stl')
+
+cq.exporters.export(result, './stlcq/0035825.stl')
+
+cq.exporters.export(result, './stlcq/00359959.stl')
+
+cq.exporters.export(

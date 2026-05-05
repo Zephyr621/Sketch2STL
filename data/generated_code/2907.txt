@@ -1,0 +1,44 @@
+import cadquery as cq
+import math
+from cadquery import exporters
+
+# --- Part 1: L-shaped base ---
+part_1 = (
+    cq.Workplane("XY")
+    .moveTo(0, 0)
+    .lineTo(0.75 * 0.75, 0)
+    .lineTo(0.75 * 0.75, 0.0938 * 0.75)
+    .lineTo(0.6563 * 0.75, 0.0938 * 0.75)
+    .lineTo(0.6563 * 0.75, 0.4737 * 0.75)
+    .lineTo(0.0542 * 0.75, 0.4737 * 0.75)
+    .lineTo(0.0542 * 0.75, 0.0938 * 0.75)
+    .lineTo(0, 0.0938 * 0.75)
+    .close()
+    .extrude(0.3289)
+)
+
+# --- Coordinate System Transformation for Part 1 ---
+part_1 = part_1.rotate((0, 0, 0), (0, 0, 1), -90)
+part_1 = part_1.translate((0, 0.3289, 0))
+
+# --- Part 2: Cylinder Cutout ---
+part_2_radius = 0.0682 * 0.1316
+part_2_height = 0.3289
+
+part_2 = (
+    cq.Workplane("XY")
+    .workplane(offset=0.3289)
+    .circle(part_2_radius)
+    .extrude(-part_2_height)
+)
+
+# --- Coordinate System Transformation for Part 2 ---
+part_2 = part_2.rotate((0, 0, 0), (0, 0, 1), 180)
+part_2 = part_2.translate((0.0146, 0.3289, 0))
+
+# --- Part 3: Cylinder Cutout 2 ---
+part_3_radius = 0.0747 * 0.1447
+part_3_height = 0.0789
+
+part_3 = (
+    cq.Workplane("

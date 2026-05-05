@@ -1,0 +1,47 @@
+import cadquery as cq
+
+# --- Part 1: Rectangular Extrusion ---
+part_1_width = 0.0239 * 0.0559  # Sketch width scaled
+part_1_height = 0.0559 * 0.0559 # Sketch height scaled
+part_1_depth = 0.75
+
+part_1 = (
+    cq.Workplane("XY")
+    .rect(part_1_width, part_1_height)
+    .extrude(part_1_depth)
+)
+
+# --- Assembly (if needed, based on the single part) ---
+# In this case, there's only one part, so no assembly is needed.
+# If there were multiple parts, you would use .union() or .cut() to combine them.
+
+# --- Final Result ---
+result = part_1
+
+cq.exporters.export(result, './stlcq/0068/00685466.stl')
+
+cq.exporters.export(result, './stlcq/00685722.stl')
+
+cq.exporters.export(result, './stlcq/00685722.stl')
+
+cq.exporters.export(result, './stlcq/00685722.stl')
+
+cq.exporters.export(result, './stlcq/00685722.stl')
+
+cq.exporters.export(result, './stlcq/00685722.stl')
+
+cq.exporters.export(result, './stlcq/00685722.stl')
+
+cq.exporters.export(result, './stlcq/00685722.stl')
+
+cq.exporters.export(result, './stlcq/00685722.stl')
+
+cq.exporters.export(result, './stlcq/00685722.stl')
+
+cq.exporters.export(result, './stlcq/00685722.stl')
+
+cq.exporters.export(result, './stlcq/00685722.stl')
+
+cq.exporters.export(result, './stlcq/00685722.stl')
+
+cq.exporters.export(result, './stlcq/

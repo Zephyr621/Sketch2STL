@@ -1,0 +1,48 @@
+import cadquery as cq
+from math import radians
+
+# --- Part 1: Cylinder ---
+part_1_radius = 0.0759 * 0.1512  # Sketch radius scaled
+part_1_height = 0.75
+
+part_1 = cq.Workplane("XY").circle(part_1_radius).extrude(part_1_height)
+part_1 = part_1.translate((0, 0, 0.75))
+
+# --- Part 2: Cut Cylinder ---
+part_2_outer_radius = 0.0618 * 0.121  # Outer radius scaled
+part_2_inner_radius = 0.0393 * 0.121
+part_2_height = 0.4536
+
+part_2 = (
+    cq.Workplane("XY")
+    .circle(part_2_outer_radius)
+    .circle(part_2_inner_radius)
+    .extrude(-part_2_height)
+)
+
+# --- Coordinate System Transformation for Part 2 ---
+part_2 = part_2.rotate((0, 0, 0), (0, 0, 1), 180)
+part_2 = part_2.translate((0.0171, 0.75, 0.0778))
+
+# --- Part 3: Cut Rectangular Block ---
+part_3_width = 0.121 * 0.121
+part_3_length = 0.121 * 0.121
+part_3_height = 0.1815
+
+part_3 = (
+    cq.Workplane("XY")
+    .rect(part_3_width, part_3_length)
+    .extrude(-part_3_height)
+)
+
+# --- Coordinate System Transformation for Part 3 ---
+part_3 = part_3.translate((0.1634, 0.0408, 0.75))
+
+# --- Part 4: Cut Rectangular Block ---
+part_4_width = 0.1919 * 0.1919
+part_4_length = 0.0679 * 0.1919
+part_4_height = 0.0907
+
+part_4 = (
+    cq.Workplane("XY")
+    .moveTo(0,

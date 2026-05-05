@@ -1,0 +1,43 @@
+import cadquery as cq
+
+# --- Part 1: Box with Triangular Cutout ---
+part_1 = (
+    cq.Workplane("XY")
+    .moveTo(0.0, 0.0)
+    .lineTo(0.75 * 0.75, 0.0)
+    .lineTo(0.75 * 0.75, 0.375 * 0.75)
+    .lineTo(0.375 * 0.75, 0.375 * 0.75)
+    .lineTo(0.0, 0.375 * 0.75)
+    .close()
+    .extrude(0.1875)
+)
+
+# --- Coordinate System Transformation for Part 1 ---
+part_1 = part_1.rotate((0, 0, 0), (0, 0, 1), -90)
+part_1 = part_1.translate((0, 0.1875, 0))
+
+# --- Part 2: Cube ---
+part_2 = (
+    cq.Workplane("XY")
+    .moveTo(0.0, 0.0)
+    .lineTo(0.375 * 0.375, 0.375 * 0.375)
+    .lineTo(0.375 * 0.375, 0.375 * 0.375)
+    .lineTo(0.375 * 0.375, 0.375 * 0.375)
+    .lineTo(0.0, 0.375 * 0.375)
+    .close()
+    .extrude(-0.375)
+)
+
+# --- Coordinate System Transformation for Part 2 ---
+part_2 = part_2.translate((0.375, 0.0, 0.375))
+
+# --- Assembly ---
+assembly = part_1.union(part_2)
+
+cq.exporters.export(assembly, "./stlcq/0057/00579036.stl")
+
+cq.exporters.export(assembly, "./stlcq/0057880.stl")
+
+cq.exporters.export(assembly, "./stlcq/0057880.stl")
+
+cq.exporters.export(assembly, "./stlcq/0057880.stl")

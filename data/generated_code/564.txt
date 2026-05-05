@@ -1,0 +1,33 @@
+import cadquery as cq
+
+# --- Part 1: Base with Holes ---
+part_1_length = 0.75 * 0.75  # Scaled length
+part_1_width = 0.0682 * 0.75  # Scaled width
+part_1_height = 0.017
+hole_radius = 0.0184 * 0.75  # Scaled radius
+hole_centers = [
+    (0.0741 * 0.75 - part_1_length / 2 + 0.0335 * 0.75, 0.0628 * 0.75 - part_1_width / 2),
+    (0.0741 * 0.75 - part_1_length / 2 + 0.0464 * 0.75, 0.0628 * 0.75 - part_1_width / 2),
+    (0.0741 * 0.75 - part_1_length / 2 + 0.0464 * 0.75, 0.0628 * 0.75 - part_1_width / 2)
+]
+
+base = cq.Workplane("XY").rect(part_1_length, part_1_width).extrude(part_1_height)
+
+for center in hole_centers:
+    base = base.faces(">Z").workplane().center(center[0] - part_1_length/2, center[1] - part_1_width/2).circle(hole_radius).cutThruAll()
+
+# --- Part 2: Vertical Arm ---
+part_2_length = 0.75 * 0.75  # Scaled length
+part_2_width = 0.0682 * 0.75  # Scaled width
+part_2_height = 0.3068
+
+part_2 = cq.Workplane("XY").rect(part_2_length, part_2_width).extrude(-part_2_height)
+
+# --- Assembly ---
+assembly = base.union(part_2.translate((0, 0, part_1_height)))
+
+# --- Export to STL ---
+cq.exporters.export(assembly, './stlcq/0039/00399322.stl')
+
+# --- Export to STL ---
+cq.exporters.export(assembly,

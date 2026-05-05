@@ -1,0 +1,45 @@
+import cadquery as cq
+
+# --- Part 1: Rectangular Block ---
+part_1_length = 0.75 * 0.75  # Scaled length
+part_1_width = 0.45 * 0.75  # Scaled width
+part_1_height = 0.075
+
+part_1 = (
+    cq.Workplane("XY")
+    .rect(part_1_length, part_1_width)
+    .extrude(part_1_height)
+)
+
+# --- Coordinate System Transformation for Part 1 ---
+part_1 = part_1.rotate((0, 0, 0), (0, 0, 1), -90)
+part_1 = part_1.translate((0, 0.075, 0))
+
+# --- Part 2: Rectangular Plate ---
+part_2_length = 0.645 * 0.645  # Scaled length
+part_2_width = 0.345 * 0.645  # Scaled width
+part_2_height = 0.0112
+
+part_2 = (
+    cq.Workplane("XY")
+    .rect(part_2_length, part_2_width)
+    .extrude(-part_2_height)  # Extrude in the opposite direction for cutting
+)
+
+# --- Coordinate System Transformation for Part 2 ---
+part_2 = part_2.rotate((0, 0, 0), (0, 0, 1), -90)
+part_2 = part_2.translate((0.0148, 0, 0.3125))
+
+# --- Part 3: Rectangular Block (Cutout) ---
+part_3_length = 0.6075 * 0.6075  # Scaled length
+part_3_width = 0.3075 * 0.6075  # Scaled width
+part_3_height = 0.0375
+
+part_3 = (
+    cq.Workplane("XY")
+    .rect(part_3_length, part_3_width)
+    .extrude(-part_3_height)  # Extrude in the opposite direction for cutting
+)
+
+# --- Coordinate System Transformation for Part 3 ---
+part_3 = part_3.

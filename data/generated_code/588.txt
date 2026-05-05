@@ -1,0 +1,48 @@
+import cadquery as cq
+from math import radians
+
+# --- Part 1: Rectangular Plate with Holes ---
+plate_length = 0.5966 * 0.5966  # Scaled length
+plate_width = 0.4432 * 0.5966  # Scaled width
+plate_height = 0.0426
+
+hole1_center_x = 0.2115 * 0.5966
+hole1_center_y = 0.1103 * 0.5966
+hole1_radius = 0.0214 * 0.5966
+
+hole2_center_x = 0.4563 * 0.5966
+hole2_center_y = 0.1103 * 0.5966
+hole2_radius = 0.0156 * 0.5966
+
+part_1 = (
+    cq.Workplane("XY")
+    .rect(plate_length, plate_width)
+    .extrude(plate_height)
+)
+
+hole1 = (
+    cq.Workplane("XY")
+    .moveTo(hole1_center_x - plate_length/2, hole1_center_y - plate_width/2)
+    .circle(hole1_radius)
+    .extrude(plate_height + 0.1)  # Extrude slightly more to ensure complete cut
+)
+
+hole2 = (
+    cq.Workplane("XY")
+    .moveTo(hole2_center_x - plate_length/2, hole2_center_y - plate_width/2)
+    .circle(hole2_radius)
+    .extrude(plate_height + 0.1)  # Extrude slightly more to ensure complete cut
+)
+
+part_1 = part_1.cut(hole1)
+part_1 = part_1.cut(hole2)
+
+
+# --- Part 2: Cylindrical Protrusions ---
+cylinder_radius = 0.0214 * 0.4261  # Scaled radius
+cylinder_height = 0.0511
+
+cylinder1 = (
+    cq.Workplane("XY")
+    .circle(cylinder_radius)
+    .extrude(cylinder_height

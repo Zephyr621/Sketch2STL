@@ -1,0 +1,37 @@
+import cadquery as cq
+
+# --- Part 1: Square Box ---
+part_1_size = 0.75 * 0.75  # Sketch size scaled
+part_1_height = 0.1071
+
+part_1 = cq.Workplane("XY").rect(part_1_size, part_1_size).extrude(-part_1_height)
+
+# --- Coordinate System Transformation for Part 1 ---
+part_1 = part_1.rotate((0, 0, 0), (0, 0, 1), -90)
+part_1 = part_1.translate((0, 0.6429, 0))
+
+# --- Part 2: Cube ---
+part_2_size = 0.7071 * 0.7071  # Sketch size scaled
+part_2_height = 0.0214
+
+part_2 = cq.Workplane("XY").rect(part_2_size, part_2_size).extrude(part_2_height)
+
+# --- Coordinate System Transformation for Part 2 ---
+part_2 = part_2.rotate((0, 0, 0), (0, 0, 1), -90)
+part_2 = part_2.translate((0.0128, 0, 0.0128))
+
+# --- Part 3: Rectangular Prism ---
+part_3_width = 0.0857 * 0.7071  # Sketch width scaled
+part_3_length = 0.7071 * 0.7071  # Sketch length scaled
+part_3_height = 0.0107
+
+part_3 = cq.Workplane("XY").rect(part_3_width, part_3_length).extrude(part_3_height)
+
+# --- Coordinate System Transformation for Part 3 ---
+part_3 = part_3.rotate((0, 0, 0), (0, 0, 1), 180)
+part_3 = part_3.translate((0.0429, 0.7031, 0.0128))
+
+# --- Part 4: Small Rectangular Prism ---
+part_4_width = 0.0393 * 0.0321  # Sketch width scaled
+part_4_length = 0.0321 * 0.0321  # Sketch length scaled
+part_4_height = 0

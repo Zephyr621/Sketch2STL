@@ -1,0 +1,33 @@
+import cadquery as cq
+
+# --- Part 1: Rectangular Frame ---
+part_1 = (
+    cq.Workplane("XY")
+    .moveTo(0.0, 0.0216 * 0.75)
+    .lineTo(0.0054 * 0.75, 0.0)
+    .lineTo(0.7295 * 0.75, 0.0)
+    .lineTo(0.75 * 0.75, 0.0216 * 0.75)
+    .lineTo(0.75 * 0.75, 0.6466 * 0.75)
+    .lineTo(0.7295 * 0.75, 0.6466 * 0.75)
+    .lineTo(0.7295 * 0.75, 0.4696 * 0.75)
+    .lineTo(0.0216 * 0.75, 0.4696 * 0.75)
+    .lineTo(0.0216 * 0.75, 0.3266 * 0.75)
+    .lineTo(0.0, 0.3266 * 0.75)
+    .lineTo(0.0, 0.0216 * 0.75)
+    .close()
+    .extrude(0.0517)
+)
+
+# --- Coordinate System Transformation for Part 1 ---
+part_1 = part_1.rotate((0, 0, 0), (0, 0, 1), -90)
+part_1 = part_1.translate((0, 0.0517, 0))
+
+# --- Part 2: Rectangular Frame ---
+outer_rect_width = 0.6207 * 0.6207
+inner_rect_height = 0.4655 * 0.6207
+inner_offset_x = 0.0216 * 0.6207
+inner_offset_y = 0.0216 * 0.6207
+inner_offset_z = 0.0517
+
+outer_rect = cq.Workplane("XY").rect(outer_rect_width, outer_rect_height).extrude(inner_offset_z)
+inner_rect = cq.Workplane("XY").rect(inner_rect_width, inner_rect_height).extrude

@@ -1,0 +1,36 @@
+import cadquery as cq
+from math import radians
+
+# --- Part 1: L-shaped Bracket ---
+sketch_scale = 0.75
+extrude_depth = 0.017 * sketch_scale
+
+# Scaled coordinates for the outer profile
+outer_points = [
+    (0.0, 0.1895 * sketch_scale),
+    (0.0197 * sketch_scale, 0.0),
+    (0.3821 * sketch_scale, 0.0),
+    (0.3821 * sketch_scale, 0.1895 * sketch_scale),
+    (0.3821 * sketch_scale, 0.7031 * sketch_scale),
+    (0.3821 * sketch_scale, 0.75 * sketch_scale),
+    (0.0197 * sketch_scale, 0.75 * sketch_scale)
+]
+
+# Scaled coordinates for the inner profile
+inner_points = [
+    (0.0973 * sketch_scale, 0.4196 * sketch_scale),
+    (0.2422 * sketch_scale, 0.4196 * sketch_scale),
+    (0.3927 * sketch_scale, 0.4196 * sketch_scale),
+    (0.3927 * sketch_scale, 0.5621 * sketch_scale),
+    (0.3821 * sketch_scale, 0.5621 * sketch_scale),
+    (0.3821 * sketch_scale, 0.6589 * sketch_scale),
+    (0.2422 * sketch_scale, 0.6589 * sketch_scale),
+    (0.0973 * sketch_scale, 0.6382 * sketch_scale),
+    (0.0973 * sketch_scale, 0.6382 * sketch_scale)
+]
+
+# Create the solid by extruding the outer profile
+part_1 = (
+    cq.Workplane("XY")
+    .moveTo(outer_points[0][0], outer_points[0][1])
+    .lineTo(outer_points[1][0], outer_points[1][1])

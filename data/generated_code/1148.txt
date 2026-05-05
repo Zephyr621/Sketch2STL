@@ -1,0 +1,50 @@
+import cadquery as cq
+from math import *
+
+# --- Part 1: Cylinder ---
+part_1_radius = 0.05 * 0.105  # Sketch radius scaled
+part_1_height = 0.6
+
+part_1 = cq.Workplane("XY").circle(part_1_radius).extrude(part_1_height)
+
+# --- Coordinate System Transformation for Part 1 ---
+part_1 = part_1.translate((0.0125, 0.0125, 0))
+
+# --- Part 2: Hexagonal Top ---
+hex_side = 0.1061 * 0.1061  # Scaled side length
+hex_height = 0.15
+
+hex_top = (
+    cq.Workplane("XY")
+    .moveTo(0, 0)
+    .lineTo(hex_side, 0)
+    .lineTo(hex_side, hex_side)
+    .lineTo(0, hex_side)
+    .close()
+    .extrude(hex_height)
+)
+
+# --- Assembly ---
+assembly = part_2.union(hex_top)
+
+cq.exporters.export(assembly, "./stlcq/0035/00355382.stl")
+
+# --- Export to STL ---
+cq.exporters.export(assembly, "./stlcq/0035/00355463.stl")
+
+cq.exporters.export(assembly, "./stlcq/0035/00355463.stl")
+
+# --- Export to STL ---
+cq.exporters.export(assembly, './stlcq/0035/00355463.stl')
+
+cq.exporters.export(assembly, "./stlcq/0035/00355428.stl")
+
+cq.exporters.export(assembly, "./stlcq/0035/00355428.stl")
+
+cq.exporters.export(assembly, "./stlcq/0035/00355428.stl")
+
+cq.exporters.export(assembly, "./stlcq/0035/00355428.stl")
+
+cq.exporters.export(assembly, "./stlcq/0035/00455428.stl")
+
+cq.exporters.

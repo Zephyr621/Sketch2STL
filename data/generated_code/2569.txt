@@ -1,0 +1,40 @@
+import cadquery as cq
+import math
+from cadquery import exporters
+
+# --- Part 1: L-shaped CAD Model ---
+sketch_scale = 0.7379
+extrude_depth = 0.0363 * sketch_scale
+
+part_1 = (
+    cq.Workplane("XY")
+    .moveTo(0.0287 * sketch_scale, 0)
+    .threePointArc((0.3738 * sketch_scale, 0.0476 * sketch_scale), (0.7379 * sketch_scale, 0))
+    .lineTo(0.7379 * sketch_scale, 0.0937 * sketch_scale)
+    .lineTo(0.7379 * sketch_scale, 0.1935 * sketch_scale)
+    .lineTo(0.0287 * sketch_scale, 0.1935 * sketch_scale)
+    .lineTo(0.0287 * sketch_scale, 0.1359 * sketch_scale)
+    .lineTo(0.0, 0.1359 * sketch_scale)
+    .lineTo(0.0, 0.0937 * sketch_scale)
+    .lineTo(0.0287 * sketch_scale, 0.0937 * sketch_scale)
+    .close()
+    .extrude(extrude_depth)
+)
+
+# Add hole
+hole_center_x = 0.3389 * sketch_scale
+hole_center_y = 0.1935 * sketch_scale
+hole_radius = 0.0125 * sketch_scale
+
+part_1 = part_1.faces(">Z").workplane().moveTo(hole_center_x - (0.7379 * sketch_scale)/2, hole_center_y - (0.1935 * sketch_scale)/2).circle(hole_radius).cutThruAll()
+
+# --- Coordinate System Transformation for Part 1 ---
+part_1 = part_1.translate((0.0088, 0.0, 0.0))
+
+# --- Assembly ---
+assembly = part_1
+
+# Export to STL
+exporters.export(assembly, "./stlcq/0062/00627274.stl")
+
+# Export to STL

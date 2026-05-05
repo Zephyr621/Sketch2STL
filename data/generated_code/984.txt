@@ -1,0 +1,46 @@
+import cadquery as cq
+import math
+from cadquery import exporters
+
+# --- Part 1: Rectangular Block ---
+part_1_length = 0.75 * 0.75  # Scaled length
+part_1_width = 0.25 * 0.75   # Scaled width
+part_1_height = 0.3125
+
+part_1 = cq.Workplane("XY").rect(part_1_length, part_1_width).extrude(part_1_height)
+
+# --- Coordinate System Transformation for Part 1 ---
+part_1 = part_1.rotate((0, 0, 0), (0, 0, 1), -90)
+part_1 = part_1.translate((0, 0.3125, 0))
+
+# --- Part 2: Holes ---
+hole_radius = 0.0375 * 0.4038
+hole_depth = 0.25
+
+# Define hole positions relative to the first face
+hole_positions = [
+    (0.0375 * 0.4038, 0.0375 * 0.4038),
+    (0.0375 * 0.4038, 0.0438 * 0.4038),
+    (0.4687 * 0.4038, 0.0375 * 0.4038),
+    (0.4687 * 0.4038, 0.0438 * 0.4038)
+]
+
+# Create holes
+for x, y in hole_positions:
+    hole = cq.Workplane("XY").moveTo(x, y).circle(hole_radius).extrude(-hole_depth)
+    part_2 = hole.translate((0.4687, 0.0833, 0.1875))
+
+# --- Assembly ---
+assembly = part_1.cut(part_2)
+
+# Export to STL
+exporters.export(assembly, "./stlcq/0024/00244263.stl")
+
+# Export to STL
+exporters.export(assembly, './stlcq/0024955.stl')
+
+# Export to STL
+exporters.export(assembly, "./stlcq/0024955.stl")
+
+# Export to STL
+exporters.export(assembly, './

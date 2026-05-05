@@ -1,0 +1,35 @@
+import cadquery as cq
+from cadquery.vis import show
+
+# --- Part 1: U-shaped Bracket ---
+sketch_scale = 0.75
+extrude_depth = 0.4019 * 2  # Total extrusion depth (towards + opposite normal)
+
+part_1 = (
+    cq.Workplane("XY")
+    .moveTo(0.0, 0.1463 * sketch_scale)
+    .lineTo(0.0, 0.5767 * sketch_scale)
+    .threePointArc((0.1215 * sketch_scale, 0.375 * sketch_scale), (0.1875 * sketch_scale, 0.5767 * sketch_scale))
+    .lineTo(0.1875 * sketch_scale, 0.2925 * sketch_scale)
+    .threePointArc((0.1397 * sketch_scale, 0.2459 * sketch_scale), (0.3125 * sketch_scale, 0.1463 * sketch_scale))
+    .lineTo(0.3125 * sketch_scale, 0.75 * sketch_scale)
+    .lineTo(0.3125 * sketch_scale, 0.75 * sketch_scale)
+    .lineTo(0.1023 * sketch_scale, 0.75 * sketch_scale)
+    .threePointArc((0.0503 * sketch_scale, 0.3742 * sketch_scale), (0.0625 * sketch_scale, 0.2925 * sketch_scale))
+    .lineTo(0.0625 * sketch_scale, 0.1463 * sketch_scale)
+    .close()
+    .extrude(extrude_depth)
+)
+
+# --- Coordinate System Transformation for Part 1 ---
+part_1 = part_1.translate((0, 0, 0.4019 * sketch_scale))
+
+# --- Assembly ---
+assembly = part_1
+
+# Export to STL
+cq.exporters.export(assembly, "./stlcq/0034/00344197.stl")
+
+cq.exporters.export(assembly, "./stlcq/0034520.stl")
+
+cq.exporters.export(assembly, "./st

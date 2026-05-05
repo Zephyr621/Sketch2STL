@@ -1,0 +1,30 @@
+import cadquery as cq
+import math
+from cadquery import exporters
+
+# --- Part 1: Semi-Joined Shape ---
+sketch_scale = 0.7114
+extrude_depth = 0.5515 * sketch_scale
+
+# Define points for arcs and lines
+p1 = (0.0833 * sketch_scale, 0.0)
+p2 = (0.4828 * sketch_scale, 0.0249 * sketch_scale)
+p3 = (0.6139 * sketch_scale, 0.0129 * sketch_scale)
+p4 = (0.6618 * sketch_scale, 0.0027 * sketch_scale)
+p5 = (0.6865 * sketch_scale, 0.0047 * sketch_scale)
+p6 = (0.7117 * sketch_scale, 0.0)
+p7 = (0.7117 * sketch_scale, 0.0129 * sketch_scale)
+p8 = (0.6442 * sketch_scale, 0.3577 * sketch_scale)
+p9 = (0.7137 * sketch_scale, 0.5515 * sketch_scale)
+p10 = (0.6618 * sketch_scale, 0.5515 * sketch_scale)
+p11 = (0.3859 * sketch_scale, 0.5515 * sketch_scale)
+p12 = (0.1705 * sketch_scale, 0.5515 * sketch_scale)
+p13 = (0.0907 * sketch_scale, 0.0129 * sketch_scale)
+p14 = (0.0907 * sketch_scale, 0.0)
+p15 = (0.0907 * sketch_scale, 0.0249 * sketch_scale)
+p16 = (0.0833 * sketch_scale, 0.0249 * sketch_scale)
+p17 = (0.0833 * sketch_scale, 0.0625 * sketch_scale)
+p18 = (0.0833 * sketch_scale, 0.0625 * sketch_scale)
+p19 = (0.0833 * sketch_scale, 0.5079 * sketch_scale)
+p20 = (0.0833 * sketch_scale, 0.5515 * sketch_scale)
+p21 = (

@@ -1,0 +1,37 @@
+import cadquery as cq
+from math import radians
+
+# --- Part 1: Cylinder ---
+part_1_radius = 0.0842 * 0.1685  # Sketch radius scaled
+part_1_height = 0.4483
+
+part_1 = cq.Workplane("XY").circle(part_1_radius).extrude(part_1_height)
+
+# --- Coordinate System Transformation for Part 1 ---
+part_1 = part_1.rotate((0, 0, 0), (0, 0, 1), -90)
+part_1 = part_1.translate((0.0637, 0.75, 0.0637))
+
+# --- Part 2: Top Cap ---
+part_2_radius = 0.0458 * 0.0961  # Sketch radius scaled
+part_2_height = 0.1685
+
+part_2 = cq.Workplane("XY").circle(part_2_radius).extrude(part_2_height)
+
+# --- Coordinate System Transformation for Part 2 ---
+part_2 = part_2.rotate((0, 0, 0), (0, 0, 1), -90)
+part_2 = part_2.translate((0.0517, 0.6877, 0.0517))
+
+# --- Part 3: Legs ---
+leg_radius = 0.0289 * 0.0549
+leg_depth = 0.0253
+
+leg = cq.Workplane("XY")
+
+# Create the first leg
+leg = leg.moveTo(0.0289 * 0.0549, 0).threePointArc((0.0289 * 0.0549, 0.0289 * 0.0549), (0.0289 * 0.0549, 0.0)).close()
+
+# Create the second leg
+leg2 = leg.moveTo(0.0289 * 0.0549, 0.0289 * 0.0549).threePointArc((0.0289 * 0.0549, 0.0289 * 0.0549), (0.0289 * 0.0549, 0.0549 * 0.0549)).close()
+
+# Create the third leg
+leg3 = leg.moveTo(0.0289 * 0.0549, 0.0289 * 0.0549).

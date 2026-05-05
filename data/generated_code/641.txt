@@ -1,0 +1,29 @@
+import cadquery as cq
+
+# --- Part 1: Rectangular Bar with Cutout ---
+part_1 = (
+    cq.Workplane("XY")
+    .moveTo(0.0, 0.0)
+    .lineTo(0.0659 * 0.7676, 0.0)
+    .lineTo(0.0659 * 0.7676, 0.7676 * 0.7676)
+    .lineTo(0.0277 * 0.7676, 0.7676 * 0.7676)
+    .lineTo(0.0277 * 0.7676, 0.0094 * 0.7676)
+    .lineTo(0.0436 * 0.7676, 0.0094 * 0.7676)
+    .lineTo(0.0436 * 0.7676, 0.7378 * 0.7676)
+    .lineTo(0.0659 * 0.7676, 0.7378 * 0.7676)
+    .lineTo(0.0659 * 0.7676, 0.7343 * 0.7676)
+    .lineTo(0.0549 * 0.7676, 0.7343 * 0.7676)
+    .lineTo(0.0549 * 0.7676, 0.0094 * 0.7676)
+    .lineTo(0.0659 * 0.7676, 0.0094 * 0.7676)
+    .lineTo(0.0648 * 0.7676, 0.0094 * 0.7676)
+    .lineTo(0.0648 * 0.7676, 0.7328 * 0.7676)
+    .lineTo(0.0, 0.7328 * 0.7676)
+    .lineTo(0.0, 0.0094 * 0.7676)
+    .close()
+    .extrude(-0.0175)
+)
+
+# --- Coordinate System Transformation for Part 1 ---
+part_1 = part_1.rotate((0, 0, 0), (0, 0, 1), -90)
+
+# --- Part 2: Rectangular Trough ---

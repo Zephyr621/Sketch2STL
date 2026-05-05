@@ -1,0 +1,44 @@
+import cadquery as cq
+import math
+from cadquery.vis import show
+
+# --- Part 1: Rectangular Block with Rounded Edges and Holes ---
+sketch_scale = 0.75
+length = 0.5452 * sketch_scale
+width = 0.75 * sketch_scale
+height = 0.1368
+
+# Scaled dimensions
+arc_radius = 0.0937 * sketch_scale
+hole_radius = 0.0337 * sketch_scale
+
+# Create the base shape with rounded corners
+part_1 = (
+    cq.Workplane("XY")
+    .moveTo(0.0938 * sketch_scale, 0)
+    .lineTo(0.5455 * sketch_scale, 0)
+    .threePointArc((0.4977 * sketch_scale, 0.0937 * sketch_scale), (0.5455 * sketch_scale, 0.6561 * sketch_scale))
+    .lineTo(0.0938 * sketch_scale, 0.75 * sketch_scale)
+    .threePointArc((0, 0.6561 * sketch_scale), (0.0938 * sketch_scale, 0))
+    .close()
+    .extrude(height)
+)
+
+# Cut out the outer circle
+part_1 = part_1.faces(">Z").workplane().circle(hole_radius).cutThruAll()
+
+# Cut out the rectangular slot
+part_1 = part_1.faces(">Z").workplane().rect(length - 2 * arc_radius, width - 2 * arc_radius).cutThruAll()
+
+# Cut out the circular hole
+part_1 = part_1.faces(">Z").workplane().circle(hole_radius).cutThruAll()
+
+# Apply rotation and translation
+part_1 = part_1.rotate((0, 0, 0), (0, 0, 1), -90)
+part_1 = part_1.translate((0, 0.1368, 0))
+
+# Export to STL
+cq.exporters.export(part_1, "./stlcq/0035/00350550.stl")
+
+# Export to STL
+cq.exporters.export(part_1, './

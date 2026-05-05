@@ -1,0 +1,42 @@
+import cadquery as cq
+
+# --- Parameters from JSON ---
+outer_radius = 0.375 * 0.75  # Scaled radius
+inner_hole_radius = 0.0281 * 0.75  # Scaled radius
+height = 0.0625
+sketch_scale = 0.75
+
+# Hole centers (scaled)
+hole1_x = 0.1562 * sketch_scale
+hole2_x = 0.6207 * sketch_scale
+hole3_y = 0.0828 * sketch_scale
+hole4_y = 0.6618 * sketch_scale
+hole_radius = 0.0517 * sketch_scale
+
+# Hole positions (scaled)
+hole_centers = [
+    (0.1562 * sketch_scale - outer_radius, 0),
+    (0.1562 * sketch_scale - outer_radius, 0.5841 * sketch_scale - outer_radius),
+    (0.5911 * sketch_scale - outer_radius, 0),
+    (0.5911 * sketch_scale - outer_radius, 0.5841 * sketch_scale - outer_radius),
+    (0.5911 * sketch_scale - outer_radius, 0.5841 * sketch_scale - outer_radius)
+]
+
+# --- Create the base circular plate ---
+plate = cq.Workplane("XY").circle(outer_radius).extrude(height)
+
+# --- Cut the inner hole ---
+plate = plate.faces(">Z").workplane().center(hole1_x - outer_radius, hole1_y - outer_radius).circle(inner_hole_radius).cutThruAll()
+
+# --- Cut the holes ---
+for x, y in hole_centers:
+    plate = plate.faces(">Z").workplane().moveTo(x - outer_radius, y - outer_radius).circle(hole_radius).cutThruAll()
+
+# --- Apply translation ---
+plate = plate.translate((0, 0, 0.0645))
+
+# --- Export to STL ---
+cq.exporters.export(plate, "./stlcq/0035/00355920.stl")
+
+# --- Export to STL ---
+cq.exporters.export(plate,

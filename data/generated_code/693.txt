@@ -1,0 +1,39 @@
+import cadquery as cq
+from math import radians
+
+# --- Part 1: Rectangular Plate with U-shaped Cutout ---
+part_1 = (
+    cq.Workplane("XY")
+    .moveTo(0.0, 0.0)
+    .lineTo(0.75 * 0.75, 0.0)
+    .lineTo(0.75 * 0.75, 0.375 * 0.75)
+    .lineTo(0.5625 * 0.75, 0.375 * 0.75)
+    .lineTo(0.5625 * 0.75, 0.1875 * 0.75)
+    .lineTo(0.1875 * 0.75, 0.1875 * 0.75)
+    .lineTo(0.1875 * 0.75, 0.375 * 0.75)
+    .lineTo(0.0, 0.375 * 0.75)
+    .lineTo(0.0, 0.0)
+    .close()
+    .extrude(-0.0188)
+)
+
+# Add holes
+hole1_center = (0.1312 * 0.75, 0.0937 * 0.75)
+hole2_center = (0.6151 * 0.75, 0.0937 * 0.75)
+hole3_center = (0.7125 * 0.75, 0.0937 * 0.75)
+
+part_1 = (
+    part_1.faces(">Z")
+    .workplane()
+    .pushPoints([hole1_center, hole2_center, hole3_center])
+    .hole(2 * hole1_radius)
+)
+
+# --- Coordinate System Transformation for Part 1 ---
+part_1 = part_1.rotate((0, 0, 0), (0, 0, 1), -90)
+part_1 = part_1.translate((0, 0.0188, 0))
+
+# --- Part 2: Rectangular Block ---
+part_2 = (
+    cq.Workplane("XY")
+    .rect(0.75 * 0.75, 0.2625 * 0.75)

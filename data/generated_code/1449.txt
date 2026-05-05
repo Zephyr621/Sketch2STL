@@ -1,0 +1,44 @@
+The overall dimensions are a length and width of around 0.75 units and a height of 0.0268 units.
+import cadquery as cq
+from math import radians
+
+# --- Part 1: Ring ---
+part_1_outer_radius = 0.1538 * 0.3082  # Sketch radius scaled
+part_1_inner_radius = 0.1328 * 0.3082
+part_1_height = 0.0307
+
+part_1 = (
+    cq.Workplane("XY")
+    .circle(part_1_outer_radius)
+    .circle(part_1_inner_radius)
+    .extrude(-part_1_height)
+)
+
+# --- Coordinate System Transformation for Part 1 ---
+part_1 = part_1.rotate((0, 0, 0), (0, 0, 1), -90)
+part_1 = part_1.translate((0.1353, 0.0307, 0.1353))
+
+# --- Part 2: Cylinder ---
+part_2_outer_radius = 0.1109 * 0.2071  # Sketch radius scaled
+part_2_inner_radius = 0.1032 * 0.2071
+part_2_height = 0.0307
+
+part_2 = (
+    cq.Workplane("XY")
+    .circle(part_2_outer_radius)
+    .circle(part_2_inner_radius)
+    .extrude(part_2_height)
+)
+
+# --- Coordinate System Transformation for Part 2 ---
+part_2 = part_2.rotate((0, 0, 0), (0, 0, 1), -90)
+part_2 = part_2.translate((0.2948, 0.0307, 0.2948))
+
+# --- Assembly ---
+assembly = part_1.union(part_2)
+
+cq.exporters.export(assembly, "./stlcq/0084/00845798.stl")
+
+cq.exporters.export(assembly, "./stlcq/0084/00845714.stl")
+
+cq.exporters.export(assembly, "./stlcq/0084/00845714.stl")

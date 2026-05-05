@@ -1,0 +1,47 @@
+import cadquery as cq
+
+# --- Part 1: Rectangular Base ---
+part_1_length = 0.3016 * 0.5492  # Scaled length
+part_1_width = 0.5492 * 0.5492   # Scaled width
+part_1_height = 0.1252
+
+part_1 = (
+    cq.Workplane("XY")
+    .rect(part_1_length, part_1_width)
+    .extrude(-part_1_height)  # Extrude in the opposite direction
+)
+
+# --- Part 2: Cutout 1 ---
+part_2_length = 0.1127 * 0.4762  # Scaled length
+part_2_width = 0.4762 * 0.4762   # Scaled width
+part_2_height = 0.1252
+
+part_2 = (
+    cq.Workplane("XY")
+    .rect(part_2_length, part_2_width)
+    .extrude(-part_2_height)  # Extrude in the opposite direction
+)
+
+# --- Part 3: Cutout 2 ---
+part_3_length = 0.1305 * 0.4762  # Scaled length
+part_3_width = 0.4762 * 0.4762   # Scaled width
+part_3_height = 0.1252
+
+part_3 = (
+    cq.Workplane("XY")
+    .rect(part_3_length, part_3_width)
+    .extrude(-part_3_height)  # Extrude in the opposite direction
+)
+
+# --- Part 4: Cutout 3 ---
+part_4_length = 0.2844 * 0.5492  # Scaled length
+part_4_width = 0.5492 * 0.5492   # Scaled width
+part_4_height = 0.1252
+
+part_4 = (
+    cq.Workplane("XY")
+    .rect(part_4_length, part_4_width)
+    .extrude(-part_4_height)  # Extrude in the opposite direction
+)
+
+#

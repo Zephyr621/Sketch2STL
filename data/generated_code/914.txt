@@ -1,0 +1,43 @@
+This process involves creating a basic circular base, transforming it into a solid, and extruding it to achieve the desired cylindrical form.
+import cadquery as cq
+from cadquery.vis import show
+
+# --- Part 1: Cylinder ---
+part_1_radius = 0.0188 * 0.0375  # Sketch radius scaled
+part_1_height = 0.1875 + 0.1875
+
+part_1 = cq.Workplane("XY").circle(part_1_radius).extrude(part_1_height)
+
+# --- Coordinate System Transformation for Part 1 ---
+part_1 = part_1.rotate((0, 0, 0), (0, 0, 1), -90)
+part_1 = part_1.translate((0, 0.375, 0))
+
+# --- Assembly (if needed, based on the single part) ---
+# In this case, there's only one part, so no assembly is needed.
+# If there were multiple parts, you would use .union() or .cut() to combine them.
+
+# --- Final Result ---
+result = part_1
+cq.exporters.export(result, './stlcq/0015/00152692.stl')
+
+cq.exporters.export(result, './stlcq/00155085.stl')
+
+cq.exporters.export(result, './stlcq/00155085.stl')
+
+cq.exporters.export(result, './stlcq/00155573.stl')
+
+cq.exporters.export(result, './stlcq/00155467.stl')
+
+cq.exporters.export(result, './stlcq/00155573.stl')
+
+cq.exporters.export(result, './stlcq/00155832.stl')
+
+cq.exporters.export(result, './stlcq/00155832.stl')
+
+cq.exporters.export(result, './stlcq/00155832.stl')
+
+cq.exporters.export(result, './stlcq/00155832.stl')
+
+cq.exporters.export(result, './stlcq/00155832.stl')
+
+cq.exporters.export(result, './st

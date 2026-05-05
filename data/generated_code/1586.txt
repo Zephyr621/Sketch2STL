@@ -1,0 +1,43 @@
+import cadquery as cq
+from math import *
+
+# --- Parameters from JSON ---
+length = 0.75 * 0.75  # Scaled length
+width = 0.75 * 0.75  # Scaled width
+height = 0.15
+hole_radius = 0.075 * 0.75  # Scaled radius
+center1_x = 0.375 * 0.75  # Scaled center x
+center1_y = 0.3 * 0.75  # Scaled center y
+center2_x = 0.375 * 0.75  # Scaled center x
+center2_y = 0.6 * 0.75  # Scaled center y
+
+# --- Create Cylinder ---
+cylinder = cq.Workplane("XY").circle(hole_radius).extrude(height)
+
+# --- Create Holes ---
+hole1 = cq.Workplane("XY").moveTo(center1_x - length/2, center1_y - width/2).circle(hole_radius).extrude(height)
+hole2 = cq.Workplane("XY").moveTo(center2_x - length/2, center2_y - width/2).circle(hole_radius).extrude(height)
+
+# --- Subtract Holes from Cylinder ---
+result = cylinder.cut(hole1).cut(hole2)
+
+# --- Apply rotation ---
+result = result.rotate((0, 0, 0), (0, 0, 1), -90)
+
+# --- Export to STL ---
+cq.exporters.export(result, './stlcq/0051/00514884.stl')
+
+# --- Export to STL ---
+cq.exporters.export(result, './stlcq/00512/005126498.stl')
+
+# --- Export to STL ---
+cq.exporters.export(result, './stlcq/00512/005126498.stl')
+
+# --- Export to STL ---
+cq.exporters.export(result, './stlcq/00512/005126459.stl')
+
+# --- Export to STL ---
+cq.exporters.export(result, './stlcq/00512/005126459.stl')
+
+# --- Export to STL ---
+cq.exporters.export(result

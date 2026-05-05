@@ -1,0 +1,47 @@
+import cadquery as cq
+
+# --- Part 1 ---
+outer_width = 0.5749 * 0.75
+outer_height = 0.75 * 0.75
+inner_x_start = 0.0433 * 0.75
+inner_y_start = 0.5389 * 0.75
+inner_x_end = 0.2774 * 0.75
+inner_y_end = 0.4818 * 0.75
+depth = 0.1951
+
+part_1 = (
+    cq.Workplane("XY")
+    .rect(outer_width, outer_height)
+    .extrude(depth)
+)
+
+inner_cutout = (
+    cq.Workplane("XY")
+    .moveTo(inner_x_start - outer_width/2, inner_y_start - outer_height/2)
+    .lineTo(inner_x_end - outer_width/2, inner_y_start - outer_height/2)
+    .lineTo(inner_x_end - outer_width/2, inner_y_end - outer_height/2)
+    .close()
+    .extrude(depth)
+)
+
+part_1 = part_1.cut(inner_cutout)
+
+# --- Coordinate System Transformation for Part 1 ---
+part_1 = part_1.rotate((0, 0, 0), (0, 0, 1), -90)
+part_1 = part_1.translate((0, 0.1951, 0))
+
+# --- Assembly ---
+assembly = part_1
+
+cq.exporters.export(assembly, "./stlcq/0071/00712162.stl")
+
+# Export to STL
+cq.exporters.export(assembly, "./stlcq/0071/00712859.stl")
+
+cq.exporters.export(assembly, "./stlcq/0071/00712859.stl")
+
+cq.exporters.export(assembly, "./stlcq/0071/00712964.stl")
+
+cq.exporters.export(assembly, "./stlcq/0071/00712964.stl")
+
+cq.exporters.export(assembly, "./stlcq

@@ -1,0 +1,47 @@
+The cylinder has a smooth surface and rounded edges, making it suitable for applications requiring a sturdy base or a flat top.
+import cadquery as cq
+
+# --- Part 1: Cylinder with a hole ---
+outer_radius = 0.09 * 0.18  # Sketch radius scaled
+inner_radius = 0.075 * 0.18  # Inner circle radius scaled
+height = 0.75
+
+part_1 = (
+    cq.Workplane("XY")
+    .circle(outer_radius)
+    .extrude(height)
+    .cut(cq.Workplane("XY").circle(inner_radius).extrude(height))
+)
+
+# --- Assembly (if needed, based on the single part) ---
+# In this case, there's only one part, so no assembly is needed.
+# If there were multiple parts, you would use .union() or .cut() to combine them.
+
+# --- Final Result ---
+result = part_1
+
+cq.exporters.export(result, './stlcq/0028/00280516.stl')
+
+cq.exporters.export(result, './stlcq/002850.stl')
+
+cq.exporters.export(result, './stlcq/002855.stl')
+
+cq.exporters.export(result, './stlcq/002855.stl')
+
+cq.exporters.export(result, './stlcq/002855.stl')
+
+cq.exporters.export(result, './stlcq/002855.stl')
+
+cq.exporters.export(result, './stlcq/002855.stl')
+
+cq.exporters.export(result, './stlcq/002855.stl')
+
+cq.exporters.export(result, './stlcq/002855.stl')
+
+cq.exporters.export(result, './stlcq/002855.stl')
+
+cq.exporters.export(result, './stlcq/002855.stl')
+
+cq.exporters.export(result, './stlcq/002855.stl')
+
+cq.exporters.export(result, './stlcq/002855.stl')

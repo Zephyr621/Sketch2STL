@@ -1,0 +1,53 @@
+import cadquery as cq
+from cadquery.vis import show
+
+# --- Part 1: Octagonal Block with Curved Edges ---
+sketch_scale = 0.75
+extrude_depth = 0.2519
+
+# Scaled coordinates for the hexagon
+points = [
+    (0.0 * sketch_scale, 0.1844 * sketch_scale),
+    (0.0962 * sketch_scale, 0.0 * sketch_scale),
+    (0.6495 * sketch_scale, 0.1844 * sketch_scale),
+    (0.75 * sketch_scale, 0.5625 * sketch_scale),
+    (0.5653 * sketch_scale, 0.75 * sketch_scale)
+]
+
+# Create the octagonal profile using spline
+part_1 = (
+    cq.Workplane("XY")
+    .polyline(points)
+    .close()
+    .extrude(extrude_depth)
+)
+
+# --- Assembly (if needed, based on the single part) ---
+# In this case, there's only one part, so no assembly is needed.
+
+# --- Final Result ---
+result = part_1
+
+# Export to STL
+cq.exporters.export(result, './stlcq/0030/00302805.stl')
+
+# Export to STL
+cq.exporters.export(result, './stlcq/0030/00302288.stl')
+
+# Export to STL
+cq.exporters.export(result, './stlcq/0030/00302287.stl')
+
+# Export to STL
+cq.exporters.export(result, './stlcq/0030/00302288.stl')
+
+# Export to STL
+cq.exporters.export(result, './stlcq/0030/00302288.stl')
+
+# Export to STL
+cq.exporters.export(result, './stlcq/0030/00302288.stl')
+
+# Export to STL
+cq.exporters.export(result, './stlcq/0030/00302289.stl')
+
+# Export to STL
+cq.exporters.export(

@@ -1,0 +1,25 @@
+import cadquery as cq
+import math
+from cadquery.vis import show
+
+# --- Part 1 ---
+sketch_scale = 0.75
+extrude_depth = 0.4577
+
+part_1 = (
+    cq.Workplane("XY")
+    .moveTo(0.0625 * sketch_scale, 0.0)
+    .threePointArc((0.375 * sketch_scale, 0.0305 * sketch_scale), (0.6875 * sketch_scale, 0.0))
+    .lineTo(0.75 * sketch_scale, 0.0)
+    .lineTo(0.75 * sketch_scale, 0.6 * sketch_scale)
+    .threePointArc((0.375 * sketch_scale, 0.5625 * sketch_scale), (0.0625 * sketch_scale, 0.6 * sketch_scale))
+    .lineTo(0.0625 * sketch_scale, 0.75 * sketch_scale)
+    .threePointArc((0.0, 0.5625 * sketch_scale), (0.0625 * sketch_scale, 0.75 * sketch_scale))
+    .lineTo(0.0625 * sketch_scale, 0.6 * sketch_scale)
+    .threePointArc((0.0, 0.5625 * sketch_scale), (0.0625 * sketch_scale, 0.6 * sketch_scale))
+    .lineTo(0.0625 * sketch_scale, 0.75 * sketch_scale)
+    .threePointArc((0.375 * sketch_scale, 0.5625 * sketch_scale), (0.0625 * sketch_scale, 0.75 * sketch_scale))
+    .lineTo(0.0625 * sketch_scale, 0.6 * sketch_scale)
+    .threePointArc((0.1875 * sketch_scale, 0.375 * sketch_scale), (0.0625 * sketch_scale, 0.0))
+    .close()
+    .add(cq.Workplane("XY").circle(0.1588 * sketch_scale).translate((0.125, 0.125, 0)))

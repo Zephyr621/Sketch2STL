@@ -1,0 +1,42 @@
+import cadquery as cq
+from cadquery.vis import show
+
+# --- Part 1: Rectangular Bracket ---
+length = 0.75 * 0.75  # Scaled length
+width = 0.2679 * 0.75  # Scaled width
+height = 0.0609
+hole_radius = 0.0234 * 0.75  # Scaled radius
+hole1_x = 0.0682 * 0.75  # Scaled x position
+hole1_y = 0.0742 * 0.75  # Scaled y position
+hole2_x = 0.6563 * 0.75  # Scaled x position
+hole2_y = 0.1364 * 0.75  # Scaled y position
+
+part_1 = (
+    cq.Workplane("XY")
+    .rect(length, width)
+    .extrude(height)
+    .faces(">Z").workplane()
+    .pushPoints([(hole1_x - length/2, hole1_y - width/2), (hole2_x - length/2, hole2_y - width/2)])
+    .hole(hole_radius * 2)
+)
+
+# --- Assembly (if needed, based on the single part) ---
+# In this case, there's only one part, so no assembly is needed.
+# If there were multiple parts, you would use .union() or .cut() to combine them.
+
+# --- Final Result ---
+result = part_1
+
+cq.exporters.export(result, './stlcq/0030/00304543.stl')
+
+cq.exporters.export(result, './stlcq/0030/00304543.stl')
+
+cq.exporters.export(result, './stlcq/0030/00304543.stl')
+
+cq.exporters.export(result, './stlcq/0030/00304543.stl')
+
+cq.exporters.export(result, './stlcq/0030/00304543.stl')
+
+cq.exporters.export(result, './stlcq/0030/00304543.stl')
+
+cq.exporters.export(result, './stlc

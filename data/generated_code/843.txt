@@ -1,0 +1,53 @@
+import cadquery as cq
+
+# --- Part 1: Rectangular Plate ---
+length = 0.75 * 0.75  # Scaled length
+width = 0.4458 * 0.75  # Scaled width
+height = 0.0162
+
+part_1 = cq.Workplane("XY").rect(length, width).extrude(-height)
+
+# --- Coordinate System Transformation for Part 1 ---
+part_1 = part_1.translate((0, 0, 0.0225))
+
+# --- Assembly ---
+assembly = part_1
+
+# --- Export to STL ---
+cq.exporters.export(assembly, "./stlcq/0057/00574257.stl")
+
+# --- Fillet Edges ---
+edge_radius = min(length, width) / 10  # Adjust as needed
+
+try:
+    assembly = assembly.edges("|Z").fillet(edge_radius)
+except:
+    print("Fillet operation failed. Continuing without fillets.")
+
+
+# --- Final Result ---
+result = assembly
+
+cq.exporters.export(result, './stlcq/0057/00575735.stl')
+
+cq.exporters.export(result, './stlcq/0057/00575735.stl')
+
+cq.exporters.export(result, './stlcq/0057/00575847.stl')
+
+cq.exporters.export(result, './stlcq/0057/00575847.stl')
+
+cq.exporters.export(result, './stlcq/0057/00575847.stl')
+
+cq.exporters.export(result, './stlcq/0057/00575847.stl')
+
+cq.exporters.export(result, './stlcq/0057/00571939.stl')
+
+cq.exporters.export(result, './stlcq/0057/00571898.stl')
+
+cq.exporters.export(result, './stlcq/00571898.stl')
+
+cq.exporters.export(result, './stlcq/005728.stl')
+
+cq.exporters.export(result, './stlcq/005729.stl')
+
+cq.

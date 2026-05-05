@@ -1,0 +1,25 @@
+import cadquery as cq
+# --- Part 1: Rectangular Extrusion ---
+part_1_width = 0.0525 * 0.75  # Sketch width scaled
+part_1_height = 0.0525 * 0.75 # Sketch height scaled
+part_1_depth = 0.0288
+part_1 = (
+    cq.Workplane("XY")
+    .rect(part_1_width, part_1_height)
+    .extrude(part_1_depth)
+)
+# --- Assembly (if needed, based on the single part) ---
+# In this case, there's only one part, so no assembly is needed.
+# If there were multiple parts, you would use .union() or .cut() to combine them.
+# --- Final Result ---
+result = part_1
+cq.
+# Export to STL
+cq.
+cq.
+cq.
+cq.
+cq.
+cq.cq.exporters.export(
+# 导出为STL文件
+cq.exporters.export(result, "output_2812.stl

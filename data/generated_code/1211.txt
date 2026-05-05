@@ -1,0 +1,39 @@
+import cadquery as cq
+
+# --- Part 1: Cube with Cut Corner ---
+part_1 = (
+    cq.Workplane("XY")
+    .moveTo(0.0, 0.1839 * 0.5621)
+    .lineTo(0.0984 * 0.5621, 0.0)
+    .lineTo(0.5516 * 0.5621, 0.4253 * 0.5621)
+    .lineTo(0.0, 0.1839 * 0.5621)
+    .close()
+    .extrude(0.5621)
+)
+
+# --- Coordinate System Transformation for Part 1 ---
+part_1 = part_1.rotate((0, 0, 0), (0, 0, 1), -90)
+part_1 = part_1.translate((0.0357, 0.75, 0.0262))
+
+# --- Assembly ---
+assembly = part_1
+
+# Export to STL
+cq.exporters.export(assembly, "./stlcq/0047/00476201.stl")
+cq.exporters.export(assembly, "./stlcq/00476693.stl")
+
+# --- Export to STL ---
+cq.exporters.export(assembly, "./stlcq/0047/00476198.stl")
+cq.exporters.export(assembly, "./stlcq/00476442.stl")
+cq.exporters.export(assembly, "./stlcq/00476268.stl")
+
+cq.exporters.export(assembly, "./stlcq/00478828.stl")
+cq.exporters.export(assembly, "./stlcq/00478828.stl")
+
+cq.exporters.export(assembly, "./stlcq/00478828.stl")
+cq.exporters.export(assembly, "./stlcq/00478828.stl")
+
+cq.exporters.export(assembly, "./stlcq/00478828.stl")
+cq.exporters.export(assembly, "./stlcq/00478828.stl")
+
+cq.exporters.export(assembly, "./stlcq/00478828.stl")

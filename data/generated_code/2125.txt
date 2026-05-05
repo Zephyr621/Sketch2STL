@@ -1,0 +1,47 @@
+import cadquery as cq
+
+# --- Part 1: Ring ---
+part_1_outer_radius = 0.375 * 0.75  # Sketch radius scaled
+part_1_inner_radius = 0.2625 * 0.75
+part_1_height = 0.1172
+
+part_1 = (
+    cq.Workplane("XY")
+    .circle(part_1_outer_radius)
+    .circle(part_1_inner_radius)
+    .extrude(part_1_height)
+)
+
+# --- Coordinate System Transformation for Part 1 ---
+part_1 = part_1.rotate((0, 0, 0), (0, 0, 1), -90)
+part_1 = part_1.translate((0, 0.114, 0))
+
+# --- Part 2: Rectangular Prism ---
+part_2_length = 0.22825 * 0.8246
+part_2_width = 0.8246 * 0.8246
+part_2_height = 0.5
+
+part_2 = (
+    cq.Workplane("XY")
+    .rect(part_2_length, part_2_width)
+    .extrude(part_2_height)
+)
+
+# --- Coordinate System Transformation for Part 2 ---
+part_2 = part_2.rotate((0, 0, 0), (0, 0, 1), -90)
+part_2 = part_2.translate((0.0938, 0.1172, 0.1812))
+
+# --- Assembly ---
+assembly = part_1.union(part_2)
+
+cq.exporters.export(assembly, "./stlcq/0053/00533948.stl")
+
+cq.exporters.export(assembly, "./stlcq/0053/00533949.stl")
+
+cq.exporters.export(assembly, "./stlcq/0053/00533949.stl")
+
+cq.exporters.export(assembly, "./stlcq/0053/00533949.stl")
+
+cq.exporters.export(assembly, "./stlcq/0053/00533949.stl")
+
+cq.exporters.export(assembly

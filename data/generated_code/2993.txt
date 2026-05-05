@@ -1,0 +1,44 @@
+import cadquery as cq
+
+# --- Part 1: Cube ---
+part_1_length = 0.75 * 0.75  # Scaled length
+part_1_width = 0.75 * 0.75  # Scaled width
+part_1_height = 0.375
+
+part_1 = cq.Workplane("XY").rect(part_1_length, part_1_width).extrude(part_1_height)
+
+# --- Part 2: Cylindrical Holes ---
+hole_radius = 0.3045 * 0.6094  # Scaled radius
+hole_depth = 0.2812
+
+hole_locations = [
+    (0.1505 + 0.3045, 0.1505),  # Bottom Left
+    (0.1505 + 0.3045, 0.6207),  # Top Right
+    (0.1505 + 0.4235, 0.1505),  # Bottom Right
+]
+
+# Create holes by cutting cylinders
+for x, y in hole_locations:
+    part_1 = part_1.faces(">Z").workplane().pushPoints([(x - part_1_length/2, y - part_1_width/2)]).hole(2 * hole_radius)
+
+# --- Assembly ---
+assembly = part_1
+
+# --- Coordinate System Transformation for Part 1 ---
+assembly = assembly.translate((0, 0, 0.375))
+
+# --- Export to STL ---
+cq.exporters.export(assembly, "./stlcq/0026/00269377.stl")
+
+# --- Export to STL ---
+cq.exporters.export(assembly, "./stlcq/0026/00268571.stl")
+
+# --- Export to STL ---
+cq.exporters.export(assembly, "./stlcq/0026/00264851.stl")
+
+# --- Coordinate System Transformation for Part 2 ---
+assembly = assembly.rotate((0, 0, 0), (0, 0, 1), 180)
+assembly = assembly.translate((0.0148, 0.6429, 0.0686))
+
+# --- Export to STL ---
+cq.exporters.export(assembly, "./stlcq/0026

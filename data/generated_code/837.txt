@@ -1,0 +1,51 @@
+import cadquery as cq
+
+# --- Part 1: L-shaped base ---
+part_1_wp = cq.Workplane("XY")
+
+# Scaled dimensions
+sketch_scale = 0.5
+part_1_width = 0.25 * sketch_scale  # Sketch width scaled
+part_1_height = 0.125 * sketch_scale  # Sketch height scaled
+part_1_depth = 0.375
+
+part_1 = (
+    part_1_wp
+    .moveTo(0, 0)
+    .lineTo(part_1_width, 0)
+    .lineTo(part_1_width, part_1_height)
+    .lineTo(0, part_1_height)
+    .close()
+    .extrude(-part_1_depth)
+)
+
+# --- Coordinate System Transformation for Part 1 ---
+part_1 = part_1.rotate((0, 0, 0), (0, 0, 1), -90)
+part_1 = part_1.translate((0, 0.375, 0))
+
+# --- Part 2: Cutout ---
+part_2_wp = cq.Workplane("XY")
+
+# Scaled dimensions
+sketch_scale_2 = 0.5
+part_2_width = 0.25 * sketch_scale_2
+part_2_height = 0.25 * sketch_scale_2
+
+part_2 = (
+    part_2_wp
+    .rect(part_2_width, part_2_height)
+    .extrude(-part_2_depth)
+)
+
+# --- Coordinate System Transformation for Part 2 ---
+part_2 = part_2.rotate((0, 0, 0), (0, 0, 1), -90)
+part_2 = part_2.translate((0.25, 0, 0.25))
+
+# --- Assembly ---
+assembly = part_1.cut(part_2)
+
+cq.exporters.export(assembly, "./stlcq/0053/00537500.stl")
+
+cq.exporters.export(assembly, "./stlcq/0053/00537433.stl")
+
+cq.exporters.export(

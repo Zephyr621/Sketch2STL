@@ -1,0 +1,51 @@
+import cadquery as cq
+
+# --- Part 1: Rectangular Plate ---
+part_1_length = 0.1563 * 0.75  # Scaled length
+part_1_width = 0.75 * 0.75   # Scaled width
+part_1_height = 0.0259
+
+part_1 = (
+    cq.Workplane("XY")
+    .rect(part_1_length, part_1_width)
+    .extrude(-part_1_height)  # Extrude in the opposite direction
+)
+
+# --- Coordinate System Transformation for Part 1 ---
+part_1 = part_1.translate((0, 0, 0.0155))
+
+# --- Part 2: Cut Feature ---
+part_2_length = 0.1448 * 0.7397  # Scaled length
+part_2_width = 0.7397 * 0.7397   # Scaled width
+part_2_height = 0.0155
+
+cut_depth = 0.0155
+
+cut_1 = (
+    cq.Workplane("XY")
+    .rect(part_2_length, part_2_width)
+    .extrude(-cut_depth)
+)
+
+cut_2 = (
+    cq.Workplane("XY")
+    .moveTo(0, 0.4391 * 0.7397)
+    .rect(part_2_length, part_2_width)
+    .extrude(-cut_depth)
+)
+
+# --- Assembly: Cut Part 2 from Part 1 ---
+assembly = part_1.cut(cut_1).cut(cut_2)
+
+# --- Export to STL ---
+cq.exporters.export(assembly, "./stlcq/0060/00602999.stl")
+
+cq.exporters.export(assembly, "./stlcq/0060/00602811.stl")
+
+# --- Export to STL ---
+cq.exporters.export(assembly, './stlcq/0060/00602811.stl')
+
+# --- Final Result ---
+result = assembly
+
+cq.exporters.export(result, './stlcq/006012.stl')

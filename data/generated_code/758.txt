@@ -1,0 +1,34 @@
+import cadquery as cq
+
+# --- Part 1 ---
+sketch_scale = 0.75
+extrude_depth = 0.4812 * sketch_scale
+
+# Define the points for each profile
+profile1 = (
+    cq.Workplane("XY")
+    .moveTo(0.0, 0.0016)
+    .lineTo(0.0003 * sketch_scale, 0.0)
+    .lineTo(0.0008 * sketch_scale, 0.0)
+    .lineTo(0.0008 * sketch_scale, 0.0431 * sketch_scale)
+    .lineTo(0.0115 * sketch_scale, 0.0431 * sketch_scale)
+    .lineTo(0.0115 * sketch_scale, 0.2953 * sketch_scale)
+    .lineTo(0.0003 * sketch_scale, 0.2953 * sketch_scale)
+    .lineTo(0.0003 * sketch_scale, 0.3078 * sketch_scale)
+    .lineTo(0.0, 0.3078 * sketch_scale)
+    .lineTo(0.0, 0.0016)
+    .close()
+)
+
+# Create the second profile
+profile2 = profile1.moveTo(0.0083 * sketch_scale, 0.0737 * sketch_scale)
+profile2 = profile2.lineTo(0.7309 * sketch_scale, 0.0737 * sketch_scale)
+profile2 = profile2.lineTo(0.7309 * sketch_scale, 0.2062 * sketch_scale)
+profile2 = profile2.lineTo(0.0083 * sketch_scale, 0.2062 * sketch_scale)
+profile2 = profile2.lineTo(0.0083 * sketch_scale, 0.0737 * sketch_scale)
+profile2 = profile2.close()
+
+# Create the third profile
+profile3 = profile1.moveTo(0.7309 * sketch_scale, 0.1096 * sketch_scale)
+profile3 = profile3.lineTo(0.75 * sketch_scale, 0.1096 * sketch_scale)
+profile3 = profile3.lineTo(0.75 * sketch_scale,

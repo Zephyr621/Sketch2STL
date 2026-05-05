@@ -1,0 +1,40 @@
+import cadquery as cq
+
+# --- Part 1: Rectangular Plate with Holes ---
+length = 0.75 * 0.75  # Scaled length
+width = 0.3414 * 0.75  # Scaled width
+height = 0.0341
+hole_radius = 0.0187 * 0.75  # Scaled radius
+hole_center1_x = 0.0937 * 0.75  # Scaled x-coordinate of hole center 1
+hole_center1_y = 0.1607 * 0.75  # Scaled y-coordinate of hole center 1
+hole_center2_x = 0.6563 * 0.75  # Scaled x-coordinate of hole center 2
+hole_center2_y = 0.1607 * 0.75  # Scaled y-coordinate of hole 2
+
+part_1 = (
+    cq.Workplane("XY")
+    .rect(length, width)
+    .extrude(height)
+    .faces(">Z").workplane()
+    .pushPoints([(hole_center1_x - length/2, hole_center1_y - width/2), (hole_center2_x - length/2, hole_center2_y - width/2)])
+    .hole(hole_radius * 2)
+)
+
+# --- Coordinate System Transformation for Part 1 ---
+part_1 = part_1.rotate((0, 0, 0), (0, 0, 1), -90)
+part_1 = part_1.translate((0, 0.0341, 0))
+
+# --- Assembly ---
+assembly = part_1
+
+# Export to STL
+cq.exporters.export(assembly, "./stlcq/0067/00675476.stl")
+
+cq.exporters.export(assembly, "./stlcq/0067/00670464.stl")
+
+cq.exporters.export(assembly, "./stlcq/0067/00675476.stl")
+
+cq.exporters.export(assembly, "./stlcq/0067/00675476.stl")
+
+cq.exporters.export(assembly, "./stlcq/0067/00675476.stl")
+
+cq.exporters.export

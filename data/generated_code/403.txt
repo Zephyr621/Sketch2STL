@@ -1,0 +1,39 @@
+import cadquery as cq
+import math
+from cadquery import exporters
+
+# --- Part 1: L-shaped base ---
+part_1 = (
+    cq.Workplane("XY")
+    .moveTo(0.0, 0.0)
+    .lineTo(0.75 * 0.75, 0.0)
+    .lineTo(0.75 * 0.75, 0.0844 * 0.75)
+    .lineTo(0.5625 * 0.75, 0.0844 * 0.75)
+    .lineTo(0.375 * 0.75, 0.0844 * 0.75)
+    .threePointArc((0.3281 * 0.75, 0.1406 * 0.75), (0.0, 0.0703 * 0.75))
+    .lineTo(0.0, 0.0)
+    .close()
+    .extrude(0.2812)
+)
+
+# --- Coordinate System Transformation for Part 1 ---
+part_1 = part_1.rotate((0, 0, 0), (0, 0, 1), -90)
+part_1 = part_1.translate((0, 0.2812, 0))
+
+# --- Part 2: Holes ---
+hole_radius = 0.0313 * 0.6562
+hole_depth = 0.0625
+
+hole_centers = [
+    (0.0313 * 0.6562, 0.0313 * 0.6562),
+    (0.0313 * 0.6562, 0.7059 * 0.6562),
+    (0.4687 * 0.6562, 0.0313 * 0.6562),
+    (0.4687 * 0.6562, 0.7059 * 0.6562),
+]
+
+for center in hole_centers:
+    part_2 = part_1.faces(">Z").workplane().hole(2 * hole_radius)
+
+# --- Coordinate System Transformation for Part 2 ---
+part_2 = part_2.rotate((0, 0, 0), (0, 0, 1), -90)
+part_2 = part_2

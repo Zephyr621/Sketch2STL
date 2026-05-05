@@ -1,0 +1,46 @@
+import cadquery as cq
+from cadquery.vis import show
+
+# --- Part 1: Circular Disk with Hole ---
+outer_radius = 0.375 * 0.75  # Sketch radius scaled
+inner_radius = 0.0462 * 0.75  # Inner hole radius scaled
+slot1_x = 0.1719 * 0.75
+slot1_y = 0.0865 * 0.75
+slot2_x = 0.5498 * 0.75
+slot2_y = 0.6667 * 0.75
+slot3_x = 0.5719 * 0.75
+slot3_y = 0.5811 * 0.75
+slot4_x = 0.5498 * 0.75
+slot4_y = 0.5705 * 0.75
+slot5_x = 0.5719 * 0.75
+slot5_y = 0.6667 * 0.75
+
+part_1 = (
+    cq.Workplane("XY")
+    .circle(outer_radius)
+    .extrude(0.0557 + 0.0557)
+    .faces(">Z").workplane()
+    .circle(inner_radius)
+    .cutThruAll()
+)
+
+# --- Assembly (if needed, based on the single part) ---
+# In this case, there's only one part, so no assembly is needed.
+# If there were multiple parts, you would use .union() or .cut() to combine them.
+
+# --- Final Result ---
+result = part_1
+
+cq.exporters.export(result, './stlcq/0077/00779272.stl')
+
+cq.exporters.export(result, './stlcq/0077928.stl')
+
+cq.exporters.export(result, './stlcq/0077928.stl')
+
+cq.exporters.export(result, './stlcq/0077928.stl')
+
+cq.exporters.export(result, './stlcq/0077928.stl')
+
+cq.exporters.export(result, './stlcq/0077928.stl')
+
+cq.exporters.export(result, './stlcq/0077928.stl')

@@ -1,0 +1,47 @@
+import cadquery as cq
+from math import radians
+
+# --- Part 1: Rectangular Prism ---
+part_1_length = 0.4053 * 0.4729  # Scaled length
+part_1_width = 0.4729 * 0.4729   # Scaled width
+part_1_height = 0.3378
+
+part_1 = (
+    cq.Workplane("XY")
+    .rect(part_1_length, part_1_width)
+    .extrude(part_1_height)
+)
+
+# --- Part 2: Triangular Cutout ---
+part_2_length = 0.2702 * 0.3378  # Scaled length
+part_2_width = 0.3378 * 0.3378   # Scaled width
+part_2_height = 0.1351
+
+part_2 = (
+    cq.Workplane("XY")
+    .moveTo(0, 0)
+    .lineTo(part_2_length, 0)
+    .lineTo(part_2_length, part_2_width)
+    .close()
+    .extrude(-part_2_height)
+)
+
+# --- Part 3: Triangular Cutout 2 ---
+part_3_length = 0.2771 * 0.3378  # Scaled length
+part_3_width = 0.3378 * 0.3378   # Scaled width
+part_3_height = 0.1351
+
+part_3 = (
+    cq.Workplane("XY")
+    .moveTo(0, 0)
+    .lineTo(part_3_length, 0)
+    .lineTo(part_3_length, part_3_width)
+    .lineTo(0, part_3_width)
+    .close()
+    .extrude(-part_3_height)
+)
+
+# --- Part 4: Triangular Cutout 3 ---
+part_4_length = 0.2771 * 0.2771  # Scaled length
+part_4_width = 0.3378 * 0.2771   # Scaled width
+part_4_height

@@ -1,0 +1,43 @@
+import cadquery as cq
+
+# --- Parameters ---
+length = 0.3333 * 0.75
+width_bottom = 0.1667 * 0.75
+width_top = 0.4167 * 0.75
+height = 0.1266
+
+# --- Create the base rectangular block ---
+block = cq.Workplane("XY").rect(length, width_bottom).extrude(height)
+
+# --- Create the top rectangles ---
+top_rects = [
+    (0.1667 * 0.75, 0.1667 * 0.75),
+    (0.3333 * 0.75, 0.1667 * 0.75),
+    (0.3333 * 0.75, 0.5833 * 0.75),
+    (0.5833 * 0.75, 0.5833 * 0.75),
+    (0.5833 * 0.75, 0.1667 * 0.75)
+]
+
+for rect in top_rects:
+    block = block.faces(">Z").workplane().pushPoints([(rect[0], rect[1]]).rect(length - 2 * rect[2], width_bottom - rect[3]).cutThruAll()
+
+# --- Export to STL ---
+cq.exporters.export(block, './stlcq/0055/00551732.stl')
+
+# --- Export to STL ---
+cq.exporters.export(block, './stlcq/0055/00552597.stl')
+
+# --- Export to STL ---
+cq.exporters.export(block, './stlcq/0055/00552363.stl')
+
+# --- Export to STL ---
+cq.exporters.export(block, './stlcq/0055/00552408.stl')
+
+# --- Export to STL ---
+cq.exporters.export(block, './stlcq/0055/00552404.stl')
+
+# --- Export to STL ---
+cq.exporters.export(block, './stlcq/0055/00552864.stl')
+
+# --- Export to STL ---
+cq.exporters.export(block, './stlcq/0055/00558805.stl

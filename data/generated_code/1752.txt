@@ -1,0 +1,23 @@
+import cadquery as cq
+import math
+from cadquery.vis import show
+
+# --- Part 1: Four Cylinders ---
+sketch_scale = 0.6782
+extrude_depth = 0.0755 * sketch_scale
+
+# Hole parameters (scaled)
+hole1_center = (0.0391 * sketch_scale, 0.1587 * sketch_scale)
+hole2_center = (0.3532 * sketch_scale, 0.4536 * sketch_scale)
+hole3_center = (0.3701 * sketch_scale, 0.1586 * sketch_scale)
+hole4_center = (0.3532 * sketch_scale, 0.6387 * sketch_scale)
+hole5_center = (0.3532 * sketch_scale, 0.6664 * sketch_scale)
+hole6_center = (0.3701 * sketch_scale, 0.6596 * sketch_scale)
+hole7_center = (0.3468 * sketch_scale, 0.6387 * sketch_scale)
+hole8_center = (0.3468 * sketch_scale, 0.4852 * sketch_scale)
+
+# Create cylinders
+cylinder1 = cq.Workplane("XY").moveTo(hole1_center[0], hole1_center[1]).threePointArc((hole2_center[0], hole2_center[1]), (hole3_center[0], hole3_center[1])).close().extrude(extrude_depth)
+cylinder2 = cq.Workplane("XY").moveTo(hole2_center[0], hole2_center[1]).threePointArc((hole3_center[0], hole3_center[1]), (hole4_center[0], hole4_center[1])).close().extrude(extrude_depth)
+cylinder3 = cq.Workplane("XY").moveTo(hole3_center[0], hole3_center[1]).threePointArc((hole4_center[0], hole4_center[1]), (hole5_center[0], hole5_center[1])).close().extrude(extrude_depth)
+cylinder4 = cq.Workplane("XY").moveTo(hole4_center[0], hole4_center[1]).threePointArc((hole5_center[

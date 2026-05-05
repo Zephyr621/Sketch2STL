@@ -1,0 +1,42 @@
+This base forms the foundation of the model, providing a stable and uniform structure.
+import cadquery as cq
+
+# --- Part 1: Cube ---
+part_1_length = 0.75 * 0.75  # Sketch length scaled
+part_1_width = 0.75 * 0.75  # Sketch width scaled
+part_1_height = 0.4688
+
+part_1 = cq.Workplane("XY").rect(part_1_length, part_1_width).extrude(part_1_height)
+
+# --- Assembly (if needed, based on the single part) ---
+# In this case, there's only one part, so no assembly is needed.
+# If there were multiple parts, you would use .union() or .cut() to combine them.
+
+# --- Final Result ---
+result = part_1
+cq.exporters.export(result, './stlcq/0061/00617656.stl')
+
+# Export to STL
+cq.exporters.export(result, './stlcq/0061/00617657.stl')
+
+cq.exporters.export(result, './stlcq/0061/00617418.stl')
+
+cq.exporters.export(result, './stlcq/0061/00617418.stl')
+
+cq.exporters.export(result, './stlcq/0061/006174185.stl')
+
+cq.exporters.export(result, './stlcq/0061/006174185.stl')
+
+cq.exporters.export(result, './stlcq/0061/006174185.stl')
+
+cq.exporters.export(result, './stlcq/0061/006174185.stl')
+
+cq.exporters.export(result, './stlcq/0061/006174185.stl')
+
+cq.exporters.export(result, './stlcq/0061/00617616.stl')
+
+cq.exporters.export(result, './stlcq/0061/006176168.stl')
+
+cq.exporters.export(result, './stlcq/0061/006176168.stl')
+
+cq.exporters.export(result, './stlcq/0061

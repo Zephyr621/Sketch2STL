@@ -1,0 +1,41 @@
+import cadquery as cq
+import math
+from cadquery.vis import show
+
+# --- Parameters from JSON ---
+length = 0.75
+width = 0.5833
+height = 0.0208
+sketch_scale = 0.75
+hole_radius = 0.0157 * sketch_scale
+corner_radius = 0.0208 * sketch_scale
+
+# Scaled values
+scaled_length = length * sketch_scale
+scaled_width = width * sketch_scale
+scaled_height = height
+scaled_hole_radius = hole_radius * sketch_scale
+
+# Hole centers (scaled)
+hole_centers = [
+    (0.2187 * sketch_scale - scaled_length / 2, 0),
+    (0.2187 * sketch_scale - scaled_length / 2, 0.5833 * sketch_scale - scaled_width / 2),
+    (0.2187 * sketch_scale - scaled_length / 2, 0.5833 * sketch_scale - scaled_width / 2),
+    (0.2187 * sketch_scale - scaled_length / 2, 0.5833 * sketch_scale - scaled_width / 2)
+]
+
+# --- Create the base rectangular plate ---
+plate = cq.Workplane("XY").rect(scaled_length, scaled_width).extrude(scaled_height)
+
+# --- Add rounded corners ---
+# Define points for the rounded corners
+rounded_corner_points = [
+    (0.1023 * sketch_scale - scaled_length / 2, 0),
+    (0.3281 * sketch_scale - scaled_length / 2, 0.1154 * sketch_scale - scaled_width / 2),
+    (0.6477 * sketch_scale - scaled_length / 2, 0),
+    (0.6477 * sketch_scale - scaled_length / 2, 0.5156 * sketch_scale - scaled_width / 2),
+    (0.1023 * sketch_scale - scaled_length / 2, 0.5156 * sketch_scale - scaled_width / 2)
+]
+
+for i, point in enumerate(rounded_corner_points):
+    plate = plate.faces(">Z").workplane().polyline

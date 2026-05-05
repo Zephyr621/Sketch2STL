@@ -1,0 +1,58 @@
+import cadquery as cq
+import math
+from cadquery import exporters
+
+# --- Part 1 ---
+sketch_scale = 0.75
+extrude_depth = 0.075
+
+# Scaled parameters
+center1_x = 0.0938 * sketch_scale
+center1_y = 0.2812 * sketch_scale
+radius1 = 0.0469 * sketch_scale
+
+center2_x = 0.0938 * sketch_scale
+center2_y = 0.2812 * sketch_scale
+radius2 = 0.0281 * sketch_scale
+
+# Create the base shape with rounded edges
+part_1 = (
+    cq.Workplane("XY")
+    .moveTo(center1_x, center1_y)
+    .circle(radius1)
+    .moveTo(center2_x, center2_y)
+    .circle(radius2)
+    .extrude(extrude_depth)
+)
+
+# Cut out the inner circles
+part_1 = (
+    part_1.faces(">Z")
+    .workplane()
+    .hole(2 * radius1, clean=True)
+)
+
+# --- Coordinate System Transformation for Part 1 ---
+part_1 = part_1.rotate((0, 0, 0), (0, 0, 1), -90)
+part_1 = part_1.translate((0, 0.075, 0))
+
+# --- Assembly ---
+assembly = part_1
+
+# Export to STL
+exporters.export(assembly, "./stlcq/0057/00579392.stl")
+
+# Export to STL
+exporters.export(assembly, "./stlcq/0057/00579849.stl")
+
+# Export to STL
+exporters.export(assembly, "./stlcq/0057/00576126.stl")
+
+# Export to STL
+exporters.export(assembly, "./stlcq/0057/00579849.stl")
+
+# Export to STL
+exporters.export(assembly, './stlcq/0057/00576126.stl')
+
+# Export to STL
+exporters.export(assembly, "./stlcq/0057/

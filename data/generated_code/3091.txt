@@ -1,0 +1,45 @@
+import cadquery as cq
+import math
+from cadquery import exporters
+
+# --- Part 1 ---
+sketch_scale = 0.75
+extrude_depth = 0.1357 * 2  # Total depth (both directions)
+
+part_1 = (
+    cq.Workplane("XY")
+    .moveTo(0.0, 0.0)
+    .lineTo(0.4752 * sketch_scale, 0.0)
+    .threePointArc((0.5457 * sketch_scale, 0.1473 * sketch_scale), (0.4752 * sketch_scale, 0.75 * sketch_scale))
+    .lineTo(0.1118 * sketch_scale, 0.75 * sketch_scale)
+    .threePointArc((0.0594 * sketch_scale, 0.1473 * sketch_scale), (0.0, 0.0))
+    .close()
+    .extrude(extrude_depth)
+)
+
+# Create holes
+hole_radius = 0.0227 * sketch_scale
+hole_centers = [
+    (0.0227 * sketch_scale, 0.0872 * sketch_scale),
+    (0.3546 * sketch_scale, 0.0872 * sketch_scale),
+    (0.4605 * sketch_scale, 0.0872 * sketch_scale),
+    (0.5467 * sketch_scale, 0.0872 * sketch_scale)
+]
+
+for center in hole_centers:
+    part_1 = part_1.faces(">Z").workplane().hole(2 * hole_radius)
+
+# --- Coordinate System Transformation for Part 1 ---
+part_1 = part_1.translate((0, 0, 0.1357 * sketch_scale))
+
+# --- Assembly ---
+assembly = part_1
+
+# Export to STL
+exporters.export(assembly, './stlcq/0041/00415153.stl')
+
+# Export to STL
+exporters.export(assembly, './stlcq/00419906.stl')
+
+# Export to STL
+exporters.export(assembly, './stlcq/00419906

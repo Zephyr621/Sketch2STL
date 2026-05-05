@@ -1,0 +1,35 @@
+import cadquery as cq
+
+# --- Part 1: L-shaped profile ---
+sketch_scale = 0.75
+extrude_depth = 0.2059
+
+# Scaled dimensions
+p1 = (0.0 * sketch_scale, 0.1176 * sketch_scale)
+p2 = (0.1176 * sketch_scale, 0.0 * sketch_scale)
+p3 = (0.75 * sketch_scale, 0.1176 * sketch_scale)
+p4 = (0.75 * sketch_scale, 0.5294 * sketch_scale)
+p5 = (0.6284 * sketch_scale, 0.7086 * sketch_scale)
+p6 = (0.6284 * sketch_scale, 0.6923 * sketch_scale)
+p7 = (0.6284 * sketch_scale, 0.7086 * sketch_scale)
+p8 = (0.1071 * sketch_scale, 0.6923 * sketch_scale)
+p9 = (0.1071 * sketch_scale, 0.5294 * sketch_scale)
+p10 = (0.0 * sketch_scale, 0.5294 * sketch_scale)
+
+part_1 = (
+    cq.Workplane("XY")
+    .moveTo(p1[0], p1[1])
+    .lineTo(p2[0], p2[1])
+    .lineTo(p3[0], p3[1])
+    .lineTo(p4[0], p4[1])
+    .lineTo(p5[0], p5[1])
+    .lineTo(p6[0], p6[1])
+    .close()
+    .moveTo(p5[0], p5[1])
+    .lineTo(p7[0], p7[1])
+    .lineTo(p8[0], p8[1])
+    .lineTo(p9[0], p9[1])
+    .lineTo(p10[0], p10[1])
+    .lineTo(p5[0], p5[1])
+    .close()
+    .moveTo(p6

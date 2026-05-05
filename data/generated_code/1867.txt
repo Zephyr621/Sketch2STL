@@ -1,0 +1,46 @@
+import cadquery as cq
+
+# --- Part 1: Pen Body ---
+sketch_scale = 0.75
+extrude_depth = 0.0039 * sketch_scale
+
+# Scaled coordinates for the rings
+p1 = (0.0427 * sketch_scale, 0.4261 * sketch_scale)
+p2 = (0.0427 * sketch_scale, 0.7031 * sketch_scale)
+p3 = (0.0864 * sketch_scale, 0.7031 * sketch_scale)
+p4 = (0.0 * sketch_scale, 0.7031 * sketch_scale)
+
+# Create the pen body
+part_1 = (
+    cq.Workplane("XY")
+    .moveTo(p1[0], p1[1])
+    .circle(0.0125 * sketch_scale)
+    .moveTo(p2[0], p2[1])
+    .circle(0.0125 * sketch_scale)
+    .moveTo(p3[0], p3[1])
+    .circle(0.0125 * sketch_scale)
+    .moveTo(p4[0], p4[1])
+    .circle(0.0125 * sketch_scale)
+    .extrude(extrude_depth)
+)
+
+# --- Assembly ---
+assembly = part_1
+
+# Export to STL
+cq.exporters.export(assembly, "./stlcq/0069/00699542.stl")
+
+# Export the result to a STL file
+cq.exporters.export(assembly, './stlcq/00695580.stl')
+
+# Export the result to a STL file
+cq.exporters.export(assembly, './stlcq/00695580.stl')
+
+# Export the result to a T L file
+cq.exporters.export(assembly, './stlcq/00695580.stl')
+
+# Export the result to a T L file
+cq.exporters.export(assembly, './stlcq/00695580.stl')
+
+# --- Export to STL ---
+cq.exporters.export(assembly, './stlcq/00

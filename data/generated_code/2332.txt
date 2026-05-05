@@ -1,0 +1,43 @@
+This process results in a rounded cylindrical shape that can be used as a component in larger assemblies.
+import cadquery as cq
+from cadquery.vis import show
+
+# --- Part 1: Cylinder ---
+part_1_radius = 0.0904 * 0.1921  # Sketch radius scaled
+part_1_height = 0.75
+
+part_1 = cq.Workplane("XY").circle(part_1_radius).extrude(part_1_height)
+
+# --- Coordinate System Transformation for Part 1 ---
+part_1 = part_1.rotate((0, 0, 0), (0, 0, 1), -90)
+part_1 = part_1.translate((0, 0.75, 0))
+
+# --- Assembly (if needed, based on the single part) ---
+# In this case, there's only one part, so no assembly is needed.
+# If there were multiple parts, you would use .union() or .cut() to combine them.
+
+# --- Final Result ---
+result = part_1
+cq.exporters.export(result, './stlcq/0095/00953307.stl')
+
+cq.exporters.export(result, './stlcq/0095/00959181.stl')
+
+cq.exporters.export(result, './stlcq/0095/00955390.stl')
+
+cq.exporters.export(result, './stlcq/0095/00955391.stl')
+
+cq.exporters.export(result, './stlcq/0095/00955469.stl')
+
+cq.exporters.export(result, './stlcq/0095/00955623.stl')
+
+cq.exporters.export(result, './stlcq/0095/009556231.stl')
+
+cq.exporters.export(result, './stlcq/0095/00959703.stl')
+
+cq.exporters.export(result, './stlcq/0095/00958646.stl')
+
+cq.exporters.export(result, './stlcq/0095/00955436.stl')
+
+cq.exporters.export(result, './stlcq/0095/00955468.stl')
+
+cq.exp

@@ -1,0 +1,28 @@
+import cadquery as cq
+import math
+from cadquery.vis import show
+
+# --- Part 1: Rectangular Bar ---
+sketch_scale = 0.0804
+
+# Scaled Dimensions
+arc_radius = 0.0296 * sketch_scale
+line_length = 0.0785 * sketch_scale
+total_width = 0.0403 * sketch_scale
+extrude_depth = 0.75
+
+# Create the base shape
+part_1 = (
+    cq.Workplane("XY")
+    .moveTo(0, arc_radius)
+    .threePointArc((arc_radius, 0), (0.0014 * sketch_scale, 0.0014 * sketch_scale))
+    .lineTo(0.0441 * sketch_scale, 0.0014 * sketch_scale)
+    .threePointArc((0.0438 * sketch_scale, arc_radius), (0.0451 * sketch_scale, 0.0014 * sketch_scale))
+    .lineTo(0.0451 * sketch_scale, 0.0441 * sketch_scale)
+    .threePointArc((0.0438 * sketch_scale, 0.0309 * sketch_scale), (0.0586 * sketch_scale, 0.0452 * sketch_scale))
+    .lineTo(0.0586 * sketch_scale, 0.0452 * sketch_scale)
+    .threePointArc((0.0586 * sketch_scale, 0.0433 * sketch_scale), (0.0586 * sketch_scale, 0.0442 * sketch_scale))
+    .lineTo(0.0441 * sketch_scale, 0.0442 * sketch_scale)
+    .threePointArc((0.0438 * sketch_scale, 0.0309 * sketch_scale), (0.0441 * sketch_scale, 0.0454 * sketch_scale))
+    .lineTo(0.0441 * sketch_scale, 0.0454 * sketch_scale)
+    .threePointArc((0.0438 * sketch_scale, 0.0433 * sketch_scale), (0.0586 * sketch_scale, 0.0452 * sketch_scale))

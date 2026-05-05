@@ -1,0 +1,53 @@
+These components are assembled to form the final shape, which features a hexagonal base with a central cylindrical hole running through its center.
+import cadquery as cq
+import math
+from cadquery import exporters
+
+# --- Part 1: Hexagonal Prism ---
+part_1_points = [
+    (0.0, 0.3248),
+    (0.1875, 0.0),
+    (0.5625, 0.0),
+    (0.75, 0.3248),
+    (0.5625, 0.6495)
+]
+part_1_height = 0.3251
+part_1_scale = 0.75
+
+scaled_points = [(x * part_1_scale, y * part_1_scale) for x, y in part_1_points]
+
+part_1 = (
+    cq.Workplane("XY")
+    .polyline(scaled_points)
+    .close()
+    .extrude(part_1_height)
+)
+
+# --- Part 2: Cylinder Cutout ---
+part_2_radius = 0.1875 * 0.3711
+part_2_depth = 0.3559
+part_2_translation = (0.0705, 0.0203, 0.3251)
+
+part_2 = (
+    cq.Workplane("XY")
+    .circle(part_2_radius)
+    .extrude(-part_2_depth)
+)
+
+# --- Coordinate System Transformation for Part 2 ---
+part_2 = part_2.translate(part_2_translation)
+
+# --- Assembly ---
+assembly = part_1.cut(part_2)
+
+# --- Export to STL ---
+exporters.export(assembly, './stlcq/0076/00769324.stl')
+
+# --- Export to STL ---
+exporters.export(assembly, './stlcq/0076/00769324.stl')
+
+# --- Export to STL ---
+exporters.export(assembly, './stlcq/0076/00769324.stl')
+
+# --- Export to STL ---
+exporters.export(assembly, './stlcq

@@ -1,0 +1,45 @@
+import cadquery as cq
+import math
+from cadquery import exporters
+
+# --- Part 1: Rectangular Plate ---
+part_1_length = 0.75 * 0.75  # Scaled length
+part_1_width = 0.5 * 0.75  # Scaled width
+part_1_height = 0.05
+
+part_1 = (
+    cq.Workplane("XY")
+    .rect(part_1_length, part_1_width)
+    .extrude(part_1_height)
+)
+
+# --- Part 2: Cylindrical Protrusions ---
+part_2_radius = 0.0441 * 0.4683  # Scaled radius
+part_2_height = 0.25
+
+# Create cylinders and translate them
+cylinders = []
+for i in range(6):
+    angle = 60 * i - 30
+    x = part_1_length / 2 + (part_1_length/2) * math.cos(angle)
+    y = part_1_width / 2 + (part_1_width/2) * math.sin(angle)
+    cylinder = cq.Workplane("XY").moveTo(x, y).circle(part_2_radius).extrude(part_2_height)
+    cylinders.append(cylinder)
+
+# Translate cylinders from the JSON
+cylinders = [(x + 0.15, y + 0.15) for x, y in cylinders]
+
+# Rotate around Z axis by -90 degrees around X axis
+cylinders = transformations.rotate((0, 0, 0), (0, 0, 1), 180)
+cylinders = cylinders.translate((0.135, 0.06, 0.05))
+
+# --- Assembly ---
+assembly = part_1.union(cylinders)
+
+# --- Export to STL ---
+exporters.export(assembly, './stlcq/0087/00877004.stl')
+exporters.export(assembly, './stlcq/0087/00877423.stl')
+exporters.export(assembly, './stlcq/0087/00877423.stl')
+
+# Export to STL
+exporters.export(assembly

@@ -1,0 +1,48 @@
+import cadquery as cq
+
+# --- Part 1: Rectangular Plate ---
+part_1_length = 0.7281 * 0.7281  # Scaled length
+part_1_width = 0.1753 * 0.7281  # Scaled width
+part_1_height = 0.0197
+
+part_1 = (
+    cq.Workplane("XY")
+    .rect(part_1_length, part_1_width)
+    .extrude(part_1_height)
+)
+
+# --- Coordinate System Transformation for Part 1 ---
+part_1 = part_1.translate((0.0039, 0.0038, 0))
+
+# --- Part 2: Box ---
+part_2_length = 0.7281 * 0.7281  # Scaled length
+part_2_width = 0.5382 * 0.7281  # Scaled width
+part_2_height = 0.2191
+
+inner_offset = 0.0039 * 0.7281
+
+part_2 = (
+    cq.Workplane("XY")
+    .rect(part_2_length, part_2_width)
+    .extrude(part_2_height)
+)
+
+part_2 = part_2.cut(cq.Workplane("XY").rect(part_2_length - 2 * inner_offset, part_2_width - 2 * inner_offset).extrude(part_2_height + 0.001))
+
+
+# --- Assembly ---
+assembly = part_1.union(part_2)
+
+cq.exporters.export(assembly, "./stlcq/0057/00575609.stl")
+
+cq.exporters.export(assembly, "./stlcq/0057465.stl")
+
+cq.exporters.export(assembly, "./stlcq/00576158.stl")
+
+cq.exporters.export(assembly, "./stlcq/00576158.stl")
+
+cq.exporters.export(assembly, "./stlcq/00576158.stl")
+
+cq.exporters.export(assembly, "./stlcq/00576158.stl")
+
+cq.exporters.export(assembly, "./

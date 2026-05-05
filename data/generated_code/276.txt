@@ -1,0 +1,36 @@
+import cadquery as cq
+
+# --- Part 1: Rectangular Prism ---
+part_1_length = 0.5174 * 0.7239  # Scaled length
+part_1_width = 0.7239 * 0.7239  # Scaled width
+part_1_height = 0.0087
+
+part_1 = (
+    cq.Workplane("XY")
+    .rect(part_1_length, part_1_width)
+    .extrude(-part_1_height)  # Extrude in the opposite direction
+)
+
+# --- Coordinate System Transformation for Part 1 ---
+part_1 = part_1.translate((0.0347, 0.0857, 0.0))
+
+# --- Part 2: Rectangular Bar (Cutout) ---
+part_2_length = 0.5174 * 0.7239  # Scaled length
+part_2_width = 0.1134 * 0.7239  # Scaled width
+part_2_height = 0.0159
+
+part_2 = (
+    cq.Workplane("XY")
+    .moveTo(0.0, 0.0088 * 0.7239)  # Scaled y-coordinate
+    .lineTo(0.0293 * 0.7239, 0.0)  # Scaled x-coordinate
+    .lineTo(0.4249 * 0.7239, 0.0088 * 0.7239)  # Scaled y-coordinate
+    .lineTo(0.4249 * 0.7239, 0.1134 * 0.7239)  # Scaled y-coordinate
+    .lineTo(0.0293 * 0.7239, 0.1134 * 0.7239)  # Scaled y-coordinate
+    .lineTo(0.0, 0.0088 * 0.7239)  # Scaled y-coordinate
+    .close()
+    .extrude(-part_2_height)  # Extrude in the opposite direction
+)
+
+# --- Coordinate System Transformation for Part 2 ---
+part_2 = part_2.rotate((0, 0, 0), (0, 0, 1), 180)
+part

@@ -1,0 +1,40 @@
+import cadquery as cq
+from math import radians
+
+# --- Part 1: Cube with Circular Hole ---
+part_1_length = 0.6429 * 0.6429  # Scaled length
+part_1_width = 0.6429 * 0.6429  # Scaled width
+part_1_height = 0.6429
+hole_center_x = 0.3214 * 0.6429  # Scaled center x
+hole_center_y = 0.1607 * 0.6429  # Scaled center y
+hole_radius = 0.2079 * 0.6429  # Scaled radius
+
+part_1 = (
+    cq.Workplane("XY")
+    .rect(part_1_length, part_1_width)
+    .extrude(part_1_height)
+    .faces(">Z")
+    .workplane()
+    .moveTo(hole_center_x - (part_1_length/2), hole_center_y - (part_1_width/2))
+    .circle(hole_radius)
+    .cutThruAll()
+)
+
+# --- Coordinate System Transformation for Part 1 ---
+part_1 = part_1.rotate((0, 0, 0), (0, 0, 1), -90)
+part_1 = part_1.translate((0.0593, 0.6429, 0.0593))
+
+# --- Part 2: Cylinder ---
+part_2_radius = 0.2649 * 0.5357  # Scaled radius
+part_2_height = 0.1071
+
+part_2 = cq.Workplane("XY").circle(part_2_radius).extrude(-part_2_height)
+
+# --- Coordinate System Transformation for Part 2 ---
+part_2 = part_2.rotate((0, 0, 0), (0, 0, 1), -90)
+part_2 = part_2.translate((0.0593, 0.6429, 0.0593))
+
+# --- Assembly ---
+assembly = part_1.union(part_2)
+
+cq.exporters.export(assembly, "./stlcq/0068/00688476.stl

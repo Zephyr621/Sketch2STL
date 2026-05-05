@@ -1,0 +1,48 @@
+import cadquery as cq
+
+# --- Part 1: Rectangular Prism ---
+part_1_width = 0.2131 * 0.2131  # Scaled width
+part_1_height = 0.0417 * 0.2131 # Scaled height
+part_1_depth = 0.6667  # Depth
+
+part_1 = (
+    cq.Workplane("XY")
+    .rect(part_1_width, part_1_height)
+    .extrude(part_1_depth)
+)
+
+# --- Coordinate System Transformation for Part 1 ---
+part_1 = part_1.rotate((0, 0, 0), (0, 0, 1), -90)
+part_1 = part_1.translate((0, 0.6667, 0))
+
+# --- Assembly ---
+assembly = part_1
+
+# Export to STL
+cq.exporters.export(assembly, "./stlcq/0049/00499741.stl")
+
+# --- Export to STL ---
+cq.exporters.export(assembly, "./stlcq/0049515.stl")
+
+# Export to STL
+cq.exporters.export(assembly, "./stlcq/0049612.stl")
+
+# Export to STL
+cq.exporters.export(assembly, "./stlcq/0049714.stl")
+
+# --- Export to STL ---
+cq.exporters.export(assembly, "./stlcq/0049612.stl")
+
+# --- Coordinate System Transformation for Part 2 ---
+part_2 = part_2.rotate((0, 0, 0), (0, 0, 1), -90)
+part_2 = part_2.translate((0.0229, 0.6667, 0.0229))
+
+# Export to STL
+cq.exporters.export(assembly, "./stlcq/00496126.stl")
+
+# --- Export to STL ---
+cq.exporters.export(assembly, "./stlcq/00496126.stl")
+
+# --- Coordinate System Transformation for Part 2 ---
+part_2 = part_2.rotate((0, 0, 0), (0, 0, 1), -90)
+part_2 = part_2.

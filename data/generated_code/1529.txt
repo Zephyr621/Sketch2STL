@@ -1,0 +1,32 @@
+import cadquery as cq
+
+# --- Part 1: Rectangular Frame ---
+part_1 = (
+    cq.Workplane("XY")
+    .moveTo(0.0, 0.0)
+    .lineTo(0.5248 * 0.7288, 0.0)
+    .lineTo(0.5248 * 0.7288, 0.1098 * 0.7288)
+    .lineTo(0.3529 * 0.7288, 0.1098 * 0.7288)
+    .lineTo(0.3529 * 0.7288, 0.0)
+    .lineTo(0.2109 * 0.7288, 0.0)
+    .lineTo(0.2109 * 0.7288, 0.0182 * 0.7288)
+    .lineTo(0.4167 * 0.7288, 0.0182 * 0.7288)
+    .lineTo(0.4167 * 0.7288, 0.7288 * 0.7288)
+    .lineTo(0.3529 * 0.7288, 0.7288 * 0.7288)
+    .lineTo(0.3529 * 0.7288, 0.0)
+    .lineTo(0.0, 0.0)
+    .close()
+    .extrude(0.0437)
+)
+
+# --- Coordinate System Transformation for Part 1 ---
+part_1 = part_1.rotate((0, 0, 0), (1, 0, 0), -90)
+part_1 = part_1.rotate((0, 0, 0), (0, 0, 1), -90)
+part_1 = part_1.translate((0.0437, 0.0013, 0.0142))
+
+# --- Part 2: Cube ---
+part_2_size = 0.5247 * 0.75
+part_2 = cq.Workplane("XY").box(part_2_size, part_2_size, part_2_size)
+
+# --- Coordinate System Transformation for Part 2 ---
+part_2 = part_2.rotate((0, 0, 0), (1, 0

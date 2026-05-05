@@ -1,0 +1,37 @@
+This process results in a solid body with smooth transitions at the ends.
+import cadquery as cq
+from cadquery.vis import show
+
+# --- Part 1 ---
+part_1 = (
+    cq.Workplane("XY")
+    .moveTo(0.0065 * 0.7441, 0.0)
+    .threePointArc((0.1241 * 0.7441, 0.0145 * 0.7441), (0.1232 * 0.7441, 0.7031 * 0.7441))
+    .lineTo(0.0955 * 0.7441, 0.7441 * 0.7441)
+    .threePointArc((0.0646 * 0.7441, 0.5861 * 0.7441), (0.0542 * 0.7441, 0.6771 * 0.7441))
+    .threePointArc((0.0419 * 0.7441, 0.6746 * 0.7441), (0.0, 0.7403 * 0.7441))
+    .lineTo(0.0, 0.0065 * 0.7441)
+    .close()
+    .extrude(0.001)
+)
+
+# --- Coordinate System Transformation for Part 1 ---
+part_1 = part_1.rotate((0, 0, 0), (0, 0, 1), -90)
+part_1 = part_1.translate((0, 0.001, 0))
+
+# --- Assembly ---
+assembly = part_1
+
+cq.exporters.export(assembly, "./stlcq/0079/00795682.stl")
+
+cq.exporters.export(assembly, "./stlcq/0079893.stl")
+
+cq.exporters.export(assembly, "./stlcq/00798939.stl")
+
+cq.exporters.export(assembly, "./stlcq/00798939.stl")
+
+cq.exporters.export(assembly, "./stlcq/00798939.stl")
+
+cq.exporters.export(assembly, "./stlcq/00798939.stl")
+
+cq.exporters.export(assembly, "./stlcq/00

@@ -1,0 +1,35 @@
+import cadquery as cq
+
+# --- Part 1: Cube with Holes ---
+cube_length = 0.2452 * 0.649  # Scaled length
+cube_width = 0.649 * 0.649   # Scaled width
+cube_height = 0.75
+
+hole1_center = (0.1139 * 0.649 - cube_length/2, 0.0943 * 0.649 - cube_width/2)
+hole2_center = (0.1139 * 0.649 - cube_length/2, 0.6908 * 0.649 - cube_width/2)
+hole3_center = (0.1094 * 0.649 - cube_length/2, 0.0943 * 0.649 - cube_width/2)
+hole4_center = (0.1094 * 0.649 - cube_length/2, 0.6161 * 0.649 - cube_width/2)
+hole5_center = (0.1094 * 0.649 - cube_length/2, 0.6908 * 0.649 - cube_width/2)
+hole6_center = (0.1094 * 0.649 - cube_length/2, 0.6161 * 0.649 - cube_width/2)
+
+part_1 = (
+    cq.Workplane("XY")
+    .rect(cube_length, cube_width)
+    .extrude(cube_height)
+    .faces(">Z")
+    .workplane()
+    .pushPoints([hole1_center, hole2_center, hole3_center, hole4_center, hole5_center])
+    .hole(2 * hole_radius)
+)
+
+# --- Coordinate System Transformation for Part 1 ---
+part_1 = part_1.rotate((0, 0, 0), (0, 0, 1), -90)
+part_1 = part_1.translate((0, 0.75, 0))
+
+# --- Assembly ---
+assembly = part_1
+
+# Export to STL
+cq.exporters.export(assembly, "./stlcq/0034/00344936.stl")
+
+cq.exporters.export(assembly, "./stlcq

@@ -1,0 +1,47 @@
+import cadquery as cq
+import math
+from cadquery import exporters
+
+# --- Part 1: Rectangular Block with Circular Hole ---
+sketch_scale = 0.75
+length = 0.39 * sketch_scale
+width = 0.75 * sketch_scale
+height = 0.2249 * sketch_scale
+hole_radius = 0.1071 * sketch_scale
+center_x1 = 0.1516 * sketch_scale
+center_x2 = 0.3827 * sketch_scale
+center_y = 0.375 * sketch_scale
+
+# Create the base shape with rounded edges
+base_shape = (
+    cq.Workplane("XY")
+    .moveTo(center_x1, center_y)
+    .lineTo(length - center_x1, 0)
+    .threePointArc((length, center_y), (length - center_x1, width))
+    .lineTo(center_x1, width)
+    .threePointArc((0, center_y), (center_x1, center_y))
+    .close()
+)
+
+# Extrude the base shape
+part_1 = base_shape.extrude(height)
+
+# Create the circular hole
+hole = cq.Workplane("XY").moveTo(center_x2, center_y).circle(hole_radius).extrude(height)
+
+# Subtract the hole from the block
+result = part_1.cut(hole)
+
+# Export the result to a STL file
+exporters.export(result, './stlcq/0089/00895257.stl')
+
+# Export the result to a STL file
+exporters.export(result, './stlcq/0089/00895736.stl')
+
+# --- Coordinate System Transformation for Part 1 ---
+exporters.rotate((0, 0, 0), (0, 0, 1), -90)
+exporters.translate((0.0167, 0.2249, 0))
+
+# Export the result to a STL file
+exporters.export(exporters.rotate((0, 0, 0), (0, 0, 1), -90)
+exporters.translate((0.0167, 0.2249, 0))

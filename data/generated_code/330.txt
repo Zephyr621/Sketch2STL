@@ -1,0 +1,38 @@
+import cadquery as cq
+
+# --- Part 1: Rectangular Plate ---
+part_1_length = 0.75 * 0.75  # Scaled length
+part_1_width = 0.3879 * 0.75  # Scaled width
+part_1_height = 0.0078
+
+part_1 = (
+    cq.Workplane("XY")
+    .rect(part_1_length, part_1_width)
+    .extrude(part_1_height)
+)
+
+# Add holes to Part 1
+hole_radius = 0.0179 * 0.75
+hole_centers = [
+    (0.0494 * 0.75 - part_1_length/2, 0.0494 * 0.75 - part_1_width/2),
+    (0.0494 * 0.75 - part_1_length/2, 0.2485 * 0.75 - part_1_width/2),
+    (0.4822 * 0.75 - part_1_length/2, 0.0494 * 0.75 - part_1_width/2),
+    (0.4822 * 0.75 - part_1_length/2, 0.2485 * 0.75 - part_1_width/2)
+]
+
+for center in hole_centers:
+    part_1 = part_1.faces(">Z").workplane().pushPoints([(center[0] - part_1_length/2, center[1] - part_1_width/2)]).hole(2 * hole_radius)
+
+# --- Part 2: Rectangular Block ---
+part_2_length = 0.1057 * 0.1057  # Scaled length
+part_2_width = 0.0529 * 0.1057  # Scaled width
+part_2_height = 0.0207
+
+part_2 = (
+    cq.Workplane("XY")
+    .rect(part_2_length, part_2_width)
+    .extrude(-part_2_height)  # Extrude in the opposite direction for cutting
+)
+
+# --- Part 3: Small Cube ---
+part_

@@ -1,0 +1,40 @@
+import cadquery as cq
+
+# --- Part 1: Square Plate ---
+plate_length = 0.75 * 0.75  # Scaled length
+plate_width = 0.75 * 0.75  # Scaled width
+plate_height = 0.021
+
+hole_radius = 0.0058 * 0.75
+hole_centers = [
+    (0.0341 * 0.75 - plate_length / 2, 0.0173 * 0.75 - plate_width / 2),
+    (0.0341 * 0.75 - plate_length / 2, 0.7344 * 0.75 - plate_width / 2),
+    (0.7344 * 0.75 - plate_length / 2, 0.0173 * 0.75 - plate_width / 2),
+]
+
+part_1 = cq.Workplane("XY").rect(plate_length, plate_width).extrude(plate_height)
+
+for center_x, center_y in hole_centers:
+    part_1 = part_1.faces(">Z").workplane().pushPoints([(center_x, center_y)]).hole(2 * hole_radius)
+
+# --- Assembly (if needed, based on the single part) ---
+# In this case, there's only one part, so no assembly is needed.
+# If there were multiple parts, you would use .union() or .cut() to combine them.
+
+# --- Final Result ---
+result = part_1
+
+cq.exporters.export(result, './stlcq/0035/00356153.stl')
+
+# Export to STL
+cq.exporters.export(result, './stlcq/0035/00357153.stl')
+
+cq.exporters.export(result, './stlcq/0035/00354242.stl')
+
+cq.exporters.export(result, './stlcq/0035/00354242.stl')
+
+cq.exporters.export(result, './stlcq/0035/00354243.stl')
+
+cq.exporters.export(result, './stlcq/0035/00354243.stl')
+
+cq.exporters.export(result, './stlcq/0035/

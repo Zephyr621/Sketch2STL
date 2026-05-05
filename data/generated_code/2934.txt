@@ -1,0 +1,28 @@
+import cadquery as cq
+import math
+from cadquery.vis import show
+
+# --- Part 1 ---
+sketch_scale = 0.7222
+
+part_1 = (
+    cq.Workplane("XY")
+    .moveTo(0.0416 * sketch_scale, 0.3447 * sketch_scale)
+    .threePointArc((0.0208 * sketch_scale, 0.6178 * sketch_scale), (0.0839 * sketch_scale, 0.3027 * sketch_scale))
+    .lineTo(0.6678 * sketch_scale, 0.3223 * sketch_scale)
+    .threePointArc((0.7499 * sketch_scale, 0.3285 * sketch_scale), (0.75 * sketch_scale, 0.3447 * sketch_scale))
+    .lineTo(0.75 * sketch_scale, 0.6818 * sketch_scale)
+    .threePointArc((0.7499 * sketch_scale, 0.5248 * sketch_scale), (0.6678 * sketch_scale, 0.6543 * sketch_scale))
+    .lineTo(0.0416 * sketch_scale, 0.6786 * sketch_scale)
+    .threePointArc((0, 0.6786 * sketch_scale), (0.0416 * sketch_scale, 0.3447 * sketch_scale))
+    .close()
+    .add(cq.Workplane("XY").circle(0.0064 * sketch_scale).translate((0.0416 * sketch_scale, 0.0371 * sketch_scale, 0)))
+    .add(cq.Workplane("XY").circle(0.0064 * sketch_scale).translate((0.0416 * sketch_scale, 0.6786 * sketch_scale, 0)))
+    .extrude(-0.1073)
+)
+
+# --- Coordinate System Transformation for Part 1 ---
+part_1 = part_1.rotate((0, 0, 0), (0, 0, 1), -90)
+part_1 = part_1.translate((0.0009, 0.1073, 0.0009))
+
+# --- Assembly ---

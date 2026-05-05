@@ -1,0 +1,50 @@
+import cadquery as cq
+from math import *
+
+# --- Part 1: Hexagonal Prism ---
+sketch_scale = 0.7445
+outer_points = [
+    (0.0, 0.1895),
+    (0.1895, 0.0),
+    (0.6953, 0.0),
+    (0.6953, 0.1951),
+    (0.3948, 0.7445),
+    (0.1949, 0.7445)
+]
+inner_points = [
+    (0.0702, 0.1044),
+    (0.0611, 0.0643),
+    (0.1513, 0.0643),
+    (0.1513, 0.5294),
+    (0.0702, 0.6495)
+]
+height = 0.7531
+
+scaled_outer_points = [(x * sketch_scale, y * sketch_scale) for x, y in outer_points]
+scaled_inner_points = [(x * sketch_scale, y * sketch_scale) for x, y in inner_points]
+
+part_1 = (
+    cq.Workplane("XY")
+    .polyline(scaled_outer_points)
+    .close()
+    .polyline(scaled_inner_points)
+    .close()
+    .extrude(height)
+)
+
+# --- Assembly (if needed, based on the single part) ---
+# In this case, there's only one part, so no assembly is needed.
+# If there were multiple parts, you would use .union() or .cut() to combine them.
+
+# --- Final Result ---
+result = part_1
+
+cq.exporters.export(result, './stlcq/0092/00920076.stl')
+
+# Export to STL
+cq.exporters.export(result, './stlcq/0092/00920076.stl')
+
+# Export to STL
+cq.exporters.export(result, './stlcq/0092/00920076.stl')
+
+cq.exporters.export(result

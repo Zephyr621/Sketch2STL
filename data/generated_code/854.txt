@@ -1,0 +1,48 @@
+import cadquery as cq
+from cadquery.vis import show
+
+# --- Part 1: Rectangular Plate ---
+part_1_length = 0.375 * 0.75  # Scaled length
+part_1_width = 0.75 * 0.75  # Scaled width
+part_1_height = 0.1125
+
+part_1 = (
+    cq.Workplane("XY")
+    .rect(part_1_length, part_1_width)
+    .extrude(part_1_height)
+)
+
+# --- Part 2: Cylindrical Protrusions ---
+cylinder_radius = 0.0375 * 0.675  # Scaled radius
+cylinder_height = 0.1125
+
+# Cylinder positions (scaled and translated)
+cylinder_positions = [
+    (0.0375 + 0.0375) / 2,  # Bottom Left
+    (0.0375 + 0.3125) / 2,  # Top Right
+    (0.0375 + 0.225) / 2,  # Bottom Right
+]
+
+# Create cylinders and translate them to their positions
+cylinders = []
+for x, y in cylinder_positions:
+    cylinder = cq.Workplane("XY").circle(cylinder_radius).extrude(-cylinder_height)
+    cylinder = cylinder.translate((x - part_1_length/2, y - part_1_width/2, part_1_height))
+    cylinders.append(cylinder)
+
+# Combine cylinders
+result = part_1.union(cylinders)
+
+# Export to STL
+cq.exporters.export(result, './stlcq/0055/00555258.stl')
+
+cq.exporters.export(result, './stlcq/0055766.stl')
+
+# --- Coordinate System Transformation for Part 2 ---
+part_2 = part_2.rotate((0, 0, 0), (0, 0, 1), 180)
+part_2 = part_2.translate((0.15, 0.6375, 0))
+
+# --- Assembly ---
+assembly = part_1.union(part_2)
+
+cq.exporters.export(

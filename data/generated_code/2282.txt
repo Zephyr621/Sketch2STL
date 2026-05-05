@@ -1,0 +1,43 @@
+import cadquery as cq
+import math
+from cadquery import exporters
+
+# --- Part 1: Cube ---
+cube_size = 0.75 * 0.75  # Scale the size
+cube = cq.Workplane("XY").box(cube_size, cube_size, cube_size)
+
+# --- Part 2: Holes ---
+hole_radius = 0.0572 * 0.4562  # Scale the radius
+hole_depth = 0.0833
+
+hole_centers = [
+    (0.0571 * 0.4562, 0.0571 * 0.4562),
+    (0.0571 * 0.4562, 0.3964 * 0.4562),
+    (0.3866 * 0.4562, 0.0571 * 0.4562),
+    (0.3866 * 0.4562, 0.3964 * 0.4562)
+]
+
+# Create holes
+for center_x, center_y in hole_centers:
+    hole = cq.Workplane("XY").moveTo(center_x - cube_size/2, center_y - cube_size/2).circle(hole_radius).extrude(-hole_depth)
+    part_1 = cube.cut(hole)
+
+# --- Coordinate System Transformation for Part 1 ---
+part_1 = part_1.rotate((0, 0, 0), (0, 0, 1), -90)
+part_1 = part_1.translate((0, 0.3333, 0))
+
+# --- Coordinate System Transformation for Part 2 ---
+part_2 = part_2.rotate((0, 0, 0), (0, 0, 1), -90)
+part_2 = part_2.translate((0.2747, 0.1667, 0.1311))
+
+# --- Assembly ---
+assembly = part_1.cut(part_2)
+
+# Export to STL
+exporters.export(assembly, './stlcq/0053/00535349.stl')
+
+# Export to STL
+exporters.export(assembly, './stlcq/0053/00535732.stl')
+
+# Export to STL
+exporters.export(assembly, './stlcq

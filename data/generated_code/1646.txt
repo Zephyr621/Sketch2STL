@@ -1,0 +1,41 @@
+import cadquery as cq
+
+# --- Part 1: Cube ---
+part_1_size = 0.75 * 0.75  # Sketch size scaled
+part_1_height = 0.625
+
+part_1 = cq.Workplane("XY").box(part_1_size, part_1_size, part_1_height)
+
+# --- Coordinate System Transformation for Part 1 ---
+part_1 = part_1.rotate((0, 0, 0), (0, 0, 1), -90)
+part_1 = part_1.translate((0, 0.625, 0))
+
+# --- Part 2: Rectangular Box (Cut) ---
+part_2_width = 0.3125 * 0.3125  # Sketch width scaled
+part_2_length = 0.25 * 0.3125  # Sketch length scaled
+part_2_height = 0.511
+
+part_2 = cq.Workplane("XY").box(part_2_width, part_2_length, part_2_height)
+
+# --- Coordinate System Transformation for Part 2 ---
+part_2 = part_2.rotate((0, 0, 0), (0, 0, 1), -90)
+part_2 = part_2.translate((0.075, 0.625, 0.075))
+
+# --- Assembly: Cut Part 2 from Part 1 ---
+assembly = part_1.cut(part_2)
+
+cq.exporters.export(assembly, "./stlcq/0054/00548258.stl")
+
+cq.exporters.export(assembly, "./stlcq/0054/00548915.stl")
+
+cq.exporters.export(assembly, "./stlcq/0054/00548915.stl")
+
+cq.exporters.export(assembly, "./stlcq/0054/00548915.stl")
+
+cq.exporters.export(assembly, "./stlcq/0054/00548915.stl")
+
+cq.exporters.export(assembly, "./stlcq/0054/00548915.stl")
+
+cq.exporters.export(assembly, "./stlcq/0054/00548915.stl")
+
+cq.exporters.export(assembly, "./stlc

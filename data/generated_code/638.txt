@@ -1,0 +1,48 @@
+import cadquery as cq
+
+# --- Part 1: Base Rectangle ---
+part_1_length = 0.75 * 0.75  # Scaled length
+part_1_width = 0.225 * 0.75  # Scaled width
+part_1_height = 0.1031
+
+part_1 = (
+    cq.Workplane("XY")
+    .rect(part_1_length, part_1_width)
+    .extrude(-part_1_height)  # Extrude in the opposite direction
+)
+
+# --- Part 2: Vertical Extension ---
+part_2_length = 0.5089 * 0.5297  # Scaled length
+part_2_width = 0.225 * 0.5297  # Scaled width
+part_2_height = 0.1954
+
+part_2 = (
+    cq.Workplane("XY")
+    .rect(part_2_length, part_2_width)
+    .extrude(part_2_height)
+)
+
+# --- Coordinate System Transformation for Part 2 ---
+part_2 = part_2.translate((0.0313, 0.0711, 0.1031))
+
+# --- Part 3: Cube ---
+part_3_length = 0.204 * 0.204  # Scaled length
+part_3_width = 0.216 * 0.204  # Scaled width
+part_3_height = 0.1761
+
+part_3 = (
+    cq.Workplane("XY")
+    .rect(part_3_length, part_3_width)
+    .extrude(part_3_height)
+)
+
+# --- Assembly ---
+assembly = part_1.union(part_2).union(part_3)
+
+cq.exporters.export(assembly, "./stlcq/0043/00435327.stl")
+
+cq.exporters.export(assembly, "./stlcq/0043/00435422.stl")
+
+cq.exporters.export(assembly, "./stlcq/0043/00435422.stl")
+
+cq.exporters.export(assembly, "./stlcq/0043/004354

@@ -1,0 +1,49 @@
+import cadquery as cq
+from cadquery.vis import show
+
+# --- Part 1: Octagonal Plate ---
+sketch_scale = 0.75
+
+# Scaled coordinates
+points = [
+    (0.0 * sketch_scale, 0.1618 * sketch_scale),
+    (0.2829 * sketch_scale, 0.0 * sketch_scale),
+    (0.6273 * sketch_scale, 0.0874 * sketch_scale),
+    (0.7059 * sketch_scale, 0.4342 * sketch_scale),
+    (0.5621 * sketch_scale, 0.75 * sketch_scale)
+]
+
+part_1 = (
+    cq.Workplane("XY")
+    .polyline(points)
+    .close()
+    .extrude(0.0164)
+)
+
+# --- Assembly (if needed, based on the single part) ---
+# In this case, there's only one part, so no assembly is needed.
+# If there were multiple parts, you would use .union() or .cut() to combine them.
+
+# --- Final Result ---
+result = part_1
+
+cq.exporters.export(result, './stlcq/0076/00769379.stl')
+
+# Export to STL
+cq.exporters.export(result, './stlcq/0076/00768326.stl')
+
+cq.exporters.export(result, './stlcq/0076/00765639.stl')
+
+cq.exporters.export(result, './stlcq/0076/00765639.stl')
+
+cq.exporters.export(result, './stlcq/0076/00765639.stl')
+
+cq.exporters.export(result, './stlcq/0076/00765967.stl')
+
+cq.exporters.export(result, './stlcq/0076/00765703.stl')
+
+cq.exporters.export(result, './stlcq/0076/00765634.stl')
+
+cq.exporters.export(result, './stlcq/0076/00765634.stl')
+
+cq.exporters

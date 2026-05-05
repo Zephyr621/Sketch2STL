@@ -1,0 +1,25 @@
+import cadquery as cq
+from math import *
+
+# --- Parameters from JSON ---
+outer_radius = 0.225 * 0.75
+inner_radius = 0.07 * 0.75
+hole1_center = (0.0375 * 0.75 - 0.1125 * 0.75, 0.15 * 0.75 - 0.225 * 0.75)
+hole2_center = (0.675 * 0.75 - 0.1125 * 0.75, 0.3 * 0.75 - 0.225 * 0.75)
+hole3_center = (0.525 * 0.75 - 0.1125 * 0.75, 0.15 * 0.75 - 0.225 * 0.75)
+hole4_center = (0.6 * 0.75 - 0.6375 * 0.75, 0.15 * 0.75 - 0.225 * 0.75)
+small_hole_radius = 0.0375 * 0.75
+large_hole_radius = 0.075 * 0.75
+extrusion_depth = 0.075
+
+# --- Create the base circular flange ---
+flange = cq.Workplane("XY").circle(outer_radius).extrude(extrusion_depth)
+
+# --- Cut the inner hole ---
+flange = flange.cut(cq.Workplane("XY").moveTo(hole1_center[0], hole1_center[1]).circle(inner_radius).extrude(extrusion_depth))
+flange = flange.cut(cq.Workplane("XY").moveTo(hole2_center[0], hole2_center[1]).circle(small_hole_radius).extrude(extrusion_depth))
+flange = flange.cut(cq.Workplane("XY").moveTo(hole3_center[0], hole3_center[1]).circle(small_hole_radius).extrude(extrusion_depth))
+flange = flange.cut(cq.Workplane("XY").moveTo(hole4_center[0], hole4_center[1]).circle(small_hole_radius).extrude(extrusion_depth))
+
+# --- Export to STL ---
+cq.exporters.export(flange, './stlcq/0035/003

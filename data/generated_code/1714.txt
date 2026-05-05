@@ -1,0 +1,27 @@
+import cadquery as cq
+import math
+from cadquery import exporters
+
+# --- Part 1: Cube with Curved Edges ---
+part_1_scale = 0.75
+part_1 = (
+    cq.Workplane("XY")
+    .moveTo(0.0, 0.0354 * part_1_scale)
+    .threePointArc((0.0073 * part_1_scale, 0.0073 * part_1_scale), (0.0354 * part_1_scale, 0.0))
+    .lineTo(0.7281 * part_1_scale, 0.0)
+    .threePointArc((0.7413 * part_1_scale, 0.0073 * part_1_scale), (0.728 * part_1_scale, 0.0354 * part_1_scale))
+    .lineTo(0.728 * part_1_scale, 0.75 * part_1_scale)
+    .threePointArc((0.7413 * part_1_scale, 0.7413 * part_1_scale), (0.7281 * part_1_scale, 0.75 * part_1_scale))
+    .lineTo(0.0354 * part_1_scale, 0.75 * part_1_scale)
+    .threePointArc((0.0073 * part_1_scale, 0.7413 * part_1_scale), (0.0, 0.0354 * part_1_scale))
+    .close()
+    .extrude(-0.5)
+)
+
+# Create the hole in part 1
+hole_radius = 0.0117 * part_1_scale
+part_1 = part_1.faces(">Z").workplane().center(0.3727 * part_1_scale - (0.7282 * part_1_scale)/2, 0.3826 * part_1_scale - (0.75 * part_1_scale)/2).circle(hole_radius).cutThruAll()
+
+# --- Part 2: Circular Cutout ---
+part_2_scale = 0.45
+part_2_radius = 0.

@@ -1,0 +1,44 @@
+import cadquery as cq
+
+# --- Parameters from JSON ---
+length = 0.75 * 0.75  # Scaled length
+width = 0.25 * 0.75   # Scaled width
+height = 0.0178
+hole_radius = 0.0312 * 0.75  # Scaled radius
+hole_centers = [
+    (0.125 * 0.75 - length/2, 0.0625 * 0.75 - width/2),
+    (0.125 * 0.75 - length/2, 0.0625 * 0.75 - width/2),
+    (0.625 * 0.75 - length/2, 0.0625 * 0.75 - width/2)
+]
+
+# --- Create the base rectangular plate ---
+plate = cq.Workplane("XY").rect(length, width).extrude(height)
+
+# --- Cut the holes ---
+for center_x, center_y in hole_centers:
+    plate = plate.faces(">Z").workplane().pushPoints([(center_x, center_y)]).hole(2 * hole_radius)
+
+# --- Apply rotation and translation ---
+plate = plate.rotate((0, 0, 0), (0, 0, 1), -90)
+plate = plate.translate((0, 0.0178, 0))
+
+# --- Export to STL ---
+cq.exporters.export(plate, "./stlcq/0063/00638257.stl")
+
+# --- Export to STL ---
+cq.exporters.export(plate, './stlcq/0063/00638737.stl')
+
+# --- Export to STL ---
+cq.exporters.export(plate, "./stlcq/0063/00638623.stl")
+
+# --- Export to STL ---
+cq.exporters.export(plate, "./stlcq/0063/00638623.stl")
+
+# --- Export to STL ---
+cq.exporters.export(plate, "./stlcq/0063/00638623.stl")
+
+# --- Export to STL ---
+cq.exporters.export(plate, "./stlcq/0063/00638623.stl")
+
+# --- Export to STL ---
+cq

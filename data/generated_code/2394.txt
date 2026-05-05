@@ -1,0 +1,53 @@
+import cadquery as cq
+
+# --- Part 1: Washer ---
+outer_radius = 0.375 * 0.75  # Sketch radius scaled
+inner_radius = 0.1714 * 0.75  # Inner hole radius scaled
+height = 0.0536
+
+# Create the washer by creating two circles and subtracting the inner from the outer
+washer = (
+    cq.Workplane("XY")
+    .circle(outer_radius)
+    .extrude(height)
+    .faces(">Z")
+    .workplane()
+    .circle(inner_radius)
+    .cutThruAll()
+)
+
+# Export to STL
+cq.exporters.export(washer, './stlcq/0067/00673860.stl')
+
+# Export to STL
+cq.exporters.export(washer, './stlcq/0067947.stl')
+
+# Export to STL
+cq.exporters.export(washer, './stlcq/00679472.stl')
+
+# Export to STL
+cq.exporters.export(washer, './stlcq/00679473.stl')
+
+# Export to STL
+cq.exporters.export(washer, './stlcq/00679472.stl')
+
+# Export to STL
+cq.exporters.export(washer, './stlcq/00679472.stl')
+
+# Export to STL
+cq.exporters.export(washer, './stlcq/00679473.stl')
+
+# Export to STL
+cq.exporters.export(washer, './stlcq/00679473.stl')
+
+# Export to STL
+cq.exporters.export(washer, './stlcq/00679473.stl')
+
+# Export to STL
+cq.exporters.export(washer, './stlcq/00679473.stl')
+
+# Export to STL
+cq.exporters.export(washer, './stlcq/00679473.stl')
+
+# Export to STL
+cq.exporters.export(washer, './st

@@ -1,0 +1,35 @@
+import cadquery as cq
+
+# --- Parameters from JSON ---
+outer_radius = 0.375 * 0.75  # Scaled outer radius
+inner_radius = 0.1172 * 0.75  # Scaled inner radius
+hole1_x = 0.1705 * 0.75  # Scaled hole 1 x position
+hole1_y = 0.1406 * 0.75  # Scaled hole 1 y position
+hole2_x = 0.5738 * 0.75  # Scaled hole 2 x position
+hole2_y = 0.1875 * 0.75  # Scaled hole 2 y position
+hole3_x = 0.5473 * 0.75  # Scaled hole 3 x position
+hole3_y = 0.1406 * 0.75  # Scaled hole 3 y position
+hole4_x = 0.5738 * 0.75  # Scaled hole 4 x position
+hole4_y = 0.1875 * 0.75  # Scaled hole 4 y position
+plate_thickness = 0.0937 * 0.75  # Scaled plate thickness
+
+# --- Create the Plate ---
+plate = cq.Workplane("XY").circle(outer_radius).extrude(plate_thickness)
+
+# --- Cut the Holes ---
+plate = (
+    plate.faces(">Z")
+    .workplane()
+    .pushPoints([(hole1_x - outer_radius, hole1_y - outer_radius), (hole2_x - outer_radius, hole2_y - outer_radius)])
+    .hole(hole1_radius * 2)
+    .faces(">Z")
+    .workplane()
+    .pushPoints([(hole3_x - outer_radius, hole3_y - outer_radius)])
+    .hole(hole2_radius * 2)
+    .faces(">Z")
+    .workplane()
+    .pushPoints([(hole4_x - outer_radius, hole4_y - outer_radius)])
+    .hole(hole3_radius * 2)
+    .faces(">Z")
+    .workplane()
+    .pushPoints([(hole5_x - outer

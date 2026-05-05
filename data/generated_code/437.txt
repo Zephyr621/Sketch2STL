@@ -1,0 +1,48 @@
+import cadquery as cq
+from math import radians
+
+# --- Part 1: Base ---
+part_1 = (
+    cq.Workplane("XY")
+    .moveTo(0.0, 0.0)
+    .lineTo(0.75 * 0.75, 0.0)
+    .lineTo(0.75 * 0.75, 0.6617 * 0.75)
+    .lineTo(0.6617 * 0.75, 0.6617 * 0.75)
+    .lineTo(0.6617 * 0.75, 0.67 * 0.75)
+    .lineTo(0.0, 0.67 * 0.75)
+    .lineTo(0.0, 0.0)
+    .close()
+    .extrude(0.0393)
+)
+
+# --- Part 2: Cylinder ---
+part_2_radius = 0.1633 * 0.7567
+part_2_height = 0.3333
+
+part_2 = (
+    cq.Workplane("XY")
+    .workplane(offset=0.0393)
+    .moveTo(0.0434, 0.0268)
+    .circle(part_2_radius)
+    .extrude(-part_2_height)
+)
+
+# --- Assembly ---
+assembly = part_1.union(part_2)
+
+# --- Export to STL ---
+cq.exporters.export(assembly, './stlcq/0029/00299783.stl')
+
+cq.exporters.export(assembly, './stlcq/0029590.stl')
+
+cq.exporters.export(assembly, './stlcq/002961.stl')
+
+cq.exporters.export(assembly, "./stlcq/00295907.stl")
+
+cq.exporters.export(assembly, './stlcq/00296927.stl')
+
+cq.exporters.export(assembly, './stlcq/002960.stl')
+
+cq.exporters.export(assembly, './stlcq/00296004.stl')
+
+cq.exporters.export

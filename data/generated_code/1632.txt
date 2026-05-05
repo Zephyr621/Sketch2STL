@@ -1,0 +1,35 @@
+import cadquery as cq
+import math
+from cadquery.vis import show
+
+# --- Part 1: Cube with Holes ---
+part_1_length = 0.75 * 0.75  # Scaled length
+part_1_width = 0.5284 * 0.75  # Scaled width
+part_1_height = 0.6477
+
+hole_radius = 0.0234 * 0.75  # Scaled radius
+hole_centers = [
+    (0.0618 * 0.75 - part_1_length/2, 0.0618 * 0.75 - part_1_width/2),
+    (0.0618 * 0.75 - part_1_length/2, 0.5625 * 0.75 - part_1_width/2),
+    (0.5625 * 0.75 - part_1_length/2, 0.0618 * 0.75 - part_1_width/2)
+]
+
+part_1 = cq.Workplane("XY").rect(part_1_length, part_1_width).extrude(part_1_height)
+
+for center in hole_centers:
+    part_1 = part_1.faces(">Z").workplane().center(center[0] - part_1_length/2, center[1] - part_1_width/2).circle(hole_radius).cutThruAll()
+
+# --- Part 2: Cylinder Cutout ---
+part_2_radius = 0.2812 * 0.5625  # Scaled radius
+part_2_depth = 0.017
+
+part_2 = cq.Workplane("XY").circle(part_2_radius).extrude(-part_2_depth)
+
+# --- Coordinate System Transformations ---
+# Part 1
+part_1 = part_1.rotate((0, 0, 0), (0, 0, 1), -90)
+part_1 = part_1.translate((0, 0.1071, 0))
+
+# Part 2
+part_2 = part_2.rotate((0, 0, 0), (0, 0, 1), -90)
+part_2 = part_2.translate((0.0938, 0, 0.

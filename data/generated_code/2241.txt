@@ -1,0 +1,46 @@
+import cadquery as cq
+import math
+from cadquery.vis import show
+
+# --- Part 1: Circular Disk with Notch ---
+outer_radius = 0.375 * 0.75  # Sketch radius scaled
+notch_height = 0.0441 * 0.75
+notch_depth = 0.0441 * 0.75
+
+part_1 = (
+    cq.Workplane("XY")
+    .circle(outer_radius)
+    .extrude(notch_depth)
+    .cut(cq.Workplane("XY").circle(inner_radius).extrude(notch_depth))
+)
+
+# --- Coordinate System Transformation for Part 1 ---
+part_1 = part_1.rotate((0, 0, 0), (0, 0, 1), -90)
+part_1 = part_1.translate((0, 0.0441, 0))
+
+# --- Assembly (if needed, based on the single part) ---
+# In this case, there's only one part, so no assembly is needed.
+# If there were multiple parts, you would use .union() or .cut() to combine them.
+
+# --- Final Result ---
+result = part_1
+
+cq.exporters.export(result, './stlcq/0042/00424300.stl')
+
+cq.exporters.export(result, './stlcq/0042/00424820.stl')
+
+cq.exporters.export(result, './stlcq/0042/00424821.stl')
+
+cq.exporters.export(result, './stlcq/0042/00424827.stl')
+
+cq.exporters.export(result, './stlcq/0042/00424828.stl')
+
+cq.exporters.export(result, './stlcq/0042/00424828.stl')
+
+cq.exporters.export(result, './stlcq/0042/00424828.stl')
+
+cq.exporters.export(result, './stlcq/0042/00424828.stl')
+
+cq.exporters.export(result, './stlcq/0042/00424949.stl')
+
+cq.exporters.export(result, './

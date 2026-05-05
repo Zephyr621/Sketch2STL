@@ -1,0 +1,43 @@
+Together, these parts form a complex shape with a rectangular base and a smaller rectangular extension on top.
+import cadquery as cq
+
+# --- Part 1: L-shaped base ---
+part_1 = (
+    cq.Workplane("XY")
+    .moveTo(0.0, 0.0)
+    .lineTo(0.5 * 0.625, 0.0)
+    .lineTo(0.5 * 0.625, 0.625 * 0.625)
+    .lineTo(0.375 * 0.625, 0.625 * 0.625)
+    .lineTo(0.375 * 0.625, 0.5 * 0.625)
+    .lineTo(0.0, 0.5 * 0.625)
+    .close()
+    .extrude(-0.75)
+)
+
+# --- Coordinate System Transformation for Part 1 ---
+part_1 = part_1.rotate((0, 0, 0), (0, 0, 1), -90)
+part_1 = part_1.translate((0, 0, 0))
+
+# --- Part 2: Rectangular Cutout ---
+part_2 = (
+    cq.Workplane("XY")
+    .moveTo(0.0, 0.0)
+    .lineTo(0.262 * 0.262, 0.0)
+    .lineTo(0.262 * 0.262, 0.25 * 0.262)
+    .lineTo(0.0, 0.25 * 0.262)
+    .close()
+    .extrude(-0.125)
+)
+
+# --- Coordinate System Transformation for Part 2 ---
+part_2 = part_2.translate((0.0625, 0.0625, 0.625))
+
+# --- Assembly: Cut Part 2 from Part 1 ---
+assembly = part_1.cut(part_2)
+
+# --- Export to STL ---
+cq.exporters.export(assembly, "./stlcq/0037/00372829.stl")
+
+cq.exporters.export(assembly, "./stlcq/00371042.stl")
+
+cq.exporters.export(assembly, "./st

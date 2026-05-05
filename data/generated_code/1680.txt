@@ -1,0 +1,41 @@
+import cadquery as cq
+from math import radians
+
+# --- Part 1: Rectangular Block ---
+part_1_length = 0.75 * 0.75
+part_1_width = 0.1154 * 0.75
+part_1_height = 0.1154
+
+part_1 = (
+    cq.Workplane("XY")
+    .rect(part_1_length, part_1_width)
+    .extrude(part_1_height)
+)
+
+# --- Part 2: Holes ---
+hole_radius = 0.0268 * 0.7027
+hole_depth = 0.0575
+
+hole_centers = [
+    (0.0134 + 0.0268 * 0.7027, 0.0134 + 0.0268 * 0.7027),
+    (0.0134 + 0.7364 * 0.7027, 0.0134 + 0.0134 * 0.7027),
+    (0.0134 + 0.7364 * 0.7027, 0.0134 + 0.0268 * 0.7027),
+]
+
+for center_x, center_y in hole_centers:
+    part_1 = part_1.faces(">Z").workplane().pushPoints([(center_x - part_1_length/2, center_y - part_1_width/2)]).hole(2 * hole_radius)
+
+# --- Part 3: Cut Feature ---
+cut_depth = 0.0575
+sketch_scale = 0.7027
+cut_radius_scaled = cut_radius * sketch_scale
+cut_height = 0.0575
+
+cut_locations = [
+    (0.0035 + 0.0575 * sketch_scale, 0.0035 + 0.0575 * sketch_scale),
+    (0.0035 + 0.6937 * sketch_scale, 0.0035 + 0.0575 * sketch_scale),
+    (0.0035 + 0.6937 * sketch_scale, 0.0035 + 0.0575 * sketch_scale),
+]
+
+for x, y in cut_locations:
+    part_1 = part_1

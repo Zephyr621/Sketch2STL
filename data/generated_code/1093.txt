@@ -1,0 +1,48 @@
+import cadquery as cq
+import math
+from cadquery import exporters
+
+# --- Part 1: Base Bracket ---
+part_1 = (
+    cq.Workplane("XY")
+    .moveTo(0.0, 0.0)
+    .lineTo(0.75, 0.0)
+    .lineTo(0.75, 0.375)
+    .lineTo(0.5, 0.375)
+    .lineTo(0.5, 0.3697)
+    .lineTo(0.25, 0.3697)
+    .lineTo(0.25, 0.375)
+    .lineTo(0.0, 0.375)
+    .lineTo(0.0, 0.0)
+    .close()
+    .extrude(0.5 * 0.75)
+)
+
+# --- Coordinate System Transformation for Part 1 ---
+part_1 = part_1.rotate((0, 0, 0), (0, 0, 1), -90)
+part_1 = part_1.translate((0, 0.5, 0))
+
+# --- Part 2: Holes ---
+hole_radius = 0.0521 * 0.375
+hole_depth = 0.625 * 0.375
+
+# Create the first hole
+hole1 = (
+    cq.Workplane("XY")
+    .center(0.0521 * 0.375, 0.0521 * 0.375)
+    .circle(hole_radius)
+    .extrude(-hole_depth)
+)
+
+# Create the second hole
+hole2 = (
+    cq.Workplane("XY")
+    .center(0.0521 * 0.375, 0.0521 * 0.375)
+    .circle(hole_radius)
+    .extrude(-hole_depth)
+)
+
+# --- Coordinate System Transformation for Part 2 ---
+hole1 = hole1.rotate((0, 0, 0), (1, 0, 0), 180)
+hole1 = hole1.rotate((0, 0, 0), (0, 0, 1), -90)
+hole1 = hole1.translate

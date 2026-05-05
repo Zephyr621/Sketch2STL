@@ -1,0 +1,49 @@
+import cadquery as cq
+import math
+from cadquery import exporters
+
+# --- Part 1: Rectangular Block with Holes ---
+length = 0.4105 * 0.4105  # Scaled length
+width = 0.2344 * 0.4105   # Scaled width
+height = 0.7055
+hole_radius = 0.0232 * 0.4105  # Scaled radius
+hole1_x = 0.2127 * 0.4105 - length / 2
+hole1_y = 0.1269 * 0.4105 - width / 2
+
+part_1 = (
+    cq.Workplane("XY")
+    .rect(length, width)
+    .extrude(height)
+    .faces(">Z")
+    .workplane()
+    .pushPoints([(hole1_x - length/2, hole1_y - width/2)])
+    .hole(hole_radius * 2)
+)
+
+# --- Coordinate System Transformation for Part 1 ---
+part_1 = part_1.rotate((0, 0, 0), (1, 0, 0), -90)
+part_1 = part_1.rotate((0, 0, 0), (0, 0, 1), -90)
+
+# --- Part 2: Cylinders ---
+cylinder_radius = 0.0536 * 0.5276
+cylinder_height = 0.75
+cylinder_x_offset = 0.0341
+cylinder_y_offset = 0.2577
+cylinder_z_offset = 0.7055
+
+cylinder1 = (
+    cq.Workplane("XY")
+    .moveTo(cylinder_x_offset, cylinder_y_offset)
+    .circle(cylinder_radius)
+    .extrude(cylinder_height)
+)
+
+cylinder2 = (
+    cq.Workplane("XY")
+    .moveTo(cylinder_x_offset + cylinder_radius, cylinder_y_offset)
+    .circle(cylinder_radius)
+    .extrude(cylinder_height)
+)
+
+# --- Coordinate System Transformation for Part 2 ---
+cylinder1 = cylinder1.rotate((0, 0, 0), (0, 0

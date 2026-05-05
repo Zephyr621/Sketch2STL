@@ -1,0 +1,47 @@
+import cadquery as cq
+from math import tan, radians
+
+# --- Part 1: Hexagonal Prism ---
+part_1_points = [
+    (0.0, 0.3248),
+    (0.1949, 0.0),
+    (0.3745, 0.0395),
+    (0.6495, 0.1277),
+    (0.6596, 0.3248)
+]
+part_1_height = 0.75
+sketch_scale_1 = 0.7145
+part_1_scale_2 = 0.6187
+
+scaled_points = [(x * part_1_scale_1, y * part_1_scale_1) for x, y in part_1_points]
+
+part_1 = (
+    cq.Workplane("XY")
+    .polyline(scaled_points)
+    .close()
+    .extrude(-part_1_height)
+)
+
+# --- Part 2: Cutout ---
+part_2_width = 0.6655 * part_2_scale_2
+part_2_length = 0.6712 * part_2_scale_2
+part_2_height = 0.5625
+sketch_scale_2 = 0.6712
+part_2_translation = (0.0227, 0.0188, 0.75)
+
+part_2_outer = (
+    cq.Workplane("XY")
+    .rect(part_2_length, part_2_width)
+    .extrude(-part_2_height)
+)
+
+part_2_inner = (
+    cq.Workplane("XY")
+    .moveTo(0.1786 * part_2_scale_2, 0.0572 * part_2_scale_2)
+    .rect(part_2_length - 2 * part_2_scale_2, part_2_width - 2 * part_2_scale_2)
+    .extrude(-part_2_height)
+)
+
+part_2 = part_2_outer.cut(part_2_inner)
+
+# --- Assembly

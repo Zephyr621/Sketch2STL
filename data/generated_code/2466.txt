@@ -1,0 +1,42 @@
+import cadquery as cq
+
+# --- Part 1: Rectangular Plate with Holes ---
+part_1_length = 0.3163 * 0.75
+part_1_width = 0.75 * 0.75
+part_1_height = 0.0271
+hole_radius = 0.0536 * 0.75
+hole_center_x1 = 0.1364 * 0.75 - part_1_length/2
+hole_center_y1 = 0.375 * 0.75 - part_1_width/2
+hole_center_x2 = 0.6354 * 0.75 - part_1_length/2
+hole_center_y2 = 0.375 * 0.75 - part_1_width/2
+
+part_1 = (
+    cq.Workplane("XY")
+    .rect(part_1_length, part_1_width)
+    .extrude(part_1_height)
+    .faces(">Z")
+    .workplane()
+    .pushPoints([(hole_center_x1 - part_1_length/2, hole_center_y1 - part_1_width/2)])
+    .hole(2 * hole_radius)
+)
+
+part_1 = (
+    part_1.faces(">Z")
+    .workplane()
+    .pushPoints([(hole_center_x2 - part_1_length/2, hole_center_y2 - part_1_width/2)])
+    .hole(2 * hole_radius)
+)
+
+# --- Part 2: L-shaped Cutout ---
+part_2_length = 0.1175 * 0.1084
+part_2_width = 0.1084 * 0.1084
+part_2_height = 0.0904
+
+cutout = (
+    cq.Workplane("XY")
+    .moveTo(0, 0)
+    .lineTo(part_2_length, 0)
+    .lineTo(part_2_length, part_2_width)
+    .lineTo(0, part_2_width)
+    .close()
+    .

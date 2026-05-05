@@ -1,0 +1,40 @@
+import cadquery as cq
+from cadquery.vis import show
+
+# --- Part 1: Rectangular Prism ---
+part_1_length = 0.75 * 0.75  # Scaled length
+part_1_width = 0.3646 * 0.75  # Scaled width
+part_1_height = 0.0937
+
+part_1 = (
+    cq.Workplane("XY")
+    .rect(part_1_length, part_1_width)
+    .extrude(part_1_height)
+)
+
+# Add holes in Part 1
+hole_center_x = 0.0513 * 0.75
+hole_center_y = 0.1587 * 0.75
+hole_radius = 0.0375 * 0.75
+
+hole1_x = 0.7151 * 0.75
+hole1_y = 0.1587 * 0.75
+hole2_x = 0.6958 * 0.75
+hole2_y = 0.1587 * 0.75
+hole3_x = 0.6958 * 0.75
+hole3_y = 0.1587 * 0.75
+hole4_x = 0.7151 * 0.75
+hole4_y = 0.1587 * 0.75
+
+part_1 = (
+    part_1.faces(">Z")
+    .workplane()
+    .pushPoints([(hole1_x - part_1_length/2, hole1_y - part_1_width/2), (hole2_x - part_1_length/2, hole2_y - part_1_width/2), (hole3_x - part_1_length/2, hole3_y - part_1_width/2), (hole4_x - part_1_length/2, hole4_y - part_1_width/2)])
+    .hole(hole_radius * 2)
+)
+
+# --- Coordinate System Transformation for Part 1 ---
+part_1 = part_1.rotate((0, 0, 0), (0, 0, 1), -90)
+part_1 = part_1.translate((0, 0.0937, 0))
+
+# ---

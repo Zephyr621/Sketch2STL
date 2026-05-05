@@ -1,0 +1,31 @@
+import cadquery as cq
+import math
+from cadquery.vis import show
+
+# --- Part 1: Triangle with Holes ---
+sketch_scale = 0.7263
+
+# Scaled coordinates for the sketch
+start_point_arc1 = (0.0716 * sketch_scale, 0.0341 * sketch_scale)
+mid_point_arc1 = (0.2982 * sketch_scale, 0.0432 * sketch_scale)
+end_point_arc1 = (0.1519 * sketch_scale, 0.3571 * sketch_scale)
+line1_end = (0.2143 * sketch_scale, 0.3473 * sketch_scale)
+mid_point_arc2 = (0.3395 * sketch_scale, 0.3966 * sketch_scale)
+end_point_arc2 = (0.2542 * sketch_scale, 0.3571 * sketch_scale)
+line2_end = (0.5357 * sketch_scale, 0.3473 * sketch_scale)
+mid_point_arc3 = (0.2777 * sketch_scale, 0.6985 * sketch_scale)
+end_point_arc3 = (0.1714 * sketch_scale, 0.6596 * sketch_scale)
+line3_end = (0.1714 * sketch_scale, 0.7263 * sketch_scale)
+
+extrude_depth = 0.1258
+
+part_1 = (
+    cq.Workplane("XY")
+    .moveTo(start_point_arc1[0], start_point_arc1[1])
+    .threePointArc(mid_point_arc1, end_point_arc1)
+    .lineTo(line1_end[0], line1_end[1])
+    .threePointArc(mid_point_arc2, end_point_arc2)
+    .lineTo(line2_end[0], line2_end[1])
+    .close()
+    .moveTo(end_point_arc2[0], end_point_arc2[1])
+    .threePointArc(mid_point_arc3, end_point_arc3)

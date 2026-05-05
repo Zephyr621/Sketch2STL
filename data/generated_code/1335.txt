@@ -1,0 +1,24 @@
+import cadquery as cq
+from cadquery.vis import show
+
+# --- Part 1: Cylinder ---
+part_1_radius = 0.2267 * 0.5862  # Sketch radius scaled
+part_1_height = 0.0536
+
+# Create the base cylinder
+base_cylinder = cq.Workplane("XY").circle(part_1_radius).extrude(-part_1_height)
+
+# Create the first face of the cylinder
+face1 = cq.Workplane("XY").moveTo(0.2197 * 0.5862 - 0.2197 * 0.5862, 0.2197 * 0.5862 - 0.4449 * 0.5862).lineTo(0.4449 * 0.5862 - 0.2197 * 0.5862, 0.2197 * 0.5862 - 0.4449 * 0.5862).lineTo(0.2197 * 0.5862 - 0.2197 * 0.5862, 0.4449 * 0.5862 - 0.4449 * 0.5862).close().extrude(-part_1_height + 0.1)
+
+# Create the second face of the cylinder
+face2 = cq.Workplane("XY").moveTo(0.2197 * 0.5862 - 0.2197 * 0.5862, 0.2197 * 0.5862 - 0.4449 * 0.5862).lineTo(0.4449 * 0.5862 - 0.2197 * 0.5862, 0.2197 * 0.5862 - 0.4449 * 0.5862).lineTo(0.2197 * 0.5862 - 0.2197 * 0.5862, 0.4449 * 0.5862 - 0.4449 * 0.5862).close().extrude(-part_1_height + 0.1)
+
+# Combine all parts
+part_1 = base_cylinder.union(face1).union(face2)
+
+# --- Coordinate System Transformation for Part 1 ---
+part_1 = part_1.rotate((0, 0, 0), (0, 0, 1), -90)
+part_1 = part_1.translate((0.0818, 0.0536, 0))
+
+# --- Assembly (if needed,

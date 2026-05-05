@@ -1,0 +1,53 @@
+import cadquery as cq
+
+# --- Part 1: Rectangular Prism ---
+part_1_width = 0.675 * 0.675  # Scaled width
+part_1_height = 0.675 * 0.675 # Scaled height
+part_1_depth = 0.75
+
+part_1 = (
+    cq.Workplane("XY")
+    .rect(part_1_width, part_1_height)
+    .extrude(part_1_depth)
+)
+
+# --- Assembly (if needed, based on the single part) ---
+# In this case, there's only one part, so no assembly is needed.
+
+# --- Final Result ---
+result = part_1
+
+cq.exporters.export(result, './stlcq/0079/00795338.stl')
+
+# Export to STL
+cq.exporters.export(result, './stlcq/0079/00795615.stl')
+
+# Export to STL
+cq.exporters.export(result, './stlcq/0079/00795964.stl')
+
+# Export to STL
+cq.exporters.export(result, './stlcq/0079/00795965.stl')
+
+# Export to STL
+cq.exporters.export(result, './stlcq/0079/00795965.stl')
+
+# Export to STL
+cq.exporters.export(result, './stlcq/0079/00795965.stl')
+
+# Export to STL
+cq.exporters.export(result, './stlcq/0079/00795965.stl')
+
+# Export to STL
+cq.exporters.export(result, './stlcq/0079/00795965.stl')
+
+# Export to STL
+cq.exporters.export(result, './stlcq/0079/00795965.stl')
+
+# Export to STL
+cq.exporters.export(result, './stlcq/0079/00795965.stl')
+
+# Export to STL
+cq.exporters.export(result, './stlcq/0079/00795965.stl')
+
+# --- Final Result ---
+cq.exporters
