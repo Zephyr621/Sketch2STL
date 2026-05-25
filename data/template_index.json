@@ -1,0 +1,2404 @@
+{
+  "version": 1,
+  "stats": {
+    "total": 266,
+    "syntax_ok": 266,
+    "with_silhouette": 266
+  },
+  "templates": [
+    {
+      "id": "0",
+      "code_path": "data/fixed_code/0.py",
+      "syntax_ok": true,
+      "syntax_error": null,
+      "stl_path": "data/all_stl_files/output_0.stl",
+      "has_stl": true,
+      "has_silhouette": true
+    },
+    {
+      "id": "1000",
+      "code_path": "data/fixed_code/1000.py",
+      "syntax_ok": true,
+      "syntax_error": null,
+      "stl_path": "data/all_stl_files/output_1000.stl",
+      "has_stl": true,
+      "has_silhouette": true
+    },
+    {
+      "id": "1008",
+      "code_path": "data/fixed_code/1008.py",
+      "syntax_ok": true,
+      "syntax_error": null,
+      "stl_path": "data/all_stl_files/output_1008.stl",
+      "has_stl": true,
+      "has_silhouette": true
+    },
+    {
+      "id": "1017",
+      "code_path": "data/fixed_code/1017.py",
+      "syntax_ok": true,
+      "syntax_error": null,
+      "stl_path": "data/all_stl_files/output_1017.stl",
+      "has_stl": true,
+      "has_silhouette": true
+    },
+    {
+      "id": "1047",
+      "code_path": "data/fixed_code/1047.py",
+      "syntax_ok": true,
+      "syntax_error": null,
+      "stl_path": "data/all_stl_files/output_1047.stl",
+      "has_stl": true,
+      "has_silhouette": true
+    },
+    {
+      "id": "1052",
+      "code_path": "data/fixed_code/1052.py",
+      "syntax_ok": true,
+      "syntax_error": null,
+      "stl_path": "data/all_stl_files/output_1052.stl",
+      "has_stl": true,
+      "has_silhouette": true
+    },
+    {
+      "id": "106",
+      "code_path": "data/fixed_code/106.py",
+      "syntax_ok": true,
+      "syntax_error": null,
+      "stl_path": "data/all_stl_files/output_106.stl",
+      "has_stl": true,
+      "has_silhouette": true
+    },
+    {
+      "id": "1063",
+      "code_path": "data/fixed_code/1063.py",
+      "syntax_ok": true,
+      "syntax_error": null,
+      "stl_path": "data/all_stl_files/output_1063.stl",
+      "has_stl": true,
+      "has_silhouette": true
+    },
+    {
+      "id": "1101",
+      "code_path": "data/fixed_code/1101.py",
+      "syntax_ok": true,
+      "syntax_error": null,
+      "stl_path": "data/all_stl_files/output_1101.stl",
+      "has_stl": true,
+      "has_silhouette": true
+    },
+    {
+      "id": "1102",
+      "code_path": "data/fixed_code/1102.py",
+      "syntax_ok": true,
+      "syntax_error": null,
+      "stl_path": "data/all_stl_files/output_1102.stl",
+      "has_stl": true,
+      "has_silhouette": true
+    },
+    {
+      "id": "1103",
+      "code_path": "data/fixed_code/1103.py",
+      "syntax_ok": true,
+      "syntax_error": null,
+      "stl_path": "data/all_stl_files/output_1103.stl",
+      "has_stl": true,
+      "has_silhouette": true
+    },
+    {
+      "id": "1107",
+      "code_path": "data/fixed_code/1107.py",
+      "syntax_ok": true,
+      "syntax_error": null,
+      "stl_path": "data/all_stl_files/output_1107.stl",
+      "has_stl": true,
+      "has_silhouette": true
+    },
+    {
+      "id": "1110",
+      "code_path": "data/fixed_code/1110.py",
+      "syntax_ok": true,
+      "syntax_error": null,
+      "stl_path": "data/all_stl_files/output_1110.stl",
+      "has_stl": true,
+      "has_silhouette": true
+    },
+    {
+      "id": "1155",
+      "code_path": "data/fixed_code/1155.py",
+      "syntax_ok": true,
+      "syntax_error": null,
+      "stl_path": "data/all_stl_files/output_1155.stl",
+      "has_stl": true,
+      "has_silhouette": true
+    },
+    {
+      "id": "1156",
+      "code_path": "data/fixed_code/1156.py",
+      "syntax_ok": true,
+      "syntax_error": null,
+      "stl_path": "data/all_stl_files/output_1156.stl",
+      "has_stl": true,
+      "has_silhouette": true
+    },
+    {
+      "id": "1169",
+      "code_path": "data/fixed_code/1169.py",
+      "syntax_ok": true,
+      "syntax_error": null,
+      "stl_path": "data/all_stl_files/output_1169.stl",
+      "has_stl": true,
+      "has_silhouette": true
+    },
+    {
+      "id": "1182",
+      "code_path": "data/fixed_code/1182.py",
+      "syntax_ok": true,
+      "syntax_error": null,
+      "stl_path": "data/all_stl_files/output_1182.stl",
+      "has_stl": true,
+      "has_silhouette": true
+    },
+    {
+      "id": "1200",
+      "code_path": "data/fixed_code/1200.py",
+      "syntax_ok": true,
+      "syntax_error": null,
+      "stl_path": "data/all_stl_files/output_1200.stl",
+      "has_stl": true,
+      "has_silhouette": true
+    },
+    {
+      "id": "1201",
+      "code_path": "data/fixed_code/1201.py",
+      "syntax_ok": true,
+      "syntax_error": null,
+      "stl_path": "data/all_stl_files/output_1201.stl",
+      "has_stl": true,
+      "has_silhouette": true
+    },
+    {
+      "id": "1213",
+      "code_path": "data/fixed_code/1213.py",
+      "syntax_ok": true,
+      "syntax_error": null,
+      "stl_path": "data/all_stl_files/output_1213.stl",
+      "has_stl": true,
+      "has_silhouette": true
+    },
+    {
+      "id": "1214",
+      "code_path": "data/fixed_code/1214.py",
+      "syntax_ok": true,
+      "syntax_error": null,
+      "stl_path": "data/all_stl_files/output_1214.stl",
+      "has_stl": true,
+      "has_silhouette": true
+    },
+    {
+      "id": "1216",
+      "code_path": "data/fixed_code/1216.py",
+      "syntax_ok": true,
+      "syntax_error": null,
+      "stl_path": "data/all_stl_files/output_1216.stl",
+      "has_stl": true,
+      "has_silhouette": true
+    },
+    {
+      "id": "1228",
+      "code_path": "data/fixed_code/1228.py",
+      "syntax_ok": true,
+      "syntax_error": null,
+      "stl_path": "data/all_stl_files/output_1228.stl",
+      "has_stl": true,
+      "has_silhouette": true
+    },
+    {
+      "id": "1244",
+      "code_path": "data/fixed_code/1244.py",
+      "syntax_ok": true,
+      "syntax_error": null,
+      "stl_path": "data/all_stl_files/output_1244.stl",
+      "has_stl": true,
+      "has_silhouette": true
+    },
+    {
+      "id": "1251",
+      "code_path": "data/fixed_code/1251.py",
+      "syntax_ok": true,
+      "syntax_error": null,
+      "stl_path": "data/all_stl_files/output_1251.stl",
+      "has_stl": true,
+      "has_silhouette": true
+    },
+    {
+      "id": "1257",
+      "code_path": "data/fixed_code/1257.py",
+      "syntax_ok": true,
+      "syntax_error": null,
+      "stl_path": "data/all_stl_files/output_1257.stl",
+      "has_stl": true,
+      "has_silhouette": true
+    },
+    {
+      "id": "1265",
+      "code_path": "data/fixed_code/1265.py",
+      "syntax_ok": true,
+      "syntax_error": null,
+      "stl_path": "data/all_stl_files/output_1265.stl",
+      "has_stl": true,
+      "has_silhouette": true
+    },
+    {
+      "id": "1302",
+      "code_path": "data/fixed_code/1302.py",
+      "syntax_ok": true,
+      "syntax_error": null,
+      "stl_path": "data/all_stl_files/output_1302.stl",
+      "has_stl": true,
+      "has_silhouette": true
+    },
+    {
+      "id": "1312",
+      "code_path": "data/fixed_code/1312.py",
+      "syntax_ok": true,
+      "syntax_error": null,
+      "stl_path": "data/all_stl_files/output_1312.stl",
+      "has_stl": true,
+      "has_silhouette": true
+    },
+    {
+      "id": "1336",
+      "code_path": "data/fixed_code/1336.py",
+      "syntax_ok": true,
+      "syntax_error": null,
+      "stl_path": "data/all_stl_files/output_1336.stl",
+      "has_stl": true,
+      "has_silhouette": true
+    },
+    {
+      "id": "1354",
+      "code_path": "data/fixed_code/1354.py",
+      "syntax_ok": true,
+      "syntax_error": null,
+      "stl_path": "data/all_stl_files/output_1354.stl",
+      "has_stl": true,
+      "has_silhouette": true
+    },
+    {
+      "id": "1377",
+      "code_path": "data/fixed_code/1377.py",
+      "syntax_ok": true,
+      "syntax_error": null,
+      "stl_path": "data/all_stl_files/output_1377.stl",
+      "has_stl": true,
+      "has_silhouette": true
+    },
+    {
+      "id": "1397",
+      "code_path": "data/fixed_code/1397.py",
+      "syntax_ok": true,
+      "syntax_error": null,
+      "stl_path": "data/all_stl_files/output_1397.stl",
+      "has_stl": true,
+      "has_silhouette": true
+    },
+    {
+      "id": "1408",
+      "code_path": "data/fixed_code/1408.py",
+      "syntax_ok": true,
+      "syntax_error": null,
+      "stl_path": "data/all_stl_files/output_1408.stl",
+      "has_stl": true,
+      "has_silhouette": true
+    },
+    {
+      "id": "1411",
+      "code_path": "data/fixed_code/1411.py",
+      "syntax_ok": true,
+      "syntax_error": null,
+      "stl_path": "data/all_stl_files/output_1411.stl",
+      "has_stl": true,
+      "has_silhouette": true
+    },
+    {
+      "id": "1440",
+      "code_path": "data/fixed_code/1440.py",
+      "syntax_ok": true,
+      "syntax_error": null,
+      "stl_path": "data/all_stl_files/output_1440.stl",
+      "has_stl": true,
+      "has_silhouette": true
+    },
+    {
+      "id": "1450",
+      "code_path": "data/fixed_code/1450.py",
+      "syntax_ok": true,
+      "syntax_error": null,
+      "stl_path": "data/all_stl_files/output_1450.stl",
+      "has_stl": true,
+      "has_silhouette": true
+    },
+    {
+      "id": "1451",
+      "code_path": "data/fixed_code/1451.py",
+      "syntax_ok": true,
+      "syntax_error": null,
+      "stl_path": "data/all_stl_files/output_1451.stl",
+      "has_stl": true,
+      "has_silhouette": true
+    },
+    {
+      "id": "1457",
+      "code_path": "data/fixed_code/1457.py",
+      "syntax_ok": true,
+      "syntax_error": null,
+      "stl_path": "data/all_stl_files/output_1457.stl",
+      "has_stl": true,
+      "has_silhouette": true
+    },
+    {
+      "id": "1485",
+      "code_path": "data/fixed_code/1485.py",
+      "syntax_ok": true,
+      "syntax_error": null,
+      "stl_path": "data/all_stl_files/output_1485.stl",
+      "has_stl": true,
+      "has_silhouette": true
+    },
+    {
+      "id": "1490",
+      "code_path": "data/fixed_code/1490.py",
+      "syntax_ok": true,
+      "syntax_error": null,
+      "stl_path": "data/all_stl_files/output_1490.stl",
+      "has_stl": true,
+      "has_silhouette": true
+    },
+    {
+      "id": "1502",
+      "code_path": "data/fixed_code/1502.py",
+      "syntax_ok": true,
+      "syntax_error": null,
+      "stl_path": "data/all_stl_files/output_1502.stl",
+      "has_stl": true,
+      "has_silhouette": true
+    },
+    {
+      "id": "1506",
+      "code_path": "data/fixed_code/1506.py",
+      "syntax_ok": true,
+      "syntax_error": null,
+      "stl_path": "data/all_stl_files/output_1506.stl",
+      "has_stl": true,
+      "has_silhouette": true
+    },
+    {
+      "id": "1509",
+      "code_path": "data/fixed_code/1509.py",
+      "syntax_ok": true,
+      "syntax_error": null,
+      "stl_path": "data/all_stl_files/output_1509.stl",
+      "has_stl": true,
+      "has_silhouette": true
+    },
+    {
+      "id": "1534",
+      "code_path": "data/fixed_code/1534.py",
+      "syntax_ok": true,
+      "syntax_error": null,
+      "stl_path": "data/all_stl_files/output_1534.stl",
+      "has_stl": true,
+      "has_silhouette": true
+    },
+    {
+      "id": "1537",
+      "code_path": "data/fixed_code/1537.py",
+      "syntax_ok": true,
+      "syntax_error": null,
+      "stl_path": "data/all_stl_files/output_1537.stl",
+      "has_stl": true,
+      "has_silhouette": true
+    },
+    {
+      "id": "1563",
+      "code_path": "data/fixed_code/1563.py",
+      "syntax_ok": true,
+      "syntax_error": null,
+      "stl_path": "data/all_stl_files/output_1563.stl",
+      "has_stl": true,
+      "has_silhouette": true
+    },
+    {
+      "id": "1591",
+      "code_path": "data/fixed_code/1591.py",
+      "syntax_ok": true,
+      "syntax_error": null,
+      "stl_path": "data/all_stl_files/output_1591.stl",
+      "has_stl": true,
+      "has_silhouette": true
+    },
+    {
+      "id": "161",
+      "code_path": "data/fixed_code/161.py",
+      "syntax_ok": true,
+      "syntax_error": null,
+      "stl_path": "data/all_stl_files/output_161.stl",
+      "has_stl": true,
+      "has_silhouette": true
+    },
+    {
+      "id": "1632",
+      "code_path": "data/fixed_code/1632.py",
+      "syntax_ok": true,
+      "syntax_error": null,
+      "stl_path": "data/all_stl_files/output_1632.stl",
+      "has_stl": true,
+      "has_silhouette": true
+    },
+    {
+      "id": "1642",
+      "code_path": "data/fixed_code/1642.py",
+      "syntax_ok": true,
+      "syntax_error": null,
+      "stl_path": "data/all_stl_files/output_1642.stl",
+      "has_stl": true,
+      "has_silhouette": true
+    },
+    {
+      "id": "1649",
+      "code_path": "data/fixed_code/1649.py",
+      "syntax_ok": true,
+      "syntax_error": null,
+      "stl_path": "data/all_stl_files/output_1649.stl",
+      "has_stl": true,
+      "has_silhouette": true
+    },
+    {
+      "id": "1655",
+      "code_path": "data/fixed_code/1655.py",
+      "syntax_ok": true,
+      "syntax_error": null,
+      "stl_path": "data/all_stl_files/output_1655.stl",
+      "has_stl": true,
+      "has_silhouette": true
+    },
+    {
+      "id": "1661",
+      "code_path": "data/fixed_code/1661.py",
+      "syntax_ok": true,
+      "syntax_error": null,
+      "stl_path": "data/all_stl_files/output_1661.stl",
+      "has_stl": true,
+      "has_silhouette": true
+    },
+    {
+      "id": "1662",
+      "code_path": "data/fixed_code/1662.py",
+      "syntax_ok": true,
+      "syntax_error": null,
+      "stl_path": "data/all_stl_files/output_1662.stl",
+      "has_stl": true,
+      "has_silhouette": true
+    },
+    {
+      "id": "1663",
+      "code_path": "data/fixed_code/1663.py",
+      "syntax_ok": true,
+      "syntax_error": null,
+      "stl_path": "data/all_stl_files/output_1663.stl",
+      "has_stl": true,
+      "has_silhouette": true
+    },
+    {
+      "id": "1665",
+      "code_path": "data/fixed_code/1665.py",
+      "syntax_ok": true,
+      "syntax_error": null,
+      "stl_path": "data/all_stl_files/output_1665.stl",
+      "has_stl": true,
+      "has_silhouette": true
+    },
+    {
+      "id": "1677",
+      "code_path": "data/fixed_code/1677.py",
+      "syntax_ok": true,
+      "syntax_error": null,
+      "stl_path": "data/all_stl_files/output_1677.stl",
+      "has_stl": true,
+      "has_silhouette": true
+    },
+    {
+      "id": "1680",
+      "code_path": "data/fixed_code/1680.py",
+      "syntax_ok": true,
+      "syntax_error": null,
+      "stl_path": "data/all_stl_files/output_1680.stl",
+      "has_stl": true,
+      "has_silhouette": true
+    },
+    {
+      "id": "1700",
+      "code_path": "data/fixed_code/1700.py",
+      "syntax_ok": true,
+      "syntax_error": null,
+      "stl_path": "data/all_stl_files/output_1700.stl",
+      "has_stl": true,
+      "has_silhouette": true
+    },
+    {
+      "id": "1705",
+      "code_path": "data/fixed_code/1705.py",
+      "syntax_ok": true,
+      "syntax_error": null,
+      "stl_path": "data/all_stl_files/output_1705.stl",
+      "has_stl": true,
+      "has_silhouette": true
+    },
+    {
+      "id": "1713",
+      "code_path": "data/fixed_code/1713.py",
+      "syntax_ok": true,
+      "syntax_error": null,
+      "stl_path": "data/all_stl_files/output_1713.stl",
+      "has_stl": true,
+      "has_silhouette": true
+    },
+    {
+      "id": "1746",
+      "code_path": "data/fixed_code/1746.py",
+      "syntax_ok": true,
+      "syntax_error": null,
+      "stl_path": "data/all_stl_files/output_1746.stl",
+      "has_stl": true,
+      "has_silhouette": true
+    },
+    {
+      "id": "1799",
+      "code_path": "data/fixed_code/1799.py",
+      "syntax_ok": true,
+      "syntax_error": null,
+      "stl_path": "data/all_stl_files/output_1799.stl",
+      "has_stl": true,
+      "has_silhouette": true
+    },
+    {
+      "id": "1825",
+      "code_path": "data/fixed_code/1825.py",
+      "syntax_ok": true,
+      "syntax_error": null,
+      "stl_path": "data/all_stl_files/output_1825.stl",
+      "has_stl": true,
+      "has_silhouette": true
+    },
+    {
+      "id": "1833",
+      "code_path": "data/fixed_code/1833.py",
+      "syntax_ok": true,
+      "syntax_error": null,
+      "stl_path": "data/all_stl_files/output_1833.stl",
+      "has_stl": true,
+      "has_silhouette": true
+    },
+    {
+      "id": "1835",
+      "code_path": "data/fixed_code/1835.py",
+      "syntax_ok": true,
+      "syntax_error": null,
+      "stl_path": "data/all_stl_files/output_1835.stl",
+      "has_stl": true,
+      "has_silhouette": true
+    },
+    {
+      "id": "1840",
+      "code_path": "data/fixed_code/1840.py",
+      "syntax_ok": true,
+      "syntax_error": null,
+      "stl_path": "data/all_stl_files/output_1840.stl",
+      "has_stl": true,
+      "has_silhouette": true
+    },
+    {
+      "id": "1842",
+      "code_path": "data/fixed_code/1842.py",
+      "syntax_ok": true,
+      "syntax_error": null,
+      "stl_path": "data/all_stl_files/output_1842.stl",
+      "has_stl": true,
+      "has_silhouette": true
+    },
+    {
+      "id": "1851",
+      "code_path": "data/fixed_code/1851.py",
+      "syntax_ok": true,
+      "syntax_error": null,
+      "stl_path": "data/all_stl_files/output_1851.stl",
+      "has_stl": true,
+      "has_silhouette": true
+    },
+    {
+      "id": "1865",
+      "code_path": "data/fixed_code/1865.py",
+      "syntax_ok": true,
+      "syntax_error": null,
+      "stl_path": "data/all_stl_files/output_1865.stl",
+      "has_stl": true,
+      "has_silhouette": true
+    },
+    {
+      "id": "1867",
+      "code_path": "data/fixed_code/1867.py",
+      "syntax_ok": true,
+      "syntax_error": null,
+      "stl_path": "data/all_stl_files/output_1867.stl",
+      "has_stl": true,
+      "has_silhouette": true
+    },
+    {
+      "id": "1907",
+      "code_path": "data/fixed_code/1907.py",
+      "syntax_ok": true,
+      "syntax_error": null,
+      "stl_path": "data/all_stl_files/output_1907.stl",
+      "has_stl": true,
+      "has_silhouette": true
+    },
+    {
+      "id": "1909",
+      "code_path": "data/fixed_code/1909.py",
+      "syntax_ok": true,
+      "syntax_error": null,
+      "stl_path": "data/all_stl_files/output_1909.stl",
+      "has_stl": true,
+      "has_silhouette": true
+    },
+    {
+      "id": "1921",
+      "code_path": "data/fixed_code/1921.py",
+      "syntax_ok": true,
+      "syntax_error": null,
+      "stl_path": "data/all_stl_files/output_1921.stl",
+      "has_stl": true,
+      "has_silhouette": true
+    },
+    {
+      "id": "1946",
+      "code_path": "data/fixed_code/1946.py",
+      "syntax_ok": true,
+      "syntax_error": null,
+      "stl_path": "data/all_stl_files/output_1946.stl",
+      "has_stl": true,
+      "has_silhouette": true
+    },
+    {
+      "id": "1982",
+      "code_path": "data/fixed_code/1982.py",
+      "syntax_ok": true,
+      "syntax_error": null,
+      "stl_path": "data/all_stl_files/output_1982.stl",
+      "has_stl": true,
+      "has_silhouette": true
+    },
+    {
+      "id": "1993",
+      "code_path": "data/fixed_code/1993.py",
+      "syntax_ok": true,
+      "syntax_error": null,
+      "stl_path": "data/all_stl_files/output_1993.stl",
+      "has_stl": true,
+      "has_silhouette": true
+    },
+    {
+      "id": "2007",
+      "code_path": "data/fixed_code/2007.py",
+      "syntax_ok": true,
+      "syntax_error": null,
+      "stl_path": "data/all_stl_files/output_2007.stl",
+      "has_stl": true,
+      "has_silhouette": true
+    },
+    {
+      "id": "2008",
+      "code_path": "data/fixed_code/2008.py",
+      "syntax_ok": true,
+      "syntax_error": null,
+      "stl_path": "data/all_stl_files/output_2008.stl",
+      "has_stl": true,
+      "has_silhouette": true
+    },
+    {
+      "id": "2013",
+      "code_path": "data/fixed_code/2013.py",
+      "syntax_ok": true,
+      "syntax_error": null,
+      "stl_path": "data/all_stl_files/output_2013.stl",
+      "has_stl": true,
+      "has_silhouette": true
+    },
+    {
+      "id": "2016",
+      "code_path": "data/fixed_code/2016.py",
+      "syntax_ok": true,
+      "syntax_error": null,
+      "stl_path": "data/all_stl_files/output_2016.stl",
+      "has_stl": true,
+      "has_silhouette": true
+    },
+    {
+      "id": "2020",
+      "code_path": "data/fixed_code/2020.py",
+      "syntax_ok": true,
+      "syntax_error": null,
+      "stl_path": "data/all_stl_files/output_2020.stl",
+      "has_stl": true,
+      "has_silhouette": true
+    },
+    {
+      "id": "2053",
+      "code_path": "data/fixed_code/2053.py",
+      "syntax_ok": true,
+      "syntax_error": null,
+      "stl_path": "data/all_stl_files/output_2053.stl",
+      "has_stl": true,
+      "has_silhouette": true
+    },
+    {
+      "id": "2071",
+      "code_path": "data/fixed_code/2071.py",
+      "syntax_ok": true,
+      "syntax_error": null,
+      "stl_path": "data/all_stl_files/output_2071.stl",
+      "has_stl": true,
+      "has_silhouette": true
+    },
+    {
+      "id": "2082",
+      "code_path": "data/fixed_code/2082.py",
+      "syntax_ok": true,
+      "syntax_error": null,
+      "stl_path": "data/all_stl_files/output_2082.stl",
+      "has_stl": true,
+      "has_silhouette": true
+    },
+    {
+      "id": "2094",
+      "code_path": "data/fixed_code/2094.py",
+      "syntax_ok": true,
+      "syntax_error": null,
+      "stl_path": "data/all_stl_files/output_2094.stl",
+      "has_stl": true,
+      "has_silhouette": true
+    },
+    {
+      "id": "21",
+      "code_path": "data/fixed_code/21.py",
+      "syntax_ok": true,
+      "syntax_error": null,
+      "stl_path": "data/all_stl_files/output_21.stl",
+      "has_stl": true,
+      "has_silhouette": true
+    },
+    {
+      "id": "2101",
+      "code_path": "data/fixed_code/2101.py",
+      "syntax_ok": true,
+      "syntax_error": null,
+      "stl_path": "data/all_stl_files/output_2101.stl",
+      "has_stl": true,
+      "has_silhouette": true
+    },
+    {
+      "id": "2103",
+      "code_path": "data/fixed_code/2103.py",
+      "syntax_ok": true,
+      "syntax_error": null,
+      "stl_path": "data/all_stl_files/output_2103.stl",
+      "has_stl": true,
+      "has_silhouette": true
+    },
+    {
+      "id": "2108",
+      "code_path": "data/fixed_code/2108.py",
+      "syntax_ok": true,
+      "syntax_error": null,
+      "stl_path": "data/all_stl_files/output_2108.stl",
+      "has_stl": true,
+      "has_silhouette": true
+    },
+    {
+      "id": "2117",
+      "code_path": "data/fixed_code/2117.py",
+      "syntax_ok": true,
+      "syntax_error": null,
+      "stl_path": "data/all_stl_files/output_2117.stl",
+      "has_stl": true,
+      "has_silhouette": true
+    },
+    {
+      "id": "2121",
+      "code_path": "data/fixed_code/2121.py",
+      "syntax_ok": true,
+      "syntax_error": null,
+      "stl_path": "data/all_stl_files/output_2121.stl",
+      "has_stl": true,
+      "has_silhouette": true
+    },
+    {
+      "id": "2125",
+      "code_path": "data/fixed_code/2125.py",
+      "syntax_ok": true,
+      "syntax_error": null,
+      "stl_path": "data/all_stl_files/output_2125.stl",
+      "has_stl": true,
+      "has_silhouette": true
+    },
+    {
+      "id": "2134",
+      "code_path": "data/fixed_code/2134.py",
+      "syntax_ok": true,
+      "syntax_error": null,
+      "stl_path": "data/all_stl_files/output_2134.stl",
+      "has_stl": true,
+      "has_silhouette": true
+    },
+    {
+      "id": "2135",
+      "code_path": "data/fixed_code/2135.py",
+      "syntax_ok": true,
+      "syntax_error": null,
+      "stl_path": "data/all_stl_files/output_2135.stl",
+      "has_stl": true,
+      "has_silhouette": true
+    },
+    {
+      "id": "2151",
+      "code_path": "data/fixed_code/2151.py",
+      "syntax_ok": true,
+      "syntax_error": null,
+      "stl_path": "data/all_stl_files/output_2151.stl",
+      "has_stl": true,
+      "has_silhouette": true
+    },
+    {
+      "id": "2158",
+      "code_path": "data/fixed_code/2158.py",
+      "syntax_ok": true,
+      "syntax_error": null,
+      "stl_path": "data/all_stl_files/output_2158.stl",
+      "has_stl": true,
+      "has_silhouette": true
+    },
+    {
+      "id": "2167",
+      "code_path": "data/fixed_code/2167.py",
+      "syntax_ok": true,
+      "syntax_error": null,
+      "stl_path": "data/all_stl_files/output_2167.stl",
+      "has_stl": true,
+      "has_silhouette": true
+    },
+    {
+      "id": "217",
+      "code_path": "data/fixed_code/217.py",
+      "syntax_ok": true,
+      "syntax_error": null,
+      "stl_path": "data/all_stl_files/output_217.stl",
+      "has_stl": true,
+      "has_silhouette": true
+    },
+    {
+      "id": "2178",
+      "code_path": "data/fixed_code/2178.py",
+      "syntax_ok": true,
+      "syntax_error": null,
+      "stl_path": "data/all_stl_files/output_2178.stl",
+      "has_stl": true,
+      "has_silhouette": true
+    },
+    {
+      "id": "2180",
+      "code_path": "data/fixed_code/2180.py",
+      "syntax_ok": true,
+      "syntax_error": null,
+      "stl_path": "data/all_stl_files/output_2180.stl",
+      "has_stl": true,
+      "has_silhouette": true
+    },
+    {
+      "id": "2208",
+      "code_path": "data/fixed_code/2208.py",
+      "syntax_ok": true,
+      "syntax_error": null,
+      "stl_path": "data/all_stl_files/output_2208.stl",
+      "has_stl": true,
+      "has_silhouette": true
+    },
+    {
+      "id": "221",
+      "code_path": "data/fixed_code/221.py",
+      "syntax_ok": true,
+      "syntax_error": null,
+      "stl_path": "data/all_stl_files/output_221.stl",
+      "has_stl": true,
+      "has_silhouette": true
+    },
+    {
+      "id": "2233",
+      "code_path": "data/fixed_code/2233.py",
+      "syntax_ok": true,
+      "syntax_error": null,
+      "stl_path": "data/all_stl_files/output_2233.stl",
+      "has_stl": true,
+      "has_silhouette": true
+    },
+    {
+      "id": "2251",
+      "code_path": "data/fixed_code/2251.py",
+      "syntax_ok": true,
+      "syntax_error": null,
+      "stl_path": "data/all_stl_files/output_2251.stl",
+      "has_stl": true,
+      "has_silhouette": true
+    },
+    {
+      "id": "2263",
+      "code_path": "data/fixed_code/2263.py",
+      "syntax_ok": true,
+      "syntax_error": null,
+      "stl_path": "data/all_stl_files/output_2263.stl",
+      "has_stl": true,
+      "has_silhouette": true
+    },
+    {
+      "id": "2280",
+      "code_path": "data/fixed_code/2280.py",
+      "syntax_ok": true,
+      "syntax_error": null,
+      "stl_path": "data/all_stl_files/output_2280.stl",
+      "has_stl": true,
+      "has_silhouette": true
+    },
+    {
+      "id": "2287",
+      "code_path": "data/fixed_code/2287.py",
+      "syntax_ok": true,
+      "syntax_error": null,
+      "stl_path": "data/all_stl_files/output_2287.stl",
+      "has_stl": true,
+      "has_silhouette": true
+    },
+    {
+      "id": "2305",
+      "code_path": "data/fixed_code/2305.py",
+      "syntax_ok": true,
+      "syntax_error": null,
+      "stl_path": "data/all_stl_files/output_2305.stl",
+      "has_stl": true,
+      "has_silhouette": true
+    },
+    {
+      "id": "2307",
+      "code_path": "data/fixed_code/2307.py",
+      "syntax_ok": true,
+      "syntax_error": null,
+      "stl_path": "data/all_stl_files/output_2307.stl",
+      "has_stl": true,
+      "has_silhouette": true
+    },
+    {
+      "id": "2314",
+      "code_path": "data/fixed_code/2314.py",
+      "syntax_ok": true,
+      "syntax_error": null,
+      "stl_path": "data/all_stl_files/output_2314.stl",
+      "has_stl": true,
+      "has_silhouette": true
+    },
+    {
+      "id": "2332",
+      "code_path": "data/fixed_code/2332.py",
+      "syntax_ok": true,
+      "syntax_error": null,
+      "stl_path": "data/all_stl_files/output_2332.stl",
+      "has_stl": true,
+      "has_silhouette": true
+    },
+    {
+      "id": "2336",
+      "code_path": "data/fixed_code/2336.py",
+      "syntax_ok": true,
+      "syntax_error": null,
+      "stl_path": "data/all_stl_files/output_2336.stl",
+      "has_stl": true,
+      "has_silhouette": true
+    },
+    {
+      "id": "2341",
+      "code_path": "data/fixed_code/2341.py",
+      "syntax_ok": true,
+      "syntax_error": null,
+      "stl_path": "data/all_stl_files/output_2341.stl",
+      "has_stl": true,
+      "has_silhouette": true
+    },
+    {
+      "id": "2358",
+      "code_path": "data/fixed_code/2358.py",
+      "syntax_ok": true,
+      "syntax_error": null,
+      "stl_path": "data/all_stl_files/output_2358.stl",
+      "has_stl": true,
+      "has_silhouette": true
+    },
+    {
+      "id": "2359",
+      "code_path": "data/fixed_code/2359.py",
+      "syntax_ok": true,
+      "syntax_error": null,
+      "stl_path": "data/all_stl_files/output_2359.stl",
+      "has_stl": true,
+      "has_silhouette": true
+    },
+    {
+      "id": "2367",
+      "code_path": "data/fixed_code/2367.py",
+      "syntax_ok": true,
+      "syntax_error": null,
+      "stl_path": "data/all_stl_files/output_2367.stl",
+      "has_stl": true,
+      "has_silhouette": true
+    },
+    {
+      "id": "2370",
+      "code_path": "data/fixed_code/2370.py",
+      "syntax_ok": true,
+      "syntax_error": null,
+      "stl_path": "data/all_stl_files/output_2370.stl",
+      "has_stl": true,
+      "has_silhouette": true
+    },
+    {
+      "id": "2424",
+      "code_path": "data/fixed_code/2424.py",
+      "syntax_ok": true,
+      "syntax_error": null,
+      "stl_path": "data/all_stl_files/output_2424.stl",
+      "has_stl": true,
+      "has_silhouette": true
+    },
+    {
+      "id": "2464",
+      "code_path": "data/fixed_code/2464.py",
+      "syntax_ok": true,
+      "syntax_error": null,
+      "stl_path": "data/all_stl_files/output_2464.stl",
+      "has_stl": true,
+      "has_silhouette": true
+    },
+    {
+      "id": "2476",
+      "code_path": "data/fixed_code/2476.py",
+      "syntax_ok": true,
+      "syntax_error": null,
+      "stl_path": "data/all_stl_files/output_2476.stl",
+      "has_stl": true,
+      "has_silhouette": true
+    },
+    {
+      "id": "248",
+      "code_path": "data/fixed_code/248.py",
+      "syntax_ok": true,
+      "syntax_error": null,
+      "stl_path": "data/all_stl_files/output_248.stl",
+      "has_stl": true,
+      "has_silhouette": true
+    },
+    {
+      "id": "2480",
+      "code_path": "data/fixed_code/2480.py",
+      "syntax_ok": true,
+      "syntax_error": null,
+      "stl_path": "data/all_stl_files/output_2480.stl",
+      "has_stl": true,
+      "has_silhouette": true
+    },
+    {
+      "id": "2487",
+      "code_path": "data/fixed_code/2487.py",
+      "syntax_ok": true,
+      "syntax_error": null,
+      "stl_path": "data/all_stl_files/output_2487.stl",
+      "has_stl": true,
+      "has_silhouette": true
+    },
+    {
+      "id": "2537",
+      "code_path": "data/fixed_code/2537.py",
+      "syntax_ok": true,
+      "syntax_error": null,
+      "stl_path": "data/all_stl_files/output_2537.stl",
+      "has_stl": true,
+      "has_silhouette": true
+    },
+    {
+      "id": "2565",
+      "code_path": "data/fixed_code/2565.py",
+      "syntax_ok": true,
+      "syntax_error": null,
+      "stl_path": "data/all_stl_files/output_2565.stl",
+      "has_stl": true,
+      "has_silhouette": true
+    },
+    {
+      "id": "2567",
+      "code_path": "data/fixed_code/2567.py",
+      "syntax_ok": true,
+      "syntax_error": null,
+      "stl_path": "data/all_stl_files/output_2567.stl",
+      "has_stl": true,
+      "has_silhouette": true
+    },
+    {
+      "id": "2574",
+      "code_path": "data/fixed_code/2574.py",
+      "syntax_ok": true,
+      "syntax_error": null,
+      "stl_path": "data/all_stl_files/output_2574.stl",
+      "has_stl": true,
+      "has_silhouette": true
+    },
+    {
+      "id": "2576",
+      "code_path": "data/fixed_code/2576.py",
+      "syntax_ok": true,
+      "syntax_error": null,
+      "stl_path": "data/all_stl_files/output_2576.stl",
+      "has_stl": true,
+      "has_silhouette": true
+    },
+    {
+      "id": "258",
+      "code_path": "data/fixed_code/258.py",
+      "syntax_ok": true,
+      "syntax_error": null,
+      "stl_path": "data/all_stl_files/output_258.stl",
+      "has_stl": true,
+      "has_silhouette": true
+    },
+    {
+      "id": "2581",
+      "code_path": "data/fixed_code/2581.py",
+      "syntax_ok": true,
+      "syntax_error": null,
+      "stl_path": "data/all_stl_files/output_2581.stl",
+      "has_stl": true,
+      "has_silhouette": true
+    },
+    {
+      "id": "261",
+      "code_path": "data/fixed_code/261.py",
+      "syntax_ok": true,
+      "syntax_error": null,
+      "stl_path": "data/all_stl_files/output_261.stl",
+      "has_stl": true,
+      "has_silhouette": true
+    },
+    {
+      "id": "2625",
+      "code_path": "data/fixed_code/2625.py",
+      "syntax_ok": true,
+      "syntax_error": null,
+      "stl_path": "data/all_stl_files/output_2625.stl",
+      "has_stl": true,
+      "has_silhouette": true
+    },
+    {
+      "id": "2658",
+      "code_path": "data/fixed_code/2658.py",
+      "syntax_ok": true,
+      "syntax_error": null,
+      "stl_path": "data/all_stl_files/output_2658.stl",
+      "has_stl": true,
+      "has_silhouette": true
+    },
+    {
+      "id": "2668",
+      "code_path": "data/fixed_code/2668.py",
+      "syntax_ok": true,
+      "syntax_error": null,
+      "stl_path": "data/all_stl_files/output_2668.stl",
+      "has_stl": true,
+      "has_silhouette": true
+    },
+    {
+      "id": "267",
+      "code_path": "data/fixed_code/267.py",
+      "syntax_ok": true,
+      "syntax_error": null,
+      "stl_path": "data/all_stl_files/output_267.stl",
+      "has_stl": true,
+      "has_silhouette": true
+    },
+    {
+      "id": "2670",
+      "code_path": "data/fixed_code/2670.py",
+      "syntax_ok": true,
+      "syntax_error": null,
+      "stl_path": "data/all_stl_files/output_2670.stl",
+      "has_stl": true,
+      "has_silhouette": true
+    },
+    {
+      "id": "2677",
+      "code_path": "data/fixed_code/2677.py",
+      "syntax_ok": true,
+      "syntax_error": null,
+      "stl_path": "data/all_stl_files/output_2677.stl",
+      "has_stl": true,
+      "has_silhouette": true
+    },
+    {
+      "id": "2680",
+      "code_path": "data/fixed_code/2680.py",
+      "syntax_ok": true,
+      "syntax_error": null,
+      "stl_path": "data/all_stl_files/output_2680.stl",
+      "has_stl": true,
+      "has_silhouette": true
+    },
+    {
+      "id": "2698",
+      "code_path": "data/fixed_code/2698.py",
+      "syntax_ok": true,
+      "syntax_error": null,
+      "stl_path": "data/all_stl_files/output_2698.stl",
+      "has_stl": true,
+      "has_silhouette": true
+    },
+    {
+      "id": "27",
+      "code_path": "data/fixed_code/27.py",
+      "syntax_ok": true,
+      "syntax_error": null,
+      "stl_path": "data/all_stl_files/output_27.stl",
+      "has_stl": true,
+      "has_silhouette": true
+    },
+    {
+      "id": "2708",
+      "code_path": "data/fixed_code/2708.py",
+      "syntax_ok": true,
+      "syntax_error": null,
+      "stl_path": "data/all_stl_files/output_2708.stl",
+      "has_stl": true,
+      "has_silhouette": true
+    },
+    {
+      "id": "2722",
+      "code_path": "data/fixed_code/2722.py",
+      "syntax_ok": true,
+      "syntax_error": null,
+      "stl_path": "data/all_stl_files/output_2722.stl",
+      "has_stl": true,
+      "has_silhouette": true
+    },
+    {
+      "id": "2733",
+      "code_path": "data/fixed_code/2733.py",
+      "syntax_ok": true,
+      "syntax_error": null,
+      "stl_path": "data/all_stl_files/output_2733.stl",
+      "has_stl": true,
+      "has_silhouette": true
+    },
+    {
+      "id": "2742",
+      "code_path": "data/fixed_code/2742.py",
+      "syntax_ok": true,
+      "syntax_error": null,
+      "stl_path": "data/all_stl_files/output_2742.stl",
+      "has_stl": true,
+      "has_silhouette": true
+    },
+    {
+      "id": "2747",
+      "code_path": "data/fixed_code/2747.py",
+      "syntax_ok": true,
+      "syntax_error": null,
+      "stl_path": "data/all_stl_files/output_2747.stl",
+      "has_stl": true,
+      "has_silhouette": true
+    },
+    {
+      "id": "2752",
+      "code_path": "data/fixed_code/2752.py",
+      "syntax_ok": true,
+      "syntax_error": null,
+      "stl_path": "data/all_stl_files/output_2752.stl",
+      "has_stl": true,
+      "has_silhouette": true
+    },
+    {
+      "id": "2758",
+      "code_path": "data/fixed_code/2758.py",
+      "syntax_ok": true,
+      "syntax_error": null,
+      "stl_path": "data/all_stl_files/output_2758.stl",
+      "has_stl": true,
+      "has_silhouette": true
+    },
+    {
+      "id": "2772",
+      "code_path": "data/fixed_code/2772.py",
+      "syntax_ok": true,
+      "syntax_error": null,
+      "stl_path": "data/all_stl_files/output_2772.stl",
+      "has_stl": true,
+      "has_silhouette": true
+    },
+    {
+      "id": "2788",
+      "code_path": "data/fixed_code/2788.py",
+      "syntax_ok": true,
+      "syntax_error": null,
+      "stl_path": "data/all_stl_files/output_2788.stl",
+      "has_stl": true,
+      "has_silhouette": true
+    },
+    {
+      "id": "2817",
+      "code_path": "data/fixed_code/2817.py",
+      "syntax_ok": true,
+      "syntax_error": null,
+      "stl_path": "data/all_stl_files/output_2817.stl",
+      "has_stl": true,
+      "has_silhouette": true
+    },
+    {
+      "id": "2857",
+      "code_path": "data/fixed_code/2857.py",
+      "syntax_ok": true,
+      "syntax_error": null,
+      "stl_path": "data/all_stl_files/output_2857.stl",
+      "has_stl": true,
+      "has_silhouette": true
+    },
+    {
+      "id": "2861",
+      "code_path": "data/fixed_code/2861.py",
+      "syntax_ok": true,
+      "syntax_error": null,
+      "stl_path": "data/all_stl_files/output_2861.stl",
+      "has_stl": true,
+      "has_silhouette": true
+    },
+    {
+      "id": "2862",
+      "code_path": "data/fixed_code/2862.py",
+      "syntax_ok": true,
+      "syntax_error": null,
+      "stl_path": "data/all_stl_files/output_2862.stl",
+      "has_stl": true,
+      "has_silhouette": true
+    },
+    {
+      "id": "2863",
+      "code_path": "data/fixed_code/2863.py",
+      "syntax_ok": true,
+      "syntax_error": null,
+      "stl_path": "data/all_stl_files/output_2863.stl",
+      "has_stl": true,
+      "has_silhouette": true
+    },
+    {
+      "id": "2865",
+      "code_path": "data/fixed_code/2865.py",
+      "syntax_ok": true,
+      "syntax_error": null,
+      "stl_path": "data/all_stl_files/output_2865.stl",
+      "has_stl": true,
+      "has_silhouette": true
+    },
+    {
+      "id": "2876",
+      "code_path": "data/fixed_code/2876.py",
+      "syntax_ok": true,
+      "syntax_error": null,
+      "stl_path": "data/all_stl_files/output_2876.stl",
+      "has_stl": true,
+      "has_silhouette": true
+    },
+    {
+      "id": "290",
+      "code_path": "data/fixed_code/290.py",
+      "syntax_ok": true,
+      "syntax_error": null,
+      "stl_path": "data/all_stl_files/output_290.stl",
+      "has_stl": true,
+      "has_silhouette": true
+    },
+    {
+      "id": "2962",
+      "code_path": "data/fixed_code/2962.py",
+      "syntax_ok": true,
+      "syntax_error": null,
+      "stl_path": "data/all_stl_files/output_2962.stl",
+      "has_stl": true,
+      "has_silhouette": true
+    },
+    {
+      "id": "2974",
+      "code_path": "data/fixed_code/2974.py",
+      "syntax_ok": true,
+      "syntax_error": null,
+      "stl_path": "data/all_stl_files/output_2974.stl",
+      "has_stl": true,
+      "has_silhouette": true
+    },
+    {
+      "id": "2995",
+      "code_path": "data/fixed_code/2995.py",
+      "syntax_ok": true,
+      "syntax_error": null,
+      "stl_path": "data/all_stl_files/output_2995.stl",
+      "has_stl": true,
+      "has_silhouette": true
+    },
+    {
+      "id": "3001",
+      "code_path": "data/fixed_code/3001.py",
+      "syntax_ok": true,
+      "syntax_error": null,
+      "stl_path": "data/all_stl_files/output_3001.stl",
+      "has_stl": true,
+      "has_silhouette": true
+    },
+    {
+      "id": "3003",
+      "code_path": "data/fixed_code/3003.py",
+      "syntax_ok": true,
+      "syntax_error": null,
+      "stl_path": "data/all_stl_files/output_3003.stl",
+      "has_stl": true,
+      "has_silhouette": true
+    },
+    {
+      "id": "3021",
+      "code_path": "data/fixed_code/3021.py",
+      "syntax_ok": true,
+      "syntax_error": null,
+      "stl_path": "data/all_stl_files/output_3021.stl",
+      "has_stl": true,
+      "has_silhouette": true
+    },
+    {
+      "id": "3033",
+      "code_path": "data/fixed_code/3033.py",
+      "syntax_ok": true,
+      "syntax_error": null,
+      "stl_path": "data/all_stl_files/output_3033.stl",
+      "has_stl": true,
+      "has_silhouette": true
+    },
+    {
+      "id": "3036",
+      "code_path": "data/fixed_code/3036.py",
+      "syntax_ok": true,
+      "syntax_error": null,
+      "stl_path": "data/all_stl_files/output_3036.stl",
+      "has_stl": true,
+      "has_silhouette": true
+    },
+    {
+      "id": "3067",
+      "code_path": "data/fixed_code/3067.py",
+      "syntax_ok": true,
+      "syntax_error": null,
+      "stl_path": "data/all_stl_files/output_3067.stl",
+      "has_stl": true,
+      "has_silhouette": true
+    },
+    {
+      "id": "3071",
+      "code_path": "data/fixed_code/3071.py",
+      "syntax_ok": true,
+      "syntax_error": null,
+      "stl_path": "data/all_stl_files/output_3071.stl",
+      "has_stl": true,
+      "has_silhouette": true
+    },
+    {
+      "id": "3072",
+      "code_path": "data/fixed_code/3072.py",
+      "syntax_ok": true,
+      "syntax_error": null,
+      "stl_path": "data/all_stl_files/output_3072.stl",
+      "has_stl": true,
+      "has_silhouette": true
+    },
+    {
+      "id": "3104",
+      "code_path": "data/fixed_code/3104.py",
+      "syntax_ok": true,
+      "syntax_error": null,
+      "stl_path": "data/all_stl_files/output_3104.stl",
+      "has_stl": true,
+      "has_silhouette": true
+    },
+    {
+      "id": "3105",
+      "code_path": "data/fixed_code/3105.py",
+      "syntax_ok": true,
+      "syntax_error": null,
+      "stl_path": "data/all_stl_files/output_3105.stl",
+      "has_stl": true,
+      "has_silhouette": true
+    },
+    {
+      "id": "3151",
+      "code_path": "data/fixed_code/3151.py",
+      "syntax_ok": true,
+      "syntax_error": null,
+      "stl_path": "data/all_stl_files/output_3151.stl",
+      "has_stl": true,
+      "has_silhouette": true
+    },
+    {
+      "id": "3154",
+      "code_path": "data/fixed_code/3154.py",
+      "syntax_ok": true,
+      "syntax_error": null,
+      "stl_path": "data/all_stl_files/output_3154.stl",
+      "has_stl": true,
+      "has_silhouette": true
+    },
+    {
+      "id": "3171",
+      "code_path": "data/fixed_code/3171.py",
+      "syntax_ok": true,
+      "syntax_error": null,
+      "stl_path": "data/all_stl_files/output_3171.stl",
+      "has_stl": true,
+      "has_silhouette": true
+    },
+    {
+      "id": "3185",
+      "code_path": "data/fixed_code/3185.py",
+      "syntax_ok": true,
+      "syntax_error": null,
+      "stl_path": "data/all_stl_files/output_3185.stl",
+      "has_stl": true,
+      "has_silhouette": true
+    },
+    {
+      "id": "3190",
+      "code_path": "data/fixed_code/3190.py",
+      "syntax_ok": true,
+      "syntax_error": null,
+      "stl_path": "data/all_stl_files/output_3190.stl",
+      "has_stl": true,
+      "has_silhouette": true
+    },
+    {
+      "id": "3201",
+      "code_path": "data/fixed_code/3201.py",
+      "syntax_ok": true,
+      "syntax_error": null,
+      "stl_path": "data/all_stl_files/output_3201.stl",
+      "has_stl": true,
+      "has_silhouette": true
+    },
+    {
+      "id": "3224",
+      "code_path": "data/fixed_code/3224.py",
+      "syntax_ok": true,
+      "syntax_error": null,
+      "stl_path": "data/all_stl_files/output_3224.stl",
+      "has_stl": true,
+      "has_silhouette": true
+    },
+    {
+      "id": "3230",
+      "code_path": "data/fixed_code/3230.py",
+      "syntax_ok": true,
+      "syntax_error": null,
+      "stl_path": "data/all_stl_files/output_3230.stl",
+      "has_stl": true,
+      "has_silhouette": true
+    },
+    {
+      "id": "3233",
+      "code_path": "data/fixed_code/3233.py",
+      "syntax_ok": true,
+      "syntax_error": null,
+      "stl_path": "data/all_stl_files/output_3233.stl",
+      "has_stl": true,
+      "has_silhouette": true
+    },
+    {
+      "id": "3240",
+      "code_path": "data/fixed_code/3240.py",
+      "syntax_ok": true,
+      "syntax_error": null,
+      "stl_path": "data/all_stl_files/output_3240.stl",
+      "has_stl": true,
+      "has_silhouette": true
+    },
+    {
+      "id": "3274",
+      "code_path": "data/fixed_code/3274.py",
+      "syntax_ok": true,
+      "syntax_error": null,
+      "stl_path": "data/all_stl_files/output_3274.stl",
+      "has_stl": true,
+      "has_silhouette": true
+    },
+    {
+      "id": "3325",
+      "code_path": "data/fixed_code/3325.py",
+      "syntax_ok": true,
+      "syntax_error": null,
+      "stl_path": "data/all_stl_files/output_3325.stl",
+      "has_stl": true,
+      "has_silhouette": true
+    },
+    {
+      "id": "3334",
+      "code_path": "data/fixed_code/3334.py",
+      "syntax_ok": true,
+      "syntax_error": null,
+      "stl_path": "data/all_stl_files/output_3334.stl",
+      "has_stl": true,
+      "has_silhouette": true
+    },
+    {
+      "id": "3336",
+      "code_path": "data/fixed_code/3336.py",
+      "syntax_ok": true,
+      "syntax_error": null,
+      "stl_path": "data/all_stl_files/output_3336.stl",
+      "has_stl": true,
+      "has_silhouette": true
+    },
+    {
+      "id": "3339",
+      "code_path": "data/fixed_code/3339.py",
+      "syntax_ok": true,
+      "syntax_error": null,
+      "stl_path": "data/all_stl_files/output_3339.stl",
+      "has_stl": true,
+      "has_silhouette": true
+    },
+    {
+      "id": "336",
+      "code_path": "data/fixed_code/336.py",
+      "syntax_ok": true,
+      "syntax_error": null,
+      "stl_path": "data/all_stl_files/output_336.stl",
+      "has_stl": true,
+      "has_silhouette": true
+    },
+    {
+      "id": "3362",
+      "code_path": "data/fixed_code/3362.py",
+      "syntax_ok": true,
+      "syntax_error": null,
+      "stl_path": "data/all_stl_files/output_3362.stl",
+      "has_stl": true,
+      "has_silhouette": true
+    },
+    {
+      "id": "337",
+      "code_path": "data/fixed_code/337.py",
+      "syntax_ok": true,
+      "syntax_error": null,
+      "stl_path": "data/all_stl_files/output_337.stl",
+      "has_stl": true,
+      "has_silhouette": true
+    },
+    {
+      "id": "3378",
+      "code_path": "data/fixed_code/3378.py",
+      "syntax_ok": true,
+      "syntax_error": null,
+      "stl_path": "data/all_stl_files/output_3378.stl",
+      "has_stl": true,
+      "has_silhouette": true
+    },
+    {
+      "id": "3380",
+      "code_path": "data/fixed_code/3380.py",
+      "syntax_ok": true,
+      "syntax_error": null,
+      "stl_path": "data/all_stl_files/output_3380.stl",
+      "has_stl": true,
+      "has_silhouette": true
+    },
+    {
+      "id": "3410",
+      "code_path": "data/fixed_code/3410.py",
+      "syntax_ok": true,
+      "syntax_error": null,
+      "stl_path": "data/all_stl_files/output_3410.stl",
+      "has_stl": true,
+      "has_silhouette": true
+    },
+    {
+      "id": "3441",
+      "code_path": "data/fixed_code/3441.py",
+      "syntax_ok": true,
+      "syntax_error": null,
+      "stl_path": "data/all_stl_files/output_3441.stl",
+      "has_stl": true,
+      "has_silhouette": true
+    },
+    {
+      "id": "3476",
+      "code_path": "data/fixed_code/3476.py",
+      "syntax_ok": true,
+      "syntax_error": null,
+      "stl_path": "data/all_stl_files/output_3476.stl",
+      "has_stl": true,
+      "has_silhouette": true
+    },
+    {
+      "id": "3487",
+      "code_path": "data/fixed_code/3487.py",
+      "syntax_ok": true,
+      "syntax_error": null,
+      "stl_path": "data/all_stl_files/output_3487.stl",
+      "has_stl": true,
+      "has_silhouette": true
+    },
+    {
+      "id": "3501",
+      "code_path": "data/fixed_code/3501.py",
+      "syntax_ok": true,
+      "syntax_error": null,
+      "stl_path": "data/all_stl_files/output_3501.stl",
+      "has_stl": true,
+      "has_silhouette": true
+    },
+    {
+      "id": "3510",
+      "code_path": "data/fixed_code/3510.py",
+      "syntax_ok": true,
+      "syntax_error": null,
+      "stl_path": "data/all_stl_files/output_3510.stl",
+      "has_stl": true,
+      "has_silhouette": true
+    },
+    {
+      "id": "3517",
+      "code_path": "data/fixed_code/3517.py",
+      "syntax_ok": true,
+      "syntax_error": null,
+      "stl_path": "data/all_stl_files/output_3517.stl",
+      "has_stl": true,
+      "has_silhouette": true
+    },
+    {
+      "id": "3530",
+      "code_path": "data/fixed_code/3530.py",
+      "syntax_ok": true,
+      "syntax_error": null,
+      "stl_path": "data/all_stl_files/output_3530.stl",
+      "has_stl": true,
+      "has_silhouette": true
+    },
+    {
+      "id": "3535",
+      "code_path": "data/fixed_code/3535.py",
+      "syntax_ok": true,
+      "syntax_error": null,
+      "stl_path": "data/all_stl_files/output_3535.stl",
+      "has_stl": true,
+      "has_silhouette": true
+    },
+    {
+      "id": "3559",
+      "code_path": "data/fixed_code/3559.py",
+      "syntax_ok": true,
+      "syntax_error": null,
+      "stl_path": "data/all_stl_files/output_3559.stl",
+      "has_stl": true,
+      "has_silhouette": true
+    },
+    {
+      "id": "3570",
+      "code_path": "data/fixed_code/3570.py",
+      "syntax_ok": true,
+      "syntax_error": null,
+      "stl_path": "data/all_stl_files/output_3570.stl",
+      "has_stl": true,
+      "has_silhouette": true
+    },
+    {
+      "id": "3586",
+      "code_path": "data/fixed_code/3586.py",
+      "syntax_ok": true,
+      "syntax_error": null,
+      "stl_path": "data/all_stl_files/output_3586.stl",
+      "has_stl": true,
+      "has_silhouette": true
+    },
+    {
+      "id": "3589",
+      "code_path": "data/fixed_code/3589.py",
+      "syntax_ok": true,
+      "syntax_error": null,
+      "stl_path": "data/all_stl_files/output_3589.stl",
+      "has_stl": true,
+      "has_silhouette": true
+    },
+    {
+      "id": "364",
+      "code_path": "data/fixed_code/364.py",
+      "syntax_ok": true,
+      "syntax_error": null,
+      "stl_path": "data/all_stl_files/output_364.stl",
+      "has_stl": true,
+      "has_silhouette": true
+    },
+    {
+      "id": "373",
+      "code_path": "data/fixed_code/373.py",
+      "syntax_ok": true,
+      "syntax_error": null,
+      "stl_path": "data/all_stl_files/output_373.stl",
+      "has_stl": true,
+      "has_silhouette": true
+    },
+    {
+      "id": "380",
+      "code_path": "data/fixed_code/380.py",
+      "syntax_ok": true,
+      "syntax_error": null,
+      "stl_path": "data/all_stl_files/output_380.stl",
+      "has_stl": true,
+      "has_silhouette": true
+    },
+    {
+      "id": "383",
+      "code_path": "data/fixed_code/383.py",
+      "syntax_ok": true,
+      "syntax_error": null,
+      "stl_path": "data/all_stl_files/output_383.stl",
+      "has_stl": true,
+      "has_silhouette": true
+    },
+    {
+      "id": "409",
+      "code_path": "data/fixed_code/409.py",
+      "syntax_ok": true,
+      "syntax_error": null,
+      "stl_path": "data/all_stl_files/output_409.stl",
+      "has_stl": true,
+      "has_silhouette": true
+    },
+    {
+      "id": "412",
+      "code_path": "data/fixed_code/412.py",
+      "syntax_ok": true,
+      "syntax_error": null,
+      "stl_path": "data/all_stl_files/output_412.stl",
+      "has_stl": true,
+      "has_silhouette": true
+    },
+    {
+      "id": "413",
+      "code_path": "data/fixed_code/413.py",
+      "syntax_ok": true,
+      "syntax_error": null,
+      "stl_path": "data/all_stl_files/output_413.stl",
+      "has_stl": true,
+      "has_silhouette": true
+    },
+    {
+      "id": "422",
+      "code_path": "data/fixed_code/422.py",
+      "syntax_ok": true,
+      "syntax_error": null,
+      "stl_path": "data/all_stl_files/output_422.stl",
+      "has_stl": true,
+      "has_silhouette": true
+    },
+    {
+      "id": "423",
+      "code_path": "data/fixed_code/423.py",
+      "syntax_ok": true,
+      "syntax_error": null,
+      "stl_path": "data/all_stl_files/output_423.stl",
+      "has_stl": true,
+      "has_silhouette": true
+    },
+    {
+      "id": "45",
+      "code_path": "data/fixed_code/45.py",
+      "syntax_ok": true,
+      "syntax_error": null,
+      "stl_path": "data/all_stl_files/output_45.stl",
+      "has_stl": true,
+      "has_silhouette": true
+    },
+    {
+      "id": "453",
+      "code_path": "data/fixed_code/453.py",
+      "syntax_ok": true,
+      "syntax_error": null,
+      "stl_path": "data/all_stl_files/output_453.stl",
+      "has_stl": true,
+      "has_silhouette": true
+    },
+    {
+      "id": "488",
+      "code_path": "data/fixed_code/488.py",
+      "syntax_ok": true,
+      "syntax_error": null,
+      "stl_path": "data/all_stl_files/output_488.stl",
+      "has_stl": true,
+      "has_silhouette": true
+    },
+    {
+      "id": "524",
+      "code_path": "data/fixed_code/524.py",
+      "syntax_ok": true,
+      "syntax_error": null,
+      "stl_path": "data/all_stl_files/output_524.stl",
+      "has_stl": true,
+      "has_silhouette": true
+    },
+    {
+      "id": "531",
+      "code_path": "data/fixed_code/531.py",
+      "syntax_ok": true,
+      "syntax_error": null,
+      "stl_path": "data/all_stl_files/output_531.stl",
+      "has_stl": true,
+      "has_silhouette": true
+    },
+    {
+      "id": "551",
+      "code_path": "data/fixed_code/551.py",
+      "syntax_ok": true,
+      "syntax_error": null,
+      "stl_path": "data/all_stl_files/output_551.stl",
+      "has_stl": true,
+      "has_silhouette": true
+    },
+    {
+      "id": "569",
+      "code_path": "data/fixed_code/569.py",
+      "syntax_ok": true,
+      "syntax_error": null,
+      "stl_path": "data/all_stl_files/output_569.stl",
+      "has_stl": true,
+      "has_silhouette": true
+    },
+    {
+      "id": "574",
+      "code_path": "data/fixed_code/574.py",
+      "syntax_ok": true,
+      "syntax_error": null,
+      "stl_path": "data/all_stl_files/output_574.stl",
+      "has_stl": true,
+      "has_silhouette": true
+    },
+    {
+      "id": "6",
+      "code_path": "data/fixed_code/6.py",
+      "syntax_ok": true,
+      "syntax_error": null,
+      "stl_path": "data/all_stl_files/output_6.stl",
+      "has_stl": true,
+      "has_silhouette": true
+    },
+    {
+      "id": "603",
+      "code_path": "data/fixed_code/603.py",
+      "syntax_ok": true,
+      "syntax_error": null,
+      "stl_path": "data/all_stl_files/output_603.stl",
+      "has_stl": true,
+      "has_silhouette": true
+    },
+    {
+      "id": "62",
+      "code_path": "data/fixed_code/62.py",
+      "syntax_ok": true,
+      "syntax_error": null,
+      "stl_path": "data/all_stl_files/output_62.stl",
+      "has_stl": true,
+      "has_silhouette": true
+    },
+    {
+      "id": "622",
+      "code_path": "data/fixed_code/622.py",
+      "syntax_ok": true,
+      "syntax_error": null,
+      "stl_path": "data/all_stl_files/output_622.stl",
+      "has_stl": true,
+      "has_silhouette": true
+    },
+    {
+      "id": "627",
+      "code_path": "data/fixed_code/627.py",
+      "syntax_ok": true,
+      "syntax_error": null,
+      "stl_path": "data/all_stl_files/output_627.stl",
+      "has_stl": true,
+      "has_silhouette": true
+    },
+    {
+      "id": "653",
+      "code_path": "data/fixed_code/653.py",
+      "syntax_ok": true,
+      "syntax_error": null,
+      "stl_path": "data/all_stl_files/output_653.stl",
+      "has_stl": true,
+      "has_silhouette": true
+    },
+    {
+      "id": "657",
+      "code_path": "data/fixed_code/657.py",
+      "syntax_ok": true,
+      "syntax_error": null,
+      "stl_path": "data/all_stl_files/output_657.stl",
+      "has_stl": true,
+      "has_silhouette": true
+    },
+    {
+      "id": "664",
+      "code_path": "data/fixed_code/664.py",
+      "syntax_ok": true,
+      "syntax_error": null,
+      "stl_path": "data/all_stl_files/output_664.stl",
+      "has_stl": true,
+      "has_silhouette": true
+    },
+    {
+      "id": "667",
+      "code_path": "data/fixed_code/667.py",
+      "syntax_ok": true,
+      "syntax_error": null,
+      "stl_path": "data/all_stl_files/output_667.stl",
+      "has_stl": true,
+      "has_silhouette": true
+    },
+    {
+      "id": "677",
+      "code_path": "data/fixed_code/677.py",
+      "syntax_ok": true,
+      "syntax_error": null,
+      "stl_path": "data/all_stl_files/output_677.stl",
+      "has_stl": true,
+      "has_silhouette": true
+    },
+    {
+      "id": "687",
+      "code_path": "data/fixed_code/687.py",
+      "syntax_ok": true,
+      "syntax_error": null,
+      "stl_path": "data/all_stl_files/output_687.stl",
+      "has_stl": true,
+      "has_silhouette": true
+    },
+    {
+      "id": "692",
+      "code_path": "data/fixed_code/692.py",
+      "syntax_ok": true,
+      "syntax_error": null,
+      "stl_path": "data/all_stl_files/output_692.stl",
+      "has_stl": true,
+      "has_silhouette": true
+    },
+    {
+      "id": "698",
+      "code_path": "data/fixed_code/698.py",
+      "syntax_ok": true,
+      "syntax_error": null,
+      "stl_path": "data/all_stl_files/output_698.stl",
+      "has_stl": true,
+      "has_silhouette": true
+    },
+    {
+      "id": "70",
+      "code_path": "data/fixed_code/70.py",
+      "syntax_ok": true,
+      "syntax_error": null,
+      "stl_path": "data/all_stl_files/output_70.stl",
+      "has_stl": true,
+      "has_silhouette": true
+    },
+    {
+      "id": "706",
+      "code_path": "data/fixed_code/706.py",
+      "syntax_ok": true,
+      "syntax_error": null,
+      "stl_path": "data/all_stl_files/output_706.stl",
+      "has_stl": true,
+      "has_silhouette": true
+    },
+    {
+      "id": "720",
+      "code_path": "data/fixed_code/720.py",
+      "syntax_ok": true,
+      "syntax_error": null,
+      "stl_path": "data/all_stl_files/output_720.stl",
+      "has_stl": true,
+      "has_silhouette": true
+    },
+    {
+      "id": "723",
+      "code_path": "data/fixed_code/723.py",
+      "syntax_ok": true,
+      "syntax_error": null,
+      "stl_path": "data/all_stl_files/output_723.stl",
+      "has_stl": true,
+      "has_silhouette": true
+    },
+    {
+      "id": "729",
+      "code_path": "data/fixed_code/729.py",
+      "syntax_ok": true,
+      "syntax_error": null,
+      "stl_path": "data/all_stl_files/output_729.stl",
+      "has_stl": true,
+      "has_silhouette": true
+    },
+    {
+      "id": "736",
+      "code_path": "data/fixed_code/736.py",
+      "syntax_ok": true,
+      "syntax_error": null,
+      "stl_path": "data/all_stl_files/output_736.stl",
+      "has_stl": true,
+      "has_silhouette": true
+    },
+    {
+      "id": "764",
+      "code_path": "data/fixed_code/764.py",
+      "syntax_ok": true,
+      "syntax_error": null,
+      "stl_path": "data/all_stl_files/output_764.stl",
+      "has_stl": true,
+      "has_silhouette": true
+    },
+    {
+      "id": "77",
+      "code_path": "data/fixed_code/77.py",
+      "syntax_ok": true,
+      "syntax_error": null,
+      "stl_path": "data/all_stl_files/output_77.stl",
+      "has_stl": true,
+      "has_silhouette": true
+    },
+    {
+      "id": "787",
+      "code_path": "data/fixed_code/787.py",
+      "syntax_ok": true,
+      "syntax_error": null,
+      "stl_path": "data/all_stl_files/output_787.stl",
+      "has_stl": true,
+      "has_silhouette": true
+    },
+    {
+      "id": "80",
+      "code_path": "data/fixed_code/80.py",
+      "syntax_ok": true,
+      "syntax_error": null,
+      "stl_path": "data/all_stl_files/output_80.stl",
+      "has_stl": true,
+      "has_silhouette": true
+    },
+    {
+      "id": "807",
+      "code_path": "data/fixed_code/807.py",
+      "syntax_ok": true,
+      "syntax_error": null,
+      "stl_path": "data/all_stl_files/output_807.stl",
+      "has_stl": true,
+      "has_silhouette": true
+    },
+    {
+      "id": "81",
+      "code_path": "data/fixed_code/81.py",
+      "syntax_ok": true,
+      "syntax_error": null,
+      "stl_path": "data/all_stl_files/output_81.stl",
+      "has_stl": true,
+      "has_silhouette": true
+    },
+    {
+      "id": "812",
+      "code_path": "data/fixed_code/812.py",
+      "syntax_ok": true,
+      "syntax_error": null,
+      "stl_path": "data/all_stl_files/output_812.stl",
+      "has_stl": true,
+      "has_silhouette": true
+    },
+    {
+      "id": "817",
+      "code_path": "data/fixed_code/817.py",
+      "syntax_ok": true,
+      "syntax_error": null,
+      "stl_path": "data/all_stl_files/output_817.stl",
+      "has_stl": true,
+      "has_silhouette": true
+    },
+    {
+      "id": "826",
+      "code_path": "data/fixed_code/826.py",
+      "syntax_ok": true,
+      "syntax_error": null,
+      "stl_path": "data/all_stl_files/output_826.stl",
+      "has_stl": true,
+      "has_silhouette": true
+    },
+    {
+      "id": "828",
+      "code_path": "data/fixed_code/828.py",
+      "syntax_ok": true,
+      "syntax_error": null,
+      "stl_path": "data/all_stl_files/output_828.stl",
+      "has_stl": true,
+      "has_silhouette": true
+    },
+    {
+      "id": "842",
+      "code_path": "data/fixed_code/842.py",
+      "syntax_ok": true,
+      "syntax_error": null,
+      "stl_path": "data/all_stl_files/output_842.stl",
+      "has_stl": true,
+      "has_silhouette": true
+    },
+    {
+      "id": "86",
+      "code_path": "data/fixed_code/86.py",
+      "syntax_ok": true,
+      "syntax_error": null,
+      "stl_path": "data/all_stl_files/output_86.stl",
+      "has_stl": true,
+      "has_silhouette": true
+    },
+    {
+      "id": "869",
+      "code_path": "data/fixed_code/869.py",
+      "syntax_ok": true,
+      "syntax_error": null,
+      "stl_path": "data/all_stl_files/output_869.stl",
+      "has_stl": true,
+      "has_silhouette": true
+    },
+    {
+      "id": "873",
+      "code_path": "data/fixed_code/873.py",
+      "syntax_ok": true,
+      "syntax_error": null,
+      "stl_path": "data/all_stl_files/output_873.stl",
+      "has_stl": true,
+      "has_silhouette": true
+    },
+    {
+      "id": "90",
+      "code_path": "data/fixed_code/90.py",
+      "syntax_ok": true,
+      "syntax_error": null,
+      "stl_path": "data/all_stl_files/output_90.stl",
+      "has_stl": true,
+      "has_silhouette": true
+    },
+    {
+      "id": "908",
+      "code_path": "data/fixed_code/908.py",
+      "syntax_ok": true,
+      "syntax_error": null,
+      "stl_path": "data/all_stl_files/output_908.stl",
+      "has_stl": true,
+      "has_silhouette": true
+    },
+    {
+      "id": "93",
+      "code_path": "data/fixed_code/93.py",
+      "syntax_ok": true,
+      "syntax_error": null,
+      "stl_path": "data/all_stl_files/output_93.stl",
+      "has_stl": true,
+      "has_silhouette": true
+    },
+    {
+      "id": "940",
+      "code_path": "data/fixed_code/940.py",
+      "syntax_ok": true,
+      "syntax_error": null,
+      "stl_path": "data/all_stl_files/output_940.stl",
+      "has_stl": true,
+      "has_silhouette": true
+    },
+    {
+      "id": "960",
+      "code_path": "data/fixed_code/960.py",
+      "syntax_ok": true,
+      "syntax_error": null,
+      "stl_path": "data/all_stl_files/output_960.stl",
+      "has_stl": true,
+      "has_silhouette": true
+    },
+    {
+      "id": "967",
+      "code_path": "data/fixed_code/967.py",
+      "syntax_ok": true,
+      "syntax_error": null,
+      "stl_path": "data/all_stl_files/output_967.stl",
+      "has_stl": true,
+      "has_silhouette": true
+    },
+    {
+      "id": "968",
+      "code_path": "data/fixed_code/968.py",
+      "syntax_ok": true,
+      "syntax_error": null,
+      "stl_path": "data/all_stl_files/output_968.stl",
+      "has_stl": true,
+      "has_silhouette": true
+    },
+    {
+      "id": "971",
+      "code_path": "data/fixed_code/971.py",
+      "syntax_ok": true,
+      "syntax_error": null,
+      "stl_path": "data/all_stl_files/output_971.stl",
+      "has_stl": true,
+      "has_silhouette": true
+    },
+    {
+      "id": "984",
+      "code_path": "data/fixed_code/984.py",
+      "syntax_ok": true,
+      "syntax_error": null,
+      "stl_path": "data/all_stl_files/output_984.stl",
+      "has_stl": true,
+      "has_silhouette": true
+    },
+    {
+      "id": "996",
+      "code_path": "data/fixed_code/996.py",
+      "syntax_ok": true,
+      "syntax_error": null,
+      "stl_path": "data/all_stl_files/output_996.stl",
+      "has_stl": true,
+      "has_silhouette": true
+    },
+    {
+      "id": "999",
+      "code_path": "data/fixed_code/999.py",
+      "syntax_ok": true,
+      "syntax_error": null,
+      "stl_path": "data/all_stl_files/output_999.stl",
+      "has_stl": true,
+      "has_silhouette": true
+    }
+  ]
+}

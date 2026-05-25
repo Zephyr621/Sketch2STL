@@ -1,47 +1,54 @@
+import argparse
+import math
+import shutil
+import sys
+from pathlib import Path
+from typing import Optional
+
 import cv2
 import numpy as np
-import math
-from pathlib import Path
 
-# ==================== 路径配置 ====================
-PROJECT_ROOT = Path(__file__).parent
+from config import (
+    FIXED_CODE_DIR,
+    INDEX_PATH,
+    OUTPUT_DIR,
+    PROJECT_ROOT,
+    RETRIEVAL_MAX_SCORE,
+)
+from primitives import generate_primitive_stl
+from retrieval import TemplateRetriever
+from silhouette import binary_to_main_contour, extract_main_contour
+from template_runner import run_template
+
+# ==================== 路径配置（兼容旧引用） ====================
 DATA_DIR = PROJECT_ROOT / "data"
-FIXED_CODE_DIR = DATA_DIR / "fixed_code"
-OUTPUT_DIR = PROJECT_ROOT / "output"
-OUTPUT_DIR.mkdir(parents=True, exist_ok=True)
 
 
 class CameraSketchToCadQuery:
-    """基于摄像头草图的CadQuery代码生成器（自动导出STL）"""
-    
-    def __init__(self, template_dir=None):
-        if template_dir is None:
-            template_dir = FIXED_CODE_DIR
-        self.template_dir = Path(template_dir)
+    """摄像头草图 → 模板检索 / 基本体回退 → STL"""
+
+    def __init__(self):
         self.cap = None
-        self.load_templates()
-    
-    def load_templates(self):
-        self.templates = []
-        if self.template_dir.exists():
-            for code_file in self.template_dir.glob("*.py"):
-                with open(code_file, 'r', encoding='utf-8') as f:
-                    code = f.read()
-                self.templates.append({
-                    'filename': code_file.name,
-                    'code': code
-                })
-            print(f"已加载 {len(self.templates)} 个代码模板")
+        self.retriever = TemplateRetriever()
+        self._index_ready = False
+        self._check_index()
+
+    def _check_index(self):
+        if self.retriever.available:
+            n = self.retriever.load()
+            self._index_ready = n > 0
+            print(f"已加载模板检索索引: {n} 个可匹配模板")
         else:
-            print(f"警告: 模板目录不存在: {self.template_dir}")
-    
+            print("提示: 尚未构建模板索引，将使用基本体回退。")
+            print("      请运行: python build_template_index.py")
+            print("      或:     python camera_capture.py --build-index")
+
     def open_camera(self):
-        """打开摄像头（修复版）"""
         for camera_id in [0, 1]:
             backends = [
                 (cv2.CAP_DSHOW, "DSHOW"),
                 (cv2.CAP_MSMF, "MSMF"),
-                (cv2.CAP_ANY, "ANY")
+                (cv2.CAP_ANY, "ANY"),
             ]
             for backend, backend_name in backends:
                 try:
@@ -49,315 +56,283 @@ class CameraSketchToCadQuery:
                     if cap.isOpened():
                         cap.set(cv2.CAP_PROP_FRAME_WIDTH, 640)
                         cap.set(cv2.CAP_PROP_FRAME_HEIGHT, 480)
-                        print(f"✓ 成功打开摄像头 {camera_id} (后端: {backend_name})")
+                        print(f"成功打开摄像头 {camera_id} (后端: {backend_name})")
                         return cap
                 except Exception:
                     continue
         return None
-    
+
     def capture_from_camera(self):
-        """从摄像头采集图像"""
         self.cap = self.open_camera()
-        
         if self.cap is None:
-            print("\n" + "="*50)
+            print("\n" + "=" * 50)
             print("【错误】无法打开摄像头！")
-            print("="*50)
-            print("\n请尝试以下解决方法：")
-            print("1. 检查摄像头是否被其他程序占用")
-            print("2. 在Windows设置中检查摄像头权限")
-            print("3. 重启电脑后重试")
-            print("\n按回车键退出...")
-            input()
+            print("=" * 50)
+            print("\n请尝试: 关闭占用摄像头的程序 / 检查系统权限")
+            print("\n也可使用本地图片: python camera_capture.py --image your_sketch.jpg")
+            input("\n按回车键退出...")
             return None
-        
+
         print("\n摄像头已打开！")
-        print("请在摄像头前的手写板上绘制草图")
-        print("按 [空格键] 拍照识别")
-        print("按 [ESC] 退出\n")
-        
+        print("在绿色框内绘制草图")
+        print("按 [空格] 拍照识别 | [ESC] 退出\n")
+
         for _ in range(10):
             self.cap.read()
-        
+
         while True:
             ret, frame = self.cap.read()
             if not ret:
                 break
-            
+
             frame = cv2.flip(frame, 1)
             h, w = frame.shape[:2]
-            
             margin = 80
-            draw_area = (margin, margin, w - 2*margin, h - 2*margin)
-            
-            cv2.rectangle(frame, 
-                         (draw_area[0], draw_area[1]), 
-                         (draw_area[0] + draw_area[2], draw_area[1] + draw_area[3]), 
-                         (0, 255, 0), 3)
-            
-            cv2.putText(frame, "SKETCH TO CAD", 
-                       (w//2 - 100, 40), cv2.FONT_HERSHEY_SIMPLEX, 
-                       0.8, (0, 255, 255), 2)
-            cv2.putText(frame, "Place your drawing inside the GREEN box", 
-                       (w//2 - 180, 70), cv2.FONT_HERSHEY_SIMPLEX, 
-                       0.5, (255, 255, 255), 1)
-            cv2.putText(frame, "SPACE: Capture | ESC: Exit", 
-                       (w//2 - 150, h - 20), cv2.FONT_HERSHEY_SIMPLEX, 
-                       0.5, (200, 200, 200), 1)
-            
-            center_x = w // 2
-            center_y = h // 2
-            cv2.line(frame, (center_x - 20, center_y), (center_x + 20, center_y), (100, 100, 100), 1)
-            cv2.line(frame, (center_x, center_y - 20), (center_x, center_y + 20), (100, 100, 100), 1)
-            
-            cv2.imshow("Sketch Capture - Camera Ready", frame)
-            
+            draw_area = (margin, margin, w - 2 * margin, h - 2 * margin)
+
+            cv2.rectangle(
+                frame,
+                (draw_area[0], draw_area[1]),
+                (draw_area[0] + draw_area[2], draw_area[1] + draw_area[3]),
+                (0, 255, 0),
+                3,
+            )
+            cv2.putText(
+                frame,
+                "SKETCH TO STL",
+                (w // 2 - 100, 40),
+                cv2.FONT_HERSHEY_SIMPLEX,
+                0.8,
+                (0, 255, 255),
+                2,
+            )
+            cv2.putText(
+                frame,
+                "SPACE: Capture | ESC: Exit",
+                (w // 2 - 150, h - 20),
+                cv2.FONT_HERSHEY_SIMPLEX,
+                0.5,
+                (200, 200, 200),
+                1,
+            )
+            cv2.imshow("Sketch Capture", frame)
+
             key = cv2.waitKey(1) & 0xFF
             if key == 27:
                 return None
-            elif key == 32:
-                sketch = frame[draw_area[1]:draw_area[1] + draw_area[3], 
-                              draw_area[0]:draw_area[0] + draw_area[2]]
+            if key == 32:
+                sketch = frame[
+                    draw_area[1] : draw_area[1] + draw_area[3],
+                    draw_area[0] : draw_area[0] + draw_area[2],
+                ]
                 cv2.imwrite(str(OUTPUT_DIR / "captured_raw.jpg"), sketch)
-                print("\n✓ 已捕获图像，正在处理...")
+                print("\n已捕获图像，正在处理...")
                 return sketch
-        
         return None
-    
+
+    def load_image(self, image_path: Path):
+        img = cv2.imread(str(image_path))
+        if img is None:
+            print(f"无法读取图片: {image_path}")
+            return None
+        cv2.imwrite(str(OUTPUT_DIR / "captured_raw.jpg"), img)
+        print(f"已加载图片: {image_path}")
+        return img
+
     def preprocess_sketch(self, image):
-        """预处理草图图像"""
-        print("  - 转换为灰度图...")
+        print("  - 灰度与二值化...")
         gray = cv2.cvtColor(image, cv2.COLOR_BGR2GRAY)
-        
-        print("  - 高斯滤波去噪...")
         blurred = cv2.GaussianBlur(gray, (5, 5), 0)
-        
-        print("  - 自适应二值化...")
-        binary = cv2.adaptiveThreshold(blurred, 255, 
-                                       cv2.ADAPTIVE_THRESH_GAUSSIAN_C,
-                                       cv2.THRESH_BINARY_INV, 11, 2)
-        
-        print("  - 形态学处理...")
+        binary = cv2.adaptiveThreshold(
+            blurred,
+            255,
+            cv2.ADAPTIVE_THRESH_GAUSSIAN_C,
+            cv2.THRESH_BINARY_INV,
+            11,
+            2,
+        )
         kernel = np.ones((3, 3), np.uint8)
         closed = cv2.morphologyEx(binary, cv2.MORPH_CLOSE, kernel)
         denoised = cv2.medianBlur(closed, 3)
-        
         cv2.imwrite(str(OUTPUT_DIR / "processed_binary.jpg"), denoised)
-        
         return denoised
-    
-    def analyze_shape(self, binary_image):
-        """分析形状类型和参数"""
-        print("  - 查找轮廓...")
-        contours, _ = cv2.findContours(binary_image, cv2.RETR_EXTERNAL, 
-                                       cv2.CHAIN_APPROX_SIMPLE)
-        
+
+    def draw_contour_preview(self, image, binary):
+        preview = image.copy()
+        contour = extract_main_contour(binary)
+        if contour is not None and len(contour) >= 3:
+            cv2.drawContours(preview, [contour.astype(np.int32)], -1, (0, 255, 0), 2)
+        cv2.imwrite(str(OUTPUT_DIR / "contour_preview.jpg"), preview)
+
+    def analyze_shape_fallback(self, binary_image):
+        """检索失败时的基本体分类（保留原逻辑）。"""
+        contours, _ = cv2.findContours(binary_image, cv2.RETR_EXTERNAL, cv2.CHAIN_APPROX_SIMPLE)
         if not contours:
             return None, None
-        
+
         main_contour = max(contours, key=cv2.contourArea)
         area = cv2.contourArea(main_contour)
-        
         if area < 500:
-            print(f"    警告: 轮廓面积太小 ({area})")
             return None, None
-        
-        print(f"    检测到轮廓面积: {area}")
-        
+
         perimeter = cv2.arcLength(main_contour, True)
-        epsilon = 0.02 * perimeter
-        approx = cv2.approxPolyDP(main_contour, epsilon, True)
+        approx = cv2.approxPolyDP(main_contour, 0.02 * perimeter, True)
         num_vertices = len(approx)
-        print(f"    顶点数: {num_vertices}")
-        
         rect = cv2.minAreaRect(main_contour)
-        (cx, cy), (width, height), angle = rect
-        
+        (_, _), (width, height), _ = rect
         if width < height:
             width, height = height, width
-        
-        if perimeter > 0:
-            circularity = 4 * math.pi * area / (perimeter * perimeter)
-        else:
-            circularity = 0
-        print(f"    圆度: {circularity:.3f}")
-        
-        # 形状分类
+
+        circularity = (4 * math.pi * area / (perimeter * perimeter)) if perimeter > 0 else 0
+
         if circularity > 0.7 and num_vertices > 8:
-            shape_type = 'sphere'
-            shape_name = '圆形/球体'
+            shape_type = "sphere"
         elif num_vertices == 4:
-            aspect_ratio = width / height if height > 0 else 1
-            if 0.8 < aspect_ratio < 1.2:
-                shape_type = 'cube'
-                shape_name = '正方形/立方体'
-            else:
-                shape_type = 'rectangle'
-                shape_name = '长方形/长方体'
+            aspect = width / height if height > 0 else 1
+            shape_type = "cube" if 0.8 < aspect < 1.2 else "rectangle"
         elif num_vertices == 3:
-            shape_type = 'cone'
-            shape_name = '三角形/圆锥'
+            shape_type = "cone"
         elif 5 <= num_vertices <= 8 and circularity > 0.6:
-            shape_type = 'cylinder'
-            shape_name = '椭圆形/圆柱'
+            shape_type = "cylinder"
         else:
-            shape_type = 'cube'
-            shape_name = '未识别，默认立方体'
-        
-        # 估算尺寸
+            shape_type = "cube"
+
         size = max(5, min(50, math.sqrt(area) / 5))
-        
-        print(f"    识别形状: {shape_name}")
-        print(f"    估算尺寸: {size:.1f}")
-        
-        params = {
-            'size': size,
-            'width': width,
-            'height': height,
-            'circularity': circularity,
-            'num_vertices': num_vertices
-        }
-        
-        return shape_type, params
-    
-    def generate_and_save_stl(self, shape_type, params):
-        """生成CadQuery模型并直接保存为STL文件"""
-        size = params.get('size', 10)
-        
-        import cadquery as cq
-        
-        # 根据形状创建模型
-        if shape_type == 'cube':
-            result = cq.Workplane("XY").box(size, size, size)
-            shape_name = "立方体"
-        elif shape_type == 'sphere':
-            result = cq.Workplane("XY").sphere(size/2)
-            shape_name = "球体"
-        elif shape_type == 'cylinder':
-            result = cq.Workplane("XY").cylinder(size, size/3)
-            shape_name = "圆柱体"
-        elif shape_type == 'cone':
-            result = cq.Workplane("XY").circle(size/3).workplane(offset=size).circle(5).loft()
-            shape_name = "圆锥体"
-        elif shape_type == 'rectangle':
-            result = cq.Workplane("XY").box(params.get('width', size), params.get('height', size), size/2)
-            shape_name = "长方体"
-        else:
-            result = cq.Workplane("XY").box(size, size, size)
-            shape_name = "立方体"
-        
-        # 生成STL文件名
-        stl_filename = f"{shape_type}_{int(size)}_{int(size*100)%100}.stl"
-        stl_path = OUTPUT_DIR / stl_filename
-        
-        # 导出STL
-        cq.exporters.export(result, str(stl_path))
-        print(f"\n✓ STL文件已保存: {stl_path}")
-        
-        # 同时保存CadQuery代码
-        code = self.generate_cadquery_code(shape_type, params)
-        py_filename = f"generated_{shape_type}_{int(size)}.py"
-        py_path = OUTPUT_DIR / py_filename
-        with open(py_path, 'w', encoding='utf-8') as f:
-            f.write(code)
-        print(f"✓ CadQuery代码已保存: {py_path}")
-        
-        return stl_path
-    
-    def generate_cadquery_code(self, shape_type, params):
-        """生成CadQuery代码（仅用于保存文本）"""
-        size = params.get('size', 10)
-        
-        imports = '''import cadquery as cq
+        return shape_type, {"size": size, "width": width, "height": height}
 
-'''
-        
-        codes = {
-            'cube': f'''{imports}# 立方体
-result = cq.Workplane("XY").box({size}, {size}, {size})
+    def export_from_template(self, match: dict) -> Optional[Path]:
+        template_id = match["id"]
+        score = match.get("score", 0)
+        out_stl = OUTPUT_DIR / f"matched_{template_id}.stl"
+        out_py = OUTPUT_DIR / f"matched_{template_id}.py"
 
-# 导出STL（可选）
-# result.export("output.stl")
-''',
-            'sphere': f'''{imports}# 球体
-result = cq.Workplane("XY").sphere({size/2})
-''',
-            'cylinder': f'''{imports}# 圆柱体
-result = cq.Workplane("XY").cylinder({size}, {size/3})
-''',
-            'cone': f'''{imports}# 圆锥体
-result = cq.Workplane("XY").circle({size/3}).workplane(offset={size}).circle(5).loft()
-''',
-            'rectangle': f'''{imports}# 长方体
-result = cq.Workplane("XY").box({params.get('width', size)}, {params.get('height', size)}, {size/2})
-'''
-        }
-        
-        return codes.get(shape_type, codes['cube'])
-    
-    def run(self):
-        """主流程"""
-        print("\n" + "="*60)
-        print("    摄像头草图 → STL 3D模型生成系统")
-        print("="*60)
-        print(f"输出目录: {OUTPUT_DIR}")
-        print("="*60)
-        
-        # 步骤1：摄像头采集
-        print("\n【步骤1】摄像头采集")
+        print(f"  匹配模板 #{template_id} (分数 {score:.4f}, 越小越好)")
+
+        code_path = PROJECT_ROOT / match["code_path"]
+        if code_path.exists():
+            shutil.copy2(code_path, out_py)
+
+        if match.get("has_stl") and match.get("stl_path"):
+            stl_src = PROJECT_ROOT / match["stl_path"]
+            if stl_src.exists():
+                shutil.copy2(stl_src, out_stl)
+                print(f"  已从模板库复制 STL: {out_stl}")
+                return out_stl
+
+        if match.get("syntax_ok") and code_path.exists():
+            print("  正在执行 CadQuery 模板生成 STL...")
+            ok, err = run_template(code_path, out_stl)
+            if ok:
+                print(f"  已生成 STL: {out_stl}")
+                return out_stl
+            print(f"  模板执行失败: {err}")
+
+        return None
+
+    def process_sketch(self, sketch) -> Optional[Path]:
+        binary = self.preprocess_sketch(sketch)
+        self.draw_contour_preview(sketch, binary)
+
+        print("\n【步骤3】模板检索")
         print("-" * 40)
-        sketch = self.capture_from_camera()
-        
+
+        if self._index_ready:
+            matches = self.retriever.search(binary)
+            for i, m in enumerate(matches, 1):
+                print(f"  Top{i}: 模板 {m['id']}  分数 {m['score']:.4f}")
+
+            if matches and self.retriever.should_accept_match(matches):
+                best = matches[0]
+                print(f"  采用模板 {best['id']} (分数 {best['score']:.4f})")
+                stl = self.export_from_template(best)
+                if stl:
+                    return stl
+            elif matches:
+                print(
+                    f"  最佳分数 {matches[0]['score']:.4f} 未达阈值 "
+                    f"(需 <= {RETRIEVAL_MAX_SCORE} 或 Top1/Top2 差距明显)"
+                )
+            print("  回退到基本体生成...")
+        else:
+            print("  索引未就绪，回退到基本体生成...")
+
+        print("\n【步骤3b】基本体识别")
+        print("-" * 40)
+        shape_type, params = self.analyze_shape_fallback(binary)
+        if shape_type is None:
+            print("\n未能识别形状，请确保轮廓清晰且在框内。")
+            return None
+
+        print(f"  基本体类型: {shape_type}")
+        print("\n【步骤4】生成 STL")
+        print("-" * 40)
+        stl_path, _ = generate_primitive_stl(shape_type, params)
+        print(f"  STL: {stl_path}")
+        return stl_path
+
+    def run(self, image_path: Optional[Path] = None):
+        print("\n" + "=" * 60)
+        print("    摄像头草图 → STL（模板检索 + 基本体回退）")
+        print("=" * 60)
+        print(f"输出目录: {OUTPUT_DIR}")
+        print("=" * 60)
+
+        if image_path:
+            print("\n【步骤1】加载图片")
+            sketch = self.load_image(image_path)
+        else:
+            print("\n【步骤1】摄像头采集")
+            sketch = self.capture_from_camera()
+
         if sketch is None:
-            print("\n用户退出")
+            print("\n已退出")
             return
-        
+
         if self.cap:
             self.cap.release()
         cv2.destroyAllWindows()
-        
-        # 步骤2：图像预处理
+
         print("\n【步骤2】图像预处理")
         print("-" * 40)
-        binary = self.preprocess_sketch(sketch)
-        
-        # 步骤3：形状分析
-        print("\n【步骤3】形状分析")
-        print("-" * 40)
-        shape_type, params = self.analyze_shape(binary)
-        
-        if shape_type is None:
-            print("\n❌ 未能识别形状，请确保:")
-            print("   1. 图形轮廓清晰（用黑色笔绘制）")
-            print("   2. 图形位于绿色框内")
-            print("   3. 光照充足，避免阴影")
+        stl_path = self.process_sketch(sketch)
+
+        if stl_path is None:
             return
-        
-        # 步骤4：生成并保存STL
-        print("\n【步骤4】生成STL模型")
-        print("-" * 40)
-        stl_path = self.generate_and_save_stl(shape_type, params)
-        
-        print("\n" + "="*60)
-        print("✓ 处理完成！")
-        print(f"STL文件位置: {stl_path}")
-        print(f"输出文件夹: {OUTPUT_DIR}")
-        print("="*60)
-        
-        # 尝试用系统默认程序打开STL文件
+
+        print("\n" + "=" * 60)
+        print("处理完成")
+        print(f"STL: {stl_path}")
+        print("=" * 60)
+
         try:
             import os
+
             os.startfile(str(stl_path))
-            print("\n已自动打开STL文件（Windows 3D查看器）")
+            print("\n已尝试用系统默认程序打开 STL")
         except Exception:
-            print(f"\n请手动打开STL文件: {stl_path}")
+            print(f"\n请手动打开: {stl_path}")
 
 
-# ==================== 运行入口 ====================
+def main():
+    parser = argparse.ArgumentParser(description="Sketch2STL 草图转 3D")
+    parser.add_argument("--image", "-i", type=Path, help="使用本地图片代替摄像头")
+    parser.add_argument("--build-index", action="store_true", help="构建模板索引后退出")
+    args = parser.parse_args()
+
+    if args.build_index:
+        from build_template_index import build_index
+        from retrieval import build_features_from_index
+
+        build_index()
+        build_features_from_index()
+        print(f"索引: {INDEX_PATH}")
+        return
+
+    app = CameraSketchToCadQuery()
+    app.run(image_path=args.image)
+
+
 if __name__ == "__main__":
-    print("\n正在启动系统...")
-    generator = CameraSketchToCadQuery()
-    generator.run()
-    
+    main()
     print("\n按回车键退出...")
     input()
